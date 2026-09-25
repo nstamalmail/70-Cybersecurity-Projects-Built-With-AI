@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Incident Response Training</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="canvas-container"></div>
+        
+        <div id="ui-overlay">
+            <div id="timer">
+                <div id="timer-label">Time Elapsed</div>
+                <div id="timer-value">00:00</div>
+            </div>
+            
+            <div id="scenario-info">
+                <div id="scenario-title">Loading...</div>
+                <div id="scenario-description">Preparing scenario...</div>
+            </div>
+            
+            <div id="current-room">
+                <div id="current-room-label">Current Location</div>
+                <div id="current-room-name">Reception</div>
+            </div>
+            
+            <div id="minimap">
+                <div id="minimap-label">Minimap</div>
+                <canvas id="minimap-canvas"></canvas>
+            </div>
+            
+            <div id="score-panel">
+                <div id="score-label">Score</div>
+                <div id="score-value">0</div>
+            </div>
+            
+            <div id="evidence-panel">
+                <div id="evidence-header">
+                    <div id="evidence-title">Evidence Collected</div>
+                    <div id="evidence-count">0/0</div>
+                </div>
+                <div id="evidence-list"></div>
+            </div>
+            
+            <div id="controls-help">
+                <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> Move | 
+                <kbd>Mouse</kbd> Look | 
+                <kbd>E</kbd> Interact | 
+                <kbd>ESC</kbd> Pause
+            </div>
+            
+            <div id="interaction-prompt">Press <kbd>E</kbd> to interact</div>
+        </div>
+        
+        <div id="decision-panel">
+            <div id="decision-question"></div>
+            <div id="decision-options"></div>
+        </div>
+        
+        <div id="completion-modal">
+            <div id="completion-content">
+                <div id="completion-title">Scenario Complete!</div>
+                <div id="completion-score">0</div>
+                <div id="completion-message">Well done on completing the training scenario.</div>
+                <div id="completion-buttons">
+                    <button class="btn btn-primary" onclick="downloadReport()">Download Report</button>
+                    <button class="btn btn-secondary" onclick="restartScenario()">Try Again</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="notification"></div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

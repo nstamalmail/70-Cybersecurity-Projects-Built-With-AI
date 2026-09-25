@@ -1,0 +1,563 @@
+# Architecture: Network Traffic Monitor for Android
+
+**Codename:** `NetScope`
+**Document Version:** 1.0.0
+**Target Platform:** Android 8.0+ (API 26+) — full per-app attribution on Android 10+ (API 29+)
+**Build Target:** `.apk` via Buildozer / python-for-android
+**Author Role:** Senior Security Developer
+**Classification:** Internal Engineering Spec
+
+---
+
+## 1. Executive Summary
+
+NetScope is an **on-device, privacy-preserving** network traffic monitor that reports **per-application bandwidth usage** (upload/download, foreground/background, mobile/Wi-Fi) in real time and historically. It performs **all analysis locally**, ships with **no analytics**, and requires the elevated `android.permission.READ_NETWORK_USAGE_HISTORY` (system-restricted) or falls back to **VPNService-based local capture** for unprivileged builds.
+
+The GUI and orchestration are written in **Python 3.11** using **KivyMD**, packaged for Android via **Buildozer**. Kernel/OS telemetry is bridged through **pyjnius** to `NetworkStatsManager`, `ConnectivityManager`, and a Python-controlled **VpnService** (for per-flow capture when stats permission is unavailable).
+
+> **Reality check (senior-dev honesty):** True *per-app* byte accounting on Android without root is only available via `NetworkStatsManager` (requires `PACKAGE_USAGE_STATS` + on some OEMs `READ_NETWORK_USAGE_HISTORY`). If those are denied, the app degrades to a **userspace VPN tunnel** that attributes flows to UIDs via `ConnectivityManager.getConnectionOwnerUid()`. Both paths are specified below.
+
+---
+
+## 2. Design Goals & Threat Model
+
+### 2.1 Goals
+| ID | Goal |
+|----|------|
+| G1 | Accurate per-app byte counters (rx/tx), split by network type & foreground/background. |
+| G2 | No traffic content inspection — metadata only (5-tuple + byte counts). |
+| G3 | Zero data egress: no telemetry, no cloud, no third-party SDKs. |
+| G4 | No persistent packet payloads; flow records only, with configurable retention. |
+| G5 | Minimal permissions; graceful degradation when privileged APIs are denied. |
+| G6 | Foreground service with persistent notification (Android 8+ requirement). |
+| G7 | Auditable, reproducible build (SBOM, pinned deps). |
+
+### 2.2 Threat Model (STRIDE-lite)
+
+**In scope:**
+- Malicious app on same device reading our local DB (mitigated: app-private storage + SQLCipher optional).
+- Network attacker (N/A — we send nothing).
+- Adversarial app that *is* the traffic being measured (we never trust it; we read OS counters).
+- Shoulder surfing of dashboards (FLAG_SECURE on sensitive screens).
+- Abuse of the VpnService to intercept other apps (mitigated: we never route packets to a remote endpoint; tun loop reads counters only).
+- Forensic extraction of flow history (mitigated: encrypted DB, retention limits, wipe-on-uninstall).
+
+**Out of scope:**
+- Rooted device with live kernel hooking.
+- Compromised OS / malicious firmware.
+- ISP-level correlation (we don't claim to defeat it).
+- Content-level DPI (we explicitly do **not** do this).
+
+---
+
+## 3. High-Level Architecture
+
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│                            NetScope APK                              │
+│                                                                      │
+│  ┌────────────────────────────────────────────────────────────────┐  │
+│  │                 PRESENTATION LAYER (KivyMD)                    │  │
+│  │  ┌───────────┐ ┌───────────┐ ┌───────────┐ ┌───────────────┐   │  │
+│  │  │Dashboard  │ │AppDetail  │ │Timeline   │ │Settings/About │   │  │
+│  │  └─────┬─────┘ └─────┬─────┘ └─────┬─────┘ └───────┬───────┘   │  │
+│  └────────┼─────────────┼─────────────┼───────────────┼──────────┘  │
+│           │             │             │               │             │
+│  ┌────────▼─────────────▼─────────────▼───────────────▼──────────┐  │
+│  │                  APPLICATION CORE (Python)                    │  │
+│  │  MetricsService │ FlowAggregator │ ChartRenderer │ PrefsSvc   │  │
+│  └────────┬─────────────┬─────────────┬───────────────┬──────────┘  │
+│           │             │             │               │             │
+│  ┌────────▼─────────────▼─────────────▼───────────────▼──────────┐  │
+│  │                    COLLECTION LAYER                           │  │
+│  │  ┌───────────────────────┐   ┌──────────────────────────────┐ │  │
+│  │  │ NetworkStatsCollector │   │ VpnCaptureService            │ │  │
+│  │  │ (NetworkStatsManager) │   │ (VpnService + tun reader)    │ │  │
+│  │  └───────────┬───────────┘   └──────────────┬───────────────┘ │  │
+│  └──────────────┼──────────────────────────────┼─────────────────┘  │
+│                 │                              │                    │
+│  ┌──────────────▼──────────────────────────────▼─────────────────┐  │
+│  │              STORAGE LAYER (SQLCipher / Room-free)            │  │
+│  │  flows.db │ apps_meta.db │ rollups.db │ prefs.enc             │  │
+│  └───────────────────────────────────────────────────────────────┘  │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
+        │                              │                     │
+        ▼                              ▼                     ▼
+  Android Framework              /dev/tun (VpnService)   Android Keystore
+  (NetworkStats/Connectivity)    (userspace flow taps)   (DB key wrap)
+```
+
+---
+
+## 4. Technology Stack
+
+| Layer | Technology | Rationale |
+|-------|-----------|-----------|
+| Language | Python 3.11 | Mandated. |
+| GUI | **KivyMD 1.1+** on Kivy 2.3 | Material UI, Android-friendly, chart widgets. |
+| Charts | **kivy_garden.graph** + custom Canvas | Avoid heavy native deps. |
+| Packaging | **Buildozer 1.5+** | Produces signed APK/AAB. |
+| Android bridge | **pyjnius** | Bind to `NetworkStatsManager`, `ConnectivityManager`, `VpnService`, `NotificationManager`. |
+| Local DB | **SQLite** + optional **SQLCipher** | Time-series of flow samples. |
+| Crypto | **cryptography** (AES-GCM) + **argon2-cffi** | DB key wrap, prefs encryption. |
+| Foreground service | p4a service + `android` module | Required for continuous monitoring. |
+| VPN tunnel | Custom VpnService subclass via pyjnius + Python `socket` reading `/dev/tun` | Per-flow accounting fallback. |
+
+---
+
+## 5. Data Collection Design
+
+NetScope supports **two collection backends** chosen automatically at runtime:
+
+### 5.1 Backend A — `NetworkStatsManager` (preferred)
+
+**Permissions:**
+- `android.permission.PACKAGE_USAGE_STATS` (via Settings → Special access, user-granted)
+- `android.permission.READ_NETWORK_USAGE_HISTORY` (signature-level on most ROMs; only granted to system/privileged apps)
+- `ACCESS_NETWORK_STATE`, `ACCESS_WIFI_STATE`
+
+**API surface (via pyjnius):**
+```
+NetworkStatsManager.queryDetailsForUid(
+    networkType, subscriberId, startTime, endTime, uid)
+NetworkStatsManager.querySummaryForDevice(...)
+NetworkStats.Bucket.getRxBytes()/getTxBytes()/getStartTimeStamp()/getEndTimeStamp()
+```
+
+**Granularity:** per-UID, per-networkType (WIFI/MOBILE), foreground vs background not always separable — combined via periodic diffing.
+
+**Polling cadence:** adaptive — 5 s on screen, 30 s backgrounded, 5 min doze.
+
+### 5.2 Backend B — `VpnService` userspace tap (fallback)
+
+Used when stats permission is denied. Design principle: **we are a sinkhole counter, not a tunnel**.
+
+- Establish `Builder().addAddress("10.8.0.1", 32).addRoute("0.0.0.0", 0).establish()`.
+- Read raw IP packets from the tun fd; parse IPv4/IPv6 + TCP/UDP headers only.
+- Attribute each flow to a UID via `ConnectivityManager.getConnectionOwnerUid(proto, local, remote)`.
+- Increment counters, then **forward packets unchanged** to the real network using a protected socket (`VpnService.protect()`), preserving user connectivity.
+- **No payload is logged**, no reassembly, no DPI. Only `(uid, proto, saddr, sport, daddr, dport, bytes, ts)` tuples in RAM, flushed as aggregates.
+
+**Hard guarantees:**
+- Flow records flushed to DB every 10 s.
+- Raw packets dropped immediately after counting (no buffering beyond one MTU).
+- No DNS inspection (the resolver is left untouched).
+
+### 5.3 Backend selection matrix
+
+| Condition | Backend |
+|-----------|---------|
+| `PACKAGE_USAGE_STATS` granted | A |
+| VPN consent granted, stats denied | B |
+| Both denied | UI-only, prompts user |
+| Rooted (future) | Optional A + `/proc/net/xt_qtaguid` cross-check |
+
+---
+
+## 6. Data Model
+
+### 6.1 Flow sample (hot path — RAM ring buffer)
+```
+FlowSample {
+  ts_ms        : int64
+  uid          : int32
+  iface        : enum{WIFI, MOBILE, VPN, OTHER}
+  direction    : enum{RX, TX}
+  bytes        : int64
+  fg           : bool       # app foreground at sample time
+}
+```
+
+### 6.2 SQLite schema (SQLCipher-encrypted)
+
+```sql
+CREATE TABLE flows (
+  id       INTEGER PRIMARY KEY,
+  ts_ms    INTEGER NOT NULL,
+  uid      INTEGER NOT NULL,
+  iface    TEXT    NOT NULL,
+  dir      TEXT    NOT NULL,
+  bytes    INTEGER NOT NULL,
+  fg       INTEGER NOT NULL
+);
+CREATE INDEX idx_flows_ts  ON flows(ts_ms);
+CREATE INDEX idx_flows_uid ON flows(uid, ts_ms);
+
+CREATE TABLE rollups_hourly (
+  hour_ms  INTEGER NOT NULL,
+  uid      INTEGER NOT NULL,
+  iface    TEXT    NOT NULL,
+  rx       INTEGER NOT NULL,
+  tx       INTEGER NOT NULL,
+  PRIMARY KEY (hour_ms, uid, iface)
+);
+
+CREATE TABLE rollups_daily (
+  day_ms   INTEGER NOT NULL,
+  uid      INTEGER NOT NULL,
+  iface    TEXT    NOT NULL,
+  rx       INTEGER NOT NULL,
+  tx       INTEGER NOT NULL,
+  PRIMARY KEY (day_ms, uid, iface)
+);
+
+CREATE TABLE apps (
+  uid          INTEGER PRIMARY KEY,
+  package_name TEXT,
+  label        TEXT,
+  icon_blob    BLOB,       -- cached, not sensitive
+  first_seen   INTEGER,
+  last_seen    INTEGER
+);
+
+CREATE TABLE prefs (
+  key   TEXT PRIMARY KEY,
+  value TEXT
+);
+```
+
+**Retention policy (default):**
+- Raw flows: 24 h
+- Hourly rollups: 30 d
+- Daily rollups: 365 d
+- Vacuum + `PRAGMA secure_delete=ON`.
+
+### 6.3 Encryption model
+- DB key = random 32 B, generated on first run.
+- Wrapped with AES-GCM using a Keystore-backed key (`setUserAuthenticationRequired(false)` — the app must run headless in a service; biometric gate is optional for the DB *viewing* screen only).
+- Wrapped key stored in app-private `files/dbkey.wrap`.
+- Optional "Paranoid mode": require biometric to open dashboard; service continues counting using an in-memory cached key unwrapped at boot.
+
+---
+
+## 7. Module Breakdown
+
+### 7.1 `core/collectors/`
+| Module | Responsibility |
+|--------|----------------|
+| `stats_collector.py` | pyjnius wrapper around `NetworkStatsManager`; adaptive polling. |
+| `vpn_service.py` | Python VpnService subclass + tun reader loop. |
+| `flow_parser.py` | Minimal IPv4/IPv6/TCP/UDP header parser (no payload). |
+| `uid_resolver.py` | `getConnectionOwnerUid` cache + LRU. |
+| `iface_watcher.py` | `ConnectivityManager.NetworkCallback` → iface state. |
+
+### 7.2 `core/services/`
+| Module | Responsibility |
+|--------|----------------|
+| `metrics_service.py` | Foreground service orchestrator; owns collectors. |
+| `aggregator.py` | In-RAM rollup (per-second → per-hour → per-day). |
+| `retention.py` | Prunes old rows; runs during idle. |
+| `prefs_service.py` | Encrypted prefs (poll cadence, retention, theme). |
+| `notify.py` | Persistent foreground notification; action = pause. |
+
+### 7.3 `core/storage/`
+| Module | Responsibility |
+|--------|----------------|
+| `db.py` | SQLCipher open/migrate; key unwrap. |
+| `flow_repo.py` | Batch inserts, range queries. |
+| `apps_repo.py` | PackageManager metadata caching. |
+| `paths.py` | App-private dirs only. |
+
+### 7.4 `ui/`
+| Screen | Responsibility |
+|--------|----------------|
+| `DashboardScreen` | Live total rx/tx, top-5 apps, iface split. |
+| `AppDetailScreen` | Per-app chart (hour/day/week), fg vs bg. |
+| `TimelineScreen` | Scrollable hourly bars. |
+| `SettingsScreen` | Cadence, retention, "paranoid mode", pause. |
+| `PermissionsScreen` | Guided grant for usage access / VPN consent. |
+| `widgets/` | `Sparkline`, `DonutChart`, `RateTicker`. |
+
+### 7.5 `platform/`
+| Module | Responsibility |
+|--------|----------------|
+| `permissions.py` | Check + deep-link to Settings for usage access; VPN consent. |
+| `foreground.py` | Start/stop foreground service, notification channel. |
+| `secure_window.py` | `FLAG_SECURE` on dashboard if paranoid mode. |
+| `boot_receiver.py` | Optional autostart (user opt-in). |
+
+---
+
+## 8. Runtime Lifecycle
+
+```
+App start
+  │
+  ├─► Check permissions
+  │     ├─ PACKAGE_USAGE_STATS granted → Backend A
+  │     └─ else prompt VPN consent    → Backend B
+  │
+  ├─► Start ForegroundService(MetricsService)
+  │     ├─ open encrypted DB
+  │     ├─ spawn collector thread (Python)
+  │     └─ register ConnectivityManager.NetworkCallback
+  │
+  ├─► Launch UI (KivyMD)
+  │     └─ bind to aggregator via observer pattern
+  │
+  └─► onDestroy → flush → zeroize keys → close DB
+```
+
+**Threading model:**
+- 1 collector thread (JNI calls are blocking; never on UI thread).
+- 1 aggregator thread (consumes ring buffer → DB batches).
+- UI runs on Kivy's main loop; reads from in-RAM aggregator snapshot (no DB hits on UI thread).
+
+---
+
+## 9. Foreground Service (Android 8+ compliance)
+
+```python
+# Pseudocode (pyjnius)
+service = autoclass('com.sentinel.netscope.MetricsService')
+NotificationChannel("netscope", "Traffic Monitor", IMPORTANCE_LOW)
+startForeground(1, buildNotification("Monitoring • 12.4 MB/min"))
+```
+
+**Required manifest entries:**
+```xml
+<service android:name=".MetricsService"
+         android:foregroundServiceType="dataSync|specialUse"
+         android:exported="false"/>
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+```
+
+> Android 14+ requires declared `foregroundServiceType`. NetScope declares `dataSync` + `specialUse` and documents the justification in the Play listing.
+
+---
+
+## 10. Android Manifest (key entries)
+
+```xml
+<uses-permission android:name="android.permission.INTERNET"/>            <!-- required for VPN protect socket; NOT used for telemetry -->
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+<uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"
+                 tools:ignore="ProtectedPermissions"/>
+<uses-permission android:name="android.permission.READ_NETWORK_USAGE_HISTORY"
+                 tools:ignore="ProtectedPermissions"/>
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+<application
+    android:allowBackup="false"
+    android:fullBackupContent="false"
+    android:dataExtractionRules="@xml/no_backup"
+    android:usesCleartextTraffic="false"
+    android:networkSecurityConfig="@xml/nsc_strict">
+    <service android:name=".NetScopeVpnService"
+             android:permission="android.permission.BIND_VPN_SERVICE"
+             android:exported="false">
+        <intent-filter>
+            <action android:name="android.net.VpnService"/>
+        </intent-filter>
+    </service>
+</application>
+```
+
+> **Justification for `INTERNET`**: needed solely to open protected sockets for packet forwarding in Backend B and to read `NetworkStatsManager` (some OEMs require it). No outbound connections to any server are initiated by NetScope. This is documented in `PRIVACY.md` and enforced by a CI grep gate against `socket.connect(` in non-whitelisted modules.
+
+---
+
+## 11. Build Pipeline (Buildozer)
+
+### 11.1 `buildozer.spec` (key entries)
+
+```ini
+[app]
+title = NetScope
+package.name = netscope
+package.domain = com.sentinel
+source.dir = .
+source.include_exts = py,png,jpg,kv,atlas,json,xml
+version = 1.0.0
+
+requirements = python3,kivy==2.3.0,kivymd==1.1.1,pyjnius,android,cryptography,argon2-cffi,kivy_garden.graph
+
+android.permissions = INTERNET,ACCESS_NETWORK_STATE,ACCESS_WIFI_STATE,PACKAGE_USAGE_STATS,READ_NETWORK_USAGE_HISTORY,FOREGROUND_SERVICE,FOREGROUND_SERVICE_DATA_SYNC,POST_NOTIFICATIONS,RECEIVE_BOOT_COMPLETED
+android.api = 34
+android.minapi = 26
+android.ndk = 25c
+android.archs = arm64-v8a, armeabi-v7a
+android.allow_backup = False
+android.enable_androidx = True
+android.gradle_dependencies = androidx.work:work-runtime:2.9.0
+android.services = NetScopeVpnService:com.sentinel.netscope.NetScopeVpnService
+p4a.branch = develop
+android.enable_artifact_signing = True
+```
+
+### 11.2 Build commands
+
+```bash
+pip install buildozer cython
+buildozer -v android debug        # → bin/netscope-1.0.0-debug.apk
+buildozer -v android release      # signed AAB
+```
+
+### 11.3 CI gates
+- `aapt dump permissions` snapshot diff — fail on unexpected permission additions.
+- `semgrep` rules forbidding: `requests.`, `urllib.`, `socket.connect(` outside whitelist.
+- Dependency CVE scan (`pip-audit`, `grype`).
+- SBOM (`syft`) attached to each release.
+- Reproducibility check: two builds → `sha256` compare (allowing documented non-determinism in zip timestamps).
+
+---
+
+## 12. Security & Privacy Controls Matrix
+
+| Control | Implementation | Verification |
+|---------|----------------|--------------|
+| No telemetry | Static grep gate + no `requests` dep | CI |
+| No payload capture | Parser stops at L4 header | Unit tests + code review |
+| Encrypted history | SQLCipher + Keystore-wrapped key | Instrumented test |
+| Foreground transparency | Persistent notification always visible | Manual + UI test |
+| Retention limits | `retention.py` enforced, `secure_delete=ON` | Integration test |
+| No backup leakage | `allowBackup=false` + `dataExtractionRules` | Manifest lint |
+| Screen privacy (optional) | `FLAG_SECURE` in paranoid mode | Instrumented |
+| VPN is sinkhole, not tunnel | Code review + packet-forwarding tests | Integration |
+| Least privilege | No `READ_PHONE_STATE`, no `LOCATION`, no contacts | Manifest audit |
+| Boot autostart | Opt-in only; `RECEIVE_BOOT_COMPLETED` | Settings test |
+
+---
+
+## 13. Testing Strategy
+
+| Layer | Tool | Coverage |
+|-------|------|----------|
+| Unit (parser) | `pytest` with pcap-derived byte vectors | IPv4/6, TCP/UDP, malformed |
+| Unit (aggregator) | `pytest` synthetic flows | Rollup math, retention |
+| Unit (stats wrapper) | Mocked pyjnius | Backend A |
+| Integration (host) | SQLite + fake collector | End-to-end aggregation |
+| Instrumented | `pytest` + `adb` on device | VPN consent, fg service, Keystore |
+| Fuzz | `atheris` on `flow_parser` | No crashes on hostile packets |
+| Perf | `pytest-benchmark` | ≤ 3 % CPU at 5 s cadence, ≤ 15 MB RAM overhead |
+| Manual | OWASP MASVS L1 | Checklist |
+
+### 13.1 MASVS Mapping
+- **MASVS-STORAGE-1/2** ✔ encrypted DB, retention, no backup
+- **MASVS-CRYPTO-1/2** ✔ vetted primitives only
+- **MASVS-NETWORK-1** ✔ no outbound; strict NSC
+- **MASVS-PLATFORM-1/2** ✔ minimal permissions, FLAG_SECURE optional
+- **MASVS-PRIVACY** ✔ on-device only, explicit user grants
+
+---
+
+## 14. Performance Budget
+
+| Metric | Target |
+|--------|--------|
+| CPU (screen on, 5 s poll) | ≤ 3 % |
+| CPU (background, 30 s poll) | ≤ 0.5 % |
+| RAM (service + UI) | ≤ 60 MB |
+| DB write batch | every 10 s or 500 rows |
+| Cold start to first chart | ≤ 1.5 s |
+| Battery (24 h, moderate) | ≤ 2 %/day additional |
+
+Backend B (VPN) is heavier: **≤ 8 % CPU** on a mid-tier device at 100 Mbps. Documented in the UI when the fallback is active.
+
+---
+
+## 15. Known Limitations & Residual Risk
+
+1. **`READ_NETWORK_USAGE_HISTORY` is effectively system-only** on modern Android. Most users will land in Backend B (VPN). This is disclosed prominently.
+2. **VPN mode adds a hop** in the packet path; latency impact measured ≤ 1 ms locally but non-zero.
+3. **`getConnectionOwnerUid` is best-effort** — some flows may be attributed to `uid=1000` (system) or unresolved during races. Documented and surfaced as an "Unknown" bucket.
+4. **Foreground/background split** is imprecise under Backend A (sampled via `ActivityManager` polling); ± 10 % attribution error possible.
+5. **Doze mode** throttles polling; counters reconcile on next wake via `NetworkStatsManager` deltas.
+6. **Root-only** features (`xt_qtaguid`, `nethogs`-style) intentionally excluded from v1.0.
+7. **Python overhead** in the VPN fast path caps throughput; ≥ 500 Mbps links may see drops. Mitigation: kernel-side BPF is out of scope for a Python build; documented.
+
+---
+
+## 16. Roadmap
+
+| Version | Feature |
+|---------|---------|
+| 1.0 | Backend A + B, dashboard, hourly/daily rollups, retention, encrypted DB |
+| 1.1 | Per-app firewalling (VPN mode, block-on-match) |
+| 1.2 | Widgets (home-screen totals), notification quick-toggle |
+| 1.3 | Encrypted export/import (`.nsx` bundle) |
+| 1.4 | Historical anomaly detection (fully local, no ML egress) |
+| 2.0 | Optional root-assisted mode (`xt_qtaguid` cross-check) |
+
+---
+
+## 17. Appendix A — Directory Skeleton
+
+```
+netscope/
+├── architecture.md
+├── PRIVACY.md
+├── buildozer.spec
+├── requirements.txt
+├── main.py
+├── core/
+│   ├── collectors/
+│   │   ├── stats_collector.py
+│   │   ├── vpn_service.py
+│   │   ├── flow_parser.py
+│   │   ├── uid_resolver.py
+│   │   └── iface_watcher.py
+│   ├── services/
+│   │   ├── metrics_service.py
+│   │   ├── aggregator.py
+│   │   ├── retention.py
+│   │   ├── prefs_service.py
+│   │   └── notify.py
+│   └── storage/
+│       ├── db.py
+│       ├── flow_repo.py
+│       ├── apps_repo.py
+│       └── paths.py
+├── ui/
+│   ├── dashboard_screen.py
+│   ├── app_detail_screen.py
+│   ├── timeline_screen.py
+│   ├── settings_screen.py
+│   ├── permissions_screen.py
+│   └── widgets/
+├── platform/
+│   ├── permissions.py
+│   ├── foreground.py
+│   ├── secure_window.py
+│   └── boot_receiver.py
+├── java/                        # thin Java shims compiled by p4a
+│   └── com/sentinel/netscope/
+│       ├── NetScopeVpnService.java
+│       └── MetricsService.java
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   ├── instrumented/
+│   └── fixtures/pcaps/
+└── assets/
+```
+
+## 18. Appendix B — Constants
+
+| Constant | Value |
+|----------|-------|
+| Poll cadence (fg) | 5 s |
+| Poll cadence (bg) | 30 s |
+| Poll cadence (doze) | 300 s |
+| Flow flush interval | 10 s / 500 rows |
+| Raw retention | 24 h |
+| Hourly retention | 30 d |
+| Daily retention | 365 d |
+| DB page size | 4096 |
+| DB journal | WAL |
+| Cipher | SQLCipher 4 (AES-256-CBC + HMAC-SHA512) |
+| Key wrap | AES-256-GCM |
+| Tun MTU | 1500 |
+| Ring buffer size | 65 536 samples |
+| Max tracked UIDs | 1 024 (LRU) |
+
+---
+
+**End of document.**
+*Review cycle: quarterly, or on any change to §5 (collection), §6 (data model), or §10 (manifest). Any addition of a permission or network call requires second senior reviewer sign-off.*

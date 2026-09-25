@@ -1,0 +1,2 @@
+# Indicators of Compromise
+ioc_type,value,source,confidence,context

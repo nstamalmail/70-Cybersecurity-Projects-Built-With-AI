@@ -1,0 +1,56 @@
+[
+  {
+    "id": "high-entropy-section",
+    "severity": "medium",
+    "title": "High entropy section .text (7.87)",
+    "detail": "Entropy above 7.0 suggests packed or encrypted content."
+  },
+  {
+    "id": "high-entropy-section",
+    "severity": "medium",
+    "title": "High entropy section UPX0 (7.88)",
+    "detail": "Entropy above 7.0 suggests packed or encrypted content."
+  },
+  {
+    "id": "wx-section",
+    "severity": "high",
+    "title": "Writable + executable section UPX0",
+    "detail": "W+X memory is typical of packers, shellcode loaders and injection stubs."
+  },
+  {
+    "id": "packer-section",
+    "severity": "medium",
+    "title": "Packer signature in section name 'UPX0' \u2192 UPX",
+    "detail": "Section naming matches a known executable packer."
+  },
+  {
+    "id": "entrypoint-outside-text",
+    "severity": "medium",
+    "title": "Entry point outside .text (in UPX0)",
+    "detail": "Common in packed binaries where the stub runs before the original entry point."
+  },
+  {
+    "id": "entrypoint-last-section",
+    "severity": "medium",
+    "title": "Entry point in the last section",
+    "detail": "Typical of packer stubs appended after the original sections."
+  },
+  {
+    "id": "future-timestamp",
+    "severity": "medium",
+    "title": "Compile timestamp is in the future (2035-12-04)",
+    "detail": "Timestomping or a forged build date."
+  },
+  {
+    "id": "no-dep",
+    "severity": "low",
+    "title": "DEP (NX_COMPAT) not enabled",
+    "detail": "Missing modern exploit mitigations."
+  },
+  {
+    "id": "packing-entropy",
+    "severity": "medium",
+    "title": "Packing suspicion: UPX0 entropy 7.88",
+    "detail": "Entropy above 7.2 across a section indicates compression or encryption."
+  }
+]

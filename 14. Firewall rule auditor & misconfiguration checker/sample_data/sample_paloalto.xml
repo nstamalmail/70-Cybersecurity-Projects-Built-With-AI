@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config version="10.2.0" urldb="paloaltonetworks">
+  <mgt-config>
+    <users>
+      <entry name="admin">
+        <phash>$1$xyz$abcdefghijklmnopqrstuvwx</phash>
+        <permissions>
+          <access-list>
+            <entry name="admin" admin="yes" read="yes" write="yes"/>
+          </access-list>
+        </permissions>
+      </entry>
+    </users>
+  </mgt-config>
+  <shared>
+    <application-group>
+      <member>web-browsing</member>
+      <member>ssl</member>
+    </application-group>
+  </shared>
+  <devices>
+    <entry name="localhost.localdomain">
+      <vsys>
+        <entry name="vsys1">
+          <rulebase>
+            <security>
+              <rules>
+                <entry name="Allow-All-Internet">
+                  <from><member>trust</member></from>
+                  <to><member>untrust</member></to>
+                  <source><member>any</member></source>
+                  <destination><member>any</member></destination>
+                  <application><member>any</member></application>
+                  <service><member>any</member></service>
+                  <action>allow</action>
+                  <log-start>yes</log-start>
+                  <log-end>yes</log-end>
+                  <log-setting>default-logging</log-setting>
+                  <description>Temporary rule for testing - MUST BE REMOVED</description>
+                  <tag><member>temporary</member></tag>
+                </entry>
+
+                <entry name="Web-Server-Access">
+                  <from><member>dmz</member></from>
+                  <to><member>untrust</member></to>
+                  <source><member>web-servers</member></source>
+                  <destination><member>any</member></destination>
+                  <application><member>web-browsing</member></application>
+                  <service><member>http</member><member>https</member></service>
+                  <action>allow</action>
+                  <log-start>yes</log-start>
+                  <log-end>yes</log-end>
+                </entry>
+
+                <entry name="DB-Access">
+                  <from><member>app-servers</member></from>
+                  <to><member>database</member></to>
+                  <source><member>app-servers</member></source>
+                  <destination><member>db-cluster</member></destination>
+                  <application><member>oracle-database</member></application>
+                  <service><member>oracle-tcp-1521</member></service>
+                  <action>allow</action>
+                  <log-start>no</log-start>
+                  <log-end>no</log-end>
+                  <description>Allow application servers to access Oracle database</description>
+                </entry>
+
+                <entry name="Telnet-Management">
+                  <from><member>management</member></from>
+                  <to><member>any</member></to>
+                  <source><member>admin-workstations</member></source>
+                  <destination><member>any</member></destination>
+                  <application><member>telnet</member></application>
+                  <service><member>telnet</member></service>
+                  <action>allow</action>
+                  <log-start>no</log-start>
+                  <log-end>no</log-end>
+                </entry>
+
+                <entry name="Legacy-SSH">
+                  <from><member>trust</member></from>
+                  <to><member>dmz</member></to>
+                  <source><member>any</member></source>
+                  <destination><member>any</member></destination>
+                  <application><member>ssh</member></application>
+                  <service><member>ssh</member></service>
+                  <action>allow</action>
+                  <log-start>yes</log-start>
+                  <log-end>no</log-end>
+                  <description>Allow SSH to DMZ servers</description>
+                </entry>
+
+                <entry name="Any-Any-Any-Deny">
+                  <from><member>any</member></from>
+                  <to><member>any</member></to>
+                  <source><member>any</member></source>
+                  <destination><member>any</member></destination>
+                  <application><member>any</member></application>
+                  <service><member>any</member></service>
+                  <action>deny</action>
+                  <log-start>yes</log-start>
+                  <log-end>yes</log-end>
+                </entry>
+
+                <entry name="Guest-WiFi-Internet">
+                  <from><member>guest</member></from>
+                  <to><member>untrust</member></to>
+                  <source><member>guest-wifi</member></source>
+                  <destination><member>any</member></destination>
+                  <application><member>any</member></application>
+                  <service><member>http</member><member>https</member><member>dns</member></service>
+                  <action>allow</action>
+                  <log-start>yes</log-start>
+                  <log-end>yes</log-end>
+                  <description>Guest WiFi internet access - limited services</description>
+                </entry>
+
+                <entry name="Insecure-SNMP">
+                  <from><member>management</member></from>
+                  <to><member>any</member></to>
+                  <source><member>nms-servers</member></source>
+                  <destination><member>any</member></destination>
+                  <application><member>snmp</member></application>
+                  <service><member>snmp</member><member>snmptrap</member></service>
+                  <action>allow</action>
+                  <log-start>no</log-start>
+                  <log-end>no</log-end>
+                </entry>
+
+                <entry name="Duplicate-Web-Rule">
+                  <from><member>dmz</member></from>
+                  <to><member>untrust</member></to>
+                  <source><member>web-servers</member></source>
+                  <destination><member>any</member></destination>
+                  <application><member>web-browsing</member></application>
+                  <service><member>http</member><member>https</member></service>
+                  <action>allow</action>
+                  <log-start>yes</log-start>
+                  <log-end>yes</log-end>
+                  <description>Duplicate of Web-Server-Access - REDUNDANT</description>
+                </entry>
+
+                <entry name="Deny-Internal-RDP">
+                  <from><member>trust</member></from>
+                  <to><member>trust</member></to>
+                  <source><member>any</member></source>
+                  <destination><member>any</member></destination>
+                  <application><member>ms-rdp</member></application>
+                  <service><member>ms-ds-3389</member></service>
+                  <action>deny</action>
+                  <log-start>yes</log-start>
+                  <log-end>yes</log-end>
+                  <description>Deny RDP between internal hosts - security policy</description>
+                </entry>
+
+                <entry name="Permissive-DNS">
+                  <from><member>trust</member></from>
+                  <to><member>untrust</member></to>
+                  <source><member>any</member></source>
+                  <destination><member>any</member></destination>
+                  <application><member>dns</member></application>
+                  <service><member>dns</member></service>
+                  <action>allow</action>
+                  <log-start>yes</log-start>
+                  <log-end>no</log-end>
+                </entry>
+
+                <entry name="Disabled-Old-Rule">
+                  <from><member>trust</member></from>
+                  <to><member>untrust</member></to>
+                  <source><member>legacy-servers</member></source>
+                  <destination><member>any</member></destination>
+                  <application><member>any</member></application>
+                  <service><member>any</member></service>
+                  <action>allow</action>
+                  <log-start>no</log-start>
+                  <log-end>no</log-end>
+                  <disabled>yes</disabled>
+                </entry>
+
+                <entry name="Critical-App-Access">
+                  <from><member>trust</member></from>
+                  <to><member>critical-servers</member></to>
+                  <source><member>app-servers</member></source>
+                  <destination><member>payment-system</member></destination>
+                  <application><member>ssl</member></application>
+                  <service><member>tcp-8443</member></service>
+                  <action>allow</action>
+                  <log-start>yes</log-start>
+                  <log-end>yes</log-end>
+                  <description>Critical payment system access - PCI scope</description>
+                </entry>
+
+                <entry name="Management-HTTP">
+                  <from><member>management</member></from>
+                  <to><member>any</member></to>
+                  <source><member>admin-workstations</member></source>
+                  <destination><member>any</member></destination>
+                  <application><member>web-browsing</member></application>
+                  <service><member>http</member></service>
+                  <action>allow</action>
+                  <log-start>no</log-start>
+                  <log-end>no</log-end>
+                </entry>
+
+                <entry name="Implicit-Deny-All">
+                  <from><member>any</member></from>
+                  <to><member>any</member></to>
+                  <source><member>any</member></source>
+                  <destination><member>any</member></destination>
+                  <application><member>any</member></application>
+                  <service><member>any</member></service>
+                  <action>deny</action>
+                  <log-start>yes</log-start>
+                  <log-end>yes</log-end>
+                  <description>Implicit deny all - must be last rule</description>
+                </entry>
+              </rules>
+            </security>
+          </rulebase>
+          <address>
+            <entry name="web-servers">
+              <ip-netmask>10.0.1.10/32</ip-netmask>
+            </entry>
+            <entry name="db-cluster">
+              <ip-netmask>10.0.2.0/24</ip-netmask>
+            </entry>
+            <entry name="admin-workstations">
+              <ip-netmask>10.0.5.0/24</ip-netmask>
+            </entry>
+            <entry name="nms-servers">
+              <ip-netmask>10.0.6.10/32</ip-netmask>
+            </entry>
+            <entry name="guest-wifi">
+              <ip-netmask>192.168.100.0/24</ip-netmask>
+            </entry>
+            <entry name="legacy-servers">
+              <ip-netmask>10.0.3.0/24</ip-netmask>
+            </entry>
+            <entry name="payment-system">
+              <ip-netmask>10.0.10.50/32</ip-netmask>
+            </entry>
+          </address>
+          <address-group>
+            <entry name="app-servers">
+              <static>
+                <member>10.0.4.10/32</member>
+                <member>10.0.4.11/32</member>
+              </static>
+            </entry>
+          </address-group>
+          <zone>
+            <entry name="trust">
+              <network><layer3/></network>
+            </entry>
+            <entry name="untrust">
+              <network><layer3/></network>
+            </entry>
+            <entry name="dmz">
+              <network><layer3/></network>
+            </entry>
+            <entry name="management">
+              <network><layer3/></network>
+            </entry>
+            <entry name="guest">
+              <network><layer3/></network>
+            </entry>
+            <entry name="database">
+              <network><layer3/></network>
+            </entry>
+            <entry name="critical-servers">
+              <network><layer3/></network>
+            </entry>
+          </zone>
+        </entry>
+      </vsys>
+    </entry>
+  </devices>
+</config>

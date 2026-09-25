@@ -1,0 +1,2 @@
+bssid,essid,channel,encryption,handshake_captured,handshake_completeness,messages_present,pmkid_captured,hash_file,crack_attempted,crack_tool,crack_result,crack_duration_seconds
+02:11:22:33:44:55,WNA-Lab-AP,6,WPA2-PSK,True,complete,"M1,M2,M3,M4",True,E:\AI Masterclass\01. Day 01_Session 01 & 02\Assignments\All Folder\Track 3 — Offensive Security OR Ethical Hacking\30. Wireless network auditor (WPA handshake capture in your own lab AP)\data\selftest_lab.cap.hc22000,True,internal-py,hunter2-but-longer,1.2

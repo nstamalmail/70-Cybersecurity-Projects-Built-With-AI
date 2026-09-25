@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "title": "Neural Path Visualizer",
+    "description": "Interactive 3D visualization of neural network architectures using WebGL. Supports real-time training animation and layer-by-layer inspection.",
+    "tech_stack": ["Three.js", "TensorFlow.js", "WebGL", "GLSL"],
+    "image": "neural.png",
+    "category": "Machine Learning",
+    "year": 2025,
+    "link": "https://github.com/example/neural-path",
+    "featured": true
+  },
+  {
+    "id": 2,
+    "title": "Quantum State Simulator",
+    "description": "Browser-based quantum computing simulator with real-time 3D qubit visualization and circuit builder interface.",
+    "tech_stack": ["Vue.js", "Three.js", "WebAssembly", "Rust"],
+    "image": "quantum.png",
+    "category": "Quantum Computing",
+    "year": 2025,
+    "link": "https://github.com/example/quantum-sim",
+    "featured": true
+  },
+  {
+    "id": 3,
+    "title": "Climate Data Explorer",
+    "description": "Global climate data visualization platform with interactive 3D globe, time-series overlays, and predictive modeling dashboard.",
+    "tech_stack": ["React", "D3.js", "Three.js", "Python", "FastAPI"],
+    "image": "climate.png",
+    "category": "Data Science",
+    "year": 2024,
+    "link": "https://github.com/example/climate-explorer",
+    "featured": false
+  },
+  {
+    "id": 4,
+    "title": "Distributed Task Orchestrator",
+    "description": "High-performance distributed task scheduling system with real-time monitoring dashboard and auto-scaling capabilities.",
+    "tech_stack": ["Go", "gRPC", "Redis", "React", "Docker"],
+    "image": "orchestrator.png",
+    "category": "Infrastructure",
+    "year": 2025,
+    "link": "https://github.com/example/task-orchestrator",
+    "featured": true
+  },
+  {
+    "id": 5,
+    "title": "AR Interior Designer",
+    "description": "Augmented reality interior design tool that lets users place and customize 3D furniture models in real spaces via camera.",
+    "tech_stack": ["Unity", "C#", "ARKit", "Firebase", "Three.js"],
+    "image": "ar-designer.png",
+    "category": "AR/VR",
+    "year": 2024,
+    "link": "https://github.com/example/ar-designer",
+    "featured": false
+  },
+  {
+    "id": 6,
+    "title": "Real-time Stock Analyzer",
+    "description": "Financial data streaming platform with live candlestick charts, anomaly detection, and automated alert system.",
+    "tech_stack": ["Python", "WebSocket", "D3.js", "PostgreSQL", "FastAPI"],
+    "image": "stock-analyzer.png",
+    "category": "FinTech",
+    "year": 2025,
+    "link": "https://github.com/example/stock-analyzer",
+    "featured": true
+  },
+  {
+    "id": 7,
+    "title": "Mesh Network Monitor",
+    "description": "IoT mesh network monitoring dashboard with 3D topology visualization, packet flow analysis, and automated healing.",
+    "tech_stack": ["Rust", "WebAssembly", "Three.js", "InfluxDB", "Vue.js"],
+    "image": "mesh-monitor.png",
+    "category": "IoT",
+    "year": 2024,
+    "link": "https://github.com/example/mesh-monitor",
+    "featured": false
+  },
+  {
+    "id": 8,
+    "title": "Procedural Terrain Generator",
+    "description": "GPU-accelerated procedural terrain generation with erosion simulation, biome painting, and export to standard 3D formats.",
+    "tech_stack": ["C++", "OpenGL", "GLSL", "Qt", "Python"],
+    "image": "terrain-gen.png",
+    "category": "Graphics",
+    "year": 2025,
+    "link": "https://github.com/example/terrain-gen",
+    "featured": true
+  },
+  {
+    "id": 9,
+    "title": "Collaborative Code Editor",
+    "description": "Real-time collaborative code editor with terminal integration, Git support, and AI-powered code suggestions.",
+    "tech_stack": ["TypeScript", "React", "Node.js", "WebSocket", "Redis"],
+    "image": "code-editor.png",
+    "category": "Developer Tools",
+    "year": 2024,
+    "link": "https://github.com/example/collab-editor",
+    "featured": false
+  },
+  {
+    "id": 10,
+    "title": "Genetic Algorithm Visualizer",
+    "description": "Interactive genetic algorithm visualization showing evolution of solutions across generations with real-time fitness tracking.",
+    "tech_stack": ["JavaScript", "Canvas API", "Web Workers", "Three.js"],
+    "image": "genetic-viz.png",
+    "category": "Algorithms",
+    "year": 2025,
+    "link": "https://github.com/example/genetic-viz",
+    "featured": true
+  }
+]

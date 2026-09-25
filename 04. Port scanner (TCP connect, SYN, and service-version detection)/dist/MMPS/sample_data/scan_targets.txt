@@ -1,0 +1,7 @@
+# Sample target list for MMPS - one target per line.
+# Lines starting with # are comments.
+# Import via "File > Load Target List..." in MMPS (loads the first target,
+# remaining lines are appended to the console for reference).
+127.0.0.1
+scanme.nmap.org
+10.10.10.0/24

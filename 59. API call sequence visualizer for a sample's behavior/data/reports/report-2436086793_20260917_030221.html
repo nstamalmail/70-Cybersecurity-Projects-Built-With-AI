@@ -1,0 +1,444 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'>
+<title>API Call Sequence Analysis Report</title><style>
+
+:root { color-scheme: light; }
+body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; margin: 0; background: #f6f7f9; color: #17181c; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 28px 64px; background: #fff;
+        box-shadow: 0 0 0 1px #e3e5e9; }
+h1 { margin: 0 0 4px; font-size: 26px; }
+h2 { margin: 28px 0 8px; font-size: 17px; border-bottom: 1px solid #e3e5e9; padding-bottom: 6px; }
+.sub { color: #5d6069; margin: 0 0 4px; }
+.stamp { color: #8b8d98; font-size: 12px; margin-bottom: 18px; }
+.banner { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 10px;
+          background: #f2f3f5; border-left: 6px solid #e5484d; margin: 18px 0; }
+.banner .verdict { font-size: 18px; font-weight: 700; color: #e5484d; }
+.banner .score { margin-left: auto; font-size: 13px; color: #5d6069; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0 4px; font-size: 13px; }
+th, td { border: 1px solid #e3e5e9; padding: 6px 9px; text-align: left; vertical-align: top; }
+th { background: #f2f3f5; font-weight: 600; }
+tr:nth-child(even) td { background: #fafbfc; }
+code, pre { font-family: 'Cascadia Mono', Consolas, monospace; font-size: 12px; }
+pre { background: #f6f7f9; border: 1px solid #e3e5e9; border-radius: 8px; padding: 12px;
+      overflow-x: auto; white-space: pre-wrap; }
+.note { color: #8b8d98; font-size: 12px; margin: 0 0 8px; }
+ul { margin: 6px 0 6px 18px; padding: 0; }
+.summary { background: #f2f3f5; border-radius: 10px; padding: 12px 14px; margin: 16px 0; }
+.foot { margin-top: 36px; padding-top: 12px; border-top: 1px solid #e3e5e9; color: #8b8d98; font-size: 12px; }
+@media print { .wrap { box-shadow: none; max-width: none; } }
+
+</style></head><body><div class='wrap'>
+<h1>API Call Sequence Analysis Report</h1>
+<p class='sub'>loader_b7.bin.log.bson · cape-bson</p>
+<div class='stamp'>Generated 2026-09-17 03:02:21 &middot; API Sequence Visualizer v1.0.0 &middot; run report-2436086793</div>
+<div class='banner'>
+<span class='verdict'>high</span>
+<span class='score'>Risk score: 71</span>
+</div>
+<div class='summary'>18 API calls across 2 process(es) over 6.3s of behaviour were normalised from a cape-bson report. High-severity behaviour matched: Hollowed remote process; Network beacon setup; Self-modifying memory. Dominant categories: memory 6, network 6, process 4, registry 2. 10 indicators were extracted from the call arguments. Behaviour score 71/100 (high).</div>
+<h2>Behavioural findings</h2>
+<p class='note'>Ordered API sequences matched by the pattern engine (architecture §3.4).</p>
+<table><thead><tr>
+<th>Severity</th>
+<th>Pattern</th>
+<th>Process</th>
+<th>Start (s)</th>
+<th>Span (s)</th>
+<th>API chain</th>
+<th>Target</th>
+</tr></thead><tbody>
+<tr>
+<td>high</td>
+<td>Self-modifying memory</td>
+<td>loader_b7.bin</td>
+<td>0.40</td>
+<td>0.70</td>
+<td>VirtualAlloc -&gt; WriteProcessMemory -&gt; VirtualProtect</td>
+<td>-</td>
+</tr>
+<tr>
+<td>critical</td>
+<td>Hollowed remote process</td>
+<td>loader_b7.bin</td>
+<td>1.45</td>
+<td>1.40</td>
+<td>CreateProcessW -&gt; NtUnmapViewOfSection -&gt; VirtualAllocEx -&gt; SetThreadContext</td>
+<td>C:\Windows\System32\svchost.exe</td>
+</tr>
+<tr>
+<td>high</td>
+<td>Network beacon setup</td>
+<td>svchost.exe</td>
+<td>4.60</td>
+<td>0.70</td>
+<td>gethostbyname -&gt; connect -&gt; send</td>
+<td>node7.relay-control.org</td>
+</tr>
+</tbody></table>
+<h2>Finding details</h2>
+<ul>
+<li>[high] MEM-001 Self-modifying memory — pid 2748 (loader_b7.bin) at t=0.40s | VirtualAlloc -&gt; WriteProcessMemory -&gt; VirtualProtect</li>
+<li>[critical] INJ-004 Hollowed remote process — pid 2748 (loader_b7.bin) at t=1.45s target: C:\Windows\System32\svchost.exe | CreateProcessW -&gt; NtUnmapViewOfSection -&gt; VirtualAllocEx -&gt; SetThreadContext</li>
+<li>[high] NET-002 Network beacon setup — pid 3404 (svchost.exe) at t=4.60s target: node7.relay-control.org | gethostbyname -&gt; connect -&gt; send</li>
+</ul>
+<h2>Behaviour statistics</h2>
+<table>
+<tr><th>Total calls (records, loop-collapsed)</th><td>18 (18)</td></tr>
+<tr><th>Unique APIs</th><td>14</td></tr>
+<tr><th>Processes</th><td>2</td></tr>
+<tr><th>Behaviour duration</th><td>6.35s</td></tr>
+<tr><th>Calls per second</th><td>2.835</td></tr>
+<tr><th>Failed calls</th><td>0 (0.0%)</td></tr>
+<tr><th>Collapsed repeat runs</th><td>0</td></tr>
+<tr><th>Categories observed</th><td>memory, network, process, registry</td></tr>
+</table>
+<h2>API category distribution</h2>
+<p class='note'>Volume per category; a large memory + process share is injection-shaped.</p>
+<table><thead><tr>
+<th>Category</th>
+<th>Calls</th>
+<th>Share</th>
+</tr></thead><tbody>
+<tr>
+<td>memory</td>
+<td>6</td>
+<td>33.3%</td>
+</tr>
+<tr>
+<td>network</td>
+<td>6</td>
+<td>33.3%</td>
+</tr>
+<tr>
+<td>process</td>
+<td>4</td>
+<td>22.2%</td>
+</tr>
+<tr>
+<td>registry</td>
+<td>2</td>
+<td>11.1%</td>
+</tr>
+</tbody></table>
+<h2>Most frequent APIs</h2>
+<table><thead><tr>
+<th>API</th>
+<th>Calls</th>
+</tr></thead><tbody>
+<tr>
+<td>send</td>
+<td>3</td>
+</tr>
+<tr>
+<td>WriteProcessMemory</td>
+<td>2</td>
+</tr>
+<tr>
+<td>CreateProcessW</td>
+<td>2</td>
+</tr>
+<tr>
+<td>VirtualAlloc</td>
+<td>1</td>
+</tr>
+<tr>
+<td>VirtualProtect</td>
+<td>1</td>
+</tr>
+<tr>
+<td>NtUnmapViewOfSection</td>
+<td>1</td>
+</tr>
+<tr>
+<td>VirtualAllocEx</td>
+<td>1</td>
+</tr>
+<tr>
+<td>SetThreadContext</td>
+<td>1</td>
+</tr>
+<tr>
+<td>ResumeThread</td>
+<td>1</td>
+</tr>
+<tr>
+<td>RegCreateKeyExW</td>
+<td>1</td>
+</tr>
+<tr>
+<td>RegSetValueExW</td>
+<td>1</td>
+</tr>
+<tr>
+<td>gethostbyname</td>
+<td>1</td>
+</tr>
+<tr>
+<td>connect</td>
+<td>1</td>
+</tr>
+<tr>
+<td>recv</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<h2>Frequent n-grams</h2>
+<table><thead><tr>
+<th>Occurrences</th>
+<th>Length</th>
+<th>Score</th>
+<th>Process</th>
+<th>Chain</th>
+</tr></thead><tbody>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+<td>all</td>
+<td>send -&gt; send</td>
+</tr>
+</tbody></table>
+<h2>API transition matrix (top)</h2>
+<p class='note'>First-order Markov transitions; these edges drive the behaviour graph.</p>
+<table><thead><tr>
+<th>From</th>
+<th>To</th>
+<th>Count</th>
+<th>Probability</th>
+<th>Process</th>
+</tr></thead><tbody>
+<tr>
+<td>send</td>
+<td>send</td>
+<td>2</td>
+<td>66.7%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>VirtualAlloc</td>
+<td>WriteProcessMemory</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>VirtualProtect</td>
+<td>CreateProcessW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>NtUnmapViewOfSection</td>
+<td>VirtualAllocEx</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>VirtualAllocEx</td>
+<td>WriteProcessMemory</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>SetThreadContext</td>
+<td>ResumeThread</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>ResumeThread</td>
+<td>CreateProcessW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>RegCreateKeyExW</td>
+<td>RegSetValueExW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>gethostbyname</td>
+<td>connect</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>connect</td>
+<td>send</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>WriteProcessMemory</td>
+<td>VirtualProtect</td>
+<td>1</td>
+<td>50.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>CreateProcessW</td>
+<td>NtUnmapViewOfSection</td>
+<td>1</td>
+<td>50.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>WriteProcessMemory</td>
+<td>SetThreadContext</td>
+<td>1</td>
+<td>50.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>CreateProcessW</td>
+<td>RegCreateKeyExW</td>
+<td>1</td>
+<td>50.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>send</td>
+<td>recv</td>
+<td>1</td>
+<td>33.3%</td>
+<td>all</td>
+</tr>
+</tbody></table>
+<h2>Reconstructed process tree</h2>
+<table><thead><tr>
+<th>Process</th>
+<th>PID</th>
+<th>Parent</th>
+<th>First seen (s)</th>
+<th>Calls</th>
+<th>Failures</th>
+<th>Top categories</th>
+<th>Path</th>
+</tr></thead><tbody>
+<tr>
+<td>loader_b7.bin</td>
+<td>2748</td>
+<td>-</td>
+<td>0.40</td>
+<td>12</td>
+<td>0</td>
+<td>memory:6, process:4, registry:2</td>
+<td>-</td>
+</tr>
+<tr>
+<td>svchost.exe</td>
+<td>3404</td>
+<td>2748</td>
+<td>4.60</td>
+<td>6</td>
+<td>0</td>
+<td>network:6</td>
+<td>C:\Windows\System32\svchost.exe</td>
+</tr>
+</tbody></table>
+<h2>Suspicious process notes</h2>
+<ul>
+<li>PID 2748 loader_b7.bin: process + memory APIs (injection-capable)</li>
+</ul>
+<h2>Highest-probability behaviour paths</h2>
+<ul>
+<li>WriteProcessMemory -&gt; VirtualProtect -&gt; CreateProcessW -&gt; NtUnmapViewOfSection -&gt; VirtualAllocEx</li>
+<li>CreateProcessW -&gt; NtUnmapViewOfSection -&gt; VirtualAllocEx -&gt; WriteProcessMemory -&gt; VirtualProtect</li>
+<li>VirtualAlloc -&gt; WriteProcessMemory -&gt; VirtualProtect -&gt; CreateProcessW -&gt; NtUnmapViewOfSection -&gt; VirtualAllocEx</li>
+<li>VirtualProtect -&gt; CreateProcessW -&gt; NtUnmapViewOfSection -&gt; VirtualAllocEx -&gt; WriteProcessMemory -&gt; SetThreadContext -&gt; ResumeThread</li>
+<li>NtUnmapViewOfSection -&gt; VirtualAllocEx -&gt; WriteProcessMemory -&gt; VirtualProtect -&gt; CreateProcessW -&gt; RegCreateKeyExW -&gt; RegSetValueExW</li>
+<li>VirtualAllocEx -&gt; WriteProcessMemory -&gt; VirtualProtect -&gt; CreateProcessW -&gt; NtUnmapViewOfSection</li>
+<li>SetThreadContext -&gt; ResumeThread -&gt; CreateProcessW -&gt; NtUnmapViewOfSection -&gt; VirtualAllocEx -&gt; WriteProcessMemory -&gt; VirtualProtect</li>
+<li>ResumeThread -&gt; CreateProcessW -&gt; NtUnmapViewOfSection -&gt; VirtualAllocEx -&gt; WriteProcessMemory -&gt; VirtualProtect</li>
+<li>gethostbyname -&gt; connect -&gt; send -&gt; recv</li>
+<li>connect -&gt; send -&gt; recv</li>
+</ul>
+<h2>Indicators of Compromise</h2>
+<table><thead><tr>
+<th>Type</th>
+<th>Value</th>
+<th>Source</th>
+<th>Confidence</th>
+<th>Context</th>
+</tr></thead><tbody>
+<tr>
+<td>ipv4</td>
+<td>91.219.236.14</td>
+<td>connect (pid 3404), summary:hosts</td>
+<td>0.90</td>
+<td>ip_address=91.219.236.14, port=8080</td>
+</tr>
+<tr>
+<td>ipv4</td>
+<td>91.219.236.14:8080</td>
+<td>connect (pid 3404)</td>
+<td>0.70</td>
+<td>ip_address=91.219.236.14, port=8080</td>
+</tr>
+<tr>
+<td>domain</td>
+<td>node7.relay-control.org</td>
+<td>gethostbyname (pid 3404), summary:hosts</td>
+<td>0.80</td>
+<td>hostname=node7.relay-control.org</td>
+</tr>
+<tr>
+<td>registry</td>
+<td>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run\WinUpd</td>
+<td>RegSetValueExW (pid 2748)</td>
+<td>0.95</td>
+<td>regkey=HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run, value_name=WinUpd</td>
+</tr>
+<tr>
+<td>registry</td>
+<td>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run</td>
+<td>RegCreateKeyExW (pid 2748), RegSetValueExW (pid 2748), summary:keys</td>
+<td>0.85</td>
+<td>regkey=HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Windows\System32\schtasks.exe</td>
+<td>CreateProcessW (pid 2748)</td>
+<td>0.75</td>
+<td>application_name=C:\Windows\System32\schtasks.exe, command_line=schtasks /create /tn WindowsUpdateTask /tr C:\Windows\Temp\svc.dll /sc onlogon /f</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Windows\System32\svchost.exe</td>
+<td>CreateProcessW (pid 2748)</td>
+<td>0.75</td>
+<td>application_name=C:\Windows\System32\svchost.exe, command_line=svchost.exe -k netsvcs, creation_flags=CREATE_SUSPENDED</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Windows\Temp\svc.dll</td>
+<td>CreateProcessW (pid 2748)</td>
+<td>0.60</td>
+<td>application_name=C:\Windows\System32\schtasks.exe, command_line=schtasks /create /tn WindowsUpdateTask /tr C:\Windows\Temp\svc.dll /sc onlogon /f</td>
+</tr>
+<tr>
+<td>command</td>
+<td>schtasks /create /tn WindowsUpdateTask /tr C:\Windows\Temp\svc.dll /sc onlogon /f</td>
+<td>CreateProcessW (pid 2748), summary:executed_commands</td>
+<td>0.70</td>
+<td>application_name=C:\Windows\System32\schtasks.exe, command_line=schtasks /create /tn WindowsUpdateTask /tr C:\Windows\Temp\svc.dll /sc onlogon /f</td>
+</tr>
+<tr>
+<td>command</td>
+<td>svchost.exe -k netsvcs</td>
+<td>CreateProcessW (pid 2748), summary:executed_commands</td>
+<td>0.70</td>
+<td>application_name=C:\Windows\System32\svchost.exe, command_line=svchost.exe -k netsvcs, creation_flags=CREATE_SUSPENDED</td>
+</tr>
+</tbody></table>
+<div class='foot'>API Sequence Visualizer v1.0.0 &middot; Malware Analysis Workbench &middot; generated 2026-09-17 03:02:21</div>
+</div></body></html>

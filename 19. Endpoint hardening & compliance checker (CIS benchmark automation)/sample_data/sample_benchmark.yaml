@@ -1,0 +1,286 @@
+{
+  "benchmark": {
+    "name": "CIS Microsoft Windows 11 Benchmark",
+    "version": "3.0.0",
+    "release_date": "2026-01-15",
+    "publisher": "Center for Internet Security",
+    "platform": "Windows 11 Enterprise",
+    "document_id": "CIS_Windows_11_3.0.0"
+  },
+  "sections": [
+    {
+      "id": "1",
+      "title": "Identity and Access Management",
+      "description": "Controls related to user account management, password policies, and access controls",
+      "controls": [
+        {
+          "id": "1.1.1",
+          "title": "Ensure password complexity requirements are enforced",
+          "severity": "medium",
+          "automated": true,
+          "check": {
+            "type": "registry",
+            "path": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa",
+            "key": "NoLMHash",
+            "expected": "1"
+          },
+          "fix": {
+            "type": "powershell",
+            "command": "net accounts /pwreq:8 yes"
+          },
+          "references": ["NIST SP 800-53 AC-2(1)", "NIST SP 800-53 IA-5(1)"]
+        },
+        {
+          "id": "1.1.2",
+          "title": "Ensure minimum password age is 1+ day(s)",
+          "severity": "medium",
+          "automated": true,
+          "check": {
+            "type": "command",
+            "command": "net accounts",
+            "regex": "Minimum password age.*?(\\d+)",
+            "expected_min": 1
+          },
+          "fix": {
+            "type": "powershell",
+            "command": "net accounts /minpwage:1"
+          },
+          "references": ["NIST SP 800-53 AC-2(1)"]
+        },
+        {
+          "id": "1.1.3",
+          "title": "Ensure maximum password age is 60 or fewer day(s)",
+          "severity": "high",
+          "automated": true,
+          "check": {
+            "type": "command",
+            "command": "net accounts",
+            "regex": "Maximum password age.*?(\\d+)",
+            "expected_max": 60
+          },
+          "fix": {
+            "type": "powershell",
+            "command": "net accounts /maxpwage:60"
+          },
+          "references": ["NIST SP 800-53 AC-2(1)"]
+        },
+        {
+          "id": "1.1.4",
+          "title": "Ensure 'Enforce password history' is set to 24",
+          "severity": "high",
+          "automated": true,
+          "check": {
+            "type": "command",
+            "command": "net accounts",
+            "regex": "Password history.*?(\\d+)",
+            "expected_min": 24
+          },
+          "fix": {
+            "type": "powershell",
+            "command": "net accounts /uniquepw:24"
+          },
+          "references": ["NIST SP 800-53 AC-2(1)"]
+        },
+        {
+          "id": "1.1.5",
+          "title": "Ensure reversible password encryption is Disabled",
+          "severity": "high",
+          "automated": true,
+          "check": {
+            "type": "command",
+            "command": "net accounts",
+            "expected": "Disabled"
+          },
+          "fix": {
+            "type": "powershell",
+            "command": "secedit /export /cfg secpol.cfg"
+          },
+          "references": ["NIST SP 800-53 AC-2(1)"]
+        },
+        {
+          "id": "1.2.1",
+          "title": "Ensure 'Account lockout threshold' is set to 5",
+          "severity": "medium",
+          "automated": true,
+          "check": {
+            "type": "command",
+            "command": "net accounts",
+            "regex": "Lockout threshold.*?(\\d+)",
+            "expected_max": 5
+          },
+          "fix": {
+            "type": "powershell",
+            "command": "net accounts /lockoutthreshold:5"
+          },
+          "references": ["NIST SP 800-53 AC-7"]
+        },
+        {
+          "id": "1.3.1",
+          "title": "Ensure 'Guest account status' is set to Disabled",
+          "severity": "medium",
+          "automated": true,
+          "check": {
+            "type": "command",
+            "command": "net user Guest",
+            "expected_contains": "Account active"
+          },
+          "fix": {
+            "type": "powershell",
+            "command": "net user Guest /active:no"
+          },
+          "references": ["NIST SP 800-53 AC-2(3)"]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Audit Policy",
+      "description": "Controls related to audit logging and event tracking",
+      "controls": [
+        {
+          "id": "2.1.1",
+          "title": "Ensure 'Audit credential validation' is enabled",
+          "severity": "high",
+          "automated": true,
+          "check": {
+            "type": "auditpol",
+            "subcategory": "Credential Validation",
+            "expected": "Success and Failure"
+          },
+          "fix": {
+            "type": "powershell",
+            "command": "auditpol /set /subcategory:'Credential Validation' /success:enable /failure:enable"
+          },
+          "references": ["NIST SP 800-53 AU-2"]
+        },
+        {
+          "id": "2.1.2",
+          "title": "Ensure 'Audit logon events' is enabled",
+          "severity": "high",
+          "automated": true,
+          "check": {
+            "type": "auditpol",
+            "subcategory": "Logon",
+            "expected": "Success and Failure"
+          },
+          "fix": {
+            "type": "powershell",
+            "command": "auditpol /set /subcategory:'Logon' /success:enable /failure:enable"
+          },
+          "references": ["NIST SP 800-53 AU-2"]
+        },
+        {
+          "id": "2.1.3",
+          "title": "Ensure 'Audit privilege use' is enabled",
+          "severity": "medium",
+          "automated": true,
+          "check": {
+            "type": "auditpol",
+            "subcategory": "Sensitive Privilege Use",
+            "expected": "Failure"
+          },
+          "fix": {
+            "type": "powershell",
+            "command": "auditpol /set /subcategory:'Sensitive Privilege Use' /failure:enable"
+          },
+          "references": ["NIST SP 800-53 AU-2"]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Windows Firewall",
+      "description": "Controls related to Windows Defender Firewall configuration",
+      "controls": [
+        {
+          "id": "3.1.1",
+          "title": "Ensure Windows Defender Firewall is enabled",
+          "severity": "critical",
+          "automated": true,
+          "check": {
+            "type": "command",
+            "command": "netsh advfirewall show allprofiles",
+            "expected_contains": "State ON"
+          },
+          "fix": {
+            "type": "powershell",
+            "command": "netsh advfirewall set allprofiles state on"
+          },
+          "references": ["NIST SP 800-53 SC-7"]
+        },
+        {
+          "id": "3.1.2",
+          "title": "Ensure Firewall inbound rules - Block all by default",
+          "severity": "critical",
+          "automated": true,
+          "check": {
+            "type": "command",
+            "command": "netsh advfirewall show allprofiles firewallpolicy",
+            "expected_contains": "BlockInbound"
+          },
+          "fix": {
+            "type": "powershell",
+            "command": "netsh advfirewall set allprofiles firewallpolicy blockinbound"
+          },
+          "references": ["NIST SP 800-53 SC-7"]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Windows Update",
+      "description": "Controls related to Windows Update and antivirus configuration",
+      "controls": [
+        {
+          "id": "4.1.1",
+          "title": "Ensure 'Configure Automatic Updates' is enabled",
+          "severity": "medium",
+          "automated": true,
+          "check": {
+            "type": "registry",
+            "path": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU",
+            "key": "AUOptions",
+            "expected": "4"
+          },
+          "fix": {
+            "type": "powershell",
+            "command": "reg add HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU /v AUOptions /t REG_DWORD /d 4 /f"
+          },
+          "references": ["NIST SP 800-53 SI-2"]
+        }
+      ]
+    }
+  ],
+  "scoring": {
+    "method": "percentage",
+    "formula": "(passed / total) * 100",
+    "severity_weights": {
+      "critical": 1.0,
+      "high": 0.75,
+      "medium": 0.5,
+      "low": 0.25,
+      "informational": 0.0
+    },
+    "thresholds": {
+      "compliant": 80,
+      "partial": 50,
+      "non_compliant": 0
+    }
+  },
+  "remediation_categories": {
+    "powershell": {
+      "extension": ".ps1",
+      "requires_admin": true,
+      "supports_whatif": true
+    },
+    "bash": {
+      "extension": ".sh",
+      "requires_root": true,
+      "supports_dryrun": true
+    },
+    "gpo": {
+      "extension": ".xml",
+      "requires_domain": true
+    }
+  }
+}

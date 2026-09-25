@@ -1,0 +1,30 @@
+======================================================================
+  Proxy Traffic Report
+======================================================================
+Session   : cps-smoke
+Generated : 2026-09-21T02:44:30
+Server    : 127.0.0.1:8899 (auto)
+
+[SUMMARY]
+Total connections : 3
+Bytes up          : 108.0 B
+Bytes down        : 314.0 B
+Unique destinations: 2
+Blocked           : 1  Errors: 0  Auth failures: 0
+
+[TOP DESTINATIONS]
+DESTINATION                             CONNS          BYTES
+--------------------------------------------------------------
+127.0.0.1:8901                          2            422.0 B
+evil.blocked.example:443                1              0.0 B
+
+[TOP CLIENTS]
+  127.0.0.1: 3 connections
+
+[BLOCKED CONNECTIONS]
+  evil.blocked.example:443 - wildcard *.blocked.example
+
+[NOTES]
+This proxy tunnels TLS; it does not intercept or inspect encrypted content.
+Default bind is loopback - binding to 0.0.0.0 requires authentication.
+======================================================================

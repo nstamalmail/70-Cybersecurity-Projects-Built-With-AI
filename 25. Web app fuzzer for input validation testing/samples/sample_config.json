@@ -1,0 +1,41 @@
+{
+  "tool": "WebFuzzer",
+  "type": "config",
+  "version": "1.0.0",
+  "comment": "Sample configuration. Import via toolbar: 'Import config'. Point target_url at your own authorized test target, or run the bundled demo target (samples/demo_target.py) and use its URLs below.",
+  "target": {
+    "target_url": "http://127.0.0.1:8765/sqli?user=admin",
+    "method": "GET",
+    "headers": {
+      "Accept": "text/html"
+    },
+    "cookies": {
+      "session": "demo-session-42"
+    },
+    "body": "",
+    "body_type": "none",
+    "injection_points": [
+      { "kind": "query", "name": "user", "value": "admin", "enabled": true },
+      { "kind": "cookie", "name": "session", "value": "demo-session-42", "enabled": false }
+    ]
+  },
+  "payloads": {
+    "categories": ["sqli", "xss", "path_traversal"],
+    "encodings": ["none", "url"],
+    "custom_payloads": [
+      "{{7*7}}",
+      "' UNION SELECT 1,2,3-- -",
+      "../../../../etc/passwd"
+    ]
+  },
+  "scan": {
+    "threads": 4,
+    "delay_ms": 20,
+    "timeout": 10.0,
+    "max_requests": 300,
+    "follow_redirects": true,
+    "verify_ssl": true,
+    "time_based": true,
+    "proxy": ""
+  }
+}

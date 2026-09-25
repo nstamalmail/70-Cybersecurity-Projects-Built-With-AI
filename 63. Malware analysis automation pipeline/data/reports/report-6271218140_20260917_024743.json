@@ -1,0 +1,54 @@
+{
+  "app": {
+    "name": "Persistence Technique Cataloger",
+    "acronym": "MPTC",
+    "version": "1.0.0"
+  },
+  "title": "Persistence Technique Analysis Report",
+  "subtitle": "beacon_cobalt.exe.json",
+  "generated_at": "2026-09-17T02:47:43",
+  "run_id": "report-6271218140",
+  "verdict": "clean",
+  "risk_score": 0,
+  "summary": "No parseable API calls found.",
+  "meta": {
+    "Source": "beacon_cobalt.exe.json",
+    "Format": "cape",
+    "SHA-256": "c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4",
+    "Machine": "cape-vm-win10x64",
+    "API calls": "0",
+    "Processes": "2",
+    "Persistence mechanisms": "0",
+    "Indicators": "0",
+    "Verdict": "CLEAN (0/100)"
+  },
+  "artifacts": [],
+  "iocs": [],
+  "sections": [
+    {
+      "title": "Persistence mechanisms detected",
+      "kind": "text",
+      "data": {},
+      "columns": [],
+      "rows": [],
+      "text": "No persistence mechanisms were identified.",
+      "items": [],
+      "note": ""
+    },
+    {
+      "title": "Analysis statistics",
+      "kind": "kv",
+      "data": {
+        "Total API calls": "0",
+        "Processes": "2",
+        "Duration": "0.0s",
+        "Categories observed": "-"
+      },
+      "columns": [],
+      "rows": [],
+      "text": "",
+      "items": [],
+      "note": ""
+    }
+  ]
+}

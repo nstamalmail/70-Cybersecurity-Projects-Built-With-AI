@@ -1,0 +1,48 @@
+{
+  "title": "Load Balancer Simulation Report",
+  "simulation_id": "sim-test",
+  "timestamp": "2026-09-21T02:44:49",
+  "algorithm": "round_robin",
+  "health_check_config": {
+    "check_type": "tcp",
+    "interval_seconds": 5.0,
+    "timeout_seconds": 1.0,
+    "fall_threshold": 3,
+    "rise_threshold": 2,
+    "http_path": "/",
+    "expected_status": [
+      200
+    ]
+  },
+  "duration_seconds": 12.5,
+  "total_requests": 100,
+  "distribution": [
+    {
+      "name": "web-a",
+      "requests": 0,
+      "pct": 0.0,
+      "health": "UP",
+      "weight": 1,
+      "mode": "healthy"
+    },
+    {
+      "name": "web-b",
+      "requests": 0,
+      "pct": 0.0,
+      "health": "UP",
+      "weight": 1,
+      "mode": "healthy"
+    }
+  ],
+  "state_transitions": [
+    {
+      "timestamp": "t1",
+      "backend": "web-b",
+      "from_state": "UP",
+      "to_state": "DOWN",
+      "reason": "fall_threshold"
+    }
+  ],
+  "health_check_log": [],
+  "report_generated": "2026-09-21T02:44:49"
+}

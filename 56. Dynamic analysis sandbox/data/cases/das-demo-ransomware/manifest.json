@@ -1,0 +1,38 @@
+{
+  "session_id": "das-demo-ransomware",
+  "analysed_at": "2026-09-17T01:23:31",
+  "score": 100,
+  "severity": "critical",
+  "options": {
+    "mode": "detonate",
+    "dry_run": true,
+    "timeout_s": 120,
+    "hypervisor": "simulated",
+    "network_mode": "simulated"
+  },
+  "vm": {
+    "adapter": "simulated",
+    "reason": "Simulation harness (no hypervisor interaction).",
+    "state": "simulated / ready",
+    "vm_name": "win10-analysis",
+    "snapshot": "clean-baseline",
+    "memory_mb": 4096,
+    "cpus": 2,
+    "dry_run": true,
+    "commands": [
+      "[dry-run] $ <simulated> revert win10-analysis to clean-baseline",
+      "[dry-run] $ <simulated> isolate-network win10-analysis",
+      "[dry-run] $ <simulated> start win10-analysis headless",
+      "[dry-run] $ <simulated> stop win10-analysis",
+      "[dry-run] $ <simulated> revert win10-analysis to clean-baseline"
+    ]
+  },
+  "lifecycle": [
+    "snapshot revert -> clean-baseline",
+    "network isolation (--nic1 null / no netdev, no shared folders)",
+    "boot headless (timeout 120s)",
+    "upload guest agent + analyzer, then execute the sample",
+    "collect behaviour log, PCAP and dropped files (hash verified)",
+    "power off and revert to the clean snapshot"
+  ]
+}

@@ -1,0 +1,22 @@
+[
+  {"id": 1, "name": "CyberWolves", "affiliation": "University of Cyberland", "total_score": 4850, "logo": "wolf"},
+  {"id": 2, "name": "ByteReapers", "affiliation": "TechCorp Security", "total_score": 4720, "logo": "skull"},
+  {"id": 3, "name": "NullPointer", "affiliation": "HackerHouse", "total_score": 4680, "logo": "null"},
+  {"id": 4, "name": "PhantomShell", "affiliation": "DarkNet Labs", "total_score": 4550, "logo": "ghost"},
+  {"id": 5, "name": "ExploitKings", "affiliation": "SecureBase Inc", "total_score": 4400, "logo": "crown"},
+  {"id": 6, "name": "BinaryBlitz", "affiliation": "Crypto Academy", "total_score": 4350, "logo": "binary"},
+  {"id": 7, "name": "RootSeekers", "affiliation": "GovSec Division", "total_score": 4200, "logo": "root"},
+  {"id": 8, "name": "ShellStorm", "affiliation": "PentestPartners", "total_score": 4100, "logo": "storm"},
+  {"id": 9, "name": "KernelPanic", "affiliation": "OS Security Lab", "total_score": 3950, "logo": "kernel"},
+  {"id": 10, "name": "HeapOverflow", "affiliation": "MemoryMasters", "total_score": 3800, "logo": "heap"},
+  {"id": 11, "name": "SQLInjection", "affiliation": "DB Defense Co", "total_score": 3650, "logo": "sql"},
+  {"id": 12, "name": "FormatString", "affiliation": "VulnHunters", "total_score": 3500, "logo": "format"},
+  {"id": 13, "name": "RaceCondition", "affiliation": "Async Attackers", "total_score": 3350, "logo": "race"},
+  {"id": 14, "name": "BufferKing", "affiliation": "Exploit Dev Team", "total_score": 3200, "logo": "buffer"},
+  {"id": 15, "name": "CryptoNinjas", "affiliation": "CipherSchool", "total_score": 3050, "logo": "ninja"},
+  {"id": 16, "name": "ReverseOps", "affiliation": "MalwareBusters", "total_score": 2900, "logo": "reverse"},
+  {"id": 17, "name": "ForensicFox", "affiliation": "Incident Response", "total_score": 2750, "logo": "fox"},
+  {"id": 18, "name": "PwnStars", "affiliation": "CTF Champions", "total_score": 2600, "logo": "star"},
+  {"id": 19, "name": "StackSmash", "affiliation": "Pwn Party", "total_score": 2450, "logo": "smash"},
+  {"id": 20, "name": "NetBreach", "affiliation": "Network Ninjas", "total_score": 2300, "logo": "net"}
+]

@@ -1,0 +1,23 @@
+======================================================================
+  Network Topology Report
+======================================================================
+Topology ID : 12bdd368e3
+Discovered  : 2026-09-21T02:44:43
+Seed        : 127.0.0.1
+Subnets     : 127.0.0.0/30
+Duration    : 5.0s
+Devices     : 2 (0 SNMP-accessible)
+Links       : 1
+By type     : {'host': 2}
+
+[DEVICES]
+IP              MAC                 TYPE     VENDOR          HOSTNAME
+------------------------------------------------------------------------------
+127.0.0.1       -                   host     -               DESKTOP-8I7DB1K
+127.0.0.2       -                   host     -               -
+
+[METHOD]
+Discovery: ICMP ping sweep + system ARP correlation; SNMP (if enabled) is
+read-only GET of sysDescr/sysName. Traceroute shows the forward path only;
+asymmetric routing is not captured. Discovery requires network authorization.
+======================================================================

@@ -1,0 +1,41 @@
+{
+  "tool": "CBSEF",
+  "version": 1,
+  "session": {
+    "id": 1,
+    "name": "selftest",
+    "generated": "now",
+    "test_case": "mass_assignment"
+  },
+  "findings": [
+    {
+      "id": null,
+      "session_id": null,
+      "finding_id": "90bd7593e1c7",
+      "test_case": "mass_assignment",
+      "timestamp": 1790287616.4647245,
+      "url": "/api/users",
+      "method": "POST",
+      "endpoint": "/api/users",
+      "parameter": "is_admin",
+      "confidence": "medium",
+      "status": "candidate",
+      "signal_description": "probe field(s) echoed in response: ['is_admin']; response length delta +28 bytes",
+      "baseline_request": "POST /api/users HTTP/1.1\nHost: 127.0.0.1:8000\nContent-Type: application/json\n\n{\"username\": \"demo\", \"email\": \"d@x.y\"}",
+      "baseline_response": "status=200 len=120 body_hash=",
+      "probe_request": "POST /api/users\nHost: 127.0.0.1:8000\nContent-Type: application/json\nContent-Length: 56\n\n{\"username\": \"demo\", \"email\": \"d@x.y\", \"is_admin\": true}",
+      "probe_response": "status=200 len=148 body_hash=",
+      "differential": {
+        "added_fields": {
+          "is_admin": true
+        },
+        "status_changed": false,
+        "len_delta": 28,
+        "echoed_fields": [
+          "is_admin"
+        ]
+      },
+      "remediation": "Mass assignment: the API binds unvalidated client-supplied fields to internal models.\nFix:\n  1. Use explicit field allowlists (DTOs / strong parameters) for every bindable model.\n  2. Reject unknown fields instead of silently ignoring them.\n  3. Never bind security-sensitive fields (role/is_admin/scope) from user input.\n  4. Test: send requests with added authorization fields and assert they are ignored."
+    }
+  ]
+}

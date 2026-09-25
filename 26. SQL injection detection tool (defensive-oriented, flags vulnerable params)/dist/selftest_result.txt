@@ -1,0 +1,15 @@
+SIDT self-test: PASS (13/13 checks)
+
+[PASS] StateStore writes memory.md
+[PASS] error-based SQLi detected — {'error'}
+[PASS] engine sent requests — 11 requests
+[PASS] DBMS fingerprint (mysql) — ['mysql']
+[PASS] remediation attached
+[PASS] boolean-based SQLi detected — {'boolean'}
+[PASS] safe mode blocks time/union payloads — 0 findings
+[PASS] safe mode sent only baseline requests — 2 requests
+[PASS] time-based SQLi detected (opt-in) — {'time'}
+[PASS] union-based SQLi detected (opt-in) — {'union'}
+[PASS] HTML report exported
+[PASS] CSV report exported
+[PASS] JSON report exported

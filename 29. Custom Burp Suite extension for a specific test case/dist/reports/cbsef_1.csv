@@ -1,0 +1,2 @@
+finding_id,test_case,status,confidence,method,url,endpoint,parameter,signal_description
+90bd7593e1c7,mass_assignment,candidate,medium,POST,/api/users,/api/users,is_admin,probe field(s) echoed in response: ['is_admin']; response length delta +28 bytes

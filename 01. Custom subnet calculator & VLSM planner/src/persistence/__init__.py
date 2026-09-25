@@ -1,0 +1,1 @@
+"""Persistence layer: schema-validated JSON save/load and TXT export."""

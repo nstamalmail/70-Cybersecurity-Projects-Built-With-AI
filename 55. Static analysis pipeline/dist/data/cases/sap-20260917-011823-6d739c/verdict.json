@@ -1,0 +1,85 @@
+{
+  "verdict": "MALICIOUS",
+  "score": 100,
+  "raw_score": 130,
+  "rationale": [
+    {
+      "indicator": "High section entropy: .text = 7.87",
+      "weight": 15,
+      "source": "PE parser",
+      "note": "Entropy > 7.0 indicates packing or encryption."
+    },
+    {
+      "indicator": "High section entropy: UPX0 = 7.88",
+      "weight": 15,
+      "source": "PE parser",
+      "note": "Entropy > 7.0 indicates packing or encryption."
+    },
+    {
+      "indicator": "Writable + executable section: UPX0",
+      "weight": 10,
+      "source": "PE parser",
+      "note": "Self-modifying / unpacking stubs."
+    },
+    {
+      "indicator": "Entry point outside .text (UPX0)",
+      "weight": 10,
+      "source": "PE parser",
+      "note": "Packer stub or patched binary."
+    },
+    {
+      "indicator": "Suspicious imports (5 APIs: execution, process injection)",
+      "weight": 15,
+      "source": "PE parser",
+      "note": "Imports map to high-risk capabilities."
+    },
+    {
+      "indicator": "Packer detected: UPX",
+      "weight": 5,
+      "source": "PE parser",
+      "note": "Packer signatures in section names."
+    },
+    {
+      "indicator": "Compile timestamp is in the future (2035-12-04)",
+      "weight": 5,
+      "source": "PE parser",
+      "note": "Timestomping or a forged build date."
+    },
+    {
+      "indicator": "Network indicators in strings (3 URLs/IPs/domains)",
+      "weight": 10,
+      "source": "string extractor",
+      "note": "Hard-coded endpoints are typical of C2 or downloaders."
+    },
+    {
+      "indicator": "Command execution strings (3)",
+      "weight": 8,
+      "source": "string extractor",
+      "note": "Shell/CLI invocations embedded in the binary."
+    },
+    {
+      "indicator": "Autostart registry paths in strings (2)",
+      "weight": 5,
+      "source": "string extractor",
+      "note": "Run/RunOnce/Services/Winlogon style keys indicate persistence."
+    },
+    {
+      "indicator": "c2 keywords in strings (4)",
+      "weight": 8,
+      "source": "string extractor",
+      "note": "e.g. [C24~; http://c2.demo-lab.example/gate.php"
+    },
+    {
+      "indicator": "ransomware keywords in strings (2)",
+      "weight": 12,
+      "source": "string extractor",
+      "note": "e.g. cmd.exe /c vssadmin delete shadows /all /quiet; bcdedit /set {default} recoveryenabled No"
+    },
+    {
+      "indicator": "credential theft keywords in strings (1)",
+      "weight": 12,
+      "source": "string extractor",
+      "note": "e.g. password=admin123"
+    }
+  ]
+}

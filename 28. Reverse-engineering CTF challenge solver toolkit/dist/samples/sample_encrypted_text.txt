@@ -1,0 +1,32 @@
+RECT sample encrypted text — try Crypto helpers with these lines.
+
+1) Base64 (paste into Input, op=decode, encoding=base64 or auto):
+ZmxhZ3tiYXNlNjRfMTNfZWFzeX0=
+
+2) Hex (op=decode, encoding=hex):
+666c61677b6865785f6465636f6465727d
+
+3) URL-encoded (op=decode, encoding=url):
+flag%7BurL_d3c0d3%7D
+
+4) ROT13 (op=decode, encoding=rot13):
+synt{ebg13_znmrf_zr_qnmmyr}
+
+5) Caesar shift 7 (op=caesar, key=7):
+mhzm{hzhsnl_yldtlz}
+(best-shift auto also works: op=caesar, key empty)
+
+6) Vigenère key=RECT (op=vigenere, key=RECT):
+rziw{vitg_mgfev}
+
+7) XOR key 0x42 (op=xor, key=B):
+CkwHCQwbCA0JHgsYChsJ
+
+Solutions:
+1) flag{base64_13_easy}
+2) flag{hex_decoders}
+3) flag{urL_d3c0d3}
+4) flag{rot13_makes_me_dazzle}
+5) flag{caesar_pizza}
+6) flag{vigy_mirren}
+7) flag{xor_is_fun}

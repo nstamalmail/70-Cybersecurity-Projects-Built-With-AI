@@ -1,0 +1,687 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'>
+<title>API Call Sequence Analysis Report</title><style>
+
+:root { color-scheme: light; }
+body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; margin: 0; background: #f6f7f9; color: #17181c; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 28px 64px; background: #fff;
+        box-shadow: 0 0 0 1px #e3e5e9; }
+h1 { margin: 0 0 4px; font-size: 26px; }
+h2 { margin: 28px 0 8px; font-size: 17px; border-bottom: 1px solid #e3e5e9; padding-bottom: 6px; }
+.sub { color: #5d6069; margin: 0 0 4px; }
+.stamp { color: #8b8d98; font-size: 12px; margin-bottom: 18px; }
+.banner { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 10px;
+          background: #f2f3f5; border-left: 6px solid #e5484d; margin: 18px 0; }
+.banner .verdict { font-size: 18px; font-weight: 700; color: #e5484d; }
+.banner .score { margin-left: auto; font-size: 13px; color: #5d6069; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0 4px; font-size: 13px; }
+th, td { border: 1px solid #e3e5e9; padding: 6px 9px; text-align: left; vertical-align: top; }
+th { background: #f2f3f5; font-weight: 600; }
+tr:nth-child(even) td { background: #fafbfc; }
+code, pre { font-family: 'Cascadia Mono', Consolas, monospace; font-size: 12px; }
+pre { background: #f6f7f9; border: 1px solid #e3e5e9; border-radius: 8px; padding: 12px;
+      overflow-x: auto; white-space: pre-wrap; }
+.note { color: #8b8d98; font-size: 12px; margin: 0 0 8px; }
+ul { margin: 6px 0 6px 18px; padding: 0; }
+.summary { background: #f2f3f5; border-radius: 10px; padding: 12px 14px; margin: 16px 0; }
+.foot { margin-top: 36px; padding-top: 12px; border-top: 1px solid #e3e5e9; color: #8b8d98; font-size: 12px; }
+@media print { .wrap { box-shadow: none; max-width: none; } }
+
+</style></head><body><div class='wrap'>
+<h1>API Call Sequence Analysis Report</h1>
+<p class='sub'>invoice_2026_09.doc.exe.json · cape</p>
+<div class='stamp'>Generated 2026-09-17 02:20:36 &middot; API Sequence Visualizer v1.0.0 &middot; run report-3302706396</div>
+<div class='banner'>
+<span class='verdict'>critical</span>
+<span class='score'>Risk score: 100</span>
+</div>
+<div class='summary'>32 API calls across 3 process(es) over 11.2s of behaviour were normalised from a cape report. High-severity behaviour matched: Classic remote process injection; Dropped file executed; Enumerate and open a target; Network beacon setup; Run key persistence; Self-modifying memory. Dominant categories: network 9, system 7, process 6, file 5. 16 indicators were extracted from the call arguments. Behaviour score 100/100 (critical).</div>
+<h2>Behavioural findings</h2>
+<p class='note'>Ordered API sequences matched by the pattern engine (architecture §3.4).</p>
+<table><thead><tr>
+<th>Severity</th>
+<th>Pattern</th>
+<th>Process</th>
+<th>Start (s)</th>
+<th>Span (s)</th>
+<th>API chain</th>
+<th>Target</th>
+</tr></thead><tbody>
+<tr>
+<td>medium</td>
+<td>Environment fingerprinting</td>
+<td>invoice_2026_09.doc.exe</td>
+<td>0.75</td>
+<td>0.70</td>
+<td>GetSystemInfo -&gt; GetComputerNameW -&gt; GetVolumeInformationW</td>
+<td>-</td>
+</tr>
+<tr>
+<td>high</td>
+<td>Enumerate and open a target</td>
+<td>invoice_2026_09.doc.exe</td>
+<td>1.80</td>
+<td>1.05</td>
+<td>Process32FirstW -&gt; Process32NextW -&gt; OpenProcess</td>
+<td>2212</td>
+</tr>
+<tr>
+<td>medium</td>
+<td>Process enumeration</td>
+<td>invoice_2026_09.doc.exe</td>
+<td>1.80</td>
+<td>0.70</td>
+<td>Process32FirstW -&gt; Process32NextW -&gt; Process32NextW</td>
+<td>-</td>
+</tr>
+<tr>
+<td>critical</td>
+<td>Classic remote process injection</td>
+<td>invoice_2026_09.doc.exe</td>
+<td>2.85</td>
+<td>1.40</td>
+<td>OpenProcess -&gt; VirtualAllocEx -&gt; WriteProcessMemory -&gt; CreateRemoteThread</td>
+<td>2212</td>
+</tr>
+<tr>
+<td>high</td>
+<td>Self-modifying memory</td>
+<td>invoice_2026_09.doc.exe</td>
+<td>3.20</td>
+<td>0.70</td>
+<td>VirtualAllocEx -&gt; WriteProcessMemory -&gt; VirtualProtectEx</td>
+<td>-</td>
+</tr>
+<tr>
+<td>high</td>
+<td>Run key persistence</td>
+<td>invoice_2026_09.doc.exe</td>
+<td>4.95</td>
+<td>0.70</td>
+<td>RegCreateKeyExW -&gt; RegSetValueExW -&gt; CreateFileW</td>
+<td>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run</td>
+</tr>
+<tr>
+<td>high</td>
+<td>Dropped file executed</td>
+<td>invoice_2026_09.doc.exe</td>
+<td>6.00</td>
+<td>0.70</td>
+<td>WriteFile -&gt; CloseHandle -&gt; CreateProcessW</td>
+<td>C:\Users\analyst\AppData\Local\Temp\svchost.dll</td>
+</tr>
+<tr>
+<td>high</td>
+<td>Network beacon setup</td>
+<td>rundll32.exe</td>
+<td>7.05</td>
+<td>0.70</td>
+<td>GetHostByName -&gt; connect -&gt; send</td>
+<td>updates.secure-delivery-cdn.com</td>
+</tr>
+<tr>
+<td>medium</td>
+<td>Repeated socket send burst</td>
+<td>rundll32.exe</td>
+<td>7.75</td>
+<td>1.05</td>
+<td>send -&gt; send -&gt; send -&gt; send</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h2>Finding details</h2>
+<ul>
+<li>[medium] DEF-003 Environment fingerprinting — pid 1544 (invoice_2026_09.doc.exe) at t=0.75s | GetSystemInfo -&gt; GetComputerNameW -&gt; GetVolumeInformationW</li>
+<li>[high] DISC-002 Enumerate and open a target — pid 1544 (invoice_2026_09.doc.exe) at t=1.80s target: 2212 | Process32FirstW -&gt; Process32NextW -&gt; OpenProcess</li>
+<li>[medium] DISC-001 Process enumeration — pid 1544 (invoice_2026_09.doc.exe) at t=1.80s | Process32FirstW -&gt; Process32NextW -&gt; Process32NextW</li>
+<li>[critical] INJ-001 Classic remote process injection — pid 1544 (invoice_2026_09.doc.exe) at t=2.85s target: 2212 | OpenProcess -&gt; VirtualAllocEx -&gt; WriteProcessMemory -&gt; CreateRemoteThread</li>
+<li>[high] MEM-001 Self-modifying memory — pid 1544 (invoice_2026_09.doc.exe) at t=3.20s | VirtualAllocEx -&gt; WriteProcessMemory -&gt; VirtualProtectEx</li>
+<li>[high] PERS-001 Run key persistence — pid 1544 (invoice_2026_09.doc.exe) at t=4.95s target: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run | RegCreateKeyExW -&gt; RegSetValueExW -&gt; CreateFileW</li>
+<li>[high] EXEC-001 Dropped file executed — pid 1544 (invoice_2026_09.doc.exe) at t=6.00s target: C:\Users\analyst\AppData\Local\Temp\svchost.dll | WriteFile -&gt; CloseHandle -&gt; CreateProcessW</li>
+<li>[high] NET-002 Network beacon setup — pid 3096 (rundll32.exe) at t=7.05s target: updates.secure-delivery-cdn.com | GetHostByName -&gt; connect -&gt; send</li>
+<li>[medium] NET-003 Repeated socket send burst — pid 3096 (rundll32.exe) at t=7.75s | send -&gt; send -&gt; send -&gt; send</li>
+</ul>
+<h2>Behaviour statistics</h2>
+<table>
+<tr><th>Total calls (records, loop-collapsed)</th><td>32 (32)</td></tr>
+<tr><th>Unique APIs</th><td>22</td></tr>
+<tr><th>Processes</th><td>3</td></tr>
+<tr><th>Behaviour duration</th><td>11.25s</td></tr>
+<tr><th>Calls per second</th><td>2.844</td></tr>
+<tr><th>Failed calls</th><td>1 (3.1%)</td></tr>
+<tr><th>Collapsed repeat runs</th><td>0</td></tr>
+<tr><th>Categories observed</th><td>network, system, process, file, memory, registry</td></tr>
+</table>
+<h2>API category distribution</h2>
+<p class='note'>Volume per category; a large memory + process share is injection-shaped.</p>
+<table><thead><tr>
+<th>Category</th>
+<th>Calls</th>
+<th>Share</th>
+</tr></thead><tbody>
+<tr>
+<td>network</td>
+<td>9</td>
+<td>28.1%</td>
+</tr>
+<tr>
+<td>system</td>
+<td>7</td>
+<td>21.9%</td>
+</tr>
+<tr>
+<td>process</td>
+<td>6</td>
+<td>18.8%</td>
+</tr>
+<tr>
+<td>file</td>
+<td>5</td>
+<td>15.6%</td>
+</tr>
+<tr>
+<td>memory</td>
+<td>3</td>
+<td>9.4%</td>
+</tr>
+<tr>
+<td>registry</td>
+<td>2</td>
+<td>6.2%</td>
+</tr>
+</tbody></table>
+<h2>Most frequent APIs</h2>
+<table><thead><tr>
+<th>API</th>
+<th>Calls</th>
+</tr></thead><tbody>
+<tr>
+<td>send</td>
+<td>6</td>
+</tr>
+<tr>
+<td>SleepEx</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Process32NextW</td>
+<td>2</td>
+</tr>
+<tr>
+<td>CreateFileW</td>
+<td>2</td>
+</tr>
+<tr>
+<td>WriteFile</td>
+<td>2</td>
+</tr>
+<tr>
+<td>IsDebuggerPresent</td>
+<td>1</td>
+</tr>
+<tr>
+<td>GetSystemInfo</td>
+<td>1</td>
+</tr>
+<tr>
+<td>GetComputerNameW</td>
+<td>1</td>
+</tr>
+<tr>
+<td>GetVolumeInformationW</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Process32FirstW</td>
+<td>1</td>
+</tr>
+<tr>
+<td>OpenProcess</td>
+<td>1</td>
+</tr>
+<tr>
+<td>VirtualAllocEx</td>
+<td>1</td>
+</tr>
+<tr>
+<td>WriteProcessMemory</td>
+<td>1</td>
+</tr>
+<tr>
+<td>VirtualProtectEx</td>
+<td>1</td>
+</tr>
+<tr>
+<td>CreateRemoteThread</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<h2>Recurring API sequences</h2>
+<p class='note'>Frequent ordered chains mined from the call stream (maximal recurring sequences).</p>
+<table><thead><tr>
+<th>Steps</th>
+<th>Support</th>
+<th>Process</th>
+<th>Start (s)</th>
+<th>Span (s)</th>
+<th>Chain</th>
+</tr></thead><tbody>
+<tr>
+<td>4</td>
+<td>3</td>
+<td>-</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>send -&gt; send -&gt; send -&gt; send</td>
+</tr>
+</tbody></table>
+<h2>Frequent n-grams</h2>
+<table><thead><tr>
+<th>Occurrences</th>
+<th>Length</th>
+<th>Score</th>
+<th>Process</th>
+<th>Chain</th>
+</tr></thead><tbody>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>9</td>
+<td>all</td>
+<td>send -&gt; send -&gt; send</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>8</td>
+<td>all</td>
+<td>send -&gt; send -&gt; send -&gt; send</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2</td>
+<td>8</td>
+<td>all</td>
+<td>send -&gt; send</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+<td>all</td>
+<td>CreateFileW -&gt; WriteFile</td>
+</tr>
+</tbody></table>
+<h2>API transition matrix (top)</h2>
+<p class='note'>First-order Markov transitions; these edges drive the behaviour graph.</p>
+<table><thead><tr>
+<th>From</th>
+<th>To</th>
+<th>Count</th>
+<th>Probability</th>
+<th>Process</th>
+</tr></thead><tbody>
+<tr>
+<td>send</td>
+<td>send</td>
+<td>4</td>
+<td>66.7%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>CreateFileW</td>
+<td>WriteFile</td>
+<td>2</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>IsDebuggerPresent</td>
+<td>GetSystemInfo</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>GetSystemInfo</td>
+<td>GetComputerNameW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>GetComputerNameW</td>
+<td>GetVolumeInformationW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>GetVolumeInformationW</td>
+<td>Process32FirstW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>Process32FirstW</td>
+<td>Process32NextW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>OpenProcess</td>
+<td>VirtualAllocEx</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>VirtualAllocEx</td>
+<td>WriteProcessMemory</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>WriteProcessMemory</td>
+<td>VirtualProtectEx</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>VirtualProtectEx</td>
+<td>CreateRemoteThread</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>CreateRemoteThread</td>
+<td>SleepEx</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>RegCreateKeyExW</td>
+<td>RegSetValueExW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>RegSetValueExW</td>
+<td>CreateFileW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>WriteFile</td>
+<td>CloseHandle</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>CloseHandle</td>
+<td>CreateProcessW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>GetHostByName</td>
+<td>connect</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>connect</td>
+<td>send</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>recv</td>
+<td>SleepEx</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>Process32NextW</td>
+<td>Process32NextW</td>
+<td>1</td>
+<td>50.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>Process32NextW</td>
+<td>OpenProcess</td>
+<td>1</td>
+<td>50.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>SleepEx</td>
+<td>RegCreateKeyExW</td>
+<td>1</td>
+<td>33.3%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>SleepEx</td>
+<td>send</td>
+<td>1</td>
+<td>33.3%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>SleepEx</td>
+<td>CreateFileW</td>
+<td>1</td>
+<td>33.3%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>send</td>
+<td>recv</td>
+<td>1</td>
+<td>16.7%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>send</td>
+<td>SleepEx</td>
+<td>1</td>
+<td>16.7%</td>
+<td>all</td>
+</tr>
+</tbody></table>
+<h2>Reconstructed process tree</h2>
+<table><thead><tr>
+<th>Process</th>
+<th>PID</th>
+<th>Parent</th>
+<th>First seen (s)</th>
+<th>Calls</th>
+<th>Failures</th>
+<th>Top categories</th>
+<th>Path</th>
+</tr></thead><tbody>
+<tr>
+<td>invoice_2026_09.doc.exe</td>
+<td>1544</td>
+<td>-</td>
+<td>0.20</td>
+<td>19</td>
+<td>1</td>
+<td>process:6, system:5, memory:3, file:3</td>
+<td>C:\Users\analyst\AppData\Local\Temp\invoice_2026_09.doc.exe</td>
+</tr>
+<tr>
+<td>explorer.exe</td>
+<td>2212</td>
+<td>1544</td>
+<td>0.00</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+<td>C:\Windows\explorer.exe</td>
+</tr>
+<tr>
+<td>rundll32.exe</td>
+<td>3096</td>
+<td>1544</td>
+<td>6.85</td>
+<td>13</td>
+<td>0</td>
+<td>network:9, system:2, file:2</td>
+<td>C:\Windows\System32\rundll32.exe</td>
+</tr>
+</tbody></table>
+<h2>Suspicious process notes</h2>
+<ul>
+<li>PID 1544 invoice_2026_09.doc.exe: process + memory APIs (injection-capable)</li>
+</ul>
+<h2>Highest-probability behaviour paths</h2>
+<ul>
+<li>send -&gt; recv -&gt; SleepEx -&gt; RegCreateKeyExW -&gt; RegSetValueExW -&gt; CreateFileW -&gt; WriteFile -&gt; CloseHandle</li>
+<li>SleepEx -&gt; RegCreateKeyExW -&gt; RegSetValueExW -&gt; CreateFileW -&gt; WriteFile -&gt; CloseHandle -&gt; CreateProcessW</li>
+<li>CreateFileW -&gt; WriteFile -&gt; CloseHandle -&gt; CreateProcessW</li>
+<li>Process32NextW -&gt; OpenProcess -&gt; VirtualAllocEx -&gt; WriteProcessMemory -&gt; VirtualProtectEx -&gt; CreateRemoteThread -&gt; SleepEx -&gt; RegCreateKeyExW</li>
+<li>IsDebuggerPresent -&gt; GetSystemInfo -&gt; GetComputerNameW -&gt; GetVolumeInformationW -&gt; Process32FirstW -&gt; Process32NextW -&gt; OpenProcess -&gt; VirtualAllocEx</li>
+<li>GetSystemInfo -&gt; GetComputerNameW -&gt; GetVolumeInformationW -&gt; Process32FirstW -&gt; Process32NextW -&gt; OpenProcess -&gt; VirtualAllocEx -&gt; WriteProcessMemory</li>
+<li>GetComputerNameW -&gt; GetVolumeInformationW -&gt; Process32FirstW -&gt; Process32NextW -&gt; OpenProcess -&gt; VirtualAllocEx -&gt; WriteProcessMemory -&gt; VirtualProtectEx</li>
+<li>GetVolumeInformationW -&gt; Process32FirstW -&gt; Process32NextW -&gt; OpenProcess -&gt; VirtualAllocEx -&gt; WriteProcessMemory -&gt; VirtualProtectEx -&gt; CreateRemoteThread</li>
+<li>Process32FirstW -&gt; Process32NextW -&gt; OpenProcess -&gt; VirtualAllocEx -&gt; WriteProcessMemory -&gt; VirtualProtectEx -&gt; CreateRemoteThread -&gt; SleepEx</li>
+<li>OpenProcess -&gt; VirtualAllocEx -&gt; WriteProcessMemory -&gt; VirtualProtectEx -&gt; CreateRemoteThread -&gt; SleepEx -&gt; RegCreateKeyExW -&gt; RegSetValueExW</li>
+</ul>
+<h2>Indicators of Compromise</h2>
+<table><thead><tr>
+<th>Type</th>
+<th>Value</th>
+<th>Source</th>
+<th>Confidence</th>
+<th>Context</th>
+</tr></thead><tbody>
+<tr>
+<td>ipv4</td>
+<td>185.199.42.17</td>
+<td>connect (pid 3096), summary:hosts</td>
+<td>0.90</td>
+<td>ip_address=185.199.42.17, port=8443</td>
+</tr>
+<tr>
+<td>ipv4</td>
+<td>185.199.42.17:8443</td>
+<td>connect (pid 3096)</td>
+<td>0.70</td>
+<td>ip_address=185.199.42.17, port=8443</td>
+</tr>
+<tr>
+<td>domain</td>
+<td>updates.secure-delivery-cdn.com</td>
+<td>GetHostByName (pid 3096), summary:hosts</td>
+<td>0.80</td>
+<td>hostname=updates.secure-delivery-cdn.com</td>
+</tr>
+<tr>
+<td>registry</td>
+<td>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run\InvoiceUpdater</td>
+<td>RegCreateKeyExW (pid 1544), RegSetValueExW (pid 1544)</td>
+<td>0.95</td>
+<td>regkey=HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run, value_name=InvoiceUpdater</td>
+</tr>
+<tr>
+<td>registry</td>
+<td>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run</td>
+<td>RegCreateKeyExW (pid 1544), RegSetValueExW (pid 1544), summary:keys</td>
+<td>0.85</td>
+<td>regkey=HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run, value_name=InvoiceUpdater</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\AppData\Local\Temp\svchost.dll</td>
+<td>CreateFileW (pid 1544), WriteFile (pid 1544), summary:files</td>
+<td>0.75</td>
+<td>file_name=C:\Users\analyst\AppData\Local\Temp\svchost.dll, desired_access=GENERIC_WRITE</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\helper.lnk</td>
+<td>CreateFileW (pid 3096), WriteFile (pid 3096), summary:files</td>
+<td>0.75</td>
+<td>file_name=C:\Users\analyst\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\helper.lnk, desired_access=GENERIC_WRITE</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Windows\System32\rundll32.exe</td>
+<td>CreateProcessW (pid 1544)</td>
+<td>0.75</td>
+<td>application_name=C:\Windows\System32\rundll32.exe, command_line=rundll32.exe C:\Users\analyst\AppData\Local\Temp\svchost.dll,Entry</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\AppData\Local\Temp\invoice_2026_09.doc.exe</td>
+<td>RegSetValueExW (pid 1544)</td>
+<td>0.60</td>
+<td>regkey=HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run, value_name=InvoiceUpdater, value=C:\Users\analyst\AppData\Local\Temp\invoice_2026_09.doc.exe</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\AppData\Local\Temp\svchost.dll,Entry</td>
+<td>CreateProcessW (pid 1544)</td>
+<td>0.60</td>
+<td>application_name=C:\Windows\System32\rundll32.exe, command_line=rundll32.exe C:\Users\analyst\AppData\Local\Temp\svchost.dll,Entry</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\AppData\Roaming\Microsoft\Windows\Start</td>
+<td>CreateFileW (pid 3096), WriteFile (pid 3096)</td>
+<td>0.60</td>
+<td>file_name=C:\Users\analyst\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\helper.lnk, desired_access=GENERIC_WRITE</td>
+</tr>
+<tr>
+<td>file</td>
+<td>handle:0x1a4</td>
+<td>CloseHandle (pid 1544)</td>
+<td>0.40</td>
+<td>handle=0x1a4</td>
+</tr>
+<tr>
+<td>mutex</td>
+<td>\Local\Temp\invoice_2026_09.doc.exe</td>
+<td>RegSetValueExW (pid 1544)</td>
+<td>0.80</td>
+<td>regkey=HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run, value_name=InvoiceUpdater, value=C:\Users\analyst\AppData\Local\Temp\invoice_2026_09.doc.exe</td>
+</tr>
+<tr>
+<td>mutex</td>
+<td>\Local\Temp\svchost.dll</td>
+<td>CreateFileW (pid 1544), WriteFile (pid 1544)</td>
+<td>0.80</td>
+<td>file_name=C:\Users\analyst\AppData\Local\Temp\svchost.dll, desired_access=GENERIC_WRITE</td>
+</tr>
+<tr>
+<td>mutex</td>
+<td>\Local\Temp\svchost.dll,Entry</td>
+<td>CreateProcessW (pid 1544)</td>
+<td>0.80</td>
+<td>application_name=C:\Windows\System32\rundll32.exe, command_line=rundll32.exe C:\Users\analyst\AppData\Local\Temp\svchost.dll,Entry</td>
+</tr>
+<tr>
+<td>command</td>
+<td>rundll32.exe C:\Users\analyst\AppData\Local\Temp\svchost.dll,Entry</td>
+<td>CreateProcessW (pid 1544), summary:executed_commands</td>
+<td>0.70</td>
+<td>application_name=C:\Windows\System32\rundll32.exe, command_line=rundll32.exe C:\Users\analyst\AppData\Local\Temp\svchost.dll,Entry</td>
+</tr>
+</tbody></table>
+<div class='foot'>API Sequence Visualizer v1.0.0 &middot; Malware Analysis Workbench &middot; generated 2026-09-17 02:20:36</div>
+</div></body></html>

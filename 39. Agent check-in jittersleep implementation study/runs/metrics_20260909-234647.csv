@@ -1,0 +1,2 @@
+run_id,profile,agents,checkins,successes,failures,retries,interval_mean_s,interval_std_s,drift_p50_s,drift_p95_s,drift_max_s
+20260909-234647,default,10,10,10,0,0,,,0.858063,0.858063,0.858063

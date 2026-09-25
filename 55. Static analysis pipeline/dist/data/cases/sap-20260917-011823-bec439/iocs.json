@@ -1,0 +1,74 @@
+[
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Program Files\\Contoso\\Updater\\contoso-updater.exe",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.45,
+    "context": "ascii string at offset 0x00001073"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\ProgramData\\Contoso\\Updater\\config.xml",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.45,
+    "context": "ascii string at offset 0x0000111b"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "lC:\\Users\\Public\\config.dat",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.45,
+    "context": "unicode string at offset 0x00001143"
+  },
+  {
+    "ioc_type": "user_agent",
+    "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.5,
+    "context": "ascii string at offset 0x000010a8"
+  },
+  {
+    "ioc_type": "hash",
+    "value": "c1accc844f57e512a66fd2f9435b51cc",
+    "source": "static",
+    "sources": "static",
+    "confidence": 1.0,
+    "context": "IMPHASH of the analysed file"
+  },
+  {
+    "ioc_type": "hash",
+    "value": "2dc987962e50b705405f2003e166ac4d",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.95,
+    "context": "MD5 of the analysed file"
+  },
+  {
+    "ioc_type": "hash",
+    "value": "8288623be1a7b63e72da3e4de49ba08c63db2112902758d50e13980e195733c5",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.95,
+    "context": "SHA256 of the analysed file"
+  },
+  {
+    "ioc_type": "hash",
+    "value": "9bbdf74ca13e08387a2bc5cd537050087be9d1cd",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.95,
+    "context": "SHA1 of the analysed file"
+  },
+  {
+    "ioc_type": "file_name",
+    "value": "demo_benign_update.exe.SAMPLE",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.3,
+    "context": "Original file name"
+  }
+]

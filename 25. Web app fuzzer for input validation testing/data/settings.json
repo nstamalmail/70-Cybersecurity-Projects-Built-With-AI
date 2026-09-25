@@ -1,0 +1,32 @@
+{
+  "target_url": "",
+  "method": "GET",
+  "headers_text": "",
+  "cookies_text": "",
+  "body": "",
+  "body_type": "none",
+  "categories": [
+    "xss",
+    "sqli",
+    "cmdi",
+    "path_traversal",
+    "ssti",
+    "open_redirect",
+    "crlf",
+    "ldap",
+    "nosql"
+  ],
+  "encodings": [
+    "none",
+    "url"
+  ],
+  "custom_payloads": "",
+  "threads": 6,
+  "delay_ms": 50,
+  "timeout": 10.0,
+  "follow_redirects": true,
+  "verify_ssl": true,
+  "proxy": "",
+  "max_requests": 1500,
+  "time_based": true
+}

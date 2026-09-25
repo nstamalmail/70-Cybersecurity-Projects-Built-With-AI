@@ -1,0 +1,16 @@
+{
+  "session_id": "das-demo-benign",
+  "analysed_at": "2026-09-17T01:23:27",
+  "score": 0,
+  "severity": "info",
+  "options": {
+    "mode": "ingest",
+    "source": "das",
+    "max_events": 500000
+  },
+  "vm": {
+    "adapter": "none (ingested telemetry)",
+    "snapshot": "clean-baseline"
+  },
+  "lifecycle": []
+}

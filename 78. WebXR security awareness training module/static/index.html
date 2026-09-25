@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Awareness Training</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Security Awareness Training</h1>
+            <p>Interactive 3D Security Education Platform</p>
+        </header>
+        
+        <div class="container">
+            <div class="dashboard">
+                <aside class="sidebar">
+                    <h2>Training Modules</h2>
+                    <div class="module-list" id="module-list">
+                        <!-- Modules loaded dynamically -->
+                    </div>
+                </aside>
+                
+                <main class="main-content">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3 id="stat-completed">0/5</h3>
+                            <p>Modules Completed</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 id="stat-score">0%</h3>
+                            <p>Average Score</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 id="stat-time">0</h3>
+                            <p>Training Minutes</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 id="stat-cert">No</h3>
+                            <p>Certificate Earned</p>
+                        </div>
+                    </div>
+                    
+                    <div class="training-area">
+                        <div id="canvas-container">
+                            <canvas id="training-canvas"></canvas>
+                            <div class="training-controls">
+                                <button class="btn btn-primary" id="btn-start" onclick="startTraining()">Start Training</button>
+                                <button class="btn btn-secondary" id="btn-pause" onclick="pauseTraining()">Pause</button>
+                                <button class="btn btn-success" id="btn-quiz" onclick="startQuiz()">Take Quiz</button>
+                            </div>
+                        </div>
+                        
+                        <div class="training-info">
+                            <div class="info-card">
+                                <h3 id="module-title">Select a Module</h3>
+                                <p id="module-description">Choose a training module from the sidebar to begin.</p>
+                            </div>
+                            
+                            <div class="info-card">
+                                <h3>Current Lesson</h3>
+                                <p id="lesson-content">No lesson selected.</p>
+                            </div>
+                            
+                            <div class="progress-tracker">
+                                <h3>Progress</h3>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <p class="progress-text" id="progress-text">0% Complete</p>
+                            </div>
+                            
+                            <button class="btn btn-primary" onclick="downloadReport()">Download Report</button>
+                            <button class="btn btn-secondary" onclick="viewCertificate()">View Certificate</button>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-area" id="quiz-area">
+                        <h2>Quiz</h2>
+                        <div id="quiz-container">
+                            <!-- Quiz loaded dynamically -->
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        
+        <div class="notification" id="notification"></div>
+        
+        <footer>
+            <p>WebXR Security Awareness Training Module | © 2026</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

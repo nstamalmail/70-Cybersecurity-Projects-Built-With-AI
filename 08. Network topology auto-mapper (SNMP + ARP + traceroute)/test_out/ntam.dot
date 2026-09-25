@@ -1,0 +1,7 @@
+graph topology {
+  layout=neato; overlap=false;
+  node [shape=box style=filled fontname='Segoe UI' fontsize=10];
+  n0 [label="DESKTOP-8I7DB1K\n127.0.0.1" fillcolor="#95a5a6" fontcolor="black"];
+  n1 [label="127.0.0.2\n127.0.0.2" fillcolor="#95a5a6" fontcolor="black"];
+  n0 -- n1 [label="L2"];
+}

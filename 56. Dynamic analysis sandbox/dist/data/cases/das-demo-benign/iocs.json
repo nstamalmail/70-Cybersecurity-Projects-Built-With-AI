@@ -1,0 +1,90 @@
+[
+  {
+    "ioc_type": "domain",
+    "value": "update.contoso.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by contoso-updater.exe at 00:03.000"
+  },
+  {
+    "ioc_type": "url",
+    "value": "https://update.contoso.example/v2/manifest.json",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.7,
+    "context": "HTTP request by contoso-updater.exe at 00:03.600"
+  },
+  {
+    "ioc_type": "port",
+    "value": "443",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.45,
+    "context": "HTTP request by contoso-updater.exe at 00:03.600"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\ProgramData\\Contoso\\Updater\\logs\\update.log",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by contoso-updater.exe at 00:04.400"
+  },
+  {
+    "ioc_type": "registry",
+    "value": "HKCU\\Software\\Contoso\\Updater",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "Registry set by contoso-updater.exe at 00:05.000"
+  },
+  {
+    "ioc_type": "command",
+    "value": "C:\\Program Files\\Contoso\\Updater\\contoso-updater.exe\" --check",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "Process created by contoso-updater.exe at 00:00.300"
+  },
+  {
+    "ioc_type": "user_agent",
+    "value": "ContosoUpdater/2.4 (Windows 10)",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "HTTP request by contoso-updater.exe at 00:03.600"
+  },
+  {
+    "ioc_type": "hash",
+    "value": "0b7a5c1d2e3f405162738495a6b7c8d9e0f1a2b3c4d5e6f708192a3b4c5d6e7f8",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.95,
+    "context": "SHA-256 of demo_benign_updater.exe.SAMPLE"
+  },
+  {
+    "ioc_type": "hash",
+    "value": "d41d8cd98f00b204e9800998ecf8427e",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.9,
+    "context": "MD5 of demo_benign_updater.exe.SAMPLE"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "update.contoso.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by contoso-updater.exe at 00:03.000"
+  },
+  {
+    "ioc_type": "process",
+    "value": "contoso-updater.exe",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.3,
+    "context": "Process created by contoso-updater.exe at 00:00.300"
+  }
+]

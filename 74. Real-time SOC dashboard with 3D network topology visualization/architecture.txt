@@ -1,0 +1,760 @@
+# Architecture Specification: Real-Time SOC Dashboard with 3D Network Topology Visualization
+
+**Document Version:** 1.0.0
+**Classification:** Confidential — Internal Use Only
+**Author:** Senior Security Developer
+**Last Updated:** 2025-01-15
+**Status:** Approved for Implementation
+**Document ID:** ARCH-SOC-3D-074
+
+---
+
+## 1. Executive Summary
+
+This document defines the architecture for a **Real-Time Security Operations Center (SOC) Dashboard** featuring an **interactive 3D network topology visualization**. The system ingests telemetry from heterogeneous security sources (SIEM, EDR, NDR, firewalls, IDS/IPS, cloud logs), correlates events into incidents, and renders the live network state as an interactive 3D graph.
+
+Because this system is **itself a high-value target** — it aggregates an organization's entire security posture — it must meet the security bar of a **Tier-0 asset**. A compromise of the SOC dashboard is functionally equivalent to handing an attacker the keys to the entire enterprise. Accordingly, this architecture assumes a **zero-trust, defense-in-depth, assume-breach** posture throughout.
+
+**Key principles:**
+1. The SOC dashboard is a **Tier-0 system** — treat it like a Domain Controller.
+2. **Read-only by default.** No action-taking (isolate host, block IP) without explicit multi-party approval workflow.
+3. **Blast-radius containment** — a compromised dashboard must not be a pivot into monitored infrastructure.
+4. **Data minimization** — the dashboard sees only what analysts need; raw packets stay in the collector tier.
+5. **Tamper-evident audit** — every analyst action is immutably logged.
+
+---
+
+## 2. High-Level Architecture
+
+```
+┌────────────────────────────────────────────────────────────────────────────┐
+│                      MONITORED ENVIRONMENT (Untrusted)                     │
+│  Firewalls │ EDR Agents │ IDS/IPS │ Cloud (AWS/GCP/Azure) │ K8s │ IdP      │
+└───────────────────────────────┬────────────────────────────────────────────┘
+                                │ Syslog/TLS, OTLP, S3, Kafka
+                                ▼
+┌────────────────────────────────────────────────────────────────────────────┐
+│                    INGESTION & NORMALIZATION TIER                          │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌───────────────┐   │
+│  │ Vector/Fluent│  │ Kafka (mTLS) │  │ Schema Reg.  │  │ Enrichment    │   │
+│  │ Bit (agents) │→ │  /Redpanda   │→ │ (Avro/Protob)│→ │ (GeoIP, CMDB) │   │
+│  └──────────────┘  └──────────────┘  └──────────────┘  └───────┬───────┘   │
+└────────────────────────────────────────────────────────────────┼───────────┘
+                                                                 ▼
+┌────────────────────────────────────────────────────────────────────────────┐
+│                        CORRELATION & ANALYTICS TIER                        │
+│  ┌────────────────┐  ┌──────────────┐  ┌───────────────┐  ┌─────────────┐  │
+│  │ Stream Proc.   │  │ Sigma/YARA   │  │ ML Anomaly    │  │ Graph       │  │
+│  │ (Flink/Bytewax)│  │ Rule Engine  │  │ Detection     │  │ Builder     │  │
+│  └───────┬────────┘  └──────┬───────┘  └───────┬───────┘  └──────┬──────┘  │
+└──────────┼──────────────────┼──────────────────┼─────────────────┼─────────┘
+           ▼                  ▼                  ▼                 ▼
+┌────────────────────────────────────────────────────────────────────────────┐
+│                          STORAGE TIER (Encrypted)                          │
+│  PostgreSQL (incidents, RLS)  │  ClickHouse (events)  │  Redis (hot state)  │
+│  Neo4j (topology graph)       │  S3 (raw, WORM)       │  OpenSearch (search)│
+└───────────────────────────────┬────────────────────────────────────────────┘
+                                ▼
+┌────────────────────────────────────────────────────────────────────────────┐
+│                    API GATEWAY (Zero-Trust Entry)                          │
+│  mTLS + OIDC │ Per-user rate limit │ WAF │ DLP inspection │ Audit tap      │
+└───────────────────────────────┬────────────────────────────────────────────┘
+                                ▼
+┌────────────────────────────────────────────────────────────────────────────┐
+│                        BACKEND (Python / FastAPI)                          │
+│  • WebSocket fan-out (graph deltas)   • REST (queries, incidents)          │
+│  • RBAC/ABAC enforcement              • Approval workflow engine           │
+│  • Action broker (SOAR adapter)       • Audit emitter                      │
+└───────────────────────────────┬────────────────────────────────────────────┘
+                                ▼  WSS (TLS 1.3, per-message auth)
+┌────────────────────────────────────────────────────────────────────────────┐
+│                   FRONTEND (Browser — Hardened)                            │
+│  ┌──────────────────────────────────────────────────────────────────────┐  │
+│  │ Three.js / WebGL2 3D Topology  •  React UI overlay  •  Virtualized   │  │
+│  │ Trusted Types enforced  •  CSP strict  •  No third-party scripts     │  │
+│  └──────────────────────────────────────────────────────────────────────┘  │
+└────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 3. Threat Model & Trust Boundaries
+
+### 3.1 Assets to Protect
+
+| Asset | Sensitivity | Impact if Compromised |
+|---|---|---|
+| Live network topology | **Critical** | Attacker learns full attack surface |
+| Incident data | **Critical** | Attacker learns what defenders know |
+| Analyst identities & sessions | **High** | Impersonation, social engineering |
+| Action broker credentials | **Critical** | Attacker can isolate/block production hosts |
+| Detection rules (Sigma/YARA) | **High** | Attacker engineers evasion |
+| Audit logs | **High** | Covering tracks |
+
+### 3.2 Trust Boundaries
+
+1. **Boundary A:** Monitored environment → Ingestion tier. Assume *all* input is hostile, including well-formed telemetry (data poisoning).
+2. **Boundary B:** Ingestion → Correlation. Schema-validated, signed messages only.
+3. **Boundary C:** Correlation → Storage. Application-layer encryption for sensitive fields.
+4. **Boundary D:** Storage → API. RLS + query-time authorization.
+5. **Boundary E:** API → Browser. Authenticated, authorized, rate-limited, output-encoded.
+6. **Boundary F:** SOC → Action targets. Air-gapped approval workflow; no direct API calls.
+
+### 3.3 STRIDE (Dashboard-Specific)
+
+| Threat | Vector | Mitigation |
+|---|---|---|
+| **Spoofing** | Forged telemetry to hide real attack | Signed log sources (mTLS + per-source key); signature verification at ingest |
+| **Tampering** | Modify alerts/incidents in flight | Kafka TLS + ACLs; message HMAC; immutable audit trail |
+| **Repudiation** | Analyst denies taking action | Append-only audit log (S3 Object Lock, WORM) with per-action signature |
+| **Info Disclosure** | Dashboard XSS leaks topology to attacker | Strict CSP, Trusted Types, no `innerHTML`, output encoding |
+| **DoS** | Flood topology updates → freeze renderer | Backpressure, delta compression, LOD, server-side sampling |
+| **Elevation** | Analyst → admin via IDOR | ABAC, per-object authz, deny-by-default |
+| **Data Poisoning** | Inject fake nodes/edges to mislead | Source allow-list, anomaly detection on graph mutations, human review for critical changes |
+| **Insider Threat** | Malicious SOC analyst | Least privilege, session recording, dual-control for actions |
+
+---
+
+## 4. Technology Stack
+
+| Layer | Technology | Justification |
+|---|---|---|
+| Log shipping | Vector, Fluent Bit | Memory-safe, native TLS, low overhead |
+| Message bus | Kafka / Redpanda | mTLS, ACLs, exactly-once, replay |
+| Stream processing | Apache Flink / Bytewax | Event-time, watermarking, stateful |
+| Rule engine | Sigma (pySigma), YARA | Industry-standard, auditable |
+| Event store | ClickHouse | Columnar, high-throughput, TTL |
+| Graph store | Neo4j (causal cluster) | Native graph, Cypher, RBAC |
+| Relational | PostgreSQL 16 | RLS, JSONB, pgcrypto |
+| Hot state | Redis 7 (TLS, ACL) | Sub-ms lookups, pub/sub |
+| Search | OpenSearch | Full-text on incidents |
+| Raw archive | S3 + Object Lock | WORM, lifecycle to Glacier |
+| API | FastAPI (Python 3.12) | Async, Pydantic v2 strict |
+| WebSocket | Starlette + `wsproto` | Native async, per-message auth |
+| Task queue | Celery + Redis (TLS) | Async enrichment, reports |
+| Frontend | TypeScript 5 (strict) + React 18 + Three.js r160+ | Types, WebGL2, tree-shaking |
+| Bundler | Vite 5 | ESM, code splitting |
+| Secrets | HashiCorp Vault + HSM (PKCS#11) | Short-lived creds, key custody |
+| Identity | OIDC + WebAuthn (FIDO2) | Phishing-resistant MFA — mandatory |
+| Container | Distroless + gVisor for parsers | Minimal surface, sandboxed parsing |
+| Orchestration | Kubernetes + NetworkPolicy + OPA | Zero-trust networking |
+| Observability | OpenTelemetry → SIEM-in-a-box | Meta-monitoring of the SOC itself |
+
+---
+
+## 5. Directory Layout
+
+```
+soc-3d-dashboard/
+├── architecture.md
+├── SECURITY.md
+├── THREAT_MODEL.md
+├── RUNBOOK.md
+├── frontend/
+│   ├── index.html
+│   ├── vite.config.ts
+│   └── src/
+│       ├── main.tsx
+│       ├── security/
+│       │   ├── trustedTypes.ts        # TT policy for Three.js + React
+│       │   ├── csp.ts
+│       │   └── sanitize.ts
+│       ├── ws/
+│       │   ├── SocketClient.ts        # per-message auth, reconnect w/ backoff
+│       │   └── GraphDeltaApplier.ts   # apply topology diffs safely
+│       ├── scene/
+│       │   ├── SceneManager.ts
+│       │   ├── LayoutEngine.ts        # force-directed / hierarchical
+│       │   ├── NodeRenderer.ts        # instanced meshes for scale
+│       │   ├── EdgeRenderer.ts
+│       │   ├── LODManager.ts
+│       │   └── PostProcessing.ts
+│       ├── interactions/
+│       │   ├── Raycaster.ts
+│       │   ├── SelectionManager.ts
+│       │   └── ActionGuard.ts         # UI-level approval gate
+│       ├── ui/
+│       │   ├── IncidentPanel.tsx
+│       │   ├── FilterControls.tsx
+│       │   ├── ApprovalDialog.tsx     # dual-control action confirm
+│       │   └── AuditBadge.tsx
+│       └── a11y/
+│           ├── ScreenReaderMirror.tsx
+│           └── KeyboardNav.ts
+├── backend/
+│   ├── app/
+│   │   ├── main.py
+│   │   ├── config.py                  # Pydantic Settings, Vault loader
+│   │   ├── api/
+│   │   │   ├── topology.py
+│   │   │   ├── incidents.py
+│   │   │   ├── actions.py             # SOAR action broker
+│   │   │   ├── audit.py
+│   │   │   └── ws.py                  # WebSocket endpoint
+│   │   ├── security/
+│   │   │   ├── authn.py               # OIDC + WebAuthn
+│   │   │   ├── authz.py               # ABAC policy engine
+│   │   │   ├── headers.py
+│   │   │   ├── ratelimit.py
+│   │   │   ├── csrf.py
+│   │   │   ├── ws_auth.py             # per-message HMAC
+│   │   │   └── signing.py             # Ed25519 log signing
+│   │   ├── graph/
+│   │   │   ├── builder.py             # event → graph mutations
+│   │   │   ├── diff.py                # topology deltas
+│   │   │   └── anomaly.py             # mutation anomaly detection
+│   │   ├── ingest/
+│   │   │   ├── normalize.py           # ECS/OCSF mapping
+│   │   │   ├── verify_signature.py
+│   │   │   └── schema_registry.py
+│   │   ├── correlation/
+│   │   │   ├── sigma_engine.py
+│   │   │   ├── ml_detector.py
+│   │   │   └── incident_builder.py
+│   │   ├── actions/
+│   │   │   ├── broker.py              # SOAR adapter, allow-list only
+│   │   │   ├── approval.py            # dual-control workflow
+│   │   │   └── adapters/
+│   │   │       ├── edr.py
+│   │   │       ├── firewall.py
+│   │   │       └── iam.py
+│   │   ├── audit/
+│   │   │   ├── emitter.py
+│   │   │   └── worm_sink.py           # S3 Object Lock
+│   │   ├── db/
+│   │   │   ├── session.py
+│   │   │   └── migrations/
+│   │   └── workers/
+│   │       ├── enrichment.py
+│   │       └── reports.py
+│   ├── parsers/                       # sandboxed (gVisor) — hostile input
+│   │   ├── syslog.py
+│   │   ├── cef.py
+│   │   ├── zeek.py
+│   │   └── cloud_trail.py
+│   ├── tests/
+│   │   ├── unit/
+│   │   ├── integration/
+│   │   ├── security/
+│   │   └── fuzz/                      # parser fuzzing corpus
+│   └── Dockerfile
+├── infra/
+│   ├── nginx/
+│   ├── k8s/
+│   │   ├── networkpolicy.yaml
+│   │   ├── psa-restricted.yaml
+│   │   └── opa-policies/
+│   ├── terraform/
+│   └── vault/
+└── .github/workflows/
+    ├── ci.yml
+    └── cd.yml
+```
+
+---
+
+## 6. Data Model & Flow
+
+### 6.1 Canonical Event (OCSF-aligned)
+
+```python
+class SecurityEvent(BaseModel):
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    event_id: UUID
+    timestamp: datetime               # event-time, UTC
+    source: Literal["edr", "ndr", "fw", "ids", "cloud", "idp", "k8s"]
+    source_id: str                    # verified via mTLS cert
+    severity: Literal["info","low","medium","high","critical"]
+    category: str                     # OCSF category UID
+    src_ip: IPv4Address | IPv6Address | None
+    dst_ip: IPv4Address | IPv6Address | None
+    src_host: str | None
+    dst_host: str | None
+    user: str | None
+    process: str | None
+    signature: bytes                  # Ed25519 over canonical JSON
+    raw_ref: str                      # S3 pointer to original log
+```
+
+**Invariants:**
+- Every event carries a **verifiable signature** from its source. Unsigned events go to quarantine, not the dashboard.
+- `raw_ref` points to immutable storage — analysts can pivot to raw logs, but the dashboard never re-parses raw input.
+- `source_id` must match the mTLS client cert CN — mismatch = reject.
+
+### 6.2 Topology Graph Model
+
+**Nodes:** `Host`, `User`, `Process`, `Service`, `CloudResource`, `Container`, `Subnet`, `ExternalIP`
+**Edges:** `CONNECTS_TO`, `AUTHENTICATED_AS`, `SPAWNED`, `MEMBER_OF`, `RESOLVES_TO`, `COMMUNICATED_WITH`
+
+```python
+class GraphNode(BaseModel):
+    id: str
+    type: NodeType
+    label: str                        # length-capped, sanitized
+    risk_score: float                 # 0.0–1.0
+    last_seen: datetime
+    attributes: dict[str, str]        # allow-listed keys only
+    ttl_seconds: int | None
+
+class GraphEdge(BaseModel):
+    id: str
+    src: str
+    dst: str
+    kind: EdgeKind
+    weight: float
+    event_count: int                  # aggregated, not raw
+    last_event_id: UUID               # provenance pointer
+```
+
+**Scale controls:**
+- **Aggregation:** Edges collapse counts — never stream every packet to the browser.
+- **Sampling:** If topology exceeds N nodes (configurable), server sends a **coarse view** + drill-down endpoint.
+- **LOD tiers:** `overview` (< 500 nodes), `cluster` (< 5,000), `detail` (on-demand subgraph).
+- **Deltas:** WebSocket streams `GraphDelta { added: [], updated: [], removed: [] }`, not full snapshots.
+
+### 6.3 Data Flow
+
+```
+1. Source emits signed log → Vector (TLS, cert pinning)
+2. Vector → Kafka topic per source class (mTLS, ACL)
+3. Stream processor:
+   a. Verify signature (reject → quarantine topic)
+   b. Normalize to OCSF schema (schema registry validated)
+   c. Enrich (GeoIP, CMDB, threat intel)
+   d. Evaluate Sigma rules + ML detector
+   e. Emit: (i) event → ClickHouse  (ii) graph mutation → Kafka `graph.mutations`
+4. Graph builder consumes mutations:
+   a. Apply to Neo4j (transactional)
+   b. Compute delta for WebSocket fan-out
+   c. Detect anomalous mutations → analyst review queue
+5. Backend WebSocket pushes deltas to authorized subscribers
+6. Frontend applies delta → Three.js scene updates (LOD-aware)
+```
+
+---
+
+## 7. Frontend Architecture (3D Visualization)
+
+### 7.1 Rendering Strategy
+
+- **WebGL2 only.** No WebGL1 fallback — a Tier-0 dashboard may require modern browsers (Chrome/Firefox/Edge last 2 versions).
+- **Instanced meshes** (`THREE.InstancedMesh`) for nodes and edges — supports 100k+ primitives at 60 fps.
+- **GPU-side positioning:** Custom shader reads node positions from a data texture. CPU updates only the texture, not individual matrices.
+- **LOD:** Distant clusters render as billboarded "clouds" with aggregate risk color.
+- **Layout:** Incremental force-directed (d3-force in a Web Worker) — never blocks the main thread.
+- **Post-processing:** Bloom for risk highlighting, SSAO for depth. Disabled on `prefers-reduced-motion`.
+
+### 7.2 Real-Time WebSocket Protocol
+
+Per-message authentication — the WebSocket is **not** implicitly trusted after handshake:
+
+```ts
+type ClientMsg =
+  | { type: 'auth'; token: string; nonce: string }
+  | { type: 'subscribe'; filters: FilterSpec }
+  | { type: 'action.request'; action: ActionSpec; reason: string }
+  | { type: 'ping' };
+
+type ServerMsg =
+  | { type: 'auth.ok'; sessionId: string; expiresAt: number }
+  | { type: 'graph.delta'; seq: number; delta: GraphDelta; hmac: string }
+  | { type: 'incident.update'; incident: IncidentSummary }
+  | { type: 'action.pending'; requestId: string; requiresApproval: boolean }
+  | { type: 'error'; code: string; message: string };  // never leaks internals
+```
+
+**Rules:**
+- `seq` monotonically increases; client detects gaps and re-syncs via REST.
+- Every server message carries an **HMAC** over `(seq || payload || sessionId)` — client verifies before applying. Prevents a MITM (e.g., malicious corporate proxy) from injecting fake topology.
+- Token in `auth` message is short-lived (≤ 5 min) and bound to the WS session via nonce.
+- Client refuses to apply deltas after auth expiry — forces re-auth.
+- **Backpressure:** If client can't keep up (event loop lag > threshold), server sends `graph.snapshot` instead of more deltas.
+
+### 7.3 Security Hardening (Frontend)
+
+**Trusted Types policy:**
+
+```ts
+// security/trustedTypes.ts
+if (window.trustedTypes) {
+  const policy = trustedTypes.createPolicy('soc-ui', {
+    createHTML: (s: string) => s,     // used ONLY for static templates
+    createScriptURL: (s: string) => {
+      const u = new URL(s, location.origin);
+      if (u.origin !== location.origin) throw new Error('Blocked');
+      return u.toString();
+    },
+  });
+  // Do NOT create a 'default' policy — force explicit usage.
+}
+```
+
+**CSP (served as header):**
+
+```
+Content-Security-Policy:
+  default-src 'none';
+  script-src 'self';
+  style-src 'self' 'nonce-{random}';
+  img-src 'self' blob: data:;
+  font-src 'self';
+  connect-src 'self' wss://soc.example.com;
+  worker-src 'self' blob:;
+  frame-ancestors 'none';
+  base-uri 'none';
+  form-action 'none';
+  object-src 'none';
+  require-trusted-types-for 'script';
+  trusted-types soc-ui;
+  upgrade-insecure-requests;
+  report-uri /api/v1/csp-report;
+```
+
+Additional headers:
+```
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+X-Content-Type-Options: nosniff
+Referrer-Policy: no-referrer
+Permissions-Policy: camera=(), microphone=(), geolocation=(), usb=(), serial=()
+Cross-Origin-Opener-Policy: same-origin
+Cross-Origin-Embedder-Policy: require-corp
+Cross-Origin-Resource-Policy: same-origin
+Cache-Control: no-store
+```
+
+**No data caching in browser.** A SOC dashboard must never leave forensic artifacts in a shared workstation's disk cache. Enforced via `no-store` + in-memory-only state.
+
+### 7.4 Rendering-Engine Threat Mitigations
+
+| Threat | Mitigation |
+|---|---|
+| Malicious GLTF model for topology icons | Server-side re-encode; only pre-vetted GLBs from our asset pipeline |
+| Shader injection via attributes | No runtime shader compilation; no user strings → GLSL |
+| Pixel readback via `toDataURL` | `preserveDrawingBuffer: false`; CSP `img-src` restricted |
+| GPU fingerprinting | Not a concern (authenticated analysts only) |
+| WebGL context loss (DoS) | Graceful recovery + alert to NOC |
+| Cryptojacking via compute | Frame budget enforced; telemetry on GPU time |
+| Screen recording / exfil | DLP at endpoint (out of scope but documented) |
+
+### 7.5 Analyst UX Security
+
+- **Watermarking:** Every rendered frame embeds a per-user invisible watermark (LSB in alpha channel) — forensic attribution if screenshotted.
+- **Session recording:** Opt-in for high-privilege roles; keystroke + scene state logged to WORM storage.
+- **Auto-lock:** 5 min idle → session locked, requires WebAuthn re-auth.
+- **Screen-share detection:** If `getDisplayMedia` is active, banner warns analyst.
+- **Copy protection:** Critical fields (IPs, hostnames) copy as "redacted" outside authorized scope.
+
+---
+
+## 8. Backend Architecture
+
+### 8.1 API Surface
+
+| Method | Path | Purpose | Auth | Rate Limit |
+|---|---|---|---|---|
+| GET | `/api/v1/topology` | Full/delta topology snapshot | OIDC + MFA | 30/min |
+| GET | `/api/v1/topology/{node_id}` | Node detail | OIDC | 120/min |
+| GET | `/api/v1/incidents` | List incidents | OIDC | 60/min |
+| PATCH | `/api/v1/incidents/{id}` | Update status | OIDC + role | 30/min |
+| POST | `/api/v1/actions/request` | Request containment action | OIDC + role | 5/min |
+| POST | `/api/v1/actions/{id}/approve` | Approve action (dual-control) | OIDC + WebAuthn | 5/min |
+| GET | `/api/v1/audit` | Audit log query | OIDC + auditor role | 30/min |
+| WS | `/api/v1/ws` | Real-time stream | OIDC + per-msg HMAC | 1 conn/user |
+| POST | `/api/v1/csp-report` | CSP violation sink | None | 60/min/IP |
+
+### 8.2 Authentication (Phishing-Resistant)
+
+- **OIDC + WebAuthn (FIDO2)** — hardware security key **required**. No TOTP, no SMS, no password-only.
+- **DPoP** (Demonstrating Proof-of-Possession) for access tokens — bearer tokens are insufficient for Tier-0.
+- **mTLS** on the API gateway — client certs issued by internal CA, short-lived (≤ 24h).
+- **Session binding:** Session ID bound to TLS channel + client cert thumbprint (channel binding).
+- **Step-up auth** for sensitive actions (isolate host, block IP): re-WebAuthn within 60s.
+
+### 8.3 Authorization (ABAC + RLS)
+
+Roles: `analyst` (read), `senior_analyst` (read + request actions), `approver` (approve actions), `auditor` (read-only audit), `admin` (config, no data).
+
+**ABAC policy (OPA/Rego, excerpt):**
+
+```rego
+package soc.authz
+
+default allow := false
+
+allow if {
+    input.user.roles[_] == "analyst"
+    input.action == "read:topology"
+    input.user.tenant == input.resource.tenant
+    input.user.mfa_verified == true
+    time.now_ns() < input.session.expires_ns
+}
+
+allow if {
+    input.action == "request:isolate_host"
+    input.user.roles[_] == "senior_analyst"
+    input.user.mfa_recent_ns > time.now_ns() - 60000000000  # within 60s
+    input.resource.criticality != "tier0"
+}
+```
+
+Enforced **in-process** (FastAPI dependency) **and** at query layer (PostgreSQL RLS) — two independent checks.
+
+### 8.4 WebSocket Handler (Secure Implementation Sketch)
+
+```python
+@router.websocket("/api/v1/ws")
+async def ws_endpoint(ws: WebSocket, token: str = Query(...)):
+    await ws.accept()
+    try:
+        session = await ws_auth.authenticate(token, ws.client.host)
+        nonce = secrets.token_urlsafe(32)
+        await ws.send_json({"type": "auth.challenge", "nonce": nonce})
+
+        proof = await asyncio.wait_for(ws.receive_json(), timeout=10)
+        if not ws_auth.verify_proof(proof, nonce, session):
+            await ws.close(code=4401, reason="auth failed")
+            return
+
+        await ws.send_json({"type": "auth.ok", "sessionId": session.id,
+                            "expiresAt": session.expires_at.isoformat()})
+
+        seq = 0
+        async for delta in graph_stream.subscribe(session.filters):
+            if session.is_expired():
+                await ws.close(code=4401); return
+            seq += 1
+            payload = {"type": "graph.delta", "seq": seq, "delta": delta}
+            payload["hmac"] = ws_auth.sign(payload, session.hmac_key)
+            await ws.send_json(payload)
+
+    except asyncio.TimeoutError:
+        await ws.close(code=4408, reason="auth timeout")
+    except WebSocketDisconnect:
+        audit.emit("ws.disconnect", session_id=session.id)
+    finally:
+        await graph_stream.unsubscribe(session)
+```
+
+**Properties:**
+- Auth challenge/response (not just bearer) — prevents token replay.
+- Per-message HMAC — client verifies server authenticity.
+- Session expiry enforced per message.
+- No exception details leaked to client.
+- All disconnects audited.
+
+### 8.5 Action Broker (SOAR Integration)
+
+**The most dangerous component.** Design rules:
+
+1. **Allow-list only.** Actions are enumerated: `isolate_host`, `block_ip`, `disable_user`, `quarantine_file`. No free-form API calls.
+2. **Dual-control.** Two distinct humans required for Tier-0 targets (approver ≠ requester).
+3. **Dry-run first.** Every action has a "simulate" mode showing blast radius.
+4. **Break-glass.** Emergency path requires CISO + on-call VP, time-boxed, heavily alerted.
+5. **Timeout & rollback.** Actions auto-expire (e.g., IP block for 1h) unless extended.
+6. **No direct credentials.** Broker holds creds in Vault, uses short-lived tokens per action.
+7. **Out-of-band confirmation** for critical actions (push notification to approver's device).
+
+```python
+ALLOWED_ACTIONS = {
+    "isolate_host": ActionSpec(
+        adapter=edr_adapter,
+        criticality="high",
+        requires_approval=True,
+        dual_control=False,
+        max_ttl=timedelta(hours=4),
+    ),
+    "block_ip_edge": ActionSpec(
+        adapter=firewall_adapter,
+        criticality="critical",
+        requires_approval=True,
+        dual_control=True,           # two humans
+        max_ttl=timedelta(hours=1),
+    ),
+    "disable_user": ActionSpec(
+        adapter=iam_adapter,
+        criticality="critical",
+        requires_approval=True,
+        dual_control=True,
+        max_ttl=timedelta(minutes=30),
+    ),
+}
+```
+
+### 8.6 Audit Logging (Tamper-Evident)
+
+Every privileged operation emits a structured audit record:
+
+```python
+{
+  "ts": "2025-01-15T14:32:11.123Z",
+  "actor": {"sub": "user:alice", "roles": ["senior_analyst"], "mfa_ns": 1705329131123000000},
+  "action": "request:isolate_host",
+  "resource": {"type": "host", "id": "host:web-prod-07", "tenant": "acme"},
+  "outcome": "pending_approval",
+  "request_id": "01HXXX...",
+  "ip_hash": "sha256:abc...",       # hashed with rotating HMAC key
+  "session_id": "sess_01HXXX...",
+  "prev_hash": "sha256:...",         # hash chain
+  "signature": "ed25519:...",        # signed by app HSM key
+}
+```
+
+- **Hash chain** — each record includes hash of previous record; tampering breaks the chain.
+- **Ed25519 signed** with HSM-held key — non-repudiation.
+- **Written to S3 Object Lock (WORM)** — immutable for retention period (7 years).
+- **Streamed to SIEM** in real time — the SOC monitors itself.
+
+---
+
+## 9. Infrastructure & Deployment
+
+### 9.1 Network Architecture
+
+- **Air-gap between tiers.** The dashboard's public-facing edge has **no** route to monitored infrastructure. Egress is allow-listed to specific SOAR adapter endpoints only.
+- **mTLS everywhere** — service mesh (Istio/Linkerd) with per-service SPIFFE IDs.
+- **Kubernetes NetworkPolicy** — default-deny, explicit allow per flow.
+- **No shared namespaces** between ingestion, correlation, storage, and API tiers.
+- **Egress proxy** with domain allow-list — no direct internet from pods.
+
+### 9.2 Container Hardening
+
+```yaml
+# Pod Security — Restricted profile
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 65532
+  readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false
+  capabilities: { drop: ["ALL"] }
+  seccompProfile: { type: RuntimeDefault }
+```
+
+- Distroless images.
+- Signed with Cosign; admission webhook verifies signature + SBOM.
+- Parsers run in **gVisor** sandboxes — hostile input isolation.
+- Resource limits enforced (CPU, memory, ephemeral storage).
+
+### 9.3 Secrets
+
+- **Zero secrets in env vars.** All via Vault with short-lived tokens (≤ 15 min).
+- **HSM-backed** signing keys (Ed25519, AES-GCM). No key material in app memory longer than needed.
+- **Sealed Vault** — requires M-of-N unseal keys.
+- **Rotating HMAC keys** for IP hashing / pseudonymization (30-day rotation, 90-day retention overlap).
+
+### 9.4 Resilience & Availability
+
+- **Multi-AZ deployment**, active-passive for write paths, active-active for read.
+- **Degraded mode:** If WebSocket unavailable, dashboard falls back to REST polling with cache-busting.
+- **Read-only mode:** If correlation pipeline fails, dashboard serves last-known-good topology with prominent staleness banner.
+- **Kill switch:** Single command disables all action broker functionality — read-only SOC.
+
+---
+
+## 10. Observability & Meta-Monitoring
+
+**The SOC monitors itself:**
+
+| Metric | Alert Threshold |
+|---|---|
+| Auth failures / user / 5min | > 5 → page |
+| WebSocket auth failures | > 20/min → page |
+| Action requests without approval > 15min | any → page |
+| Audit log write failures | any → page (compliance) |
+| CSP violations | > 10/min → investigate |
+| Graph mutation anomalies | deviation > 3σ → review |
+| Kafka consumer lag | > 60s → warn |
+| Dashboard load p95 | > 3s → warn |
+
+**Meta-SIEM:** Dashboard's own audit stream is consumed by a *separate* SIEM instance. Compromise of the dashboard cannot erase its own tracks from the meta-SIEM.
+
+---
+
+## 11. Testing Strategy
+
+| Layer | Tool | Coverage |
+|---|---|---|
+| Unit (BE) | pytest + hypothesis | 90% (Tier-0) |
+| Unit (FE) | Vitest | 85% |
+| Integration | pytest + testcontainers | Critical paths |
+| E2E | Playwright | Every role, every action |
+| Security | ZAP, Burp, custom fuzzers | Every release |
+| Load | k6 (10k concurrent WS) | Quarterly |
+| Chaos | Kill correlation tier, network partition | Monthly |
+| Red team | Annual full-scope, quarterly dashboard-only | — |
+
+**Dedicated security tests:**
+- Fuzz all parsers with malformed syslog/CEF/Zeek.
+- Attempt WebSocket injection, replay, and gap exploitation.
+- Verify hash-chain detection of audit tampering.
+- Attempt IDOR across every endpoint.
+- Verify WebAuthn step-up enforcement on actions.
+- Confirm client rejects deltas with invalid HMAC.
+- Attempt XSS via every string field (node labels, incident titles, analyst notes).
+
+---
+
+## 12. Incident Response for the Dashboard Itself
+
+**If the SOC dashboard is suspected compromised:**
+
+1. **Isolate:** Remove from network at K8s level (kill pods, revoke certs).
+2. **Rotate:** All WebAuthn sessions, OIDC tokens, mTLS certs, HMAC keys.
+3. **Preserve:** Snapshot pods, memory dumps, audit logs to forensic storage.
+4. **Assess:** Query meta-SIEM for full timeline; check hash chain integrity.
+5. **Notify:** CISO, legal, possibly regulators (72h GDPR if PII exposed).
+6. **Rebuild:** From signed images + IaC; no in-place recovery.
+7. **Post-mortem:** Blameless; update threat model within 30 days.
+
+Full runbook in `RUNBOOK.md`.
+
+---
+
+## 13. Compliance & Data Handling
+
+- **GDPR:** Analyst actions pseudonymized; monitored users' PII encrypted at column level; DSR workflow documented.
+- **SOC 2 Type II:** Audit trail, access reviews, change management all mapped.
+- **NIS2 / DORA:** If in scope — 24h incident notification path pre-built.
+- **PCI-DSS:** If dashboard touches cardholder-adjacent networks — segmented, out of CDE.
+- **Data retention:** Events 90 days hot, 1 year warm (ClickHouse TTL), 7 years archive (S3 Object Lock).
+- **Data residency:** Configurable per tenant; EU primary by default.
+
+---
+
+## 14. Roadmap & Open Items
+
+| Item | Priority | Rationale |
+|---|---|---|
+| WebGPU renderer path | P3 | 10× primitive throughput; wait for spec stability |
+| Homomorphic encryption for tenant isolation | P4 | Research-stage |
+| Signed topology snapshots (client verifies) | P2 | Defense vs. malicious proxy |
+| On-device ML anomaly detection | P3 | Reduce server-side data exposure |
+| Break-glass workflow automation | P2 | Manual today; needs audit + speed |
+| Federated SOC (multi-org) | P3 | Requires trust framework |
+| Quantum-resistant signing (ML-DSA) | P2 | HSM vendors shipping 2025 |
+| Selective screen-share redaction | P3 | OS-dependent |
+
+---
+
+## 15. References
+
+- OWASP ASVS v4.0.3 — Level 3 (Tier-0 systems)
+- OWASP Top 10 (2021)
+- NIST SP 800-53 Rev. 5 — High baseline + AU, AC, SC families
+- NIST SP 800-61r3 — Incident Handling
+- NIST SP 800-207 — Zero Trust Architecture
+- MITRE ATT&CK — Defensive evasion considerations
+- OCSF v1.3 — Open Cybersecurity Schema Framework
+- Sigma Specification v2
+- Khronos glTF 2.0
+- SLSA v1.0 — Build Level 3
+- CIS Kubernetes Benchmark v1.9
+- SPDX / CycloneDX SBOM standards
+
+---
+
+**Approval:** This document requires sign-off from the **CISO**, **SOC Director**, and **Principal Security Architect** before production deployment. Any change to trust boundaries, action broker policy, or audit-chain design requires a re-review.
+
+**Review cadence:** Quarterly, or upon: (a) major incident, (b) new data source, (c) new action type, (d) regulatory change.
+
+**Contact:** `soc-architecture@example.com` — PGP key in `SECURITY.md`.

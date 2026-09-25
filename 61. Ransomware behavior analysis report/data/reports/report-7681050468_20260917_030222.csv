@@ -1,0 +1,69 @@
+# Report,Ransomware Encryption Pattern Analysis Report
+# Subtitle,locker_lockbit.exe.json
+# Generated,2026-09-17T03:02:22
+# Verdict,critical
+# Risk score,100
+# Tools,Ransomware Pattern Study v1.0.0
+
+# Summary,No parseable API calls found.
+
+# Overview
+Field,Value
+Source,locker_lockbit.exe.json
+Format,cuckoo
+SHA-256,a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2
+Machine,cuckoo-win10x64
+API calls,0
+Processes,1
+Persistence mechanisms,10
+Indicators,11
+Verdict,CRITICAL (100/100)
+
+# Indicators of Compromise
+ioc_type,value,source,confidence,context
+file,C:\\Users\\analyst\\Documents\\*,FindFirstFileW,0.70,
+file,report.docx,FindNextFileW,0.70,
+file,budget.xlsx,FindNextFileW,0.70,
+file,photo.jpg,FindNextFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\report.docx,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\report.docx.lockbit,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\budget.xlsx,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\budget.xlsx.lockbit,WriteFile,0.70,
+file,C:\\Users\\analyst\\Pictures\\photo.jpg,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Pictures\\photo.jpg.lockbit,WriteFile,0.70,
+file,C:\\Users\\Desktop\\README_LOCKED.txt,CreateFileW,0.70,
+
+# Section: Persistence mechanisms detected
+# note,Ordered by timestamp; mapped to MITRE ATT&CK persistence techniques.
+Severity,Technique,Name,Source,Evidence,Confidence,Details
+high,RANS-004,Ransom Note Drop,behavior,,0.85,CreateFileW @ 2.15s; WriteFile @ 3.90s
+critical,RANS-002,In-Place File Encryption,behavior,,0.85,ReadFile @ 2.50s; CryptEncrypt @ 3.20s; WriteFile @ 3.90s
+critical,RANS-006,Mass File Encryption Loop,behavior,,0.85,ReadFile @ 2.50s; CryptEncrypt @ 3.20s; WriteFile @ 3.90s
+high,RANS-004,Ransom Note Drop,behavior,,0.85,CreateFileW @ 4.25s; WriteFile @ 5.30s
+critical,RANS-002,In-Place File Encryption,behavior,,0.85,ReadFile @ 4.60s; CryptEncrypt @ 4.95s; WriteFile @ 5.30s
+critical,RANS-006,Mass File Encryption Loop,behavior,,0.85,ReadFile @ 4.60s; CryptEncrypt @ 4.95s; WriteFile @ 5.30s
+high,RANS-004,Ransom Note Drop,behavior,,0.85,CreateFileW @ 5.65s; WriteFile @ 6.70s
+critical,RANS-002,In-Place File Encryption,behavior,,0.85,ReadFile @ 6.00s; CryptEncrypt @ 6.35s; WriteFile @ 6.70s
+critical,RANS-006,Mass File Encryption Loop,behavior,,0.85,ReadFile @ 6.00s; CryptEncrypt @ 6.35s; WriteFile @ 6.70s
+high,RANS-004,Ransom Note Drop,behavior,,0.85,CreateFileW @ 7.40s; WriteFile @ 7.75s
+
+# Section: Analysis statistics
+Field,Value
+Total API calls,0
+Processes,1
+Duration,0.0s
+Categories observed,-
+
+# Section: Indicators of Compromise
+Type,Value,Source,Confidence,Context
+file,C:\\Users\\analyst\\Documents\\*,FindFirstFileW,0.70,
+file,report.docx,FindNextFileW,0.70,
+file,budget.xlsx,FindNextFileW,0.70,
+file,photo.jpg,FindNextFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\report.docx,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\report.docx.lockbit,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\budget.xlsx,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\budget.xlsx.lockbit,WriteFile,0.70,
+file,C:\\Users\\analyst\\Pictures\\photo.jpg,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Pictures\\photo.jpg.lockbit,WriteFile,0.70,
+file,C:\\Users\\Desktop\\README_LOCKED.txt,CreateFileW,0.70,

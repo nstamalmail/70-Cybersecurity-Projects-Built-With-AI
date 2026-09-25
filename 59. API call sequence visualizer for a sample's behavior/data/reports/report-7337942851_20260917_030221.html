@@ -1,0 +1,532 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'>
+<title>API Call Sequence Analysis Report</title><style>
+
+:root { color-scheme: light; }
+body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; margin: 0; background: #f6f7f9; color: #17181c; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 28px 64px; background: #fff;
+        box-shadow: 0 0 0 1px #e3e5e9; }
+h1 { margin: 0 0 4px; font-size: 26px; }
+h2 { margin: 28px 0 8px; font-size: 17px; border-bottom: 1px solid #e3e5e9; padding-bottom: 6px; }
+.sub { color: #5d6069; margin: 0 0 4px; }
+.stamp { color: #8b8d98; font-size: 12px; margin-bottom: 18px; }
+.banner { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 10px;
+          background: #f2f3f5; border-left: 6px solid #f5a524; margin: 18px 0; }
+.banner .verdict { font-size: 18px; font-weight: 700; color: #f5a524; }
+.banner .score { margin-left: auto; font-size: 13px; color: #5d6069; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0 4px; font-size: 13px; }
+th, td { border: 1px solid #e3e5e9; padding: 6px 9px; text-align: left; vertical-align: top; }
+th { background: #f2f3f5; font-weight: 600; }
+tr:nth-child(even) td { background: #fafbfc; }
+code, pre { font-family: 'Cascadia Mono', Consolas, monospace; font-size: 12px; }
+pre { background: #f6f7f9; border: 1px solid #e3e5e9; border-radius: 8px; padding: 12px;
+      overflow-x: auto; white-space: pre-wrap; }
+.note { color: #8b8d98; font-size: 12px; margin: 0 0 8px; }
+ul { margin: 6px 0 6px 18px; padding: 0; }
+.summary { background: #f2f3f5; border-radius: 10px; padding: 12px 14px; margin: 16px 0; }
+.foot { margin-top: 36px; padding-top: 12px; border-top: 1px solid #e3e5e9; color: #8b8d98; font-size: 12px; }
+@media print { .wrap { box-shadow: none; max-width: none; } }
+
+</style></head><body><div class='wrap'>
+<h1>API Call Sequence Analysis Report</h1>
+<p class='sub'>chromium_updater.exe.jsonl · jsonl</p>
+<div class='stamp'>Generated 2026-09-17 03:02:21 &middot; API Sequence Visualizer v1.0.0 &middot; run report-7337942851</div>
+<div class='banner'>
+<span class='verdict'>medium</span>
+<span class='score'>Risk score: 52</span>
+</div>
+<div class='summary'>21 API calls across 1 process(es) over 7.4s of behaviour were normalised from a jsonl report. High-severity behaviour matched: Credential file staging; Network beacon setup. Dominant categories: file 8, network 8, process 2, memory 2. 15 indicators were extracted from the call arguments. Behaviour score 52/100 (medium).</div>
+<h2>Behavioural findings</h2>
+<p class='note'>Ordered API sequences matched by the pattern engine (architecture §3.4).</p>
+<table><thead><tr>
+<th>Severity</th>
+<th>Pattern</th>
+<th>Process</th>
+<th>Start (s)</th>
+<th>Span (s)</th>
+<th>API chain</th>
+<th>Target</th>
+</tr></thead><tbody>
+<tr>
+<td>high</td>
+<td>Credential file staging</td>
+<td>process-4104</td>
+<td>0.75</td>
+<td>1.05</td>
+<td>CreateFileW -&gt; ReadFile -&gt; WriteFile -&gt; CreateFileW</td>
+<td>C:\Users\analyst\AppData\Local\Google\Chrome\User Data\Default\Login Data</td>
+</tr>
+<tr>
+<td>high</td>
+<td>Network beacon setup</td>
+<td>process-4104</td>
+<td>4.25</td>
+<td>0.70</td>
+<td>gethostbyname -&gt; connect -&gt; send</td>
+<td>collect.credential-sync.net</td>
+</tr>
+<tr>
+<td>medium</td>
+<td>Repeated socket send burst</td>
+<td>process-4104</td>
+<td>4.95</td>
+<td>1.05</td>
+<td>send -&gt; send -&gt; send -&gt; send</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h2>Finding details</h2>
+<ul>
+<li>[high] CRED-002 Credential file staging — pid 4104 (process-4104) at t=0.75s target: C:\Users\analyst\AppData\Local\Google\Chrome\User Data\Default\Login Data | CreateFileW -&gt; ReadFile -&gt; WriteFile -&gt; CreateFileW</li>
+<li>[high] NET-002 Network beacon setup — pid 4104 (process-4104) at t=4.25s target: collect.credential-sync.net | gethostbyname -&gt; connect -&gt; send</li>
+<li>[medium] NET-003 Repeated socket send burst — pid 4104 (process-4104) at t=4.95s | send -&gt; send -&gt; send -&gt; send</li>
+</ul>
+<h2>Behaviour statistics</h2>
+<table>
+<tr><th>Total calls (records, loop-collapsed)</th><td>21 (21)</td></tr>
+<tr><th>Unique APIs</th><td>13</td></tr>
+<tr><th>Processes</th><td>1</td></tr>
+<tr><th>Behaviour duration</th><td>7.4s</td></tr>
+<tr><th>Calls per second</th><td>2.838</td></tr>
+<tr><th>Failed calls</th><td>0 (0.0%)</td></tr>
+<tr><th>Collapsed repeat runs</th><td>0</td></tr>
+<tr><th>Categories observed</th><td>file, network, process, memory, system</td></tr>
+</table>
+<h2>API category distribution</h2>
+<p class='note'>Volume per category; a large memory + process share is injection-shaped.</p>
+<table><thead><tr>
+<th>Category</th>
+<th>Calls</th>
+<th>Share</th>
+</tr></thead><tbody>
+<tr>
+<td>file</td>
+<td>8</td>
+<td>38.1%</td>
+</tr>
+<tr>
+<td>network</td>
+<td>8</td>
+<td>38.1%</td>
+</tr>
+<tr>
+<td>process</td>
+<td>2</td>
+<td>9.5%</td>
+</tr>
+<tr>
+<td>memory</td>
+<td>2</td>
+<td>9.5%</td>
+</tr>
+<tr>
+<td>system</td>
+<td>1</td>
+<td>4.8%</td>
+</tr>
+</tbody></table>
+<h2>Most frequent APIs</h2>
+<table><thead><tr>
+<th>API</th>
+<th>Calls</th>
+</tr></thead><tbody>
+<tr>
+<td>send</td>
+<td>5</td>
+</tr>
+<tr>
+<td>CreateFileW</td>
+<td>2</td>
+</tr>
+<tr>
+<td>ReadFile</td>
+<td>2</td>
+</tr>
+<tr>
+<td>WriteFile</td>
+<td>2</td>
+</tr>
+<tr>
+<td>DeleteFileW</td>
+<td>2</td>
+</tr>
+<tr>
+<td>GetUserNameW</td>
+<td>1</td>
+</tr>
+<tr>
+<td>OpenProcess</td>
+<td>1</td>
+</tr>
+<tr>
+<td>ReadProcessMemory</td>
+<td>1</td>
+</tr>
+<tr>
+<td>VirtualAlloc</td>
+<td>1</td>
+</tr>
+<tr>
+<td>CreateProcessW</td>
+<td>1</td>
+</tr>
+<tr>
+<td>gethostbyname</td>
+<td>1</td>
+</tr>
+<tr>
+<td>connect</td>
+<td>1</td>
+</tr>
+<tr>
+<td>recv</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<h2>Recurring API sequences</h2>
+<p class='note'>Frequent ordered chains mined from the call stream (maximal recurring sequences).</p>
+<table><thead><tr>
+<th>Steps</th>
+<th>Support</th>
+<th>Process</th>
+<th>Start (s)</th>
+<th>Span (s)</th>
+<th>Chain</th>
+</tr></thead><tbody>
+<tr>
+<td>4</td>
+<td>3</td>
+<td>-</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>send -&gt; send -&gt; send -&gt; send</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>-</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>CreateFileW -&gt; ReadFile -&gt; WriteFile</td>
+</tr>
+</tbody></table>
+<h2>Frequent n-grams</h2>
+<table><thead><tr>
+<th>Occurrences</th>
+<th>Length</th>
+<th>Score</th>
+<th>Process</th>
+<th>Chain</th>
+</tr></thead><tbody>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>9</td>
+<td>all</td>
+<td>send -&gt; send -&gt; send</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>8</td>
+<td>all</td>
+<td>send -&gt; send -&gt; send -&gt; send</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2</td>
+<td>8</td>
+<td>all</td>
+<td>send -&gt; send</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3</td>
+<td>6</td>
+<td>all</td>
+<td>CreateFileW -&gt; ReadFile -&gt; WriteFile</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+<td>all</td>
+<td>CreateFileW -&gt; ReadFile</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+<td>all</td>
+<td>ReadFile -&gt; WriteFile</td>
+</tr>
+</tbody></table>
+<h2>API transition matrix (top)</h2>
+<p class='note'>First-order Markov transitions; these edges drive the behaviour graph.</p>
+<table><thead><tr>
+<th>From</th>
+<th>To</th>
+<th>Count</th>
+<th>Probability</th>
+<th>Process</th>
+</tr></thead><tbody>
+<tr>
+<td>send</td>
+<td>send</td>
+<td>4</td>
+<td>80.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>CreateFileW</td>
+<td>ReadFile</td>
+<td>2</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>ReadFile</td>
+<td>WriteFile</td>
+<td>2</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>GetUserNameW</td>
+<td>CreateFileW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>OpenProcess</td>
+<td>ReadProcessMemory</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>ReadProcessMemory</td>
+<td>VirtualAlloc</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>VirtualAlloc</td>
+<td>CreateProcessW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>CreateProcessW</td>
+<td>gethostbyname</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>gethostbyname</td>
+<td>connect</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>connect</td>
+<td>send</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>recv</td>
+<td>DeleteFileW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>DeleteFileW</td>
+<td>DeleteFileW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>WriteFile</td>
+<td>CreateFileW</td>
+<td>1</td>
+<td>50.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>WriteFile</td>
+<td>OpenProcess</td>
+<td>1</td>
+<td>50.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>send</td>
+<td>recv</td>
+<td>1</td>
+<td>20.0%</td>
+<td>all</td>
+</tr>
+</tbody></table>
+<h2>Reconstructed process tree</h2>
+<table><thead><tr>
+<th>Process</th>
+<th>PID</th>
+<th>Parent</th>
+<th>First seen (s)</th>
+<th>Calls</th>
+<th>Failures</th>
+<th>Top categories</th>
+<th>Path</th>
+</tr></thead><tbody>
+<tr>
+<td>process-4104</td>
+<td>4104</td>
+<td>-</td>
+<td>0.40</td>
+<td>21</td>
+<td>0</td>
+<td>file:8, network:8, process:2, memory:2</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h2>Suspicious process notes</h2>
+<ul>
+<li>PID 4104 process-4104: process + memory APIs (injection-capable)</li>
+</ul>
+<h2>Highest-probability behaviour paths</h2>
+<ul>
+<li>send -&gt; recv -&gt; DeleteFileW</li>
+<li>CreateFileW -&gt; ReadFile -&gt; WriteFile -&gt; OpenProcess -&gt; ReadProcessMemory -&gt; VirtualAlloc -&gt; CreateProcessW -&gt; gethostbyname</li>
+<li>ReadFile -&gt; WriteFile -&gt; CreateFileW</li>
+<li>WriteFile -&gt; CreateFileW -&gt; ReadFile</li>
+<li>GetUserNameW -&gt; CreateFileW -&gt; ReadFile -&gt; WriteFile -&gt; OpenProcess -&gt; ReadProcessMemory -&gt; VirtualAlloc -&gt; CreateProcessW</li>
+<li>OpenProcess -&gt; ReadProcessMemory -&gt; VirtualAlloc -&gt; CreateProcessW -&gt; gethostbyname -&gt; connect -&gt; send -&gt; recv</li>
+<li>ReadProcessMemory -&gt; VirtualAlloc -&gt; CreateProcessW -&gt; gethostbyname -&gt; connect -&gt; send -&gt; recv -&gt; DeleteFileW</li>
+<li>VirtualAlloc -&gt; CreateProcessW -&gt; gethostbyname -&gt; connect -&gt; send -&gt; recv -&gt; DeleteFileW</li>
+<li>CreateProcessW -&gt; gethostbyname -&gt; connect -&gt; send -&gt; recv -&gt; DeleteFileW</li>
+<li>gethostbyname -&gt; connect -&gt; send -&gt; recv -&gt; DeleteFileW</li>
+</ul>
+<h2>Indicators of Compromise</h2>
+<table><thead><tr>
+<th>Type</th>
+<th>Value</th>
+<th>Source</th>
+<th>Confidence</th>
+<th>Context</th>
+</tr></thead><tbody>
+<tr>
+<td>ipv4</td>
+<td>45.133.216.88</td>
+<td>connect (pid 4104)</td>
+<td>0.90</td>
+<td>ip_address=45.133.216.88, port=443</td>
+</tr>
+<tr>
+<td>ipv4</td>
+<td>45.133.216.88:443</td>
+<td>connect (pid 4104)</td>
+<td>0.70</td>
+<td>ip_address=45.133.216.88, port=443</td>
+</tr>
+<tr>
+<td>domain</td>
+<td>collect.credential-sync.net</td>
+<td>gethostbyname (pid 4104)</td>
+<td>0.80</td>
+<td>hostname=collect.credential-sync.net</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\AppData\Local\Google\Chrome\User Data\Default\Login Data</td>
+<td>CreateFileW (pid 4104), ReadFile (pid 4104)</td>
+<td>0.75</td>
+<td>file_name=C:\Users\analyst\AppData\Local\Google\Chrome\User Data\Default\Login Data, desired_access=GENERIC_READ</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\AppData\Local\Microsoft\Edge\User Data\Default\Login Data</td>
+<td>CreateFileW (pid 4104), ReadFile (pid 4104)</td>
+<td>0.75</td>
+<td>file_name=C:\Users\analyst\AppData\Local\Microsoft\Edge\User Data\Default\Login Data, desired_access=GENERIC_READ</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\AppData\Local\Temp\stage1.tmp</td>
+<td>WriteFile (pid 4104), DeleteFileW (pid 4104)</td>
+<td>0.75</td>
+<td>file_name=C:\Users\analyst\AppData\Local\Temp\stage1.tmp, size=262144</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\AppData\Local\Temp\stage2.tmp</td>
+<td>WriteFile (pid 4104), DeleteFileW (pid 4104)</td>
+<td>0.75</td>
+<td>file_name=C:\Users\analyst\AppData\Local\Temp\stage2.tmp, size=180224</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Windows\System32\powershell.exe</td>
+<td>CreateProcessW (pid 4104)</td>
+<td>0.75</td>
+<td>application_name=C:\Windows\System32\powershell.exe, command_line=powershell -nop -w hidden -enc SQBFAFgAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAA</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\AppData\Local\Google\Chrome\User</td>
+<td>CreateFileW (pid 4104), ReadFile (pid 4104)</td>
+<td>0.60</td>
+<td>file_name=C:\Users\analyst\AppData\Local\Google\Chrome\User Data\Default\Login Data, desired_access=GENERIC_READ</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\AppData\Local\Microsoft\Edge\User</td>
+<td>CreateFileW (pid 4104), ReadFile (pid 4104)</td>
+<td>0.60</td>
+<td>file_name=C:\Users\analyst\AppData\Local\Microsoft\Edge\User Data\Default\Login Data, desired_access=GENERIC_READ</td>
+</tr>
+<tr>
+<td>mutex</td>
+<td>\Local\Google\Chrome\User</td>
+<td>CreateFileW (pid 4104), ReadFile (pid 4104)</td>
+<td>0.80</td>
+<td>file_name=C:\Users\analyst\AppData\Local\Google\Chrome\User Data\Default\Login Data, desired_access=GENERIC_READ</td>
+</tr>
+<tr>
+<td>mutex</td>
+<td>\Local\Microsoft\Edge\User</td>
+<td>CreateFileW (pid 4104), ReadFile (pid 4104)</td>
+<td>0.80</td>
+<td>file_name=C:\Users\analyst\AppData\Local\Microsoft\Edge\User Data\Default\Login Data, desired_access=GENERIC_READ</td>
+</tr>
+<tr>
+<td>mutex</td>
+<td>\Local\Temp\stage1.tmp</td>
+<td>WriteFile (pid 4104), DeleteFileW (pid 4104)</td>
+<td>0.80</td>
+<td>file_name=C:\Users\analyst\AppData\Local\Temp\stage1.tmp, size=262144</td>
+</tr>
+<tr>
+<td>mutex</td>
+<td>\Local\Temp\stage2.tmp</td>
+<td>WriteFile (pid 4104), DeleteFileW (pid 4104)</td>
+<td>0.80</td>
+<td>file_name=C:\Users\analyst\AppData\Local\Temp\stage2.tmp, size=180224</td>
+</tr>
+<tr>
+<td>command</td>
+<td>powershell -nop -w hidden -enc SQBFAFgAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAA</td>
+<td>CreateProcessW (pid 4104)</td>
+<td>0.70</td>
+<td>application_name=C:\Windows\System32\powershell.exe, command_line=powershell -nop -w hidden -enc SQBFAFgAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAA</td>
+</tr>
+</tbody></table>
+<div class='foot'>API Sequence Visualizer v1.0.0 &middot; Malware Analysis Workbench &middot; generated 2026-09-17 03:02:21</div>
+</div></body></html>

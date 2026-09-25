@@ -1,0 +1,7 @@
+# SIEM Log Correlator — the application runtime uses ONLY the Python standard
+# library (tkinter, sqlite3, socket, queue, threading, json, re), so there is
+# nothing to install to run it.
+#
+# The only tool needed is PyInstaller, used at build time to produce the
+# portable single-file Windows executable:
+pyinstaller>=6.0

@@ -1,0 +1,8 @@
+# No required third-party runtime dependencies — stdlib only.
+#
+# Optional accelerators:
+# capstone>=5.0 ; python_version >= "3.10"   # disassembly pane
+#
+# Development / build dependencies:
+pyinstaller>=6.0 ; python_version >= "3.10"
+pytest>=7.0 ; python_version >= "3.10"

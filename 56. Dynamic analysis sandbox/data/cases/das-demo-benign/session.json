@@ -1,0 +1,23 @@
+{
+  "session": {
+    "session_id": "das-demo-benign",
+    "sample_name": "demo_benign_updater.exe.SAMPLE",
+    "sha256": "0b7a5c1d2e3f405162738495a6b7c8d9e0f1a2b3c4d5e6f708192a3b4c5d6e7f8",
+    "source": "das",
+    "duration": 20.0,
+    "vm_name": "win10-analysis (simulated)",
+    "snapshot": "clean-baseline",
+    "network_mode": "simulated (INetSim/FakeNet equivalent)",
+    "simulation": true
+  },
+  "counters": {
+    "process_create": 1,
+    "file_read": 6,
+    "dns": 1,
+    "http": 1,
+    "file_write": 1,
+    "registry_set": 1,
+    "api_call": 4,
+    "process_exit": 1
+  }
+}

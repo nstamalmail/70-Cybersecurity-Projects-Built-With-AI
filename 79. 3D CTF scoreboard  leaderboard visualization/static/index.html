@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D CTF Scoreboard</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div class="header-left">
+                <h1 class="glitch" data-text="CTF SCOREBOARD">CTF SCOREBOARD</h1>
+                <span class="status-badge live">LIVE</span>
+            </div>
+            <div class="header-center">
+                <div class="time-controls">
+                    <button id="btn-restart" class="ctrl-btn" title="Restart">&#9198;</button>
+                    <button id="btn-play" class="ctrl-btn active" title="Play">&#9654;</button>
+                    <button id="btn-pause" class="ctrl-btn" title="Pause">&#10074;&#10074;</button>
+                    <input type="range" id="timeline-slider" min="0" max="100" value="100">
+                    <span id="current-time">00:00</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <button id="btn-sound" class="ctrl-btn" title="Sound">&#128266;</button>
+                <button id="btn-fullscreen" class="ctrl-btn" title="Fullscreen">&#9974;</button>
+                <button id="btn-report" class="ctrl-btn report-btn" title="Generate Report">REPORT</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="scoreboard-container">
+                <div id="three-canvas"></div>
+                <div class="overlay-panels">
+                    <div class="panel leaderboard-panel">
+                        <h2>LEADERBOARD</h2>
+                        <div id="leaderboard-list"></div>
+                    </div>
+                    <div class="panel feed-panel">
+                        <h2>LIVE FEED</h2>
+                        <div id="solve-feed"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-panels">
+                <div class="panel category-panel">
+                    <h2>CATEGORIES</h2>
+                    <div id="category-breakdown"></div>
+                </div>
+                <div class="panel challenge-panel">
+                    <h2>CHALLENGES</h2>
+                    <div id="challenge-graph"></div>
+                </div>
+            </div>
+        </main>
+
+        <div id="team-popup" class="popup hidden">
+            <div class="popup-content">
+                <button class="popup-close">&times;</button>
+                <div id="popup-body"></div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

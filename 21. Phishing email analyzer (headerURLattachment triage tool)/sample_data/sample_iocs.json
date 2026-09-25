@@ -1,0 +1,40 @@
+{
+  "ips": [
+    "198[.]51[.]100[.]23",
+    "203[.]0[.]113[.]45",
+    "10[.]0[.]0[.]1"
+  ],
+  "domains": [
+    "paypa1-secure[.]com",
+    "login-verify[.]account-update[.]com",
+    "paypal[.]com",
+    "google[.]com"
+  ],
+  "urls": [
+    "hxxps://paypa1-secure[.]com/verify?user=admin",
+    "hxxps://login-verify[.]account-update[.]com/phish",
+    "hxxps://www[.]paypal[.]com/signin"
+  ],
+  "emails": [
+    "security-alert[at]paypa1-secure[.]com",
+    "no-reply[at]paypal[.]com",
+    "admin[at]company[.]com"
+  ],
+  "hashes": {
+    "md5": [
+      "d41d8cd98f00b204e9800998ecf8427e",
+      "5d41402abc4b2a76b9719d911017c592"
+    ],
+    "sha1": [
+      "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d"
+    ],
+    "sha256": [
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
+    ]
+  },
+  "macro_indicators": [
+    "invoice_final.docm"
+  ]
+}

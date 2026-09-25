@@ -1,0 +1,490 @@
+{
+  "sessions": [
+    {
+      "id": "session_001",
+      "scenario_id": "ransomware_001",
+      "trainee": "John Smith",
+      "department": "IT Security",
+      "start_time": "2026-09-15T09:00:00Z",
+      "end_time": "2026-09-15T09:28:45Z",
+      "completion_time_seconds": 1725,
+      "status": "completed",
+      "score": 85,
+      "max_score": 100,
+      "decisions": [
+        {
+          "decision_point": "initial_response",
+          "chosen": "a",
+          "score": 8
+        },
+        {
+          "decision_point": "containment",
+          "chosen": "a",
+          "score": 9
+        },
+        {
+          "decision_point": "forensics",
+          "chosen": "a",
+          "score": 10
+        }
+      ],
+      "evidence_collected": [
+        "reception_pc",
+        "visitor_log",
+        "server_rack",
+        "hr_computer"
+      ],
+      "rooms_visited": [
+        "reception",
+        "it_office",
+        "hr_office"
+      ],
+      "completed": true
+    },
+    {
+      "id": "session_002",
+      "scenario_id": "ransomware_001",
+      "trainee": "Sarah Johnson",
+      "department": "Network Operations",
+      "start_time": "2026-09-15T10:30:00Z",
+      "end_time": "2026-09-15T10:52:30Z",
+      "completion_time_seconds": 1350,
+      "status": "completed",
+      "score": 72,
+      "max_score": 100,
+      "decisions": [
+        {
+          "decision_point": "initial_response",
+          "chosen": "b",
+          "score": 3
+        },
+        {
+          "decision_point": "containment",
+          "chosen": "a",
+          "score": 9
+        },
+        {
+          "decision_point": "forensics",
+          "chosen": "b",
+          "score": 3
+        }
+      ],
+      "evidence_collected": [
+        "reception_pc",
+        "it_desktop",
+        "backup_drive"
+      ],
+      "rooms_visited": [
+        "reception",
+        "it_office",
+        "hr_office"
+      ],
+      "completed": true
+    },
+    {
+      "id": "session_003",
+      "scenario_id": "ransomware_001",
+      "trainee": "Michael Chen",
+      "department": "Security Operations",
+      "start_time": "2026-09-15T14:00:00Z",
+      "end_time": "2026-09-15T14:18:20Z",
+      "completion_time_seconds": 1100,
+      "status": "completed",
+      "score": 95,
+      "max_score": 100,
+      "decisions": [
+        {
+          "decision_point": "initial_response",
+          "chosen": "a",
+          "score": 8
+        },
+        {
+          "decision_point": "containment",
+          "chosen": "a",
+          "score": 9
+        },
+        {
+          "decision_point": "forensics",
+          "chosen": "a",
+          "score": 10
+        }
+      ],
+      "evidence_collected": [
+        "reception_pc",
+        "visitor_log",
+        "security_phone",
+        "server_rack",
+        "it_desktop",
+        "backup_drive",
+        "hr_computer",
+        "employee_files"
+      ],
+      "rooms_visited": [
+        "reception",
+        "it_office",
+        "hr_office"
+      ],
+      "completed": true
+    },
+    {
+      "id": "session_004",
+      "scenario_id": "data_breach_001",
+      "trainee": "Emily Rodriguez",
+      "department": "Compliance",
+      "start_time": "2026-09-16T09:15:00Z",
+      "end_time": "2026-09-16T09:35:40Z",
+      "completion_time_seconds": 1225,
+      "status": "completed",
+      "score": 78,
+      "max_score": 100,
+      "decisions": [
+        {
+          "decision_point": "initial_assessment",
+          "chosen": "a",
+          "score": 9
+        },
+        {
+          "decision_point": "vulnerability_response",
+          "chosen": "b",
+          "score": 6
+        }
+      ],
+      "evidence_collected": [
+        "lobby_kiosk",
+        "db_server"
+      ],
+      "rooms_visited": [
+        "lobby",
+        "server_room"
+      ],
+      "completed": true
+    },
+    {
+      "id": "session_005",
+      "scenario_id": "data_breach_001",
+      "trainee": "David Kim",
+      "department": "IT Security",
+      "start_time": "2026-09-16T11:00:00Z",
+      "end_time": "2026-09-16T11:22:15Z",
+      "completion_time_seconds": 1335,
+      "status": "completed",
+      "score": 88,
+      "max_score": 100,
+      "decisions": [
+        {
+          "decision_point": "initial_assessment",
+          "chosen": "a",
+          "score": 9
+        },
+        {
+          "decision_point": "vulnerability_response",
+          "chosen": "a",
+          "score": 10
+        }
+      ],
+      "evidence_collected": [
+        "lobby_kiosk",
+        "db_server",
+        "firewall_config"
+      ],
+      "rooms_visited": [
+        "lobby",
+        "server_room"
+      ],
+      "completed": true
+    },
+    {
+      "id": "session_006",
+      "scenario_id": "insider_threat_001",
+      "trainee": "Lisa Wang",
+      "department": "Human Resources",
+      "start_time": "2026-09-16T14:30:00Z",
+      "end_time": "2026-09-16T14:48:55Z",
+      "completion_time_seconds": 1135,
+      "status": "completed",
+      "score": 70,
+      "max_score": 100,
+      "decisions": [
+        {
+          "decision_point": "investigation_approach",
+          "chosen": "b",
+          "score": 3
+        },
+        {
+          "decision_point": "escalation",
+          "chosen": "a",
+          "score": 9
+        }
+      ],
+      "evidence_collected": [
+        "suspect_desk",
+        "case_files"
+      ],
+      "rooms_visited": [
+        "open_office",
+        "conference_room"
+      ],
+      "completed": true
+    },
+    {
+      "id": "session_007",
+      "scenario_id": "ransomware_001",
+      "trainee": "Robert Taylor",
+      "department": "System Administration",
+      "start_time": "2026-09-17T08:45:00Z",
+      "end_time": "2026-09-17T09:12:30Z",
+      "completion_time_seconds": 1650,
+      "status": "completed",
+      "score": 65,
+      "max_score": 100,
+      "decisions": [
+        {
+          "decision_point": "initial_response",
+          "chosen": "c",
+          "score": 5
+        },
+        {
+          "decision_point": "containment",
+          "chosen": "b",
+          "score": 4
+        },
+        {
+          "decision_point": "forensics",
+          "chosen": "c",
+          "score": 1
+        }
+      ],
+      "evidence_collected": [
+        "reception_pc",
+        "it_desktop"
+      ],
+      "rooms_visited": [
+        "reception",
+        "it_office",
+        "hr_office"
+      ],
+      "completed": true
+    },
+    {
+      "id": "session_008",
+      "scenario_id": "data_breach_001",
+      "trainee": "Amanda Foster",
+      "department": "Legal",
+      "start_time": "2026-09-17T10:00:00Z",
+      "end_time": "2026-09-17T10:28:10Z",
+      "completion_time_seconds": 1690,
+      "status": "completed",
+      "score": 82,
+      "max_score": 100,
+      "decisions": [
+        {
+          "decision_point": "initial_assessment",
+          "chosen": "a",
+          "score": 9
+        },
+        {
+          "decision_point": "vulnerability_response",
+          "chosen": "a",
+          "score": 10
+        }
+      ],
+      "evidence_collected": [
+        "lobby_kiosk",
+        "db_server",
+        "firewall_config"
+      ],
+      "rooms_visited": [
+        "lobby",
+        "server_room"
+      ],
+      "completed": true
+    },
+    {
+      "id": "session_009",
+      "scenario_id": "insider_threat_001",
+      "trainee": "James Wilson",
+      "department": "Physical Security",
+      "start_time": "2026-09-17T13:00:00Z",
+      "end_time": "2026-09-17T13:15:45Z",
+      "completion_time_seconds": 945,
+      "status": "completed",
+      "score": 55,
+      "max_score": 100,
+      "decisions": [
+        {
+          "decision_point": "investigation_approach",
+          "chosen": "c",
+          "score": 4
+        },
+        {
+          "decision_point": "escalation",
+          "chosen": "c",
+          "score": 2
+        }
+      ],
+      "evidence_collected": [
+        "usb_drive"
+      ],
+      "rooms_visited": [
+        "open_office",
+        "conference_room"
+      ],
+      "completed": true
+    },
+    {
+      "id": "session_010",
+      "scenario_id": "ransomware_001",
+      "trainee": "Nicole Brown",
+      "department": "IT Support",
+      "start_time": "2026-09-17T15:30:00Z",
+      "end_time": "2026-09-17T15:55:20Z",
+      "completion_time_seconds": 1520,
+      "status": "completed",
+      "score": 90,
+      "max_score": 100,
+      "decisions": [
+        {
+          "decision_point": "initial_response",
+          "chosen": "a",
+          "score": 8
+        },
+        {
+          "decision_point": "containment",
+          "chosen": "a",
+          "score": 9
+        },
+        {
+          "decision_point": "forensics",
+          "chosen": "a",
+          "score": 10
+        }
+      ],
+      "evidence_collected": [
+        "reception_pc",
+        "visitor_log",
+        "security_phone",
+        "server_rack",
+        "backup_drive",
+        "hr_computer"
+      ],
+      "rooms_visited": [
+        "reception",
+        "it_office",
+        "hr_office"
+      ],
+      "completed": true
+    },
+    {
+      "id": "session_011",
+      "scenario_id": "ransomware_001",
+      "trainee": "Training User",
+      "department": "Security Operations",
+      "start_time": "2026-09-17T19:36:16.318847Z",
+      "end_time": null,
+      "completion_time_seconds": 0,
+      "status": "in_progress",
+      "score": 0,
+      "max_score": 100,
+      "decisions": [],
+      "evidence_collected": [],
+      "rooms_visited": [],
+      "completed": false
+    },
+    {
+      "id": "session_012",
+      "scenario_id": "ransomware_001",
+      "trainee": "Training User",
+      "department": "Security Operations",
+      "start_time": "2026-09-17T20:23:55.899112+00:00Z",
+      "end_time": null,
+      "completion_time_seconds": 0,
+      "status": "in_progress",
+      "score": 0,
+      "max_score": 100,
+      "decisions": [],
+      "evidence_collected": [],
+      "rooms_visited": [],
+      "completed": false
+    },
+    {
+      "id": "session_013",
+      "scenario_id": "ransomware_001",
+      "trainee": "Training User",
+      "department": "Security Operations",
+      "start_time": "2026-09-17T20:26:04.588968+00:00Z",
+      "end_time": null,
+      "completion_time_seconds": 0,
+      "status": "in_progress",
+      "score": 0,
+      "max_score": 100,
+      "decisions": [],
+      "evidence_collected": [],
+      "rooms_visited": [],
+      "completed": false
+    },
+    {
+      "id": "session_014",
+      "scenario_id": "ransomware_001",
+      "trainee": "Training User",
+      "department": "Security Operations",
+      "start_time": "2026-09-17T20:30:48.664887+00:00Z",
+      "end_time": null,
+      "completion_time_seconds": 0,
+      "status": "in_progress",
+      "score": 0,
+      "max_score": 100,
+      "decisions": [],
+      "evidence_collected": [],
+      "rooms_visited": [],
+      "completed": false
+    },
+    {
+      "id": "session_015",
+      "scenario_id": "ransomware_001",
+      "trainee": "Training User",
+      "department": "Security Operations",
+      "start_time": "2026-09-17T20:42:47.025543+00:00Z",
+      "end_time": null,
+      "completion_time_seconds": 0,
+      "status": "in_progress",
+      "score": 0,
+      "max_score": 100,
+      "decisions": [],
+      "evidence_collected": [],
+      "rooms_visited": [],
+      "completed": false
+    },
+    {
+      "id": "session_016",
+      "scenario_id": "ransomware_001",
+      "trainee": "Training User",
+      "department": "Security Operations",
+      "start_time": "2026-09-18T03:32:26.883138+00:00Z",
+      "end_time": null,
+      "completion_time_seconds": 0,
+      "status": "in_progress",
+      "score": 0,
+      "max_score": 100,
+      "decisions": [],
+      "evidence_collected": [],
+      "rooms_visited": [],
+      "completed": false
+    },
+    {
+      "id": "session_017",
+      "scenario_id": "ransomware_001",
+      "trainee": "Training User",
+      "department": "Security Operations",
+      "start_time": "2026-09-20T17:28:29.162545+00:00Z",
+      "end_time": null,
+      "completion_time_seconds": 0,
+      "status": "in_progress",
+      "score": 0,
+      "max_score": 100,
+      "decisions": [],
+      "evidence_collected": [],
+      "rooms_visited": [],
+      "completed": false
+    }
+  ]
+}

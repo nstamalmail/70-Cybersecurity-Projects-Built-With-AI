@@ -1,0 +1,69 @@
+{
+  "feeds": [
+    {
+      "name": "OTX AlienVault",
+      "type": "otx",
+      "url": "https://otx.alienvault.com/api/v1/pulses/subscribed",
+      "api_key": "YOUR_OTX_API_KEY",
+      "enabled": true,
+      "interval_minutes": 60,
+      "last_sync": "2024-01-15T10:00:00Z",
+      "ioc_types": ["ipv4", "domain", "url", "sha256"],
+      "tags": ["threat-intel"],
+      "reliability_score": 30,
+      "status": "healthy",
+      "total_iocs": 250
+    },
+    {
+      "name": "URLhaus",
+      "type": "urlhaus",
+      "url": "https://urlhaus-api.abuse.ch/v1/urls/recent/",
+      "api_key": "",
+      "enabled": true,
+      "interval_minutes": 30,
+      "last_sync": "2024-01-15T10:00:00Z",
+      "ioc_types": ["url", "domain", "ipv4"],
+      "tags": ["malware", "phishing"],
+      "reliability_score": 30,
+      "status": "healthy",
+      "total_iocs": 180
+    },
+    {
+      "name": "MISP Instance",
+      "type": "misp",
+      "url": "https://misp.example.com",
+      "api_key": "YOUR_MISP_API_KEY",
+      "enabled": true,
+      "interval_minutes": 120,
+      "last_sync": "2024-01-15T10:00:00Z",
+      "ioc_types": ["ipv4", "domain", "url", "sha256", "md5", "sha1", "email"],
+      "tags": ["apt", "malware", "c2"],
+      "reliability_score": 40,
+      "status": "healthy",
+      "total_iocs": 320
+    },
+    {
+      "name": "Custom CSV Import",
+      "type": "custom_csv",
+      "url": "sample_data/sample_iocs.csv",
+      "api_key": "",
+      "enabled": true,
+      "interval_minutes": 1440,
+      "last_sync": "2024-01-15T10:00:00Z",
+      "ioc_types": ["ipv4", "domain", "url", "sha256", "md5", "sha1", "email"],
+      "tags": ["custom"],
+      "reliability_score": 20,
+      "status": "healthy",
+      "total_iocs": 100
+    }
+  ],
+  "global_settings": {
+    "confidence_threshold_for_block": 70,
+    "auto_refresh_enabled": true,
+    "default_export_format": "json",
+    "max_ioc_age_days": 365,
+    "deduplication_enabled": true,
+    "enrichment_enabled": true,
+    "cache_ttl_seconds": 3600
+  }
+}

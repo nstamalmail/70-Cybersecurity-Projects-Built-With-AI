@@ -1,0 +1,37 @@
+{
+  "tool": "XPT",
+  "version": 1,
+  "scan": {
+    "id": 1,
+    "target": "http://127.0.0.1:49673",
+    "parameters_tested": 4,
+    "payloads_used": 12,
+    "total_requests": 40,
+    "findings_count": 3,
+    "errors": 0,
+    "csp_present": false,
+    "started_at": "n/a",
+    "finished_at": "n/a"
+  },
+  "findings": [
+    {
+      "severity": "high",
+      "xss_type": "reflected",
+      "context": "html_body",
+      "parameter_location": "query",
+      "parameter_name": "q",
+      "payload": "<script>alert(1)</script>",
+      "url": "http://127.0.0.1:49673",
+      "method": "GET",
+      "signal": "raw reflection",
+      "reflection_snippet": "x",
+      "request": "GET /",
+      "response_snippet": "y",
+      "encoding_applied": "none",
+      "browser_confirmed": false,
+      "confirmation_method": "reflection",
+      "remediation": "encode",
+      "references": []
+    }
+  ]
+}

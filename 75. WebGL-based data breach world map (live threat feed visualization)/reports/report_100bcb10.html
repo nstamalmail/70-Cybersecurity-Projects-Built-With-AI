@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Threat Intelligence Report</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #0a0e17; color: #e0e0e0; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 { color: #00ff88; font-size: 2.5em; border-bottom: 2px solid #00ff88; padding-bottom: 10px; }
+        h2 { color: #00aaff; margin: 20px 0; }
+        .live-badge { background: #ff0040; color: white; padding: 5px 15px; border-radius: 20px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 20px 0; }
+        .stat-card { background: linear-gradient(135deg, #1a1f2e, #0d1117); border: 1px solid #30363d; border-radius: 10px; padding: 15px; text-align: center; }
+        .stat-value { font-size: 1.8em; font-weight: bold; color: #00ff88; }
+        .stat-label { color: #8b949e; margin-top: 5px; }
+        .sources-list { background: #161b22; border-radius: 10px; padding: 20px; margin: 20px 0; }
+        .sources-list ul { list-style: none; }
+        .sources-list li { padding: 8px 0; border-bottom: 1px solid #30363d; color: #00ff88; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background: #161b22; border-radius: 8px; overflow: hidden; font-size: 0.9em; }
+        th { background: #21262d; color: #00ff88; padding: 10px; text-align: left; }
+        td { padding: 8px 10px; border-bottom: 1px solid #30363d; }
+        tr:hover { background: #1c2128; }
+        .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+        .chart-container { background: #161b22; border-radius: 10px; padding: 20px; }
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #30363d; color: #8b949e; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛡️ Threat Intelligence Report <span class="live-badge">LIVE DATA</span></h1>
+        <p style="color: #8b949e;">Generated: 2026-09-20 23:34:55</p>
+        
+        <div class="stats-grid">
+            <div class="stat-card"><div class="stat-value">100</div><div class="stat-label">Vulnerabilities</div></div>
+            <div class="stat-card"><div class="stat-value">40</div><div class="stat-label">Threat Indicators</div></div>
+            <div class="stat-card"><div class="stat-value">42</div><div class="stat-label">Critical</div></div>
+            <div class="stat-card"><div class="stat-value">48</div><div class="stat-label">High</div></div>
+            <div class="stat-card"><div class="stat-value">4</div><div class="stat-label">Live Sources</div></div>
+        </div>
+        
+        <div class="sources-list">
+            <h2>📡 Live Data Sources</h2>
+            <ul><li>CISA KEV: 100 items</li>
+<li>Abuse.ch URLhaus: 40 items</li>
+<li>OTX AlienVault: 0 items</li>
+<li>Cybercrime Tracker: 0 items</li></ul>
+        </div>
+        
+        <div class="charts-grid">
+            <div class="chart-container"><h2>Severity Distribution</h2><canvas id="severityChart" height="200"></canvas></div>
+            <div class="chart-container"><h2>Threat Sources</h2><canvas id="sourceChart" height="200"></canvas></div>
+        </div>
+        
+        <h2>Data Breach Events & Vulnerabilities</h2>
+        <table>
+            <thead><tr><th>ID</th><th>Name/CVE</th><th>Severity</th><th>Vendor</th><th>Date</th><th>Country</th><th>Source</th></tr></thead>
+            <tbody><tr>
+            <td>1000</td><td>CVE-CVE-2026-58704</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Google</td><td>2026-09-16</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1001</td><td>CVE-CVE-2026-76460</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Cisco</td><td>2026-09-16</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1002</td><td>CVE-CVE-2026-87886</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Acronis</td><td>2026-09-16</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1003</td><td>CVE-CVE-2026-76461</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Cisco</td><td>2026-09-14</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1004</td><td>CVE-CVE-2026-84869</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>ConnectWise</td><td>2026-09-11</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1005</td><td>CVE-CVE-2026-42016</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>JFrog</td><td>2026-09-11</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1006</td><td>CVE-CVE-2026-42018</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>JFrog</td><td>2026-09-11</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1007</td><td>CVE-CVE-2026-85706</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>GitLab</td><td>2026-09-11</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1008</td><td>CVE-CVE-2026-86060</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>MikroTik</td><td>2026-09-10</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1009</td><td>CVE-CVE-2026-67277</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>MikroTik</td><td>2026-09-10</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1010</td><td>CVE-CVE-2026-19490</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Citrix</td><td>2026-09-09</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1011</td><td>CVE-CVE-2025-25249</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Fortinet</td><td>2026-09-09</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1012</td><td>CVE-CVE-2026-87491</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Google</td><td>2026-09-09</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1013</td><td>CVE-CVE-2026-20079</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Cisco</td><td>2026-09-09</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1014</td><td>CVE-CVE-2026-75650</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Adobe</td><td>2026-09-08</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1015</td><td>CVE-CVE-2026-81963</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Microsoft</td><td>2026-09-08</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1016</td><td>CVE-CVE-2026-86218</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>N-able</td><td>2026-09-08</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1017</td><td>CVE-CVE-2026-85880</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Microsoft</td><td>2026-09-08</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1018</td><td>CVE-CVE-2026-85046</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Google</td><td>2026-09-04</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1019</td><td>CVE-CVE-2026-59822</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>BerriAI</td><td>2026-09-02</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1020</td><td>CVE-CVE-2026-48710</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Kludex</td><td>2026-09-02</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1021</td><td>CVE-CVE-2026-49869</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Kestra</td><td>2026-09-02</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1022</td><td>CVE-CVE-2026-82329</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>JFrog</td><td>2026-09-02</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1023</td><td>CVE-CVE-2026-9586</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Sangoma</td><td>2026-09-02</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1024</td><td>CVE-CVE-2026-83548</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>SonicWall</td><td>2026-09-02</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1025</td><td>CVE-CVE-2026-83549</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>SonicWall</td><td>2026-09-02</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1026</td><td>CVE-CVE-2026-82078</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>PaperCut</td><td>2026-08-31</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1027</td><td>CVE-CVE-2026-81578</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>PaperCut</td><td>2026-08-31</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1028</td><td>CVE-CVE-2023-49105</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>ownCloud</td><td>2026-08-27</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1029</td><td>CVE-CVE-2026-53362</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Linux</td><td>2026-08-27</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1030</td><td>CVE-CVE-2026-66384</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>JFrog</td><td>2026-08-27</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1031</td><td>CVE-CVE-2021-23758</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Ajax.NET Professional</td><td>2026-08-26</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1032</td><td>CVE-CVE-2015-3246</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Red Hat</td><td>2026-08-26</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1033</td><td>CVE-CVE-2015-5287</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Red Hat</td><td>2026-08-26</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1034</td><td>CVE-CVE-2022-0995</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Linux</td><td>2026-08-26</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1035</td><td>CVE-CVE-2026-8452</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Citrix</td><td>2026-08-26</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1036</td><td>CVE-CVE-2019-1068</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Microsoft</td><td>2026-08-26</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1037</td><td>CVE-CVE-2026-60004</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Gitea</td><td>2026-08-25</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1038</td><td>CVE-CVE-2026-21962</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Oracle</td><td>2026-08-24</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1039</td><td>CVE-CVE-2026-73570</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>Synacor</td><td>2026-08-21</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1040</td><td>CVE-CVE-2026-72530</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>TrueConf</td><td>2026-08-20</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1041</td><td>CVE-CVE-2026-72529</td>
+            <td><span style="color:#ff0040;font-weight:bold;">CRITICAL</span></td>
+            <td>TrueConf</td><td>2026-08-20</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1042</td><td>CVE-CVE-2026-64849</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>MLflow</td><td>2026-08-19</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1043</td><td>CVE-CVE-2026-33824</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Microsoft</td><td>2026-08-18</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1044</td><td>CVE-CVE-2026-59310</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Broadcom</td><td>2026-08-18</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1045</td><td>CVE-CVE-2026-55040</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Microsoft</td><td>2026-08-18</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1046</td><td>CVE-CVE-2026-65400</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Apple</td><td>2026-08-18</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1047</td><td>CVE-CVE-2025-62593</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Ray-Project</td><td>2026-08-17</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1048</td><td>CVE-CVE-2026-20349</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Cisco</td><td>2026-08-11</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1049</td><td>CVE-CVE-2026-68820</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Microsoft</td><td>2026-08-11</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1050</td><td>CVE-CVE-2026-72898</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Metabase</td><td>2026-08-11</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1051</td><td>CVE-CVE-2026-8037</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Progress</td><td>2026-08-07</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1052</td><td>CVE-CVE-2026-63077</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>JetBrains</td><td>2026-08-05</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1053</td><td>CVE-CVE-2026-18556</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>N-able</td><td>2026-08-04</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1054</td><td>CVE-CVE-2026-34486</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Apache</td><td>2026-08-04</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1055</td><td>CVE-CVE-2026-9198</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>IBM</td><td>2026-08-04</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1056</td><td>CVE-CVE-2026-18577</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>N-able</td><td>2026-08-03</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1057</td><td>CVE-CVE-2026-20316</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Cisco</td><td>2026-07-29</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1058</td><td>CVE-CVE-2025-68686</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Fortinet</td><td>2026-07-27</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1059</td><td>CVE-CVE-2026-16812</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Arista</td><td>2026-07-27</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1060</td><td>CVE-CVE-2026-16232</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Check Point</td><td>2026-07-22</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1061</td><td>CVE-CVE-2026-50522</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Microsoft</td><td>2026-07-22</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1062</td><td>CVE-CVE-2026-60137</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>WordPress</td><td>2026-07-21</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1063</td><td>CVE-CVE-2026-63030</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>WordPress</td><td>2026-07-21</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1064</td><td>CVE-CVE-2026-0770</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Langflow</td><td>2026-07-21</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1065</td><td>CVE-CVE-2021-27137</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>DD-WRT</td><td>2026-07-21</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1066</td><td>CVE-CVE-2026-58644</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Microsoft</td><td>2026-07-16</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1067</td><td>CVE-CVE-2026-25089</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Fortinet</td><td>2026-07-16</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1068</td><td>CVE-CVE-2026-39808</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Fortinet</td><td>2026-07-16</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1069</td><td>CVE-CVE-2026-46817</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Oracle</td><td>2026-07-15</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1070</td><td>CVE-CVE-2023-4346</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>KNX Association</td><td>2026-07-15</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1071</td><td>CVE-CVE-2026-56155</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Microsoft</td><td>2026-07-14</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1072</td><td>CVE-CVE-2026-56164</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Microsoft</td><td>2026-07-14</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1073</td><td>CVE-CVE-2026-15409</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>SonicWall</td><td>2026-07-14</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1074</td><td>CVE-CVE-2026-15410</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>SonicWall</td><td>2026-07-14</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1075</td><td>CVE-CVE-2008-4128</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Cisco</td><td>2026-07-13</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1076</td><td>CVE-CVE-2026-56291</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Balbooa</td><td>2026-07-10</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1077</td><td>CVE-CVE-2026-48939</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>iCagenda</td><td>2026-07-10</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1078</td><td>CVE-CVE-2026-48908</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>JoomShaper</td><td>2026-07-07</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1079</td><td>CVE-CVE-2026-55255</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Langflow</td><td>2026-07-07</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1080</td><td>CVE-CVE-2026-56290</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Joomlack</td><td>2026-07-07</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1081</td><td>CVE-CVE-2026-48282</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Adobe</td><td>2026-07-07</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1082</td><td>CVE-CVE-2026-45659</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Microsoft</td><td>2026-07-01</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1083</td><td>CVE-CVE-2026-48558</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>SimpleHelp </td><td>2026-06-29</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1084</td><td>CVE-CVE-2026-12569</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>PTC</td><td>2026-06-25</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1085</td><td>CVE-CVE-2026-20230</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Cisco</td><td>2026-06-25</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1086</td><td>CVE-CVE-2025-67038</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Lantronix</td><td>2026-06-23</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1087</td><td>CVE-CVE-2026-34910</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Ubiquiti</td><td>2026-06-23</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1088</td><td>CVE-CVE-2026-34909</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Ubiquiti</td><td>2026-06-23</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1089</td><td>CVE-CVE-2026-34908</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Ubiquiti</td><td>2026-06-23</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1090</td><td>CVE-CVE-2026-20253</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Splunk</td><td>2026-06-18</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1091</td><td>CVE-CVE-2026-48907</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Widget Factory</td><td>2026-06-16</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1092</td><td>CVE-CVE-2026-54420</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>LiteSpeed</td><td>2026-06-15</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1093</td><td>CVE-CVE-2026-20262</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Cisco</td><td>2026-06-15</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1094</td><td>CVE-CVE-2026-35273</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Oracle</td><td>2026-06-12</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1095</td><td>CVE-CVE-2026-10520</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Ivanti</td><td>2026-06-11</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1096</td><td>CVE-CVE-2026-11645</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Google</td><td>2026-06-09</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1097</td><td>CVE-CVE-2026-7473</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Arista</td><td>2026-06-09</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1098</td><td>CVE-CVE-2026-20245</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Cisco</td><td>2026-06-09</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr><tr>
+            <td>1099</td><td>CVE-CVE-2026-42271</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>BerriAI</td><td>2026-06-08</td>
+            <td>USA</td><td>CISA KEV</td>
+        </tr></tbody>
+        </table>
+        
+        <h2>Threat Indicators</h2>
+        <table>
+            <thead><tr><th>Indicator</th><th>Country</th><th>Type</th><th>Severity</th><th>Source</th><th>Timestamp</th></tr></thead>
+            <tbody><tr>
+            <td>http://120.28.189.248:52467/i</td><td>US</td>
+            <td>malware</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 19:34:25 UTC</td>
+        </tr><tr>
+            <td>https://pub-e95a23a0e3944ef49a</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 19:33:18 UTC</td>
+        </tr><tr>
+            <td>http://123.135.157.215:38284/i</td><td>US</td>
+            <td>malware</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 19:26:17 UTC</td>
+        </tr><tr>
+            <td>http://77.79.160.210:40029/i</td><td>US</td>
+            <td>malware</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 19:16:17 UTC</td>
+        </tr><tr>
+            <td>http://120.28.189.248:52467/bi</td><td>US</td>
+            <td>malware</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 19:09:32 UTC</td>
+        </tr><tr>
+            <td>http://123.135.157.215:38284/b</td><td>US</td>
+            <td>malware</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 19:00:27 UTC</td>
+        </tr><tr>
+            <td>http://62.60.226.140/files/778</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 18:59:14 UTC</td>
+        </tr><tr>
+            <td>http://signageinsignia.co.za/k</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 18:46:16 UTC</td>
+        </tr><tr>
+            <td>http://223.123.43.5:52544/Mozi</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 18:42:28 UTC</td>
+        </tr><tr>
+            <td>https://kong07.s3.us-east-1.am</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 18:42:22 UTC</td>
+        </tr><tr>
+            <td>https://roptik.com/dynamic?txd</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 18:42:13 UTC</td>
+        </tr><tr>
+            <td>https://roptik.com/curl/b54cc9</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 18:42:13 UTC</td>
+        </tr><tr>
+            <td>http://115.50.7.47:48396/i</td><td>US</td>
+            <td>malware</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 18:05:30 UTC</td>
+        </tr><tr>
+            <td>http://123.190.73.22:38059/i</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 18:04:13 UTC</td>
+        </tr><tr>
+            <td>https://raw.githubusercontent.</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 18:00:23 UTC</td>
+        </tr><tr>
+            <td>https://raw.githubusercontent.</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 18:00:22 UTC</td>
+        </tr><tr>
+            <td>https://raw.githubusercontent.</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 18:00:15 UTC</td>
+        </tr><tr>
+            <td>https://raw.githubusercontent.</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 18:00:15 UTC</td>
+        </tr><tr>
+            <td>http://125.43.224.175:47417/i</td><td>US</td>
+            <td>malware</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 17:39:27 UTC</td>
+        </tr><tr>
+            <td>http://123.190.73.22:38059/bin</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 17:33:21 UTC</td>
+        </tr><tr>
+            <td>http://105.184.72.17:47163/i</td><td>US</td>
+            <td>malware</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 17:29:24 UTC</td>
+        </tr><tr>
+            <td>http://125.43.224.175:47417/bi</td><td>US</td>
+            <td>malware</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 17:13:26 UTC</td>
+        </tr><tr>
+            <td>http://119.115.65.183:53858/i</td><td>US</td>
+            <td>malware</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 17:00:40 UTC</td>
+        </tr><tr>
+            <td>http://119.115.65.183:53858/bi</td><td>US</td>
+            <td>malware</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 16:50:35 UTC</td>
+        </tr><tr>
+            <td>http://115.42.71.239:59734/i</td><td>US</td>
+            <td>malware</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 16:45:30 UTC</td>
+        </tr><tr>
+            <td>http://94.154.43.227:8080/bins</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 16:45:28 UTC</td>
+        </tr><tr>
+            <td>http://96.44.167.210/18/bcc.ht</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 16:42:14 UTC</td>
+        </tr><tr>
+            <td>http://107.175.148.115/60/givi</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 16:40:17 UTC</td>
+        </tr><tr>
+            <td>https://firebasestorage.google</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 16:37:19 UTC</td>
+        </tr><tr>
+            <td>http://5.175.169.207/img_11372</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 16:37:14 UTC</td>
+        </tr><tr>
+            <td>http://5.175.169.207/img_11385</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 16:36:17 UTC</td>
+        </tr><tr>
+            <td>https://rough-truth-e072.publi</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 16:35:20 UTC</td>
+        </tr><tr>
+            <td>http://204.44.93.77/128/img_03</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 16:34:16 UTC</td>
+        </tr><tr>
+            <td>http://204.44.93.77/86RbddL0</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 16:34:15 UTC</td>
+        </tr><tr>
+            <td>http://182.115.74.13:47904/i</td><td>US</td>
+            <td>malware</td>
+            <td><span style="color:#ff6600;font-weight:bold;">HIGH</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 16:33:24 UTC</td>
+        </tr><tr>
+            <td>http://96.44.167.210/16/goodth</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 16:33:16 UTC</td>
+        </tr><tr>
+            <td>https://bun-pullz.b-cdn.net/im</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 16:29:21 UTC</td>
+        </tr><tr>
+            <td>http://212.2.35.14/9E2J3518</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 16:25:18 UTC</td>
+        </tr><tr>
+            <td>http://212.2.35.14/35/img_1821</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 16:25:15 UTC</td>
+        </tr><tr>
+            <td>http://212.2.35.14/35/givingme</td><td>US</td>
+            <td>phishing</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Abuse.ch URLhaus</td><td>2026-09-17 16:25:11 UTC</td>
+        </tr></tbody>
+        </table>
+        
+        <div class="footer">
+            <p>LIVE Threat Intelligence Report | 4 Live Sources Active</p>
+            <p>Report ID: F25511C1 | Classification: Internal Use Only</p>
+        </div>
+    </div>
+    
+    <script>
+        new Chart(document.getElementById('severityChart').getContext('2d'), {
+            type: 'doughnut',
+            data: { labels: ['Critical', 'High', 'Medium', 'Low'], datasets: [{ data: [42, 48, 10, 0], backgroundColor: ['#ff0040', '#ff6600', '#ffcc00', '#00cc44'] }] },
+            options: { responsive: true, plugins: { legend: { position: 'bottom', labels: { color: '#e0e0e0' } } } }
+        });
+        new Chart(document.getElementById('sourceChart').getContext('2d'), {
+            type: 'bar',
+            data: { labels: ["Abuse.ch URLhaus"], datasets: [{ label: 'Threats', data: [40], backgroundColor: '#00ff88' }] },
+            options: { responsive: true, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#8b949e' } }, y: { ticks: { color: '#8b949e' } } } }
+        });
+    </script>
+</body>
+</html>

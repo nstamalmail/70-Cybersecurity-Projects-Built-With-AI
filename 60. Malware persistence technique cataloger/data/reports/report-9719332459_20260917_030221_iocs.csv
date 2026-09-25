@@ -1,0 +1,6 @@
+# Indicators of Compromise
+ioc_type,value,source,confidence,context
+service,WindowsUpdateSvc,PERS-002,0.90,
+registry,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run,PERS-001,0.90,
+domain,exfil.trickbot-c2.com,gethostbyname,0.80,
+ipv4,91.215.85.142,connect,0.80,

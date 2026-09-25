@@ -1,0 +1,24 @@
+{
+  "tool": "RECT",
+  "type": "writeup-import",
+  "version": "1.0.0",
+  "comment": "Sample challenge + replayable operation log. Load via History/Open flow is not needed for export: use it as a reference for what a completed case looks like, or re-import through the GUI case fields. Generate a writeup via Writeup tab -> Export.",
+  "challenge": {
+    "name": "sample-rev-101",
+    "category": "rev",
+    "event": "DemoCTF 2026",
+    "description": "A tiny binary asks for a magic word. Strings reveal base64, XOR and Caesar layers.",
+    "flag_format": "flag{",
+    "binary_path": "samples/sample_challenge.bin",
+    "solved": true,
+    "flag": "flag{r3v_1s_n0t_s0_h4rd}",
+    "notes_md": "1. strings → found B64:/XOR:/ROT: markers\n2. base64 decode → flag\n3. xor 0x42 → same flag (confirmation)\n4. caesar best-shift → same flag (confirmation)"
+  },
+  "operations": [
+    { "tool": "loader", "operation": "binary load", "input_summary": "sample_challenge.bin", "output_summary": "elf, x64, 64-bit, entropy 5.31, 9 strings", "full_output": "detected ELF64 x86-64, strings extracted", "success": true },
+    { "tool": "strings", "operation": "extract + classify", "input_summary": "sample_challenge.bin", "output_summary": "9 strings, 6 interesting", "full_output": "0x00000052 [flag-like] flag{r3v_1s_n0t_s0_h4rd}", "success": true },
+    { "tool": "encoding", "operation": "base64 decode", "input_summary": "ZmxhZ3ti...", "output_summary": "flag{r3v_1s_n0t_s0_h4rd}", "full_output": "flag{r3v_1s_n0t_s0_h4rd}", "success": true },
+    { "tool": "xor", "operation": "single-byte brute force", "input_summary": "XOR: segment", "output_summary": "key 0x42 (score 0.98): flag{r3v_1s_n0t_s0_h4rd}", "full_output": "key 0x42 → flag{r3v_1s_n0t_s0_h4rd}", "success": true },
+    { "tool": "crypto", "operation": "caesar shift auto", "input_summary": "synt{e3i_1f_0g_f0_u4eq}", "output_summary": "flag{r3v_1s_n0t_s0_h4rd}", "full_output": "shift 13 → flag{r3v_1s_n0t_s0_h4rd}", "success": true }
+  ]
+}

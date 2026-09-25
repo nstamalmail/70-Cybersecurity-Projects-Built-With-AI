@@ -1,0 +1,71 @@
+{
+  "enum_id": "ENUM-20240115-103000",
+  "timestamp": "2024-01-15T10:30:00",
+  "target_host": "192.168.1.50",
+  "target_os": "linux",
+  "os_version": "Ubuntu 22.04.3 LTS",
+  "checks_executed": 7,
+  "total_findings": 5,
+  "findings": [
+    {
+      "finding_id": "F-001",
+      "category": "suid",
+      "title": "SUID Binary: find",
+      "description": "The find binary has SUID bit set, could be exploited to escalate privileges",
+      "severity": "high",
+      "confidence": "high",
+      "evidence": "find / -perm -4000 -type f 2>/dev/null output shows find binary",
+      "exploitation_ref": "GTFOBins: find",
+      "remediation": "Remove SUID bit from find binary or restrict permissions",
+      "mitre_technique": "T1548.001"
+    },
+    {
+      "finding_id": "F-002",
+      "category": "sudo",
+      "title": "Sudo NOPASSWD Rule",
+      "description": "Sudo configuration allows NOPASSWD for all users, critical security issue",
+      "severity": "critical",
+      "confidence": "high",
+      "evidence": "sudo -l output shows NOPASSWD: (ALL) NOPASSWD: ALL",
+      "exploitation_ref": "T1548.001",
+      "remediation": "Remove NOPASSWD from sudoers file, require authentication",
+      "mitre_technique": "T1548.001"
+    },
+    {
+      "finding_id": "F-003",
+      "category": "cron",
+      "title": "Writable Cron Job",
+      "description": "Cron job with writable script path for privilege escalation",
+      "severity": "medium",
+      "confidence": "medium",
+      "evidence": "cat /etc/crontab shows writable script path",
+      "exploitation_ref": "T1053.005",
+      "remediation": "Restrict cron script permissions, use root-owned scripts only",
+      "mitre_technique": "T1053.005"
+    },
+    {
+      "finding_id": "F-004",
+      "category": "services",
+      "title": "AlwaysInstallElevated Registry Key",
+      "description": "Windows policy allowing MSI installation as SYSTEM user",
+      "severity": "high",
+      "confidence": "high",
+      "evidence": "reg query HKLM\\...\\Installer shows AlwaysInstallElevated=1",
+      "exploitation_ref": "T1203",
+      "remediation": "Disable AlwaysInstallElevated registry key",
+      "mitre_technique": "T1203"
+    },
+    {
+      "finding_id": "F-005",
+      "category": "credentials",
+      "title": "Exposed SSH Key",
+      "description": "SSH private key found in home directory with weak permissions",
+      "severity": "critical",
+      "confidence": "high",
+      "evidence": "id_rsa found in /home/user/.ssh/ with 644 permissions",
+      "exploitation_ref": "T1531.001",
+      "remediation": "Remove or rotate exposed key, set permissions to 600",
+      "mitre_technique": "T1531.001"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+# Indicators of Compromise
+ioc_type,value,source,confidence,context
+ipv4,91.219.236.14,"connect (pid 3404), summary:hosts",0.90,"ip_address=91.219.236.14, port=8080"
+ipv4,91.219.236.14:8080,connect (pid 3404),0.70,"ip_address=91.219.236.14, port=8080"
+domain,node7.relay-control.org,"gethostbyname (pid 3404), summary:hosts",0.80,hostname=node7.relay-control.org
+registry,HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run\WinUpd,RegSetValueExW (pid 2748),0.95,"regkey=HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run, value_name=WinUpd"
+registry,HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run,"RegCreateKeyExW (pid 2748), RegSetValueExW (pid 2748), summary:keys",0.85,regkey=HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
+file,C:\Windows\System32\schtasks.exe,CreateProcessW (pid 2748),0.75,"application_name=C:\Windows\System32\schtasks.exe, command_line=schtasks /create /tn WindowsUpdateTask /tr C:\Windows\Temp\svc.dll /sc onlogon /f"
+file,C:\Windows\System32\svchost.exe,CreateProcessW (pid 2748),0.75,"application_name=C:\Windows\System32\svchost.exe, command_line=svchost.exe -k netsvcs, creation_flags=CREATE_SUSPENDED"
+file,C:\Windows\Temp\svc.dll,CreateProcessW (pid 2748),0.60,"application_name=C:\Windows\System32\schtasks.exe, command_line=schtasks /create /tn WindowsUpdateTask /tr C:\Windows\Temp\svc.dll /sc onlogon /f"
+command,schtasks /create /tn WindowsUpdateTask /tr C:\Windows\Temp\svc.dll /sc onlogon /f,"CreateProcessW (pid 2748), summary:executed_commands",0.70,"application_name=C:\Windows\System32\schtasks.exe, command_line=schtasks /create /tn WindowsUpdateTask /tr C:\Windows\Temp\svc.dll /sc onlogon /f"
+command,svchost.exe -k netsvcs,"CreateProcessW (pid 2748), summary:executed_commands",0.70,"application_name=C:\Windows\System32\svchost.exe, command_line=svchost.exe -k netsvcs, creation_flags=CREATE_SUSPENDED"

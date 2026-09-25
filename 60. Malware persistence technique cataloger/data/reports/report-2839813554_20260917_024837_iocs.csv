@@ -1,0 +1,3 @@
+# Indicators of Compromise
+ioc_type,value,source,confidence,context
+file,C:\\Windows\\cabinet.dll,CreateFileW,0.70,

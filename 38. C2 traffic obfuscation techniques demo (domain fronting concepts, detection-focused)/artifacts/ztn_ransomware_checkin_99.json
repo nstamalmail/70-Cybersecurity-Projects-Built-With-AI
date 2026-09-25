@@ -1,0 +1,81 @@
+{
+  "kind": "ztn_audit",
+  "scenario": "ransomware_checkin",
+  "seed": 99,
+  "generated_at": 1788972173.7552187,
+  "policy": {
+    "allow_band_max": 2,
+    "verify_band_max": 5
+  },
+  "counts": {
+    "allow": 6,
+    "verify": 0,
+    "deny": 2
+  },
+  "decisions": [
+    {
+      "src": "192.0.2.13",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.14",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.16",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.17",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.18",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.23",
+      "verdict": "deny",
+      "score": 8,
+      "rules": [
+        "D2+"
+      ],
+      "reasons": [
+        "periodic high-entropy check-in (no fronting)"
+      ]
+    },
+    {
+      "src": "192.0.2.29",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.30",
+      "verdict": "deny",
+      "score": 8,
+      "rules": [
+        "D2+"
+      ],
+      "reasons": [
+        "periodic high-entropy check-in (no fronting)"
+      ]
+    }
+  ]
+}

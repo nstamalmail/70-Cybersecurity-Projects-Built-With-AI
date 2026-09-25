@@ -1,0 +1,32 @@
+{
+  "session": {
+    "session_id": "das-demo-ransomware",
+    "sample_name": "demo_svchost32.exe.SAMPLE",
+    "sha256": "9f2a4c1de8b74503fa1d6c0be2f4a9182233445566778899aabbccddeeff0011",
+    "source": "das",
+    "duration": 299.0,
+    "vm_name": "win10-analysis (simulated)",
+    "snapshot": "clean-baseline",
+    "network_mode": "simulated (INetSim/FakeNet equivalent)",
+    "simulation": true
+  },
+  "counters": {
+    "process_create": 3,
+    "api_call": 7,
+    "file_read": 1,
+    "module_load": 1,
+    "file_write": 43,
+    "registry_set": 2,
+    "service_create": 1,
+    "task_create": 1,
+    "shell": 1,
+    "dropped_file": 1,
+    "dns": 25,
+    "network": 11,
+    "http": 6,
+    "process_inject": 1,
+    "file_rename": 12,
+    "file_delete": 1,
+    "process_exit": 2
+  }
+}

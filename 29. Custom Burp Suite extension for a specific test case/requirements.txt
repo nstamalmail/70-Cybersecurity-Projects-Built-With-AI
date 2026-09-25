@@ -1,0 +1,6 @@
+# No required third-party runtime dependencies — stdlib only
+# (tkinter, http.server, urllib, json, sqlite3).
+#
+# Development / build dependencies:
+pyinstaller>=6.0 ; python_version >= "3.10"
+pytest>=7.0 ; python_version >= "3.10"

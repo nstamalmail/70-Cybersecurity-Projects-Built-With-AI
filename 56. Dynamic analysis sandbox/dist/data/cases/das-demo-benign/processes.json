@@ -1,0 +1,14 @@
+[
+  {
+    "pid": 100,
+    "name": "contoso-updater.exe",
+    "parent_pid": null,
+    "path": "C:\\Program Files\\Contoso\\Updater\\contoso-updater.exe",
+    "command_line": "\"C:\\Program Files\\Contoso\\Updater\\contoso-updater.exe\" --check",
+    "first_seen": 0.3,
+    "last_seen": 20.0,
+    "user": "Public",
+    "status": "seen",
+    "risk": ""
+  }
+]

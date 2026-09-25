@@ -1,0 +1,12 @@
+{
+  "tool": "XPT",
+  "type": "parameters-import",
+  "version": "1.0.0",
+  "comment": "Manual parameter definitions. Import via Parameters tab. location must be one of: query, body, cookie.",
+  "parameters": [
+    { "location": "query", "name": "q", "value": "search term", "enabled": true },
+    { "location": "query", "name": "name", "value": "guest", "enabled": true },
+    { "location": "query", "name": "comment", "value": "", "enabled": true },
+    { "location": "cookie", "name": "session", "value": "abc123", "enabled": false }
+  ]
+}

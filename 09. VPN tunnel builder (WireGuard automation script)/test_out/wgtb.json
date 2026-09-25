@@ -1,0 +1,56 @@
+{
+  "session_id": "a3fdc69a67",
+  "interface_name": "wg0",
+  "server_public_key": "+ExbZiXl81lQCXPGjzfXTyIBnIHB/9Fp7gU0tP4mmDY=",
+  "server_key_fingerprint": "a4d18420527d6bfa",
+  "server_private_key": null,
+  "server_ip": "10.0.0.1",
+  "server_network": "10.0.0.0/24",
+  "listen_port": 51820,
+  "dns": "10.0.0.1",
+  "peers": [
+    {
+      "peer_id": "6888b859",
+      "name": "laptop",
+      "public_key": "55GePOihgmunpDpr/Q6dQWad3Alpnq7EiLtskq+D2w8=",
+      "fingerprint": "31f750e3b53ddcb6",
+      "preshared_key": "***",
+      "assigned_ip": "10.0.0.2",
+      "allowed_ips": "0.0.0.0/0",
+      "endpoint": null,
+      "persistent_keepalive": 25,
+      "dns": "10.0.0.1"
+    },
+    {
+      "peer_id": "db128279",
+      "name": "phone",
+      "public_key": "xVIolf7Z2hG5Ium0wxuKKVgiFuU4ziZmI+XzRkeoRXA=",
+      "fingerprint": "fbc104c2bd5e6a20",
+      "preshared_key": "***",
+      "assigned_ip": "10.0.0.3",
+      "allowed_ips": "0.0.0.0/0",
+      "endpoint": null,
+      "persistent_keepalive": 25,
+      "dns": "10.0.0.1"
+    },
+    {
+      "peer_id": "25d3dd94",
+      "name": "branch",
+      "public_key": "3J/P788qI0AX7a3q1JQd6tjKg1i/t3rYq8ZFxvKxVFM=",
+      "fingerprint": "9d49d4ae3dbc977f",
+      "preshared_key": null,
+      "assigned_ip": "10.0.0.4",
+      "allowed_ips": "192.168.20.0/24",
+      "endpoint": null,
+      "persistent_keepalive": 25,
+      "dns": "10.0.0.1"
+    }
+  ],
+  "created_at": "2026-09-21T02:44:48",
+  "status": "configured",
+  "peer_count": 3,
+  "psk_enabled": 2,
+  "platform": "Windows",
+  "report_generated": "2026-09-21T02:44:48",
+  "security_note": "Private keys are excluded from reports. Export session JSON with 'include private keys' only for backup purposes."
+}

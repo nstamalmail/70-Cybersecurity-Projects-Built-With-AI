@@ -1,0 +1,12 @@
+#!/bin/sh
+# Inert demo script (no executable payload) used to exercise the strings-only path.
+REMOTE="http://c2.demo-lab.example/gate.php"
+SECOND="https://cdn-update.demo-lab.example/panel/fb.png"
+BEACON_IP="185.220.101.44:8443"
+AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) BeaconClient/3.1"
+DROP="C:/Users/Public/svchost32.exe"
+KEY="Software/Microsoft/Windows/CurrentVersion/Run"
+PASSWORD="admin123"
+blob="aGVsbG8gdGhpcyBpcyBhIGRlbW8gcGF5bG9hZCBibG9iIGZvciB0cmlhZ2U="
+# The commands below are quoted strings only; nothing here is executed.
+COMMANDS="cmd.exe /c vssadmin delete shadows /all /quiet; bcdedit /set {default} recoveryenabled No"

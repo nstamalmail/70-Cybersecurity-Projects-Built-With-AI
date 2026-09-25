@@ -1,0 +1,13 @@
+# Indicators of Compromise
+ioc_type,value,source,confidence,context
+file,C:\\Users\\analyst\\Documents\\*,FindFirstFileW,0.70,
+file,report.docx,FindNextFileW,0.70,
+file,budget.xlsx,FindNextFileW,0.70,
+file,photo.jpg,FindNextFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\report.docx,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\report.docx.lockbit,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\budget.xlsx,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\budget.xlsx.lockbit,WriteFile,0.70,
+file,C:\\Users\\analyst\\Pictures\\photo.jpg,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Pictures\\photo.jpg.lockbit,WriteFile,0.70,
+file,C:\\Users\\Desktop\\README_LOCKED.txt,CreateFileW,0.70,

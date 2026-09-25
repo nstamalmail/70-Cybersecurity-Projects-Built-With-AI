@@ -1,0 +1,12 @@
+{"offset": 0, "offset_hex": "0x00000000", "type": "ascii", "value": "#!/bin/sh", "length": 9, "classification": "other", "labels": ["other"]}
+{"offset": 11, "offset_hex": "0x0000000b", "type": "ascii", "value": "# Inert demo script (no executable payload) used to exercise the strings-only path.", "length": 83, "classification": "other", "labels": ["other"]}
+{"offset": 96, "offset_hex": "0x00000060", "type": "ascii", "value": "REMOTE=\"http://c2.demo-lab.example/gate.php\"", "length": 44, "classification": "url", "labels": ["url", "domain"]}
+{"offset": 142, "offset_hex": "0x0000008e", "type": "ascii", "value": "SECOND=\"https://cdn-update.demo-lab.example/panel/fb.png\"", "length": 57, "classification": "url", "labels": ["url", "domain"]}
+{"offset": 201, "offset_hex": "0x000000c9", "type": "ascii", "value": "BEACON_IP=\"185.220.101.44:8443\"", "length": 31, "classification": "ipv4", "labels": ["ipv4"]}
+{"offset": 234, "offset_hex": "0x000000ea", "type": "ascii", "value": "AGENT=\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) BeaconClient/3.1\"", "length": 66, "classification": "user_agent", "labels": ["user_agent"]}
+{"offset": 302, "offset_hex": "0x0000012e", "type": "ascii", "value": "DROP=\"C:/Users/Public/svchost32.exe\"", "length": 36, "classification": "other", "labels": ["other"]}
+{"offset": 340, "offset_hex": "0x00000154", "type": "ascii", "value": "KEY=\"Software/Microsoft/Windows/CurrentVersion/Run\"", "length": 51, "classification": "other", "labels": ["other"]}
+{"offset": 393, "offset_hex": "0x00000189", "type": "ascii", "value": "PASSWORD=\"admin123\"", "length": 19, "classification": "credential", "labels": ["credential"]}
+{"offset": 414, "offset_hex": "0x0000019e", "type": "ascii", "value": "blob=\"aGVsbG8gdGhpcyBpcyBhIGRlbW8gcGF5bG9hZCBibG9iIGZvciB0cmlhZ2U=\"", "length": 67, "classification": "other", "labels": ["other"]}
+{"offset": 483, "offset_hex": "0x000001e3", "type": "ascii", "value": "# The commands below are quoted strings only; nothing here is executed.", "length": 71, "classification": "other", "labels": ["other"]}
+{"offset": 556, "offset_hex": "0x0000022c", "type": "ascii", "value": "COMMANDS=\"cmd.exe /c vssadmin delete shadows /all /quiet; bcdedit /set {default} recoveryenabled No\"", "length": 100, "classification": "command", "labels": ["command"]}

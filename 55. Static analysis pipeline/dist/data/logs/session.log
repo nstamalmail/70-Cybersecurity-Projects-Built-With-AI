@@ -1,0 +1,59 @@
+[01:18:23] INFO    Building synthetic packed sample in memory (never written to disk)
+[01:18:23] INFO    SHA-256 60733f16bd791904ce42f6bffe6a031dc52a7486f3d53b4d6efa81ded0b65cc7
+MD5     8264030f481e6396ae674c311e861a5c
+SHA-1   38687408ebc1a4a559eb5f3a7291517a5a996d95
+[01:18:23] INFO    PE parsed: x86 (i386), 4 sections, 10 imports, 9 anomalies
+[01:18:23] WARN    PDB path: D:\builds\rat\Release\client.pdb
+[01:18:23] INFO    Strings: 94 extracted (16 actionable)
+[01:18:23] WARN    Keyword theme 'c2': 4 hits
+[01:18:23] WARN    Keyword theme 'persistence': 2 hits
+[01:18:23] WARN    Keyword theme 'ransomware': 2 hits
+[01:18:23] WARN    Keyword theme 'credential theft': 1 hits
+[01:18:23] WARN    Threat intel lookups skipped - offline mode (Settings → Network lookups).
+[01:18:23] INFO    Compiled 19 unique indicators
+[01:18:23] DEBUG   indicator +15 (PE parser): High section entropy: .text = 7.87
+[01:18:23] DEBUG   indicator +15 (PE parser): High section entropy: UPX0 = 7.88
+[01:18:23] DEBUG   indicator +10 (PE parser): Writable + executable section: UPX0
+[01:18:23] DEBUG   indicator +10 (PE parser): Entry point outside .text (UPX0)
+[01:18:23] DEBUG   indicator +15 (PE parser): Suspicious imports (5 APIs: execution, process injection)
+[01:18:23] DEBUG   indicator +5 (PE parser): Packer detected: UPX
+[01:18:23] DEBUG   indicator +5 (PE parser): Compile timestamp is in the future (2035-12-04)
+[01:18:23] DEBUG   indicator +10 (string extractor): Network indicators in strings (3 URLs/IPs/domains)
+[01:18:23] DEBUG   indicator +8 (string extractor): Command execution strings (3)
+[01:18:23] DEBUG   indicator +5 (string extractor): Autostart registry paths in strings (2)
+[01:18:23] DEBUG   indicator +8 (string extractor): c2 keywords in strings (4)
+[01:18:23] DEBUG   indicator +12 (string extractor): ransomware keywords in strings (2)
+[01:18:23] DEBUG   indicator +12 (string extractor): credential theft keywords in strings (1)
+[01:18:23] INFO    Loading demo_benign_update.exe.SAMPLE (6.5 KB)
+[01:18:23] INFO    SHA-256 8288623be1a7b63e72da3e4de49ba08c63db2112902758d50e13980e195733c5
+MD5     2dc987962e50b705405f2003e166ac4d
+SHA-1   9bbdf74ca13e08387a2bc5cd537050087be9d1cd
+[01:18:23] INFO    PE parsed: x86 (i386), 4 sections, 12 imports, 1 anomalies
+[01:18:23] INFO    Strings: 27 extracted (3 actionable)
+[01:18:23] WARN    Threat intel lookups skipped - offline mode (Settings → Network lookups).
+[01:18:23] INFO    Compiled 9 unique indicators
+[01:18:23] DEBUG   indicator +10 (string extractor): Network indicators in strings (1 URLs/IPs/domains)
+[01:18:23] SUCCESS Analysis complete in 0.04s → LIKELY CLEAN (score 10)
+[01:18:23] INFO    Loading demo_script.sh.SAMPLE (658 B)
+[01:18:23] INFO    SHA-256 7f4338870852a3d7a66cbdc490505a2cb9b8dd885c397f786740e7fd21efa74a
+MD5     3446b10e19ee3b0b7a672dbf3fc8bcec
+SHA-1   213510999f2ebf5cd9eb6930b55d4274f12630b1
+[01:18:23] WARN    Input is not a PE image; running strings-only analysis.
+[01:18:23] INFO    Strings: 12 extracted (6 actionable)
+[01:18:23] WARN    Keyword theme 'c2': 4 hits
+[01:18:23] WARN    Keyword theme 'credential theft': 1 hits
+[01:18:23] WARN    Keyword theme 'ransomware': 1 hits
+[01:18:23] WARN    Threat intel lookups skipped - offline mode (Settings → Network lookups).
+[01:18:23] INFO    Compiled 10 unique indicators
+[01:18:23] DEBUG   indicator +10 (string extractor): Network indicators in strings (3 URLs/IPs/domains)
+[01:18:23] DEBUG   indicator +8 (string extractor): Command execution strings (1)
+[01:18:23] DEBUG   indicator +8 (string extractor): c2 keywords in strings (4)
+[01:18:23] DEBUG   indicator +12 (string extractor): credential theft keywords in strings (1)
+[01:18:23] DEBUG   indicator +12 (string extractor): ransomware keywords in strings (1)
+[01:18:23] SUCCESS Analysis complete in 0.02s → SUSPICIOUS (score 50)
+[01:18:33] INFO    Static Analysis Pipeline v1.0.0 started
+[01:18:33] INFO    Data directory: E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\55. Static analysis pipeline\dist\data
+[01:44:30] INFO    Static Analysis Pipeline v1.0.0 started
+[01:44:30] INFO    Data directory: E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\55. Static analysis pipeline\dist\data
+[00:42:16] INFO    Static Analysis Pipeline v1.0.0 started
+[00:42:16] INFO    Data directory: E:\AI Masterclass\01. Day 01_Session 01 & 02\Assignments\All Folder\Track 6 — Malware Analysis (Analysis, Not Weaponization)__complete_freebuff\55. Static analysis pipeline\dist\data

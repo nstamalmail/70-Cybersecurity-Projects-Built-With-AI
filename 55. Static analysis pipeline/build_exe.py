@@ -1,0 +1,144 @@
+#!/usr/bin/env python3
+"""Build a portable, single-file executable for this workbench.
+
+    python build_exe.py              # one-file windowed portable exe  ->  dist/
+    python build_exe.py --onedir     # folder build (faster startup)
+    python build_exe.py --console    # keep a console window (for log output)
+    python build_exe.py --clean      # wipe build/ and dist/ first
+
+The resulting executable is self-contained: it needs no Python install and keeps
+its cases, reports, logs and settings in a ``data/`` folder next to the exe
+(falling back to %LOCALAPPDATA% when that folder is read-only).
+
+The application name is taken from :data:`EXTRA_APP` in ``app/config.py`` when
+present (key ``exe``), otherwise derived from the ``acronym`` and ``name``
+metadata.  Third-party packages that are imported lazily are listed in
+:data:`THIRD_PARTY_HIDDEN` so PyInstaller bundles them.
+"""
+from __future__ import annotations
+
+import argparse
+import ast
+import os
+import re
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+
+# Third-party packages imported inside functions (invisible to static analysis).
+THIRD_PARTY_HIDDEN = [
+    "pefile",
+    "requests",
+]
+
+# Qt modules this workbench never touches.  Excluding them keeps the portable
+# build far smaller and speeds up both the build and cold start.
+EXCLUDES = [
+    "PySide6.QtWebEngineCore", "PySide6.QtWebEngineWidgets", "PySide6.QtWebEngineQuick",
+    "PySide6.QtQml", "PySide6.QtQuick", "PySide6.QtQuick3D", "PySide6.QtQuickWidgets",
+    "PySide6.QtCharts", "PySide6.QtDataVisualization", "PySide6.QtGraphs",
+    "PySide6.QtMultimedia", "PySide6.QtMultimediaWidgets",
+    "PySide6.Qt3DCore", "PySide6.Qt3DRender", "PySide6.Qt3DInput", "PySide6.Qt3DAnimation",
+    "PySide6.Qt3DExtras", "PySide6.QtBluetooth", "PySide6.QtNfc", "PySide6.QtPositioning",
+    "PySide6.QtSerialPort", "PySide6.QtSql", "PySide6.QtTest", "PySide6.QtDesigner",
+    "PySide6.QtHelp", "PySide6.QtPdf", "PySide6.QtPdfWidgets", "PySide6.QtSpatialAudio",
+    "PySide6.QtTextToSpeech", "PySide6.QtWebChannel", "PySide6.QtWebSockets",
+    "PySide6.QtRemoteObjects", "PySide6.QtSensors", "PySide6.QtStateMachine",
+    "PySide6.QtScxml", "PySide6.QtUiTools", "PySide6.QtNetworkAuth",
+    "PySide6.QtHttpServer", "PySide6.QtLocation",
+    "tkinter", "matplotlib", "numpy", "pandas", "scipy", "PIL",
+]
+
+
+def app_metadata() -> dict:
+    """Read ``APP`` from app/config.py without importing the package."""
+    source = (ROOT / "app" / "config.py").read_text(encoding="utf-8", errors="replace")
+    match = re.search(r"^APP(?:\s*:\s*[^=]+)?\s*=\s*(\{.*?^\})", source, re.S | re.M)
+    if not match:
+        return {}
+    try:
+        return ast.literal_eval(match.group(1))
+    except Exception:
+        return {}
+
+
+def default_name(meta: dict) -> str:
+    if meta.get("exe"):
+        return str(meta["exe"])
+    acronym = str(meta.get("acronym") or meta.get("slug") or "APP")
+    name = str(meta.get("name") or "Workbench")
+    cleaned = re.sub(r"[^A-Za-z0-9]+", "", name)
+    return f"{acronym}-{cleaned}"
+
+
+def build(args: argparse.Namespace) -> int:
+    try:
+        import PyInstaller  # noqa: F401
+    except ImportError:
+        print("PyInstaller is not installed.  Install it with:\n  pip install pyinstaller")
+        return 2
+
+    meta = app_metadata()
+    name = args.name or default_name(meta)
+
+    if args.clean:
+        for folder in ("build", "dist"):
+            path = ROOT / folder
+            if path.exists():
+                shutil.rmtree(path, ignore_errors=True)
+                print(f"removed {path}")
+
+    cmd = [
+        sys.executable, "-m", "PyInstaller",
+        "--noconfirm",
+        "--clean",
+        "--onedir" if args.onedir else "--onefile",
+        "--console" if args.console else "--windowed",
+        "--name", name,
+        "--distpath", str(ROOT / "dist"),
+        "--workpath", str(ROOT / "build"),
+        "--specpath", str(ROOT / "build"),
+        "--paths", str(ROOT),
+        "--collect-submodules", "app",
+    ]
+    for extra in ("README.md", "architecture.md"):
+        source = ROOT / extra
+        if source.exists():
+            cmd += ["--add-data", f"{source}{os.pathsep}."]
+    for module in EXCLUDES:
+        cmd += ["--exclude-module", module]
+    for module in list(THIRD_PARTY_HIDDEN) + ["app", "app.ui.main_window"]:
+        cmd += ["--hidden-import", module]
+
+    cmd.append(str(ROOT / "run.py"))
+
+    print(f"Building {name} from {ROOT}\n")
+    result = subprocess.run(cmd, cwd=str(ROOT))
+    if result.returncode != 0:
+        print("\nBuild FAILED")
+        return result.returncode
+
+    target = ROOT / "dist" / (name + (".exe" if os.name == "nt" else ""))
+    if args.onedir:
+        target = ROOT / "dist" / name / (name + (".exe" if os.name == "nt" else ""))
+    if target.exists():
+        size = target.stat().st_size / (1024 * 1024)
+        print(f"\nPortable build ready:\n  {target}\n  {size:.1f} MB")
+        print(f'\nSmoke test:\n  "{target}" --selftest --out ./selftest-reports')
+    return 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Build the portable workbench executable")
+    parser.add_argument("--name", default="", help="override the output executable name")
+    parser.add_argument("--onedir", action="store_true", help="build a folder instead of one file")
+    parser.add_argument("--console", action="store_true", help="keep the console window")
+    parser.add_argument("--clean", action="store_true", help="remove build/ and dist/ first")
+    return build(parser.parse_args())
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

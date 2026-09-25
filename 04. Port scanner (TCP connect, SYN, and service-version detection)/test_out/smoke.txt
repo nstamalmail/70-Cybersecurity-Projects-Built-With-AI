@@ -1,0 +1,50 @@
+======================================================================
+  Port Scan Report
+======================================================================
+Scan ID        : smoke
+Target         : localhost  (resolved: 127.0.0.1)
+Scan mode      : tcp_connect
+Date           : 2026-09-21T02:44:28
+OS fingerprint : n/a (TTL-based)
+Ports scanned  : 100   Open: 5   Duration: 0.0s
+
+[OPEN PORTS]
+PORT     STATE     SERVICE       VERSION                     RISK
+------------------------------------------------------------------------------
+22       OPEN      ssh           OpenSSH 9.2                 medium
+80       OPEN      http          nginx 1.24                  medium
+445      OPEN      microsoft-ds                              critical
+443      OPEN      https         Apache 2.4                  medium
+3389     OPEN      ms-wbt                                    high
+
+[CRITICAL / HIGH / MEDIUM FINDINGS]
+- Port 22: ssh OpenSSH 9.2 (medium)
+    CVE-2023-38408 (OpenSSH ssh-agent RCE)
+    CVE-2016-6210 (user enumeration)
+- Port 80: http nginx 1.24 (medium)
+    CVE-2021-23017 (DNS resolver vuln)
+- Port 445: microsoft-ds  (critical)
+    CVE-2017-0144 (EternalBlue SMBv1)
+- Port 443: https Apache 2.4 (medium)
+    CVE-2021-41773 (path traversal / RCE)
+- Port 3389: ms-wbt  (high)
+
+[NEXT STEPS]
+- ssh-audit %TARGET%
+- nmap -p22 --script ssh-auth-methods %TARGET%
+- whatweb %TARGET%
+- gobuster dir -u http://%TARGET% -w <wordlist>
+- enum4linux -a %TARGET%
+- crackmapexec smb %TARGET%
+- sslscan %TARGET%
+- testssl.sh %TARGET%
+- nmap --script rdp-ntlm-info -p3389 %TARGET%
+- crowbar -b rdp ...
+
+[METHODOLOGY]
+Technique: tcp_connect. TCP Connect completes the handshake (logged by target).
+SYN scan sends only SYN; filtered state is ambiguous (firewall drop vs no response).
+Service versions come from banner grabbing / probes and may be inaccurate.
+
+Authorized scanning only - scanning systems without permission is illegal.
+======================================================================

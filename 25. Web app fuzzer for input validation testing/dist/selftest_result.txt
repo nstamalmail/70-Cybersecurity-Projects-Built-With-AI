@@ -1,0 +1,44 @@
+WebFuzzer self-test: PASS (13/13 checks)
+
+[PASS] StateStore writes memory.md
+[PASS] SQLi (error-based) — ['sql-error', 'sql-error', 'sql-error', 'sql-error', 'sql-error', 'sql-error', 'sql-error', 'sql-error', 'sql-error', 'sql-error', 'sql-error', 'sql-error']
+[PASS] XSS reflection — ['xss-reflection', 'xss-reflection', 'xss-reflection', 'xss-reflection', 'xss-reflection', 'xss-reflection', 'xss-reflection', 'xss-reflection', 'xss-reflection', 'xss-reflection']
+[PASS] file-read (traversal) — ['file-read', 'file-read', 'file-read', 'file-read', 'file-read', 'file-read', 'file-read', 'file-read']
+[PASS] SSTI eval — ['ssti-eval', 'ssti-eval', 'ssti-eval']
+[PASS] open-redirect — ['open-redirect', 'open-redirect', 'open-redirect', 'open-redirect', 'open-redirect']
+[PASS] cmd-output — ['file-read', 'cmd-output', 'file-read', 'cmd-output', 'file-read', 'cmd-output', 'file-read', 'cmd-output', 'file-read', 'cmd-output', 'file-read', 'cmd-output', 'file-read', 'cmd-output', 'file-read', 'cmd-output']
+[PASS] time-based-blind — ['time-based-blind', 'time-based-blind', 'time-based-blind', 'time-based-blind']
+[PASS] crlf-header (server echoes header) — ['crlf-header', 'crlf-header']
+[PASS] engine completed scan — 48 requests, 0 errors
+[PASS] detected SQL error injection — {'sql-error', 'xss-reflection'}
+[PASS] detected XSS reflection — {'sql-error', 'xss-reflection'}
+[PASS] rate limiter active (delay>=1ms)
+
+Findings detected by engine:
+  - [HIGH] sqli/sql-error @ query:user (none)
+  - [HIGH] sqli/sql-error @ query:user (none)
+  - [HIGH] xss/xss-reflection @ query:user (none)
+  - [HIGH] xss/xss-reflection @ query:user (url)
+  - [HIGH] sqli/sql-error @ query:user (none)
+  - [HIGH] xss/xss-reflection @ query:user (url)
+  - [HIGH] xss/xss-reflection @ query:user (url)
+  - [HIGH] xss/xss-reflection @ query:user (none)
+  - [HIGH] sqli/sql-error @ query:user (none)
+  - [HIGH] xss/xss-reflection @ query:user (url)
+  - [HIGH] xss/xss-reflection @ query:user (url)
+  - [HIGH] xss/xss-reflection @ query:user (none)
+  - [HIGH] sqli/sql-error @ query:user (none)
+  - [HIGH] sqli/sql-error @ query:user (none)
+  - [HIGH] xss/xss-reflection @ query:user (url)
+  - [HIGH] sqli/sql-error @ query:user (none)
+  - [HIGH] sqli/sql-error @ query:user (none)
+  - [HIGH] xss/xss-reflection @ query:user (none)
+  - [HIGH] xss/xss-reflection @ query:user (url)
+  - [HIGH] xss/xss-reflection @ query:user (none)
+  - [HIGH] xss/xss-reflection @ query:user (url)
+  - [HIGH] xss/xss-reflection @ query:user (url)
+  - [HIGH] sqli/sql-error @ query:user (none)
+  - [HIGH] sqli/sql-error @ query:user (none)
+  - [HIGH] xss/xss-reflection @ query:user (url)
+  - [HIGH] sqli/sql-error @ query:user (none)
+  - [HIGH] sqli/sql-error @ query:user (none)

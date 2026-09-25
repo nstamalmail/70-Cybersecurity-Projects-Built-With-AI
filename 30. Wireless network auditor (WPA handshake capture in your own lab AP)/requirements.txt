@@ -1,0 +1,7 @@
+# No required third-party runtime dependencies — stdlib only
+# (tkinter, struct, hashlib, hmac, sqlite3). Monitor-mode capture and
+# aircrack-ng/hashcat run on your own capture host (Linux/Kali).
+#
+# Development / build dependencies:
+pyinstaller>=6.0 ; python_version >= "3.10"
+pytest>=7.0 ; python_version >= "3.10"

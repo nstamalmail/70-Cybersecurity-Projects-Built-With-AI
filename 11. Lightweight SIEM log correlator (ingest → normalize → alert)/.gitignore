@@ -1,0 +1,14 @@
+# Build artifacts
+build/
+dist/
+*.spec
+__pycache__/
+*.pyc
+
+# Runtime data (config, SQLite DB, logs) — recreated on first run
+data/
+logs/
+
+# IDE
+.idea/
+.vscode/

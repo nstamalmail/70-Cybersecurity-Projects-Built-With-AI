@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOC Dashboard - 3D Network Topology</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    <span>SOC Dashboard</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="overview">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                        <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+                    </svg>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="nav-item" data-section="topology">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/>
+                        <path d="m4.93 4.93 2.83 2.83m8.48 8.48 2.83 2.83m-2.83-14.14 2.83-2.83M4.93 19.07l2.83-2.83"/>
+                    </svg>
+                    <span>3D Topology</span>
+                </a>
+                <a href="#" class="nav-item" data-section="alerts">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    <span>Alerts</span>
+                    <span class="nav-badge" id="alert-count">50</span>
+                </a>
+                <a href="#" class="nav-item" data-section="incidents">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                    </svg>
+                    <span>Incidents</span>
+                    <span class="nav-badge" id="incident-count">12</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="live-indicator">
+                    <span class="live-dot"></span>
+                    <span>LIVE</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <h1 id="page-title">SOC Overview</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" id="generate-report">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+                        </svg>
+                        Generate Report
+                    </button>
+                    <div class="search-box">
+                        <input type="text" placeholder="Search alerts..." id="search-input">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                    </div>
+                </div>
+            </header>
+
+            <section id="overview-section" class="content-section active">
+                <div class="stats-grid">
+                    <div class="stat-card critical">
+                        <div class="stat-value" id="critical-count">6</div>
+                        <div class="stat-label">Critical Alerts</div>
+                    </div>
+                    <div class="stat-card high">
+                        <div class="stat-value" id="high-count">8</div>
+                        <div class="stat-label">High Alerts</div>
+                    </div>
+                    <div class="stat-card medium">
+                        <div class="stat-value" id="medium-count">10</div>
+                        <div class="stat-label">Medium Alerts</div>
+                    </div>
+                    <div class="stat-card healthy">
+                        <div class="stat-value" id="healthy-nodes">29</div>
+                        <div class="stat-label">Nodes Online</div>
+                    </div>
+                </div>
+
+                <div class="charts-row">
+                    <div class="chart-card">
+                        <h3>CPU Usage</h3>
+                        <canvas id="cpu-chart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Memory Usage</h3>
+                        <canvas id="memory-chart"></canvas>
+                    </div>
+                </div>
+
+                <div class="charts-row">
+                    <div class="chart-card">
+                        <h3>Network Traffic (Mbps)</h3>
+                        <canvas id="network-chart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Alerts by Category</h3>
+                        <canvas id="category-chart"></canvas>
+                    </div>
+                </div>
+
+                <div class="recent-alerts">
+                    <h3>Recent Critical Alerts</h3>
+                    <div class="alerts-list" id="recent-alerts-list"></div>
+                </div>
+            </section>
+
+            <section id="topology-section" class="content-section">
+                <div class="topology-container">
+                    <div id="topology-3d"></div>
+                    <div class="topology-legend">
+                        <h4>Node Types</h4>
+                        <div class="legend-item"><span class="legend-shape firewall"></span> Firewall</div>
+                        <div class="legend-item"><span class="legend-shape router"></span> Router</div>
+                        <div class="legend-item"><span class="legend-shape server"></span> Server</div>
+                        <div class="legend-item"><span class="legend-shape workstation"></span> Workstation</div>
+                        <h4>Status</h4>
+                        <div class="legend-item"><span class="legend-color healthy"></span> Healthy</div>
+                        <div class="legend-item"><span class="legend-color warning"></span> Warning</div>
+                        <div class="legend-item"><span class="legend-color critical"></span> Critical</div>
+                        <div class="legend-item"><span class="legend-color offline"></span> Offline</div>
+                    </div>
+                    <div class="node-tooltip" id="node-tooltip" style="display: none;"></div>
+                    <div class="node-modal" id="node-modal" style="display: none;">
+                        <div class="modal-content">
+                            <button class="modal-close" id="modal-close">&times;</button>
+                            <h3 id="modal-title"></h3>
+                            <div class="modal-details" id="modal-details"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="alerts-section" class="content-section">
+                <div class="filters-bar">
+                    <select id="filter-severity">
+                        <option value="">All Severities</option>
+                        <option value="critical">Critical</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                    <select id="filter-status">
+                        <option value="">All Statuses</option>
+                        <option value="active">Active</option>
+                        <option value="investigating">Investigating</option>
+                        <option value="acknowledged">Acknowledged</option>
+                        <option value="open">Open</option>
+                        <option value="resolved">Resolved</option>
+                    </select>
+                    <select id="filter-category">
+                        <option value="">All Categories</option>
+                        <option value="intrusion">Intrusion</option>
+                        <option value="malware">Malware</option>
+                        <option value="network">Network</option>
+                        <option value="compliance">Compliance</option>
+                        <option value="availability">Availability</option>
+                        <option value="exfiltration">Exfiltration</option>
+                    </select>
+                </div>
+                <div class="alerts-table-container">
+                    <table class="alerts-table">
+                        <thead>
+                            <tr>
+                                <th>Severity</th>
+                                <th>Type</th>
+                                <th>Source</th>
+                                <th>IP</th>
+                                <th>Message</th>
+                                <th>Status</th>
+                                <th>Time</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="alerts-table-body"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="incidents-section" class="content-section">
+                <div class="charts-row">
+                    <div class="chart-card full-width">
+                        <h3>Incidents Timeline (Last 7 Days)</h3>
+                        <canvas id="incidents-chart"></canvas>
+                    </div>
+                </div>
+                <div class="incidents-container">
+                    <h3>Active Incidents</h3>
+                    <div class="incidents-list" id="incidents-list"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

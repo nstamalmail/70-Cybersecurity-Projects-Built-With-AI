@@ -1,0 +1,6 @@
+participant_id,email,group,consent
+P-001,alice@example.com,staff,granted
+P-002,bob@example.com,management,granted
+P-003,carol@example.com,intern,pending
+P-004,dave@example.com,staff,granted
+P-005,eve@example.com,management,pending

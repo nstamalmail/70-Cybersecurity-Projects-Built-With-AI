@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOC Security Report - 2026-09-18 09:27:56</title>
+<style>
+body { font-family: 'Segoe UI', sans-serif; max-width: 1100px; margin: 0 auto; padding: 20px; background: #0a0e17; color: #c9d1d9; }
+h1 { color: #00ff88; border-bottom: 2px solid #00ff88; padding-bottom: 10px; }
+h2 { color: #8b949e; margin-top: 30px; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; }
+.stat-card { background: #161b22; padding: 18px; border-radius: 8px; text-align: center; border: 1px solid #30363d; }
+.stat-card .value { font-size: 28px; font-weight: bold; }
+.stat-card .label { font-size: 11px; color: #8b949e; margin-top: 5px; }
+.critical { color: #ff4444; }
+.high { color: #ff8800; }
+.medium { color: #ffcc00; }
+.low { color: #44aa44; }
+.healthy { color: #44aa44; }
+.warning { color: #ffcc00; }
+table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 13px; }
+th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid #30363d; }
+th { background: #161b22; color: #00ff88; }
+tr:hover { background: #161b2244; }
+footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 12px; text-align: center; }
+</style>
+</head>
+<body>
+<h1>SOC Security Operations Report</h1>
+<p style="color:#8b949e">Generated: 2026-09-18 09:27:56</p>
+
+<h2>Alert Overview</h2>
+<div class="stats-grid">
+    <div class="stat-card"><div class="value critical">9</div><div class="label">Critical Alerts</div></div>
+    <div class="stat-card"><div class="value high">15</div><div class="label">High Alerts</div></div>
+    <div class="stat-card"><div class="value medium">16</div><div class="label">Medium Alerts</div></div>
+    <div class="stat-card"><div class="value low">10</div><div class="label">Low Alerts</div></div>
+</div>
+
+<div class="stats-grid">
+    <div class="stat-card"><div class="value" style="color:#ff4444;">12</div><div class="label">Active Incidents</div></div>
+    <div class="stat-card"><div class="value" style="color:#ff8800;">13</div><div class="label">Investigating</div></div>
+    <div class="stat-card"><div class="value" style="color:#44aa44;">6</div><div class="label">Resolved</div></div>
+    <div class="stat-card"><div class="value" style="color:#00ff88;">4.2min</div><div class="label">MTTD</div></div>
+</div>
+
+<h2>Critical Alerts Requiring Immediate Attention</h2>
+<table>
+<tr><th>Severity</th><th>Type</th><th>Source</th><th>IP</th><th>Message</th><th>Status</th><th>Time</th></tr>
+<tr>
+    <td><span class="critical">CRITICAL</span></td>
+    <td>Brute Force Attack</td><td>IDS</td><td>192.168.1.45</td>
+    <td>Multiple failed SSH login attempts detected</td><td>active</td><td>2025-08-20T14:32:00</td>
+</tr><tr>
+    <td><span class="critical">CRITICAL</span></td>
+    <td>Malware Detection</td><td>EDR</td><td>10.0.2.15</td>
+    <td>Ransomware behavior detected on workstation WS-007</td><td>investigating</td><td>2025-08-20T14:28:00</td>
+</tr><tr>
+    <td><span class="critical">CRITICAL</span></td>
+    <td>Data Exfiltration</td><td>DLP</td><td>10.0.3.22</td>
+    <td>Large data transfer to external IP detected</td><td>active</td><td>2025-08-20T14:15:00</td>
+</tr><tr>
+    <td><span class="critical">CRITICAL</span></td>
+    <td>Zero-Day Exploit Attempt</td><td>EDR</td><td>10.0.1.45</td>
+    <td>Exploit attempt targeting CVE-2025-12345</td><td>active</td><td>2025-08-20T14:45:00</td>
+</tr><tr>
+    <td><span class="critical">CRITICAL</span></td>
+    <td>Ransomware Encryption</td><td>EDR</td><td>10.0.3.30</td>
+    <td>File encryption activity detected on file server</td><td>active</td><td>2025-08-20T14:50:00</td>
+</tr><tr>
+    <td><span class="critical">CRITICAL</span></td>
+    <td>DDoS Attack</td><td>NDR</td><td>185.220.100.255</td>
+    <td>Volumetric DDoS attack detected on public endpoint</td><td>active</td><td>2025-08-20T14:48:00</td>
+</tr><tr>
+    <td><span class="critical">CRITICAL</span></td>
+    <td>Supply Chain Attack</td><td>EDR</td><td>10.0.1.50</td>
+    <td>Compromised dependency detected in production build</td><td>active</td><td>2025-08-20T14:52:00</td>
+</tr><tr>
+    <td><span class="critical">CRITICAL</span></td>
+    <td>APT Activity</td><td>Threat Intel</td><td>10.0.3.40</td>
+    <td>IOCs matching APT29 campaign detected</td><td>active</td><td>2025-08-20T14:55:00</td>
+</tr><tr>
+    <td><span class="critical">CRITICAL</span></td>
+    <td>Rootkit Detection</td><td>EDR</td><td>10.0.1.40</td>
+    <td>Kernel-level rootkit artifacts found</td><td>active</td><td>2025-08-20T14:47:00</td>
+</tr>
+</table>
+
+<h2>Recent Alerts (Top 20)</h2>
+<table>
+<tr><th>Severity</th><th>Type</th><th>Source</th><th>IP</th><th>Message</th><th>Status</th><th>Time</th></tr>
+<tr>
+            <td><span style="color:#ff4444;font-weight:bold;">CRITICAL</span></td>
+            <td>Brute Force Attack</td>
+            <td>IDS</td>
+            <td>192.168.1.45</td>
+            <td>Multiple failed SSH login attempts detected</td>
+            <td>active</td>
+            <td>2025-08-20T14:32:00</td>
+        </tr><tr>
+            <td><span style="color:#ff4444;font-weight:bold;">CRITICAL</span></td>
+            <td>Malware Detection</td>
+            <td>EDR</td>
+            <td>10.0.2.15</td>
+            <td>Ransomware behavior detected on workstation WS-007</td>
+            <td>investigating</td>
+            <td>2025-08-20T14:28:00</td>
+        </tr><tr>
+            <td><span style="color:#ff4444;font-weight:bold;">CRITICAL</span></td>
+            <td>Data Exfiltration</td>
+            <td>DLP</td>
+            <td>10.0.3.22</td>
+            <td>Large data transfer to external IP detected</td>
+            <td>active</td>
+            <td>2025-08-20T14:15:00</td>
+        </tr><tr>
+            <td><span style="color:#ff8800;font-weight:bold;">HIGH</span></td>
+            <td>Unauthorized Access</td>
+            <td>SIEM</td>
+            <td>192.168.1.102</td>
+            <td>Admin account login from unknown location</td>
+            <td>investigating</td>
+            <td>2025-08-20T14:10:00</td>
+        </tr><tr>
+            <td><span style="color:#ff8800;font-weight:bold;">HIGH</span></td>
+            <td>Suspicious Process</td>
+            <td>EDR</td>
+            <td>10.0.1.30</td>
+            <td>PowerShell encoded command execution detected</td>
+            <td>active</td>
+            <td>2025-08-20T14:05:00</td>
+        </tr><tr>
+            <td><span style="color:#ff8800;font-weight:bold;">HIGH</span></td>
+            <td>Firewall Rule Violation</td>
+            <td>Firewall</td>
+            <td>203.0.113.55</td>
+            <td>Blocked inbound connection attempt from known threat actor</td>
+            <td>acknowledged</td>
+            <td>2025-08-20T13:55:00</td>
+        </tr><tr>
+            <td><span style="color:#ff8800;font-weight:bold;">HIGH</span></td>
+            <td>Certificate Expiry Warning</td>
+            <td>Infrastructure</td>
+            <td>10.0.2.5</td>
+            <td>SSL certificate for *.corp.local expires in 3 days</td>
+            <td>open</td>
+            <td>2025-08-20T13:45:00</td>
+        </tr><tr>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Failed Authentication</td>
+            <td>SIEM</td>
+            <td>192.168.2.88</td>
+            <td>3 failed login attempts for user jsmith</td>
+            <td>acknowledged</td>
+            <td>2025-08-20T13:30:00</td>
+        </tr><tr>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Port Scan Detected</td>
+            <td>IDS</td>
+            <td>10.0.0.50</td>
+            <td>Internal port scan from 10.0.0.50 targeting DMZ</td>
+            <td>investigating</td>
+            <td>2025-08-20T13:20:00</td>
+        </tr><tr>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Configuration Change</td>
+            <td>CMDB</td>
+            <td>10.0.2.10</td>
+            <td>Firewall rule modified without change request</td>
+            <td>resolved</td>
+            <td>2025-08-20T13:10:00</td>
+        </tr><tr>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Disk Space Warning</td>
+            <td>Monitoring</td>
+            <td>10.0.3.15</td>
+            <td>Server DB-01 disk usage at 87%</td>
+            <td>acknowledged</td>
+            <td>2025-08-20T12:50:00</td>
+        </tr><tr>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>Backup Failure</td>
+            <td>Backup</td>
+            <td>10.0.3.20</td>
+            <td>Nightly backup job failed for database cluster</td>
+            <td>open</td>
+            <td>2025-08-20T12:30:00</td>
+        </tr><tr>
+            <td><span style="color:#44aa44;font-weight:bold;">LOW</span></td>
+            <td>Software Update Available</td>
+            <td>Patch Mgmt</td>
+            <td>10.0.1.5</td>
+            <td>Critical security patch available for Apache</td>
+            <td>open</td>
+            <td>2025-08-20T12:00:00</td>
+        </tr><tr>
+            <td><span style="color:#44aa44;font-weight:bold;">LOW</span></td>
+            <td>User Account Created</td>
+            <td>IAM</td>
+            <td>10.0.2.1</td>
+            <td>New service account svc_monitor created</td>
+            <td>resolved</td>
+            <td>2025-08-20T11:30:00</td>
+        </tr><tr>
+            <td><span style="color:#44aa44;font-weight:bold;">LOW</span></td>
+            <td>Scheduled Maintenance</td>
+            <td>Operations</td>
+            <td>N/A</td>
+            <td>Router R-02 firmware upgrade scheduled</td>
+            <td>acknowledged</td>
+            <td>2025-08-20T11:00:00</td>
+        </tr><tr>
+            <td><span style="color:#ff4444;font-weight:bold;">CRITICAL</span></td>
+            <td>Zero-Day Exploit Attempt</td>
+            <td>EDR</td>
+            <td>10.0.1.45</td>
+            <td>Exploit attempt targeting CVE-2025-12345</td>
+            <td>active</td>
+            <td>2025-08-20T14:45:00</td>
+        </tr><tr>
+            <td><span style="color:#ff8800;font-weight:bold;">HIGH</span></td>
+            <td>Lateral Movement</td>
+            <td>NDR</td>
+            <td>10.0.2.30</td>
+            <td>Suspicious SMB traffic between workstations</td>
+            <td>investigating</td>
+            <td>2025-08-20T14:40:00</td>
+        </tr><tr>
+            <td><span style="color:#ff8800;font-weight:bold;">HIGH</span></td>
+            <td>Privilege Escalation</td>
+            <td>SIEM</td>
+            <td>10.0.1.25</td>
+            <td>User account gained admin privileges</td>
+            <td>active</td>
+            <td>2025-08-20T14:35:00</td>
+        </tr><tr>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>DNS Anomaly</td>
+            <td>NDR</td>
+            <td>10.0.0.5</td>
+            <td>High volume of DNS TXT record queries</td>
+            <td>investigating</td>
+            <td>2025-08-20T14:00:00</td>
+        </tr><tr>
+            <td><span style="color:#ffcc00;font-weight:bold;">MEDIUM</span></td>
+            <td>SSL/TLS Weak Cipher</td>
+            <td>Scanner</td>
+            <td>10.0.2.8</td>
+            <td>Server accepting weak TLS 1.0 connections</td>
+            <td>open</td>
+            <td>2025-08-20T13:50:00</td>
+        </tr>
+</table>
+
+<h2>Network Topology Status (30 nodes, 37 connections)</h2>
+<div class="stats-grid">
+    <div class="stat-card"><div class="value healthy">21</div><div class="label">Healthy</div></div>
+    <div class="stat-card"><div class="value warning">5</div><div class="label">Warning</div></div>
+    <div class="stat-card"><div class="value critical">3</div><div class="label">Critical</div></div>
+    <div class="stat-card"><div class="value" style="color:#888;">1</div><div class="label">Offline</div></div>
+</div>
+<table>
+<tr><th>Node</th><th>Type</th><th>Status</th><th>IP</th><th>Location</th><th>CPU</th><th>Memory</th><th>Uptime</th></tr>
+<tr>
+            <td>FW-DMZ-01</td>
+            <td>firewall</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>10.0.0.1</td>
+            <td>DMZ</td>
+            <td>34%</td>
+            <td>52%</td>
+            <td>45d 12h</td>
+        </tr><tr>
+            <td>FW-CORE-01</td>
+            <td>firewall</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>10.0.0.2</td>
+            <td>DC-Core</td>
+            <td>28%</td>
+            <td>48%</td>
+            <td>45d 12h</td>
+        </tr><tr>
+            <td>LB-01</td>
+            <td>router</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>10.0.0.10</td>
+            <td>DMZ</td>
+            <td>22%</td>
+            <td>35%</td>
+            <td>30d 8h</td>
+        </tr><tr>
+            <td>R-DC-02</td>
+            <td>router</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">WARNING</span></td>
+            <td>10.0.0.2</td>
+            <td>DC-Core</td>
+            <td>67%</td>
+            <td>78%</td>
+            <td>90d 4h</td>
+        </tr><tr>
+            <td>FW-EXT-01</td>
+            <td>firewall</td>
+            <td><span style="color:#ff4444;font-weight:bold;">CRITICAL</span></td>
+            <td>10.0.0.1</td>
+            <td>DMZ</td>
+            <td>92%</td>
+            <td>89%</td>
+            <td>120d 0h</td>
+        </tr><tr>
+            <td>DNS-01</td>
+            <td>server</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>10.0.0.5</td>
+            <td>DC-Core</td>
+            <td>15%</td>
+            <td>42%</td>
+            <td>60d 16h</td>
+        </tr><tr>
+            <td>WEB-01</td>
+            <td>server</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>10.0.2.8</td>
+            <td>DC-App</td>
+            <td>45%</td>
+            <td>62%</td>
+            <td>25d 10h</td>
+        </tr><tr>
+            <td>WEB-02</td>
+            <td>server</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>10.0.2.9</td>
+            <td>DC-App</td>
+            <td>38%</td>
+            <td>55%</td>
+            <td>25d 10h</td>
+        </tr><tr>
+            <td>AD-01</td>
+            <td>server</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>10.0.2.1</td>
+            <td>DC-Sec</td>
+            <td>20%</td>
+            <td>45%</td>
+            <td>120d 0h</td>
+        </tr><tr>
+            <td>CERT-SVR</td>
+            <td>server</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">WARNING</span></td>
+            <td>10.0.2.5</td>
+            <td>DC-Sec</td>
+            <td>72%</td>
+            <td>81%</td>
+            <td>90d 4h</td>
+        </tr><tr>
+            <td>APP-01</td>
+            <td>server</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>10.0.1.5</td>
+            <td>DC-App</td>
+            <td>55%</td>
+            <td>68%</td>
+            <td>15d 22h</td>
+        </tr><tr>
+            <td>APP-02</td>
+            <td>server</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>10.0.1.6</td>
+            <td>DC-App</td>
+            <td>48%</td>
+            <td>60%</td>
+            <td>15d 22h</td>
+        </tr><tr>
+            <td>APP-03</td>
+            <td>server</td>
+            <td><span style="color:#ff4444;font-weight:bold;">CRITICAL</span></td>
+            <td>10.0.1.25</td>
+            <td>DC-App</td>
+            <td>95%</td>
+            <td>94%</td>
+            <td>2d 8h</td>
+        </tr><tr>
+            <td>DB-PRIM</td>
+            <td>server</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>10.0.3.15</td>
+            <td>DC-Data</td>
+            <td>42%</td>
+            <td>75%</td>
+            <td>180d 2h</td>
+        </tr><tr>
+            <td>DB-REP-01</td>
+            <td>server</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">WARNING</span></td>
+            <td>10.0.3.22</td>
+            <td>DC-Data</td>
+            <td>78%</td>
+            <td>82%</td>
+            <td>180d 2h</td>
+        </tr><tr>
+            <td>API-GW</td>
+            <td>server</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>10.0.2.12</td>
+            <td>DC-App</td>
+            <td>35%</td>
+            <td>50%</td>
+            <td>30d 8h</td>
+        </tr><tr>
+            <td>SIEM-COL</td>
+            <td>server</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>10.0.2.20</td>
+            <td>DC-Sec</td>
+            <td>60%</td>
+            <td>70%</td>
+            <td>45d 12h</td>
+        </tr><tr>
+            <td>IDS-01</td>
+            <td>server</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>10.0.0.50</td>
+            <td>DMZ</td>
+            <td>40%</td>
+            <td>55%</td>
+            <td>60d 16h</td>
+        </tr><tr>
+            <td>FILE-01</td>
+            <td>server</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>10.0.3.30</td>
+            <td>DC-Data</td>
+            <td>25%</td>
+            <td>65%</td>
+            <td>120d 0h</td>
+        </tr><tr>
+            <td>DB-01</td>
+            <td>server</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">WARNING</span></td>
+            <td>10.0.3.15</td>
+            <td>DC-Data</td>
+            <td>70%</td>
+            <td>85%</td>
+            <td>90d 4h</td>
+        </tr><tr>
+            <td>BACKUP-01</td>
+            <td>server</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>10.0.3.10</td>
+            <td>DC-Data</td>
+            <td>18%</td>
+            <td>40%</td>
+            <td>180d 2h</td>
+        </tr><tr>
+            <td>WS-007</td>
+            <td>workstation</td>
+            <td><span style="color:#ff4444;font-weight:bold;">CRITICAL</span></td>
+            <td>10.0.2.15</td>
+            <td>DC-App</td>
+            <td>88%</td>
+            <td>90%</td>
+            <td>5d 14h</td>
+        </tr><tr>
+            <td>WS-008</td>
+            <td>workstation</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>10.0.1.15</td>
+            <td>DC-App</td>
+            <td>30%</td>
+            <td>45%</td>
+            <td>10d 8h</td>
+        </tr><tr>
+            <td>WS-009</td>
+            <td>workstation</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>10.0.3.5</td>
+            <td>DC-Data</td>
+            <td>22%</td>
+            <td>38%</td>
+            <td>20d 16h</td>
+        </tr><tr>
+            <td>WS-010</td>
+            <td>workstation</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>192.168.1.88</td>
+            <td>DMZ</td>
+            <td>35%</td>
+            <td>50%</td>
+            <td>8d 4h</td>
+        </tr><tr>
+            <td>WS-011</td>
+            <td>workstation</td>
+            <td><span style="color:#ffcc00;font-weight:bold;">WARNING</span></td>
+            <td>10.0.2.30</td>
+            <td>DC-App</td>
+            <td>75%</td>
+            <td>80%</td>
+            <td>12d 20h</td>
+        </tr><tr>
+            <td>WS-012</td>
+            <td>workstation</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>192.168.1.55</td>
+            <td>DMZ</td>
+            <td>28%</td>
+            <td>42%</td>
+            <td>7d 12h</td>
+        </tr><tr>
+            <td>WS-013</td>
+            <td>workstation</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>10.0.2.40</td>
+            <td>DC-App</td>
+            <td>32%</td>
+            <td>48%</td>
+            <td>15d 8h</td>
+        </tr><tr>
+            <td>CNSL-01</td>
+            <td>server</td>
+            <td><span style="color:#44aa44;font-weight:bold;">HEALTHY</span></td>
+            <td>10.0.2.50</td>
+            <td>DC-App</td>
+            <td>50%</td>
+            <td>60%</td>
+            <td>30d 8h</td>
+        </tr><tr>
+            <td>BUILD-01</td>
+            <td>server</td>
+            <td><span style="color:#888;font-weight:bold;">OFFLINE</span></td>
+            <td>10.0.1.50</td>
+            <td>DC-App</td>
+            <td>0%</td>
+            <td>0%</td>
+            <td>0d 0h</td>
+        </tr>
+</table>
+
+<h2>Key Metrics</h2>
+<div class="stats-grid">
+    <div class="stat-card"><div class="value" style="color:#00ff88;">99.97%</div><div class="label">Uptime</div></div>
+    <div class="stat-card"><div class="value" style="color:#00ff88;">28.5min</div><div class="label">MTTR</div></div>
+    <div class="stat-card"><div class="value" style="color:#00ff88;">50</div><div class="label">Total Alerts</div></div>
+    <div class="stat-card"><div class="value" style="color:#00ff88;">12</div><div class="label">Open Incidents</div></div>
+</div>
+
+<footer>SOC Security Report &bull; Confidential &bull; 2026-09-18 09:27:56</footer>
+</body>
+</html>

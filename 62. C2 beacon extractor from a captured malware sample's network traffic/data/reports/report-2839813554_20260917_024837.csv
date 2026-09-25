@@ -1,0 +1,43 @@
+# Report,Persistence Technique Analysis Report
+# Subtitle,cabinet_loader.exe.json
+# Generated,2026-09-17T02:48:37
+# Verdict,high
+# Risk score,63
+# Tools,Persistence Technique Cataloger v1.0.0
+
+# Summary,No parseable API calls found.
+
+# Overview
+Field,Value
+Source,cabinet_loader.exe.json
+Format,cape
+SHA-256,e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6
+Machine,cape-vm-win10x64
+API calls,0
+Processes,1
+Persistence mechanisms,4
+Indicators,1
+Verdict,HIGH (63/100)
+
+# Indicators of Compromise
+ioc_type,value,source,confidence,context
+file,C:\\Windows\\cabinet.dll,CreateFileW,0.70,
+
+# Section: Persistence mechanisms detected
+# note,Ordered by timestamp; mapped to MITRE ATT&CK persistence techniques.
+Severity,Technique,Name,Source,Evidence,Confidence,Details
+high,PERS-001,Registry Run Key Persistence,behavior,,0.85,RegSetValueExW @ 0.75s; CreateFileW @ 1.10s
+high,PERS-006,COM Object Hijacking,behavior,,0.85,RegSetValueExW @ 0.75s; CoCreateInstance @ 1.80s
+medium,PERS-010,Office Application Startup,behavior,,0.85,RegSetValueExW @ 0.75s; CreateFileW @ 1.10s
+critical,PERS-008,Bootkit / MBR Modification,behavior,,0.85,CreateFileW @ 1.10s; WriteFile @ 1.45s
+
+# Section: Analysis statistics
+Field,Value
+Total API calls,0
+Processes,1
+Duration,0.0s
+Categories observed,-
+
+# Section: Indicators of Compromise
+Type,Value,Source,Confidence,Context
+file,C:\\Windows\\cabinet.dll,CreateFileW,0.70,

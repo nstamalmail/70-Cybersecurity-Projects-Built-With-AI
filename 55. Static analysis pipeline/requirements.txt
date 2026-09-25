@@ -1,0 +1,6 @@
+# Static Analysis Pipeline (SAP) - runtime dependencies
+PySide6>=6.6            # Qt6 GUI toolkit (LGPL)
+pefile>=2023.2.7        # PE header parsing (public domain)
+requests>=2.31          # threat intel HTTP clients
+# --- optional: only needed if you enable network lookups ---
+# yara-python>=4.5      # not used by this workbench

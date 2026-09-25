@@ -1,0 +1,17 @@
+# HashArmor sample wordlist — SYNTHETIC (see weak_100.txt header)
+password1
+Password1
+Pa$$w0rd
+letmein123
+Welcome123
+Admin123
+Summer2026!
+qwertyuiop
+1qaz2wsx
+zxcvbnm
+flowers
+dragon2025
+ football
+hunter2
+correcthorsebatterystaple
+Tr0ub4dor&3

@@ -1,0 +1,23 @@
+RECT self-test: PASS (21/21 checks)
+
+[PASS] StateStore writes memory.md
+[PASS] binary loaded — 330 bytes
+[PASS] file type detected — elf
+[PASS] strings extracted — 12 strings
+[PASS] flag-like strings classified in sample — 2 flag-like strings
+[PASS] strings op succeeds — 12 strings, 3 interesting
+[PASS] strings op output has classification — 12 strings, 3 interesting
+[PASS] entropy op succeeds — 5.087 bits/byte — normal
+[PASS] base64 decode round-trip — flag{xpt_base64_rocks}
+[PASS] auto-decode finds base64 — ['base64', 'rot13', 'reverse']
+[PASS] xor brute force recovers flag — 10 candidates
+[PASS] xor known-plaintext key recovery — 4242424242
+[PASS] caesar auto-crack — shift 13
+[PASS] vigenere round-trip — thequickbrownfox
+[PASS] md5 identified — ['MD5 / MD4 / NTLM / RIPEMD-128']
+[PASS] bcrypt identified — ['bcrypt']
+[PASS] rsa small-n analysis runs — n bits: 12
+[PASS] markdown writeup exported
+[PASS] html writeup exported
+[PASS] json writeup exported
+[PASS] csv ops exported

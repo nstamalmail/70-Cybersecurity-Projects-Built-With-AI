@@ -1,0 +1,73 @@
+{
+  "kind": "ztn_audit",
+  "scenario": "benign_only",
+  "seed": 5,
+  "generated_at": 1788972173.4326851,
+  "policy": {
+    "allow_band_max": 2,
+    "verify_band_max": 5
+  },
+  "counts": {
+    "allow": 8,
+    "verify": 0,
+    "deny": 0
+  },
+  "decisions": [
+    {
+      "src": "192.0.2.11",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.18",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.19",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.22",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.23",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.24",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.27",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.30",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    }
+  ]
+}

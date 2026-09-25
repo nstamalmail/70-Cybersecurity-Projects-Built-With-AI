@@ -1,0 +1,86 @@
+{
+  "engagement": {
+    "engagement_id": "ENG-001",
+    "client_name": "Acme Corporation",
+    "engagement_type": "red_team",
+    "scope": "[\"/internal/network\", \"/web applications\"]",
+    "timeline_start": "2024-01-15T09:00:00",
+    "timeline_end": "2024-02-15T17:00:00",
+    "team_members": "[\"redteam1\", \"redteam2\"]",
+    "rules_of_engagement": "No denial of service; no physical access; report critical findings within 24 hours",
+    "findings": [
+      {
+        "finding_id": "F-001",
+        "title": "SQL Injection in Login Form",
+        "description": "SQL injection vulnerability found in the login form parameter 'username'. Allows authentication bypass.",
+        "cvss_version": "4.0",
+        "cvss_score": 9.8,
+        "severity": "critical",
+        "technical_details": "Parameter 'username' in login endpoint is not properly sanitized. SQLi payload: ' OR 1=1--'",
+        "remediation_short": "Implement parameterized queries / prepared statements",
+        "remediation_long": "Refactor all database queries to use parameterized queries. Use ORM with built-in protection. Input validation on all user inputs.",
+        "remediation_effort": "high",
+        "status": "draft"
+      },
+      {
+        "finding_id": "F-002",
+        "title": "Unquoted Service Path",
+        "description": "Windows service with unquoted path allowing DLL hijacking.",
+        "cvss_version": "3.1",
+        "cvss_score": 7.5,
+        "severity": "high",
+        "technical_details": "Service 'UpdateService' has path 'C:\\Program Files\\Update\\update.exe'. Space in path allows planting malicious DLL.",
+        "remediation_short": "Quote the service path in the registry",
+        "remediation_long": "Modify the service registry key to quote the executable path: 'C:\\Program Files\\Update\\update.exe'. Restart service.",
+        "remediation_effort": "medium",
+        "status": "draft"
+      },
+      {
+        "finding_id": "F-003",
+        "title": "Default Credentials on Router",
+        "description": "Router admin interface accessible with default credentials 'admin/admin'.",
+        "cvss_version": "3.1",
+        "cvss_score": 5.3,
+        "severity": "medium",
+        "technical_details": "HTTP management interface on 192.168.1.1:8080 uses default credentials.",
+        "remediation_short": "Change default credentials to strong, unique password",
+        "remediation_long": "Access router administration at 192.168.1.1:8080 and change admin password. Document in asset inventory.",
+        "remediation_effort": "low",
+        "status": "draft"
+      }
+    ],
+    "attack_chains": [
+      {
+        "chain_id": "CH-001",
+        "title": "Initial Access → Privilege Escalation → Data Exfiltration",
+        "objective": "data_exfiltration",
+        "cumulative_severity": "critical",
+        "steps": [
+          {
+            "step_order": 1,
+            "finding_id": "F-003",
+            "action": "Gain initial access via router admin interface using default credentials",
+            "timestamp": "2024-01-20T10:00:00",
+            "notes": "Verified: router accepts admin/admin credentials"
+          },
+          {
+            "step_order": 2,
+            "finding_id": "F-002",
+            "action": "Plant DLL via unquoted service path for privilege escalation",
+            "timestamp": "2024-01-20T10:30:00",
+            "notes": "DLL planted; service restart required for escalation"
+          },
+          {
+            "step_order": 3,
+            "finding_id": "F-001",
+            "action": "Exfiltrate data via SQL injection from internal database",
+            "timestamp": "2024-01-20T11:00:00",
+            "notes": "SQLi used to extract customer records"
+          }
+        ]
+      }
+    ],
+    "executive_summary": "During the red team engagement against Acme Corporation, three significant vulnerabilities were identified that, when chained together, enable an attacker to exfiltrate sensitive customer data. The engagement lasted 31 days and resulted in a critical severity cumulative risk. Immediate remediation of the SQL injection vulnerability is recommended as the highest priority, followed by the unquoted service path and default credentials. Overall organizational security posture has been measurably improved by identifying and addressing these findings.",
+    "created_at": "2024-03-15T10:30:00"
+  }
+}

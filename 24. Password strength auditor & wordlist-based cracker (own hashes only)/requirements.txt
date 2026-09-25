@@ -1,0 +1,2 @@
+# Build-time dependencies only. HashArmor's runtime is Python stdlib.
+pyinstaller>=6.10,<7

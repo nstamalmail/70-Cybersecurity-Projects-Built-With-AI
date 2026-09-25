@@ -1,0 +1,49 @@
+{
+  "total_visitors": 12847,
+  "unique_visitors": 8392,
+  "page_views": 34210,
+  "avg_session_duration": 185,
+  "bounce_rate": 34.2,
+  "top_pages": [
+    { "page": "/", "views": 8923, "avg_time": 120 },
+    { "page": "/projects", "views": 7201, "avg_time": 245 },
+    { "page": "/about", "views": 4102, "avg_time": 98 },
+    { "page": "/contact", "views": 3844, "avg_time": 67 },
+    { "page": "/project/neural-path-visualizer", "views": 2890, "avg_time": 312 }
+  ],
+  "visitor_sources": [
+    { "source": "Direct", "count": 4215, "percentage": 32.8 },
+    { "source": "GitHub", "count": 3102, "percentage": 24.1 },
+    { "source": "Google", "count": 2890, "percentage": 22.5 },
+    { "source": "Twitter", "count": 1534, "percentage": 11.9 },
+    { "source": "LinkedIn", "count": 702, "percentage": 5.5 },
+    { "source": "Other", "count": 404, "percentage": 3.1 }
+  ],
+  "monthly_visits": [
+    { "month": "2025-01", "visits": 980 },
+    { "month": "2025-02", "visits": 1120 },
+    { "month": "2025-03", "visits": 1340 },
+    { "month": "2025-04", "visits": 1560 },
+    { "month": "2025-05", "visits": 1890 },
+    { "month": "2025-06", "visits": 2100 },
+    { "month": "2025-07", "visits": 1780 },
+    { "month": "2025-08", "visits": 1950 }
+  ],
+  "device_breakdown": [
+    { "device": "Desktop", "percentage": 58.3 },
+    { "device": "Mobile", "percentage": 31.2 },
+    { "device": "Tablet", "percentage": 10.5 }
+  ],
+  "browser_breakdown": [
+    { "browser": "Chrome", "percentage": 62.1 },
+    { "browser": "Firefox", "percentage": 18.4 },
+    { "browser": "Safari", "percentage": 14.2 },
+    { "browser": "Edge", "percentage": 5.3 }
+  ],
+  "engagement": {
+    "avg_pages_per_session": 3.4,
+    "returning_visitors": 3892,
+    "new_visitors": 8955,
+    "avg_scroll_depth": 72.5
+  }
+}

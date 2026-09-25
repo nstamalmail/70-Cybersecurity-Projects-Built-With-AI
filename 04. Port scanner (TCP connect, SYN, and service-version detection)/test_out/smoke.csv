@@ -1,0 +1,6 @@
+port,state,service,version,banner,risk_level,cves
+22,OPEN,ssh,OpenSSH 9.2,,medium,CVE-2023-38408 (OpenSSH ssh-agent RCE);CVE-2016-6210 (user enumeration)
+80,OPEN,http,nginx 1.24,,medium,CVE-2021-23017 (DNS resolver vuln)
+445,OPEN,microsoft-ds,,,critical,CVE-2017-0144 (EternalBlue SMBv1)
+443,OPEN,https,Apache 2.4,,medium,CVE-2021-41773 (path traversal / RCE)
+3389,OPEN,ms-wbt,,,high,

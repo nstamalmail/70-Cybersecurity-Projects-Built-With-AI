@@ -1,0 +1,105 @@
+# Threat-Intel Blocklist
+# Generated: 2024-01-15 10:30:00
+# Total IOCs: 90
+# Format: Plain Text
+# --------------------------------------------------
+
+# IPs
+192.168.1.100
+10.0.0.50
+172.16.0.25
+203.0.113.50
+198.51.100.25
+192.0.2.100
+10.10.10.10
+172.16.255.255
+10.0.0.1
+192.168.100.1
+10.1.1.1
+172.20.0.1
+203.0.113.100
+198.51.100.50
+192.0.2.50
+
+# Domains
+malware-c2.evil.com
+phishing-site.scam.net
+apt-command.bad.org
+botnet-controller.dark.net
+ransomware-pay.evil.com
+credential-steal.bad.net
+dns-tunnel.evil.com
+exploit-kit.dark.net
+spam-relay.scam.net
+crypto-miner.bad.org
+keylogger-host.evil.com
+backdoor-c2.dark.net
+watering-hole.scam.net
+typosquat.bad.org
+dga-generated.evil.com
+
+# URLs
+http://malware-c2.evil.com/payload.exe
+https://phishing-site.scam.net/login.php
+http://apt-command.bad.org/command?id=123
+https://botnet-controller.dark.net/beacon
+http://ransomware-pay.evil.com/decrypt
+https://credential-steal.bad.net/harvest
+http://dns-tunnel.evil.com/exfil
+https://exploit-kit.dark.net/exploit
+http://spam-relay.scam.net/send
+https://crypto-miner.bad.org/mine
+http://keylogger-host.evil.com/capture
+https://backdoor-c2.dark.net/callback
+http://watering-hole.scam.net/infect
+https://typosquat.bad.org/steal
+http://dga-generated.evil.com/dga.exe
+
+# File Hashes
+44d88612fea8a8f36de82e1278abb02f
+d41d8cd98f00b204e9800998ecf8427e
+e99a18c428cb38d5f260853678922e03
+5d41402abc4b2a76b9719d911017c592
+098f6bcd4621d373cade4e832627b4f6
+b10a8db164e0754105b7a99be72e3fe5
+7c6a180b36896a65e511f1b8fd502360
+6c569aabbf7775ef8fc570e228c19b91
+3c59dc048e8850243be8079a5c74d079
+bfd0941c9ff6a457b7f1f06e5f6d22d1
+ac3478d69a3c81fa62e60f0c4d8d7cda
+900150983cd24fb0d6963f7d28e17f72
+310dc539614e9b38427e8f0a4f6d22b8
+d8578edf8458ce06fbc5bb76a58c5ca4
+eb61e32277fa42fd79c15e0c0d7b6e7e
+3395856ce81f2b7382dee72602f798b642f14140
+2aae6c35c94fcfb415dbe95f408b9ce91ee846ed
+596d2f51e5c186740367e2d1e3ef1f1c8e808396
+b4c5e39f06eb0f12d219520e40be053e309d45a4
+7c222fb2927d828af22f77d2150f3105f8524222
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f
+9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08
+4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640d782fa2254b42
+ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec96f29a6e2e68e
+2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824
+18ac3e7343f016890c512e1a5af442339a0330e7a7403f10c29e0ef0c9a8d017
+6b51d431df5d7f141cbececcf79edf3dd861c3b4069f0b110814c28e73a8d12e
+3eb4a5ae51d42f3f5c09a84e7b8a02d37a36f58c2b0c2e6b3a4f5d6e7f809101
+a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f00111
+
+# Email Addresses
+attacker@evil-domain.com
+phisher@scam-site.net
+c2operator@dark-network.org
+spammer@relay-host.com
+dropper@malware-site.evil
+ransom@pay-or-else.com
+keylog@surveillance.net
+exploit@vuln-scan.org
+bot@net-herd.evil.com
+crypto@mining-pool.bad
+backdoor@apt-c2.dark
+watering@apt-infect.scam
+typosquat@phish-bait.com
+dga@random-domain.evil
+lateral@movement-apt.dark

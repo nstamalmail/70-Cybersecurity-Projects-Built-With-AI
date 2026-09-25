@@ -1,0 +1,766 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'>
+<title>API Call Sequence Analysis Report</title><style>
+
+:root { color-scheme: light; }
+body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; margin: 0; background: #f6f7f9; color: #17181c; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 28px 64px; background: #fff;
+        box-shadow: 0 0 0 1px #e3e5e9; }
+h1 { margin: 0 0 4px; font-size: 26px; }
+h2 { margin: 28px 0 8px; font-size: 17px; border-bottom: 1px solid #e3e5e9; padding-bottom: 6px; }
+.sub { color: #5d6069; margin: 0 0 4px; }
+.stamp { color: #8b8d98; font-size: 12px; margin-bottom: 18px; }
+.banner { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 10px;
+          background: #f2f3f5; border-left: 6px solid #e5484d; margin: 18px 0; }
+.banner .verdict { font-size: 18px; font-weight: 700; color: #e5484d; }
+.banner .score { margin-left: auto; font-size: 13px; color: #5d6069; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0 4px; font-size: 13px; }
+th, td { border: 1px solid #e3e5e9; padding: 6px 9px; text-align: left; vertical-align: top; }
+th { background: #f2f3f5; font-weight: 600; }
+tr:nth-child(even) td { background: #fafbfc; }
+code, pre { font-family: 'Cascadia Mono', Consolas, monospace; font-size: 12px; }
+pre { background: #f6f7f9; border: 1px solid #e3e5e9; border-radius: 8px; padding: 12px;
+      overflow-x: auto; white-space: pre-wrap; }
+.note { color: #8b8d98; font-size: 12px; margin: 0 0 8px; }
+ul { margin: 6px 0 6px 18px; padding: 0; }
+.summary { background: #f2f3f5; border-radius: 10px; padding: 12px 14px; margin: 16px 0; }
+.foot { margin-top: 36px; padding-top: 12px; border-top: 1px solid #e3e5e9; color: #8b8d98; font-size: 12px; }
+@media print { .wrap { box-shadow: none; max-width: none; } }
+
+</style></head><body><div class='wrap'>
+<h1>API Call Sequence Analysis Report</h1>
+<p class='sub'>locker_2026.exe.json · cuckoo</p>
+<div class='stamp'>Generated 2026-09-17 02:24:27 &middot; API Sequence Visualizer v1.0.0 &middot; run report-5265620234</div>
+<div class='banner'>
+<span class='verdict'>critical</span>
+<span class='score'>Risk score: 100</span>
+</div>
+<div class='summary'>32 API calls across 3 process(es) over 11.2s of behaviour were normalised from a cuckoo report. High-severity behaviour matched: Credential store access; Encrypt in place; New service installed; Script interpreter launched; Self-modifying memory. Dominant categories: file 13, crypto 5, system 4, memory 4. 22 indicators were extracted from the call arguments. Behaviour score 100/100 (critical).</div>
+<h2>Behavioural findings</h2>
+<p class='note'>Ordered API sequences matched by the pattern engine (architecture §3.4).</p>
+<table><thead><tr>
+<th>Severity</th>
+<th>Pattern</th>
+<th>Process</th>
+<th>Start (s)</th>
+<th>Span (s)</th>
+<th>API chain</th>
+<th>Target</th>
+</tr></thead><tbody>
+<tr>
+<td>critical</td>
+<td>Encrypt in place</td>
+<td>locker_2026.exe</td>
+<td>2.15</td>
+<td>1.05</td>
+<td>ReadFile -&gt; CryptEncrypt -&gt; WriteFile</td>
+<td>C:\Users\analyst\Documents\report.docx</td>
+</tr>
+<tr>
+<td>critical</td>
+<td>Encrypt in place</td>
+<td>locker_2026.exe</td>
+<td>3.55</td>
+<td>0.70</td>
+<td>ReadFile -&gt; CryptEncrypt -&gt; WriteFile</td>
+<td>C:\Users\analyst\Documents\budget.xlsx</td>
+</tr>
+<tr>
+<td>critical</td>
+<td>Encrypt in place</td>
+<td>locker_2026.exe</td>
+<td>4.60</td>
+<td>0.70</td>
+<td>ReadFile -&gt; CryptEncrypt -&gt; WriteFile</td>
+<td>C:\Users\analyst\Pictures\scan.png</td>
+</tr>
+<tr>
+<td>critical</td>
+<td>Encrypt in place</td>
+<td>locker_2026.exe</td>
+<td>5.65</td>
+<td>0.70</td>
+<td>ReadFile -&gt; CryptEncrypt -&gt; WriteFile</td>
+<td>C:\Users\analyst\Desktop\notes.txt</td>
+</tr>
+<tr>
+<td>high</td>
+<td>Script interpreter launched</td>
+<td>locker_2026.exe</td>
+<td>6.70</td>
+<td>0.70</td>
+<td>CreateProcessW -&gt; CreateFileW</td>
+<td>C:\Windows\System32\vssadmin.exe</td>
+</tr>
+<tr>
+<td>critical</td>
+<td>New service installed</td>
+<td>locker_2026.exe</td>
+<td>8.80</td>
+<td>0.70</td>
+<td>OpenSCManagerW -&gt; CreateServiceW -&gt; StartServiceW</td>
+<td>LockSvc</td>
+</tr>
+<tr>
+<td>critical</td>
+<td>Credential store access</td>
+<td>locker_2026.exe</td>
+<td>9.85</td>
+<td>1.05</td>
+<td>OpenProcess -&gt; ReadProcessMemory -&gt; WriteProcessMemory</td>
+<td>4</td>
+</tr>
+<tr>
+<td>high</td>
+<td>Self-modifying memory</td>
+<td>locker_2026.exe</td>
+<td>10.55</td>
+<td>0.70</td>
+<td>VirtualAlloc -&gt; WriteProcessMemory -&gt; VirtualProtect</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h2>Finding details</h2>
+<ul>
+<li>[critical] RANS-002 Encrypt in place — pid 788 (locker_2026.exe) at t=2.15s target: C:\Users\analyst\Documents\report.docx | ReadFile -&gt; CryptEncrypt -&gt; WriteFile</li>
+<li>[critical] RANS-002 Encrypt in place — pid 788 (locker_2026.exe) at t=3.55s target: C:\Users\analyst\Documents\budget.xlsx | ReadFile -&gt; CryptEncrypt -&gt; WriteFile</li>
+<li>[critical] RANS-002 Encrypt in place — pid 788 (locker_2026.exe) at t=4.60s target: C:\Users\analyst\Pictures\scan.png | ReadFile -&gt; CryptEncrypt -&gt; WriteFile</li>
+<li>[critical] RANS-002 Encrypt in place — pid 788 (locker_2026.exe) at t=5.65s target: C:\Users\analyst\Desktop\notes.txt | ReadFile -&gt; CryptEncrypt -&gt; WriteFile</li>
+<li>[high] EXEC-003 Script interpreter launched — pid 788 (locker_2026.exe) at t=6.70s target: C:\Windows\System32\vssadmin.exe | CreateProcessW -&gt; CreateFileW</li>
+<li>[critical] PERS-002 New service installed — pid 788 (locker_2026.exe) at t=8.80s target: LockSvc | OpenSCManagerW -&gt; CreateServiceW -&gt; StartServiceW</li>
+<li>[critical] CRED-001 Credential store access — pid 788 (locker_2026.exe) at t=9.85s target: 4 | OpenProcess -&gt; ReadProcessMemory -&gt; WriteProcessMemory</li>
+<li>[high] MEM-001 Self-modifying memory — pid 788 (locker_2026.exe) at t=10.55s | VirtualAlloc -&gt; WriteProcessMemory -&gt; VirtualProtect</li>
+</ul>
+<h2>Behaviour statistics</h2>
+<table>
+<tr><th>Total calls (records, loop-collapsed)</th><td>32 (32)</td></tr>
+<tr><th>Unique APIs</th><td>20</td></tr>
+<tr><th>Processes</th><td>3</td></tr>
+<tr><th>Behaviour duration</th><td>11.25s</td></tr>
+<tr><th>Calls per second</th><td>2.844</td></tr>
+<tr><th>Failed calls</th><td>1 (3.1%)</td></tr>
+<tr><th>Collapsed repeat runs</th><td>0</td></tr>
+<tr><th>Categories observed</th><td>file, crypto, system, memory, process, registry, sync</td></tr>
+</table>
+<h2>API category distribution</h2>
+<p class='note'>Volume per category; a large memory + process share is injection-shaped.</p>
+<table><thead><tr>
+<th>Category</th>
+<th>Calls</th>
+<th>Share</th>
+</tr></thead><tbody>
+<tr>
+<td>file</td>
+<td>13</td>
+<td>40.6%</td>
+</tr>
+<tr>
+<td>crypto</td>
+<td>5</td>
+<td>15.6%</td>
+</tr>
+<tr>
+<td>system</td>
+<td>4</td>
+<td>12.5%</td>
+</tr>
+<tr>
+<td>memory</td>
+<td>4</td>
+<td>12.5%</td>
+</tr>
+<tr>
+<td>process</td>
+<td>3</td>
+<td>9.4%</td>
+</tr>
+<tr>
+<td>registry</td>
+<td>2</td>
+<td>6.2%</td>
+</tr>
+<tr>
+<td>sync</td>
+<td>1</td>
+<td>3.1%</td>
+</tr>
+</tbody></table>
+<h2>Most frequent APIs</h2>
+<table><thead><tr>
+<th>API</th>
+<th>Calls</th>
+</tr></thead><tbody>
+<tr>
+<td>WriteFile</td>
+<td>5</td>
+</tr>
+<tr>
+<td>ReadFile</td>
+<td>4</td>
+</tr>
+<tr>
+<td>CryptEncrypt</td>
+<td>4</td>
+</tr>
+<tr>
+<td>FindNextFileW</td>
+<td>2</td>
+</tr>
+<tr>
+<td>CreateProcessW</td>
+<td>2</td>
+</tr>
+<tr>
+<td>IsDebuggerPresent</td>
+<td>1</td>
+</tr>
+<tr>
+<td>CreateMutexW</td>
+<td>1</td>
+</tr>
+<tr>
+<td>FindFirstFileW</td>
+<td>1</td>
+</tr>
+<tr>
+<td>CryptGenKey</td>
+<td>1</td>
+</tr>
+<tr>
+<td>CreateFileW</td>
+<td>1</td>
+</tr>
+<tr>
+<td>RegCreateKeyExW</td>
+<td>1</td>
+</tr>
+<tr>
+<td>RegSetValueExW</td>
+<td>1</td>
+</tr>
+<tr>
+<td>OpenSCManagerW</td>
+<td>1</td>
+</tr>
+<tr>
+<td>CreateServiceW</td>
+<td>1</td>
+</tr>
+<tr>
+<td>StartServiceW</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<h2>Recurring API sequences</h2>
+<p class='note'>Frequent ordered chains mined from the call stream (maximal recurring sequences).</p>
+<table><thead><tr>
+<th>Steps</th>
+<th>Support</th>
+<th>Process</th>
+<th>Start (s)</th>
+<th>Span (s)</th>
+<th>Chain</th>
+</tr></thead><tbody>
+<tr>
+<td>8</td>
+<td>3</td>
+<td>-</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>CryptEncrypt -&gt; WriteFile -&gt; ReadFile -&gt; CryptEncrypt -&gt; WriteFile -&gt; ReadFile -&gt; CryptEncrypt -&gt; WriteFile</td>
+</tr>
+</tbody></table>
+<h2>Frequent n-grams</h2>
+<table><thead><tr>
+<th>Occurrences</th>
+<th>Length</th>
+<th>Score</th>
+<th>Process</th>
+<th>Chain</th>
+</tr></thead><tbody>
+<tr>
+<td>3</td>
+<td>5</td>
+<td>15</td>
+<td>all</td>
+<td>CryptEncrypt -&gt; WriteFile -&gt; ReadFile -&gt; CryptEncrypt -&gt; WriteFile</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4</td>
+<td>12</td>
+<td>all</td>
+<td>CryptEncrypt -&gt; WriteFile -&gt; ReadFile -&gt; CryptEncrypt</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4</td>
+<td>12</td>
+<td>all</td>
+<td>WriteFile -&gt; ReadFile -&gt; CryptEncrypt -&gt; WriteFile</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5</td>
+<td>10</td>
+<td>all</td>
+<td>WriteFile -&gt; ReadFile -&gt; CryptEncrypt -&gt; WriteFile -&gt; ReadFile</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5</td>
+<td>10</td>
+<td>all</td>
+<td>ReadFile -&gt; CryptEncrypt -&gt; WriteFile -&gt; ReadFile -&gt; CryptEncrypt</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>9</td>
+<td>all</td>
+<td>CryptEncrypt -&gt; WriteFile -&gt; ReadFile</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>9</td>
+<td>all</td>
+<td>WriteFile -&gt; ReadFile -&gt; CryptEncrypt</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>9</td>
+<td>all</td>
+<td>ReadFile -&gt; CryptEncrypt -&gt; WriteFile</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>8</td>
+<td>all</td>
+<td>ReadFile -&gt; CryptEncrypt -&gt; WriteFile -&gt; ReadFile</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2</td>
+<td>8</td>
+<td>all</td>
+<td>CryptEncrypt -&gt; WriteFile</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>6</td>
+<td>all</td>
+<td>WriteFile -&gt; ReadFile</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>6</td>
+<td>all</td>
+<td>ReadFile -&gt; CryptEncrypt</td>
+</tr>
+</tbody></table>
+<h2>API transition matrix (top)</h2>
+<p class='note'>First-order Markov transitions; these edges drive the behaviour graph.</p>
+<table><thead><tr>
+<th>From</th>
+<th>To</th>
+<th>Count</th>
+<th>Probability</th>
+<th>Process</th>
+</tr></thead><tbody>
+<tr>
+<td>CryptEncrypt</td>
+<td>WriteFile</td>
+<td>4</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>ReadFile</td>
+<td>CryptEncrypt</td>
+<td>3</td>
+<td>75.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>WriteFile</td>
+<td>ReadFile</td>
+<td>3</td>
+<td>60.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>IsDebuggerPresent</td>
+<td>CreateMutexW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>CreateMutexW</td>
+<td>FindFirstFileW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>FindFirstFileW</td>
+<td>FindNextFileW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>CryptGenKey</td>
+<td>CryptEncrypt</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>CreateFileW</td>
+<td>WriteFile</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>RegCreateKeyExW</td>
+<td>RegSetValueExW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>RegSetValueExW</td>
+<td>OpenSCManagerW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>OpenSCManagerW</td>
+<td>CreateServiceW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>CreateServiceW</td>
+<td>StartServiceW</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>StartServiceW</td>
+<td>OpenProcess</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>OpenProcess</td>
+<td>ReadProcessMemory</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>ReadProcessMemory</td>
+<td>VirtualAlloc</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>VirtualAlloc</td>
+<td>WriteProcessMemory</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>WriteProcessMemory</td>
+<td>VirtualProtect</td>
+<td>1</td>
+<td>100.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>FindNextFileW</td>
+<td>FindNextFileW</td>
+<td>1</td>
+<td>50.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>FindNextFileW</td>
+<td>ReadFile</td>
+<td>1</td>
+<td>50.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>CreateProcessW</td>
+<td>CreateProcessW</td>
+<td>1</td>
+<td>50.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>CreateProcessW</td>
+<td>CreateFileW</td>
+<td>1</td>
+<td>50.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>ReadFile</td>
+<td>CryptGenKey</td>
+<td>1</td>
+<td>25.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>WriteFile</td>
+<td>CreateProcessW</td>
+<td>1</td>
+<td>20.0%</td>
+<td>all</td>
+</tr>
+<tr>
+<td>WriteFile</td>
+<td>RegCreateKeyExW</td>
+<td>1</td>
+<td>20.0%</td>
+<td>all</td>
+</tr>
+</tbody></table>
+<h2>Reconstructed process tree</h2>
+<table><thead><tr>
+<th>Process</th>
+<th>PID</th>
+<th>Parent</th>
+<th>First seen (s)</th>
+<th>Calls</th>
+<th>Failures</th>
+<th>Top categories</th>
+<th>Path</th>
+</tr></thead><tbody>
+<tr>
+<td>locker_2026.exe</td>
+<td>788</td>
+<td>-</td>
+<td>0.20</td>
+<td>32</td>
+<td>1</td>
+<td>file:13, crypto:5, system:4, memory:4</td>
+<td>C:\Users\analyst\Desktop\locker_2026.exe</td>
+</tr>
+<tr>
+<td>vssadmin.exe</td>
+<td>1216</td>
+<td>788</td>
+<td>0.00</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+<td>C:\Windows\System32\vssadmin.exe</td>
+</tr>
+<tr>
+<td>cmd.exe</td>
+<td>2044</td>
+<td>788</td>
+<td>0.00</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+<td>C:\Windows\System32\cmd.exe</td>
+</tr>
+</tbody></table>
+<h2>Suspicious process notes</h2>
+<ul>
+<li>PID 788 locker_2026.exe: process + memory APIs (injection-capable)</li>
+</ul>
+<h2>Highest-probability behaviour paths</h2>
+<ul>
+<li>WriteFile -&gt; ReadFile -&gt; CryptEncrypt</li>
+<li>CryptEncrypt -&gt; WriteFile -&gt; ReadFile -&gt; CryptGenKey</li>
+<li>ReadFile -&gt; CryptEncrypt -&gt; WriteFile -&gt; CreateProcessW -&gt; CreateFileW</li>
+<li>FindNextFileW -&gt; ReadFile -&gt; CryptEncrypt -&gt; WriteFile -&gt; CreateProcessW -&gt; CreateFileW</li>
+<li>CreateProcessW -&gt; CreateFileW -&gt; WriteFile -&gt; ReadFile -&gt; CryptEncrypt</li>
+<li>IsDebuggerPresent -&gt; CreateMutexW -&gt; FindFirstFileW -&gt; FindNextFileW -&gt; ReadFile -&gt; CryptEncrypt -&gt; WriteFile -&gt; CreateProcessW</li>
+<li>CreateMutexW -&gt; FindFirstFileW -&gt; FindNextFileW -&gt; ReadFile -&gt; CryptEncrypt -&gt; WriteFile -&gt; CreateProcessW -&gt; CreateFileW</li>
+<li>FindFirstFileW -&gt; FindNextFileW -&gt; ReadFile -&gt; CryptEncrypt -&gt; WriteFile -&gt; CreateProcessW -&gt; CreateFileW</li>
+<li>CryptGenKey -&gt; CryptEncrypt -&gt; WriteFile -&gt; ReadFile</li>
+<li>CreateFileW -&gt; WriteFile -&gt; ReadFile -&gt; CryptEncrypt</li>
+</ul>
+<h2>Indicators of Compromise</h2>
+<table><thead><tr>
+<th>Type</th>
+<th>Value</th>
+<th>Source</th>
+<th>Confidence</th>
+<th>Context</th>
+</tr></thead><tbody>
+<tr>
+<td>registry</td>
+<td>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run\LockerService</td>
+<td>RegCreateKeyExW (pid 788), RegSetValueExW (pid 788)</td>
+<td>0.95</td>
+<td>regkey=HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run, value_name=LockerService</td>
+</tr>
+<tr>
+<td>registry</td>
+<td>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run</td>
+<td>RegCreateKeyExW (pid 788), RegSetValueExW (pid 788), summary:keys</td>
+<td>0.85</td>
+<td>regkey=HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run, value_name=LockerService</td>
+</tr>
+<tr>
+<td>file</td>
+<td>budget.xlsx</td>
+<td>FindNextFileW (pid 788)</td>
+<td>0.75</td>
+<td>file_name=budget.xlsx</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\Desktop\notes.txt</td>
+<td>ReadFile (pid 788)</td>
+<td>0.75</td>
+<td>file_name=C:\Users\analyst\Desktop\notes.txt, size=4096</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\Desktop\notes.txt.locked</td>
+<td>WriteFile (pid 788), summary:files</td>
+<td>0.75</td>
+<td>file_name=C:\Users\analyst\Desktop\notes.txt.locked, size=4096</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\Desktop\README_LOCKED.txt</td>
+<td>CreateFileW (pid 788), WriteFile (pid 788), summary:files</td>
+<td>0.75</td>
+<td>file_name=C:\Users\analyst\Desktop\README_LOCKED.txt, desired_access=GENERIC_WRITE</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\Documents\*</td>
+<td>FindFirstFileW (pid 788)</td>
+<td>0.75</td>
+<td>file_name=C:\Users\analyst\Documents\*</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\Documents\budget.xlsx</td>
+<td>ReadFile (pid 788)</td>
+<td>0.75</td>
+<td>file_name=C:\Users\analyst\Documents\budget.xlsx, size=40960</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\Documents\budget.xlsx.locked</td>
+<td>WriteFile (pid 788), summary:files</td>
+<td>0.75</td>
+<td>file_name=C:\Users\analyst\Documents\budget.xlsx.locked, size=40960</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\Documents\report.docx</td>
+<td>ReadFile (pid 788)</td>
+<td>0.75</td>
+<td>file_name=C:\Users\analyst\Documents\report.docx, size=32768</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\Documents\report.docx.locked</td>
+<td>WriteFile (pid 788), summary:files</td>
+<td>0.75</td>
+<td>file_name=C:\Users\analyst\Documents\report.docx.locked, size=32768</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\Pictures\scan.png</td>
+<td>ReadFile (pid 788)</td>
+<td>0.75</td>
+<td>file_name=C:\Users\analyst\Pictures\scan.png, size=51200</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\Pictures\scan.png.locked</td>
+<td>WriteFile (pid 788), summary:files</td>
+<td>0.75</td>
+<td>file_name=C:\Users\analyst\Pictures\scan.png.locked, size=51200</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Windows\System32\cmd.exe</td>
+<td>CreateProcessW (pid 788)</td>
+<td>0.75</td>
+<td>application_name=C:\Windows\System32\cmd.exe, command_line=cmd.exe /c bcdedit /set {default} recoveryenabled No</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Windows\System32\vssadmin.exe</td>
+<td>CreateProcessW (pid 788)</td>
+<td>0.75</td>
+<td>application_name=C:\Windows\System32\vssadmin.exe, command_line=vssadmin.exe delete shadows /all /quiet</td>
+</tr>
+<tr>
+<td>file</td>
+<td>report.docx</td>
+<td>FindNextFileW (pid 788)</td>
+<td>0.75</td>
+<td>file_name=report.docx</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\Desktop\locker_2026.exe</td>
+<td>RegSetValueExW (pid 788), CreateServiceW (pid 788)</td>
+<td>0.60</td>
+<td>regkey=HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run, value_name=LockerService, value=C:\Users\analyst\Desktop\locker_2026.exe -k</td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\Users\analyst\Documents\</td>
+<td>FindFirstFileW (pid 788)</td>
+<td>0.60</td>
+<td>file_name=C:\Users\analyst\Documents\*</td>
+</tr>
+<tr>
+<td>mutex</td>
+<td>Global\LKR-2026-LOCK</td>
+<td>CreateMutexW (pid 788), summary:mutexes</td>
+<td>0.80</td>
+<td>mutex_name=Global\LKR-2026-LOCK</td>
+</tr>
+<tr>
+<td>service</td>
+<td>LockSvc</td>
+<td>CreateServiceW (pid 788), StartServiceW (pid 788), summary:services</td>
+<td>0.85</td>
+<td>service_name=LockSvc, binary_path=C:\Users\analyst\Desktop\locker_2026.exe</td>
+</tr>
+<tr>
+<td>command</td>
+<td>cmd.exe /c bcdedit /set {default} recoveryenabled No</td>
+<td>CreateProcessW (pid 788), summary:executed_commands</td>
+<td>0.70</td>
+<td>application_name=C:\Windows\System32\cmd.exe, command_line=cmd.exe /c bcdedit /set {default} recoveryenabled No</td>
+</tr>
+<tr>
+<td>command</td>
+<td>vssadmin.exe delete shadows /all /quiet</td>
+<td>CreateProcessW (pid 788), summary:executed_commands</td>
+<td>0.70</td>
+<td>application_name=C:\Windows\System32\vssadmin.exe, command_line=vssadmin.exe delete shadows /all /quiet</td>
+</tr>
+</tbody></table>
+<div class='foot'>API Sequence Visualizer v1.0.0 &middot; Malware Analysis Workbench &middot; generated 2026-09-17 02:24:27</div>
+</div></body></html>

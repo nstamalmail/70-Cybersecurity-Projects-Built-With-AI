@@ -1,0 +1,17 @@
+# Indicators of Compromise
+ioc_type,value,source,confidence,context
+ipv4,45.133.216.88,connect (pid 4104),0.90,"ip_address=45.133.216.88, port=443"
+ipv4,45.133.216.88:443,connect (pid 4104),0.70,"ip_address=45.133.216.88, port=443"
+domain,collect.credential-sync.net,gethostbyname (pid 4104),0.80,hostname=collect.credential-sync.net
+file,C:\Users\analyst\AppData\Local\Google\Chrome\User Data\Default\Login Data,"CreateFileW (pid 4104), ReadFile (pid 4104)",0.75,"file_name=C:\Users\analyst\AppData\Local\Google\Chrome\User Data\Default\Login Data, desired_access=GENERIC_READ"
+file,C:\Users\analyst\AppData\Local\Microsoft\Edge\User Data\Default\Login Data,"CreateFileW (pid 4104), ReadFile (pid 4104)",0.75,"file_name=C:\Users\analyst\AppData\Local\Microsoft\Edge\User Data\Default\Login Data, desired_access=GENERIC_READ"
+file,C:\Users\analyst\AppData\Local\Temp\stage1.tmp,"WriteFile (pid 4104), DeleteFileW (pid 4104)",0.75,"file_name=C:\Users\analyst\AppData\Local\Temp\stage1.tmp, size=262144"
+file,C:\Users\analyst\AppData\Local\Temp\stage2.tmp,"WriteFile (pid 4104), DeleteFileW (pid 4104)",0.75,"file_name=C:\Users\analyst\AppData\Local\Temp\stage2.tmp, size=180224"
+file,C:\Windows\System32\powershell.exe,CreateProcessW (pid 4104),0.75,"application_name=C:\Windows\System32\powershell.exe, command_line=powershell -nop -w hidden -enc SQBFAFgAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAA"
+file,C:\Users\analyst\AppData\Local\Google\Chrome\User,"CreateFileW (pid 4104), ReadFile (pid 4104)",0.60,"file_name=C:\Users\analyst\AppData\Local\Google\Chrome\User Data\Default\Login Data, desired_access=GENERIC_READ"
+file,C:\Users\analyst\AppData\Local\Microsoft\Edge\User,"CreateFileW (pid 4104), ReadFile (pid 4104)",0.60,"file_name=C:\Users\analyst\AppData\Local\Microsoft\Edge\User Data\Default\Login Data, desired_access=GENERIC_READ"
+mutex,\Local\Google\Chrome\User,"CreateFileW (pid 4104), ReadFile (pid 4104)",0.80,"file_name=C:\Users\analyst\AppData\Local\Google\Chrome\User Data\Default\Login Data, desired_access=GENERIC_READ"
+mutex,\Local\Microsoft\Edge\User,"CreateFileW (pid 4104), ReadFile (pid 4104)",0.80,"file_name=C:\Users\analyst\AppData\Local\Microsoft\Edge\User Data\Default\Login Data, desired_access=GENERIC_READ"
+mutex,\Local\Temp\stage1.tmp,"WriteFile (pid 4104), DeleteFileW (pid 4104)",0.80,"file_name=C:\Users\analyst\AppData\Local\Temp\stage1.tmp, size=262144"
+mutex,\Local\Temp\stage2.tmp,"WriteFile (pid 4104), DeleteFileW (pid 4104)",0.80,"file_name=C:\Users\analyst\AppData\Local\Temp\stage2.tmp, size=180224"
+command,powershell -nop -w hidden -enc SQBFAFgAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAA,CreateProcessW (pid 4104),0.70,"application_name=C:\Windows\System32\powershell.exe, command_line=powershell -nop -w hidden -enc SQBFAFgAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAA"

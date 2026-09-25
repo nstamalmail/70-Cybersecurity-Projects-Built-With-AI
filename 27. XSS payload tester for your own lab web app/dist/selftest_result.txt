@@ -1,0 +1,13 @@
+XPT self-test: PASS (11/11 checks)
+
+[PASS] StateStore writes memory.md
+[PASS] reflected XSS detected (html_body) — 6 findings
+[PASS] context classified as html_body — {'html_body'}
+[PASS] engine sent requests — 7 requests
+[PASS] attribute break-out detected — {'html_attribute'}
+[PASS] js_string break-out detected — {'js_string'}
+[PASS] html-encoded reflection not flagged high — []
+[PASS] DOM sink pattern matched
+[PASS] HTML report exported
+[PASS] CSV report exported
+[PASS] JSON report exported

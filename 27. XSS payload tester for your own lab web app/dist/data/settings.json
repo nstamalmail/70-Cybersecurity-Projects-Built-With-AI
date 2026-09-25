@@ -1,0 +1,22 @@
+{
+  "target_url": "",
+  "method": "GET",
+  "headers_text": "",
+  "cookies_text": "",
+  "body": "",
+  "body_type": "none",
+  "contexts": [
+    "html_body",
+    "html_attribute",
+    "js_string",
+    "url_param",
+    "css_context"
+  ],
+  "custom_payloads": "",
+  "delay_ms": 40,
+  "timeout": 10.0,
+  "max_requests": 600,
+  "follow_redirects": true,
+  "verify_ssl": true,
+  "proxy": ""
+}

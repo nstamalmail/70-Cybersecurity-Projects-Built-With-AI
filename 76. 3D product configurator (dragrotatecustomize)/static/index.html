@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Product Configurator</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <header id="header">
+            <div class="logo">
+                <span class="logo-icon">&#9881;</span>
+                <h1>Product Studio</h1>
+            </div>
+            <nav class="nav-links">
+                <button class="nav-btn active" data-view="configurator">Configure</button>
+                <button class="nav-btn" data-view="saved">Saved</button>
+            </nav>
+            <button id="cartBtn" class="cart-btn">Cart (0)</button>
+        </header>
+
+        <main id="main">
+            <div id="configurator-view">
+                <div id="product-selector">
+                    <h2>Select Product</h2>
+                    <div id="product-grid"></div>
+                </div>
+
+                <div id="workspace">
+                    <div id="viewer-container">
+                        <canvas id="product-canvas"></canvas>
+                        <div id="viewer-controls">
+                            <button id="zoomIn" title="Zoom In">+</button>
+                            <button id="zoomOut" title="Zoom Out">-</button>
+                            <button id="resetView" title="Reset View">&#8634;</button>
+                        </div>
+                        <div id="viewer-hint">Drag to rotate | Scroll to zoom</div>
+                    </div>
+
+                    <div id="config-panel">
+                        <h2 id="configTitle">Configure Product</h2>
+                        <div id="options-container"></div>
+
+                        <div id="price-summary">
+                            <div class="price-row base">
+                                <span>Base Price</span>
+                                <span id="basePrice">$0.00</span>
+                            </div>
+                            <div id="optionsPrice"></div>
+                            <div class="price-row total">
+                                <span>Total</span>
+                                <span id="totalPrice">$0.00</span>
+                            </div>
+                        </div>
+
+                        <div id="config-name-group">
+                            <label>Configuration Name</label>
+                            <input type="text" id="configName" placeholder="My custom config">
+                        </div>
+
+                        <div id="action-buttons">
+                            <button id="saveConfig" class="btn-primary">Save Configuration</button>
+                            <button id="addToCart" class="btn-secondary">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="saved-view" class="hidden">
+                <h2>Saved Configurations</h2>
+                <div id="saved-list"></div>
+            </div>
+        </main>
+
+        <div id="loading">
+            <div class="spinner"></div>
+            <p>Loading products...</p>
+        </div>
+
+        <div id="notification" class="hidden"></div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

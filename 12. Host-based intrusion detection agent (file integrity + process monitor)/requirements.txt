@@ -1,0 +1,4 @@
+psutil>=5.9
+watchdog>=4.0
+pyinstaller>=6.0
+pytest>=8.0

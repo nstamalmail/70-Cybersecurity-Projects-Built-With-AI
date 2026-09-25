@@ -1,0 +1,79 @@
+From: PayPal Security <security-alert@paypa1-secure.com>
+Reply-To: admin@paypa1-secure.com
+Return-Path: bounce@malicious-relay.net
+To: victim@company.com
+Subject: URGENT: Your Account Has Been Suspended - Verify Now
+Date: Mon, 21 Sep 2026 08:30:00 -0400
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="----=_Part_12345"
+X-Mailer: PHPMailer 6.1.5
+X-Originating-IP: 198.51.100.23
+Received: from unknown (HELO phishing-server.ru) (198.51.100.23)
+    by mx.victim-corp.com with SMTP; Mon, 21 Sep 2026 08:29:45 -0400
+    (envelope-from <bounce@malicious-relay.net>)
+Received: from mail.paypa1-secure.com (mail.paypa1-secure.com [203.0.113.45])
+    by relay.malicious-relay.net with ESMTP id x1y2z3
+    for <victim@company.com>; Mon, 21 Sep 2026 08:29:30 -0400
+Received: from localhost (localhost [127.0.0.1])
+    by mail.paypa1-secure.com (Postfix) with ESMTP id abc111
+    for <victim@company.com>; Mon, 21 Sep 2026 08:29:00 -0400
+Authentication-Results: mx.victim-corp.com;
+    spf=fail (domain paypa1-secure.com does not designate 198.51.100.23 as permitted sender);
+    dkim=fail header1=paypa1-secure.com;
+    dmarc=fail (p=reject) header.from=paypa1-secure.com
+Received-SPF: fail (mx.victim-corp.com: domain paypa1-secure.com does not designate 198.51.100.23 as permitted sender)
+ARC-Authentication-Results: i=1; mx.victim-corp.com; spf=fail; dkim=fail; dmarc=fail
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paypa1-secure.com; s=mail;
+    bh=invalid=; b=forged=
+Message-ID: <scam123@paypa1-secure.com>
+X-Priority: 1
+Importance: urgent
+
+------=_Part_12345
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<html>
+<body style="font-family: Arial, sans-serif;">
+<div style="background-color: #ff0000; color: white; padding: 10px; text-align: center;">
+<h1>URGENT ACTION REQUIRED</h1>
+</div>
+<p>Dear Valued Customer,</p>
+<p>We have detected <strong>unauthorized activity</strong> on your PayPal account. Your account has been <strong>suspended</strong> until you verify your identity.</p>
+<p>Click the link below to verify your account immediately:</p>
+<p><a href="https://paypa1-secure.com/verify?user=victim&token=abc123" style="color: #0066cc;">Click Here to Verify Your Account</a></p>
+<p>Or copy this link: hxxps://paypa1-secure[.]com/verify?user=victim&token=abc123</p>
+<p><strong>Warning:</strong> If you do not verify within 24 hours, your account will be permanently closed.</p>
+<p>Additional links:</p>
+<ul>
+<li><a href="https://192.168.1.100/phish/login">Direct Login</a></li>
+<li><a href="http://login-verify.account-update.com/phish">Account Recovery</a></li>
+</ul>
+<p>You can also visit: https://www.paypal.com/signin (this is the legitimate site for comparison)</p>
+<p>Regards,<br>PayPal Security Team</p>
+<img src="http://tracker.paypa1-secure.com/open?id=12345" width="1" height="1" />
+</body>
+</html>
+
+------=_Part_12345
+Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="invoice_final.docm"
+X-Attachment-Id: attach_001
+
+UEsDBBQABgAIAAAAIQBgNnhF5AEAANkEAAATAAgCW0NvbnRlbnRfVHlwZXNdLnhtbCCiBAIooAAC
+------=_Part_12345
+Content-Type: application/pdf
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="payment_receipt.pdf"
+X-Attachment-Id: attach_002
+
+JVBERi0xLjAKMSAwIG9iago8PAovVHlwZSAvQ2F0YWxvZwovUGFnZXMgMiAwIFIKPj4KZW5kb2Jq
+------=_Part_12345
+Content-Type: application/x-msdownload
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="update_helper.exe"
+X-Attachment-Id: attach_003
+
+TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+------=_Part_12345--

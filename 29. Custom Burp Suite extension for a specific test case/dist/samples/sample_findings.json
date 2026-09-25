@@ -1,0 +1,61 @@
+{
+  "tool": "CBSEF",
+  "type": "findings-import",
+  "version": "1.0.0",
+  "comment": "Sample imported-findings file. Use Reports tab -> 'Import findings file' to generate a report without running Burp. status: candidate|confirmed|false_positive; confidence: high|medium|low; test_case: mass_assignment|jwt_confusion|oauth_redirect|introspection.",
+  "session": {
+    "name": "sample session — lab API review",
+    "test_case": "mass_assignment",
+    "started_at": "2026-09-25 15:10:00"
+  },
+  "findings": [
+    {
+      "finding_id": "a1b2c3d4e5f6",
+      "test_case": "mass_assignment",
+      "status": "confirmed",
+      "confidence": "high",
+      "method": "POST",
+      "url": "https://lab.example.local/api/users",
+      "endpoint": "/api/users",
+      "parameter": "is_admin",
+      "signal_description": "probe field echoed in response; status changed 200 -> 201; response length delta +64 bytes",
+      "baseline_request": "POST /api/users HTTP/1.1\nHost: lab.example.local\nContent-Type: application/json\n\n{\"username\": \"demo\", \"email\": \"d@x.y\"}",
+      "baseline_response": "status=200 len=120 body_hash=8f14e45fceea16",
+      "probe_request": "POST /api/users HTTP/1.1\nHost: lab.example.local\nContent-Type: application/json\n\n{\"username\": \"demo\", \"email\": \"d@x.y\", \"is_admin\": true}",
+      "probe_response": "status=201 len=184 body_hash=0777d5c17d4066",
+      "differential": { "added_fields": { "is_admin": true }, "status_changed": true, "len_delta": 64, "echoed_fields": ["is_admin"] },
+      "remediation": "Use explicit field allowlists (DTOs / strong parameters) for every bindable model; reject unknown fields; never bind security-sensitive fields from user input."
+    },
+    {
+      "finding_id": "b2c3d4e5f6a1",
+      "test_case": "mass_assignment",
+      "status": "candidate",
+      "confidence": "medium",
+      "method": "PUT",
+      "url": "https://lab.example.local/api/profile",
+      "endpoint": "/api/profile",
+      "parameter": "role",
+      "signal_description": "response length delta +32 bytes when role=admin added",
+      "baseline_request": "PUT /api/profile HTTP/1.1\nHost: lab.example.local\nContent-Type: application/json\n\n{\"email\": \"d@x.y\"}",
+      "baseline_response": "status=200 len=96 body_hash=9bf31c7ff731e9",
+      "probe_request": "PUT /api/profile HTTP/1.1\nHost: lab.example.local\nContent-Type: application/json\n\n{\"email\": \"d@x.y\", \"role\": \"admin\"}",
+      "probe_response": "status=200 len=128 body_hash=f1eb4c4d1f6a7d",
+      "differential": { "added_fields": { "role": "admin" }, "status_changed": false, "len_delta": 32, "echoed_fields": [] }
+    },
+    {
+      "finding_id": "c3d4e5f6a1b2",
+      "test_case": "jwt_confusion",
+      "status": "candidate",
+      "confidence": "high",
+      "method": "GET",
+      "url": "https://lab.example.local/api/me",
+      "endpoint": "/api/me",
+      "parameter": "Authorization/JWT",
+      "signal_description": "JWT alg=none token in traffic",
+      "baseline_request": "GET /api/me HTTP/1.1\nAuthorization: Bearer eyJhbGciOiAibm9uZSIsICJ0eXAiOiAiSldUIn0.eyJzdWIiOiAiMTIzIn0.",
+      "baseline_response": "",
+      "differential": {},
+      "remediation": "Pin the expected algorithm server-side; reject alg=none and any algorithm not in the allowlist."
+    }
+  ]
+}

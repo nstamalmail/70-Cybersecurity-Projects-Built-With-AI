@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hasharmor"
+version = "1.0.0"
+description = "Offline password strength auditor & wordlist-based cracker (own hashes only)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "HashArmor contributors" }]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Security",
+    "Environment :: X11 Applications",
+]
+
+[tool.setuptools]
+packages = ["core", "gui", "gui.tabs"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,82 @@
+{
+  "config": {
+    "duration_s": 120.0,
+    "profiles": [
+      {
+        "agent_count": 10,
+        "base_delay_s": 30,
+        "cap_s": 300.0,
+        "jitter_s": 10.0,
+        "multiplier": 3.0,
+        "name": "herd-fixed",
+        "seed": 1234,
+        "startup_spread_s": 0.0,
+        "strategy": "fixed"
+      },
+      {
+        "agent_count": 10,
+        "base_delay_s": 30,
+        "cap_s": 300.0,
+        "jitter_s": 20,
+        "multiplier": 3.0,
+        "name": "uniform",
+        "seed": 1734,
+        "startup_spread_s": 0.0,
+        "strategy": "uniform"
+      }
+    ],
+    "seed": 1234,
+    "server": {
+      "bucket_s": 10.0,
+      "failure_rate": 0.0,
+      "latency_max_ms": 120,
+      "latency_min_ms": 20,
+      "lockout_after_failures": 0,
+      "lockout_duration_s": 30.0
+    },
+    "speed": 100.0
+  },
+  "config_fingerprint": "fe9a9e36abd63167",
+  "events_recorded": 95,
+  "note": "",
+  "saved_at_utc": "2026-09-09T17:37:47+00:00",
+  "schema_version": 1,
+  "summary": {
+    "agents": 20,
+    "config_fingerprint": "fe9a9e36abd63167",
+    "elapsed_sim_s": 171.89999999827705,
+    "profiles": {
+      "herd-fixed": {
+        "agents": 10,
+        "checkins": 40,
+        "drift_max_s": 1.3000000035390258,
+        "drift_p50_s": 1.2500000011641532,
+        "drift_p95_s": 1.3000000035390258,
+        "failures": 0,
+        "interval_mean_s": 31.266666667458292,
+        "interval_std_s": 0.05773502966122921,
+        "retries": 0,
+        "successes": 40
+      },
+      "uniform": {
+        "agents": 10,
+        "checkins": 34,
+        "drift_max_s": 1.341038278187625,
+        "drift_p50_s": 0.8409980198484845,
+        "drift_p95_s": 1.292937175341649,
+        "failures": 0,
+        "interval_mean_s": 40.12833333312301,
+        "interval_std_s": 3.6338024230879014,
+        "retries": 0,
+        "successes": 34
+      }
+    },
+    "server": {
+      "locked": 0,
+      "ok": 74,
+      "rejected": 0,
+      "rejection_rate": 0.0,
+      "total": 74
+    }
+  }
+}

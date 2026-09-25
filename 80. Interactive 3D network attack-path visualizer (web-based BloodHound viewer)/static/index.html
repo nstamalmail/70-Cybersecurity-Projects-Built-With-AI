@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Attack Path Visualizer</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div class="header-left">
+                <h1>&#9760; ATTACK PATH VISUALIZER</h1>
+                <span class="status-badge">BLOODHOUND</span>
+            </div>
+            <div class="header-center">
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search nodes (name, IP, hostname)...">
+                    <div id="search-results" class="search-results hidden"></div>
+                </div>
+            </div>
+            <div class="header-right">
+                <button id="btn-report" class="ctrl-btn report-btn">REPORT</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="graph-area">
+                <div id="three-canvas"></div>
+                <div class="side-panels">
+                    <div class="panel legend-panel">
+                        <h2>LEGEND</h2>
+                        <div class="legend-section">
+                            <h3>Node Types</h3>
+                            <div class="legend-item"><span class="legend-dot" style="background:#3388ff"></span> User</div>
+                            <div class="legend-item"><span class="legend-dot" style="background:#ff4444"></span> Group</div>
+                            <div class="legend-item"><span class="legend-dot" style="background:#33bb55"></span> Computer</div>
+                            <div class="legend-item"><span class="legend-dot" style="background:#ffaa33"></span> Domain</div>
+                        </div>
+                        <div class="legend-section">
+                            <h3>Edge Types</h3>
+                            <div class="legend-item"><span class="legend-line" style="background:#ff4444"></span> AdminTo</div>
+                            <div class="legend-item"><span class="legend-line" style="background:#ff8800"></span> GenericAll</div>
+                            <div class="legend-item"><span class="legend-line" style="background:#4488ff"></span> MemberOf</div>
+                            <div class="legend-item"><span class="legend-line" style="background:#44ff88"></span> HasSession</div>
+                            <div class="legend-item"><span class="legend-line" style="background:#ff00ff"></span> DCSync</div>
+                            <div class="legend-item"><span class="legend-line" style="background:#ffff00"></span> WriteDacl</div>
+                        </div>
+                        <div class="legend-section">
+                            <h3>Filter</h3>
+                            <label class="filter-label"><input type="checkbox" id="filter-user" checked> Users</label>
+                            <label class="filter-label"><input type="checkbox" id="filter-group" checked> Groups</label>
+                            <label class="filter-label"><input type="checkbox" id="filter-computer" checked> Computers</label>
+                            <label class="filter-label"><input type="checkbox" id="filter-domain" checked> Domains</label>
+                        </div>
+                    </div>
+                    <div class="panel details-panel">
+                        <h2>NODE DETAILS</h2>
+                        <div id="node-details">
+                            <p class="placeholder-text">Click a node to see details</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-panel">
+                <div class="panel paths-panel">
+                    <h2>ATTACK PATHS</h2>
+                    <div id="paths-list"></div>
+                </div>
+                <div class="panel path-detail-panel">
+                    <h2>PATH VISUALIZATION</h2>
+                    <div id="path-detail">
+                        <p class="placeholder-text">Select a path to visualize</p>
+                    </div>
+                </div>
+                <div class="panel pathfind-panel">
+                    <h2>FIND PATH</h2>
+                    <div class="pathfind-form">
+                        <select id="source-node"><option value="">Source node...</option></select>
+                        <select id="target-node"><option value="">Target node...</option></select>
+                        <button id="btn-find-path" class="ctrl-btn">FIND PATH</button>
+                    </div>
+                    <div id="pathfind-result"></div>
+                </div>
+            </div>
+        </main>
+
+        <div id="minimap">
+            <canvas id="minimap-canvas" width="180" height="130"></canvas>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

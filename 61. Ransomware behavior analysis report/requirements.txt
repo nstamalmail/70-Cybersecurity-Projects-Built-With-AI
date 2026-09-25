@@ -1,0 +1,18 @@
+# API Call Sequence Visualizer - runtime dependencies
+#
+#   pip install -r requirements.txt
+#
+# Everything below is installed globally in the reference environment; the
+# application itself only needs PySide6 (GUI + PDF export).  orjson is optional
+# and is picked up automatically when present, which speeds up parsing of very
+# large sandbox reports.
+
+PySide6>=6.6            # GUI toolkit, QPainter charts and QPdfWriter report export
+orjson>=3.9             # optional: fast JSON parsing for multi-hundred-MB reports
+
+# Build-only dependency (portable one-file executable):
+# PyInstaller>=6.6
+#
+# The workbench has no other third-party requirements: the BSON reader, the
+# n-gram/Markov mining, the behavioural pattern engine, the IOC extractors and
+# every chart are implemented in this repository.

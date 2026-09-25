@@ -1,0 +1,45 @@
+======================================================================
+  DNS Cache Poisoning Lab Report
+======================================================================
+Lab ID          : lab-sample-001
+Date            : 2026-09-19T21:12:44
+Resolver port   : 5311   Upstream port: 5301
+Target domain   : bank.test.lab
+Legit answer    : 203.0.113.12
+Forged answer   : 6.6.6.6
+Port randomization: OFF
+DNSSEC mode     : OFF
+Guess strategy  : known
+Attempts        : 3
+Poisoning result: SUCCESSFUL (cache poisoned)
+
+[CACHE BEFORE]
+  test.lab                 203.0.113.10     TTL 42 (legitimate)
+  www.test.lab             203.0.113.11     TTL 58 (legitimate)
+[CACHE AFTER]
+  test.lab                 203.0.113.10     TTL 41 (legitimate)
+  www.test.lab             203.0.113.11     TTL 57 (legitimate)
+  bank.test.lab            6.6.6.6          TTL 300 (forged)  <-- POISONED
+
+[RESOLVER LOG]
+  21:12:20.114 query      stub 127.0.0.1:54321 asks bank.test.lab A
+  21:12:20.115 cache-hit  MISS - forwarding to upstream
+  21:12:20.116 forward    upstream 127.0.0.1:5301 txn=0x9a41 sport=53153
+  21:12:20.140 reject     txn ID mismatch (got 0x9a42 expected 0x9a41) - forged response REJECTED
+  21:12:21.003 cache-put  bank.test.lab -> 6.6.6.6 cached (TTL 300, forged accepted)
+  21:12:21.004 reject     late legitimate reply discarded (socket already closed)
+
+[ATTACK LOG]
+  21:12:20.200 attack started: target=bank.test.lab forged-ip=6.6.6.6 strategy=known
+  21:12:21.001 attempt 1: guess=0x9a40 mismatch
+  21:12:21.002 attempt 2: guess=0x9a41 MATCH - forged response accepted
+  21:12:21.003 SUCCESS after 2 attempts: txn=0x9a41 spoofed sport=53153 - cache POISONED
+
+[DEFENSE RECOMMENDATIONS]
+- Deploy DNSSEC validation: forged responses lack valid RRSIG signatures and are rejected.
+- Randomize UDP source ports: raises attacker search space beyond 1 billion attempts.
+- The demo attack succeeded only with 'known' strategy (educational omniscience);
+  real attacks must guess the 16-bit txn ID - about 65,536 tries on average.
+
+ISOLATED LAB ONLY - never aim this tool at production DNS infrastructure.
+======================================================================

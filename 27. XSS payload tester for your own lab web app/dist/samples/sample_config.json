@@ -1,0 +1,32 @@
+{
+  "tool": "XPT",
+  "type": "config",
+  "version": "1.0.0",
+  "comment": "Sample configuration. Import via toolbar: 'Import config'. Point target_url at your own lab app, or run the bundled demo target (samples/demo_target.py).",
+  "target": {
+    "target_url": "http://127.0.0.1:8765/search?q=hello",
+    "method": "GET",
+    "headers": {
+      "Accept": "text/html"
+    },
+    "cookies": {
+      "session": "demo-session-42"
+    },
+    "body": "",
+    "body_type": "none",
+    "parameters": [
+      { "location": "query", "name": "q", "value": "hello", "enabled": true }
+    ]
+  },
+  "payloads": {
+    "contexts": ["html_body", "html_attribute", "js_string", "url_param"],
+    "custom_payloads": "<svg onload=alert(1)>\n\"><img src=x onerror=alert(1)>"
+  },
+  "scan": {
+    "delay_ms": 20,
+    "timeout": 10.0,
+    "max_requests": 400,
+    "verify_ssl": true,
+    "proxy": ""
+  }
+}

@@ -1,0 +1,48 @@
+======================================================================
+  Bandwidth Monitor Report
+======================================================================
+Period     : 2026-09-21T02:44:30  ->  2026-09-21T02:44:32
+Snapshots  : 4
+System     : test system
+
+[SUMMARY]
+Total transfer (rate-sum) : up 2.6 KB / down 5.1 KB
+Average rate per sample   : up 669.7 B/s, down 1.3 KB/s
+Peak rate                 : down 2.8 KB/s at 2026-09-21T02:44:31
+
+[TOP PROCESSES (by peak rate)]
+PROCESS                             SAMPLES     PEAK RATE
+------------------------------------------------------------
+svchost.exe (16828)                 4             0.0 B/s
+System (4)                          4             0.0 B/s
+svchost.exe (5792)                  4             0.0 B/s
+StartMenuExperienceHost.exe (12184) 4             0.0 B/s
+freebuff.exe (13660)                4             0.0 B/s
+svchost.exe (9672)                  4             0.0 B/s
+wininit.exe (1668)                  4             0.0 B/s
+svchost.exe (4120)                  4             0.0 B/s
+svchost.exe (7516)                  4             0.0 B/s
+explorer.exe (3616)                 4             0.0 B/s
+svchost.exe (2520)                  4             0.0 B/s
+lsass.exe (1844)                    4             0.0 B/s
+svchost.exe (764)                   4             0.0 B/s
+opencode.exe (11740)                4             0.0 B/s
+svchost.exe (2548)                  4             0.0 B/s
+
+[INTERFACES (cumulative counters)]
+  Bluetooth Network Connection sent      0.0 B   recv      0.0 B
+  Ethernet                     sent      0.0 B   recv      0.0 B
+  Ethernet 3                   sent      0.0 B   recv      0.0 B
+  Ethernet 4                   sent      0.0 B   recv      0.0 B
+  Local Area Connection* 10    sent      0.0 B   recv      0.0 B
+  Local Area Connection* 9     sent      0.0 B   recv      0.0 B
+  Loopback Pseudo-Interface 1  sent      0.0 B   recv      0.0 B
+  Wi-Fi                        sent   313.8 MB   recv   567.6 MB
+
+[ALERTS]
+  now test alert
+
+[METHODOLOGY]
+Per-process attribution uses psutil connection counts; byte counts are
+estimates (psutil limitation). Run elevated for complete process visibility.
+======================================================================

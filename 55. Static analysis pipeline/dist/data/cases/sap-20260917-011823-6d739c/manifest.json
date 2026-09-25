@@ -1,0 +1,14 @@
+{
+  "run_id": "sap-20260917-011823-6d739c",
+  "file_name": "demo_synthetic_packed.exe.SAMPLE (in-memory)",
+  "sha256": "60733f16bd791904ce42f6bffe6a031dc52a7486f3d53b4d6efa81ded0b65cc7",
+  "analysed_at": "2026-09-17T01:18:23",
+  "duration_s": 0.021,
+  "options": {
+    "min_string_length": 4,
+    "entropy_threshold": 7.0,
+    "network_lookups": false,
+    "simulated_intel": false,
+    "max_file_size_mb": 500
+  }
+}

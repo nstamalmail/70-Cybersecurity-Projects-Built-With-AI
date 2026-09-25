@@ -1,0 +1,59 @@
+{
+  "campaign_id": "CAM-001",
+  "name": "Awareness Campaign Q1 2024",
+  "template_id": "TEMP-001",
+  "schedule_start": "2024-03-01T09:00:00",
+  "schedule_end": "2024-03-15T17:00:00",
+  "status": "active",
+  "created_at": "2024-02-20T14:30:00",
+  "target_count": 150,
+  "metrics": {
+    "sent": 150,
+    "opened": 98,
+    "clicked": 27,
+    "submitted": 12,
+    "reported": 8,
+    "trained": 5,
+    "click_rate": "18.0%",
+    "reporting_rate": "5.3%",
+    "submission_rate": "8.0%",
+    "median_time_to_report_minutes": 12
+  },
+  "targets": [
+    {
+      "participant_id": "P-001",
+      "email": "alice@company.com",
+      "group": "management",
+      "consent": "granted",
+      "events": ["sent", "opened", "clicked", "reported"]
+    },
+    {
+      "participant_id": "P-002", 
+      "email": "bob@company.com",
+      "group": "staff",
+      "consent": "granted",
+      "events": ["sent", "opened", "clicked"]
+    },
+    {
+      "participant_id": "P-003",
+      "email": "carol@company.com",
+      "group": "intern",
+      "consent": "pending",
+      "events": ["sent"]
+    },
+    {
+      "participant_id": "P-004",
+      "email": "dave@company.com",
+      "group": "management",
+      "consent": "granted",
+      "events": ["sent", "opened", "reported"]
+    },
+    {
+      "participant_id": "P-005",
+      "email": "eve@company.com",
+      "group": "staff",
+      "consent": "granted",
+      "events": ["sent", "opened"]
+    }
+  ]
+}

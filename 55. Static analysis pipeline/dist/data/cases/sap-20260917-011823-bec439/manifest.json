@@ -1,0 +1,14 @@
+{
+  "run_id": "sap-20260917-011823-bec439",
+  "file_name": "demo_benign_update.exe.SAMPLE",
+  "sha256": "8288623be1a7b63e72da3e4de49ba08c63db2112902758d50e13980e195733c5",
+  "analysed_at": "2026-09-17T01:18:23",
+  "duration_s": 0.038,
+  "options": {
+    "min_string_length": 4,
+    "entropy_threshold": 7.0,
+    "network_lookups": false,
+    "simulated_intel": false,
+    "max_file_size_mb": 500
+  }
+}

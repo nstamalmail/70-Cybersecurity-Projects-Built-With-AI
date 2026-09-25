@@ -1,0 +1,27 @@
+{"offset": 376, "offset_hex": "0x00000178", "type": "ascii", "value": ".text", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 415, "offset_hex": "0x0000019f", "type": "ascii", "value": "`.rdata", "length": 7, "classification": "other", "labels": ["other"]}
+{"offset": 455, "offset_hex": "0x000001c7", "type": "ascii", "value": "@.data", "length": 6, "classification": "other", "labels": ["other"]}
+{"offset": 496, "offset_hex": "0x000001f0", "type": "ascii", "value": ".rsrc", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 2762, "offset_hex": "0x00000aca", "type": "ascii", "value": "CreateFileW", "length": 11, "classification": "other", "labels": ["other"]}
+{"offset": 2776, "offset_hex": "0x00000ad8", "type": "ascii", "value": "ReadFile", "length": 8, "classification": "other", "labels": ["other"]}
+{"offset": 2788, "offset_hex": "0x00000ae4", "type": "ascii", "value": "WriteFile", "length": 9, "classification": "other", "labels": ["other"]}
+{"offset": 2800, "offset_hex": "0x00000af0", "type": "ascii", "value": "CloseHandle", "length": 11, "classification": "other", "labels": ["other"]}
+{"offset": 2814, "offset_hex": "0x00000afe", "type": "ascii", "value": "GetModuleHandleW", "length": 16, "classification": "other", "labels": ["other"]}
+{"offset": 2834, "offset_hex": "0x00000b12", "type": "ascii", "value": "GetTickCount64", "length": 14, "classification": "other", "labels": ["other"]}
+{"offset": 2852, "offset_hex": "0x00000b24", "type": "ascii", "value": "QueryPerformanceCounter", "length": 23, "classification": "other", "labels": ["other"]}
+{"offset": 2894, "offset_hex": "0x00000b4e", "type": "ascii", "value": "MessageBoxW", "length": 11, "classification": "other", "labels": ["other"]}
+{"offset": 2908, "offset_hex": "0x00000b5c", "type": "ascii", "value": "DispatchMessageW", "length": 16, "classification": "other", "labels": ["other"]}
+{"offset": 2928, "offset_hex": "0x00000b70", "type": "ascii", "value": "TranslateMessage", "length": 16, "classification": "other", "labels": ["other"]}
+{"offset": 2964, "offset_hex": "0x00000b94", "type": "ascii", "value": "RegOpenKeyExW", "length": 13, "classification": "other", "labels": ["other"]}
+{"offset": 2980, "offset_hex": "0x00000ba4", "type": "ascii", "value": "RegQueryValueExW", "length": 16, "classification": "other", "labels": ["other"]}
+{"offset": 3072, "offset_hex": "0x00000c00", "type": "ascii", "value": "KERNEL32.dll", "length": 12, "classification": "other", "labels": ["other"]}
+{"offset": 3093, "offset_hex": "0x00000c15", "type": "ascii", "value": "USER32.dll", "length": 10, "classification": "other", "labels": ["other"]}
+{"offset": 3112, "offset_hex": "0x00000c28", "type": "ascii", "value": "ADVAPI32.dll", "length": 12, "classification": "other", "labels": ["other"]}
+{"offset": 4096, "offset_hex": "0x00001000", "type": "ascii", "value": "https://www.microsoft.com/en-us/download/details.aspx?id=99999", "length": 62, "classification": "url", "labels": ["url", "domain"]}
+{"offset": 4159, "offset_hex": "0x0000103f", "type": "ascii", "value": "Software\\Microsoft\\Windows\\CurrentVersion\\App Paths", "length": 51, "classification": "other", "labels": ["other"]}
+{"offset": 4211, "offset_hex": "0x00001073", "type": "ascii", "value": "C:\\Program Files\\Contoso\\Updater\\contoso-updater.exe", "length": 52, "classification": "file_path", "labels": ["file_path"]}
+{"offset": 4264, "offset_hex": "0x000010a8", "type": "ascii", "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0", "length": 73, "classification": "user_agent", "labels": ["user_agent"]}
+{"offset": 4338, "offset_hex": "0x000010f2", "type": "ascii", "value": "Contoso Software Update Service", "length": 31, "classification": "other", "labels": ["other"]}
+{"offset": 4370, "offset_hex": "0x00001112", "type": "ascii", "value": "10.0.0.5", "length": 8, "classification": "ipv4", "labels": ["ipv4"]}
+{"offset": 4379, "offset_hex": "0x0000111b", "type": "ascii", "value": "C:\\ProgramData\\Contoso\\Updater\\config.xml", "length": 41, "classification": "file_path", "labels": ["file_path"]}
+{"offset": 4419, "offset_hex": "0x00001143", "type": "unicode", "value": "lC:\\Users\\Public\\config.dat", "length": 27, "classification": "file_path", "labels": ["file_path"]}

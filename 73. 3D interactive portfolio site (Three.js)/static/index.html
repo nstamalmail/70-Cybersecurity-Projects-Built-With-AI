@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Interactive Portfolio</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <div id="overlay">
+        <nav id="main-nav">
+            <div class="logo">PORTFOLIO<span class="accent">3D</span></div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-btn active" data-section="home">Home</a></li>
+                <li><a href="#projects" class="nav-btn" data-section="projects">Projects</a></li>
+                <li><a href="#analytics" class="nav-btn" data-section="analytics">Analytics</a></li>
+                <li><a href="#contact" class="nav-btn" data-section="contact">Contact</a></li>
+                <li><a href="/api/report/portfolio" class="nav-btn report-btn" target="_blank">Download Report</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+
+        <section id="home" class="section active">
+            <div class="hero-content">
+                <h1>Creative <span class="accent">Developer</span> Portfolio</h1>
+                <p>Exploring the intersection of code, 3D graphics, and interactive experiences.</p>
+                <div class="hero-stats">
+                    <div class="stat"><span class="stat-value" id="stat-projects">10</span><span class="stat-label">Projects</span></div>
+                    <div class="stat"><span class="stat-value" id="stat-visitors">12.8K</span><span class="stat-label">Visitors</span></div>
+                    <div class="stat"><span class="stat-value" id="stat-views">34.2K</span><span class="stat-label">Views</span></div>
+                </div>
+                <button class="cta-btn" onclick="navigateTo('projects')">View Projects</button>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="section-header">
+                <h2>Featured <span class="accent">Projects</span></h2>
+                <div class="filter-bar">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="featured">Featured</button>
+                </div>
+            </div>
+            <div id="projects-grid" class="projects-grid"></div>
+            <div id="project-detail" class="project-detail hidden">
+                <button class="back-btn" onclick="closeProjectDetail()">&larr; Back</button>
+                <div id="project-detail-content"></div>
+            </div>
+        </section>
+
+        <section id="analytics" class="section">
+            <h2>Analytics <span class="accent">Dashboard</span></h2>
+            <div id="analytics-content" class="analytics-grid"></div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Get In <span class="accent">Touch</span></h2>
+            <form id="contact-form" class="contact-form">
+                <div class="form-group">
+                    <input type="text" id="contact-name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="contact-email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="contact-subject" placeholder="Subject" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="contact-message" placeholder="Your Message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="cta-btn">Send Message</button>
+                <div id="contact-status" class="contact-status"></div>
+            </form>
+        </section>
+    </div>
+
+    <div id="loading-screen">
+        <div class="loader"></div>
+        <p>Loading 3D Experience...</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

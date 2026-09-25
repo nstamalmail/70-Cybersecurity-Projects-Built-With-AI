@@ -1,0 +1,97 @@
+{
+  "title": "Proxy Traffic Report",
+  "session_id": "cps-smoke",
+  "timestamp": "2026-09-21T02:44:30",
+  "config": {
+    "listen_host": "127.0.0.1",
+    "listen_port": 8899,
+    "protocol_mode": "auto",
+    "auth_required": false,
+    "blocklist_enabled": true,
+    "blocklist_rules": [
+      "*.blocked.example"
+    ],
+    "log_enabled": true,
+    "max_connections": 1000
+  },
+  "total_connections": 3,
+  "total_bytes_up": 108,
+  "total_bytes_down": 314,
+  "total_bytes": 422,
+  "blocked_count": 1,
+  "error_count": 0,
+  "auth_fail_count": 0,
+  "unique_destinations": 2,
+  "top_destinations": [
+    {
+      "dest": "127.0.0.1:8901",
+      "count": 2,
+      "bytes": 422
+    },
+    {
+      "dest": "evil.blocked.example:443",
+      "count": 1,
+      "bytes": 0
+    }
+  ],
+  "top_clients": [
+    {
+      "client": "127.0.0.1",
+      "count": 3
+    }
+  ],
+  "blocked": [
+    {
+      "timestamp": "2026-09-21T02:44:29",
+      "client_ip": "127.0.0.1",
+      "dest_host": "evil.blocked.example",
+      "dest_port": 443,
+      "protocol": "HTTP",
+      "bytes_up": 0,
+      "bytes_down": 0,
+      "duration_ms": 0,
+      "status": "BLOCKED",
+      "detail": "wildcard *.blocked.example"
+    }
+  ],
+  "errors": [],
+  "traffic": [
+    {
+      "timestamp": "2026-09-21T02:44:29",
+      "client_ip": "127.0.0.1",
+      "dest_host": "127.0.0.1",
+      "dest_port": 8901,
+      "protocol": "HTTP",
+      "bytes_up": 54,
+      "bytes_down": 157,
+      "duration_ms": 0,
+      "status": "ALLOWED",
+      "detail": ""
+    },
+    {
+      "timestamp": "2026-09-21T02:44:29",
+      "client_ip": "127.0.0.1",
+      "dest_host": "127.0.0.1",
+      "dest_port": 8901,
+      "protocol": "SOCKS5",
+      "bytes_up": 54,
+      "bytes_down": 157,
+      "duration_ms": 0,
+      "status": "ALLOWED",
+      "detail": ""
+    },
+    {
+      "timestamp": "2026-09-21T02:44:29",
+      "client_ip": "127.0.0.1",
+      "dest_host": "evil.blocked.example",
+      "dest_port": 443,
+      "protocol": "HTTP",
+      "bytes_up": 0,
+      "bytes_down": 0,
+      "duration_ms": 0,
+      "status": "BLOCKED",
+      "detail": "wildcard *.blocked.example"
+    }
+  ],
+  "report_generated": "2026-09-21T02:44:30"
+}

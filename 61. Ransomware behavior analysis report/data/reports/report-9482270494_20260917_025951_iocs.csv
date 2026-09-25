@@ -1,0 +1,12 @@
+# Indicators of Compromise
+ioc_type,value,source,confidence,context
+file,C:\\Users\\analyst\\*,FindFirstFileW,0.70,
+file,file1.txt,FindNextFileW,0.70,
+file,file2.txt,FindNextFileW,0.70,
+file,file3.txt,FindNextFileW,0.70,
+file,C:\\Users\\analyst\\file1.txt,CreateFileW,0.70,
+file,C:\\Users\\analyst\\file1.txt.encrypted,WriteFile,0.70,
+file,C:\\Users\\analyst\\file2.txt,CreateFileW,0.70,
+file,C:\\Users\\analyst\\file2.txt.encrypted,WriteFile,0.70,
+file,C:\\Users\\analyst\\file3.txt,CreateFileW,0.70,
+file,C:\\Users\\analyst\\file3.txt.encrypted,WriteFile,0.70,

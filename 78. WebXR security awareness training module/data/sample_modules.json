@@ -1,0 +1,371 @@
+{
+  "modules": [
+    {
+      "id": "phishing_001",
+      "title": "Phishing Email Identification",
+      "description": "Learn to identify and respond to phishing emails effectively.",
+      "category": "Email Security",
+      "difficulty": "beginner",
+      "estimated_time_minutes": 15,
+      "lessons": [
+        {
+          "id": "phishing_intro",
+          "title": "Introduction to Phishing",
+          "content": "Phishing is a cyber attack that uses disguised email as a weapon. The goal is to trick the email recipient into believing that the message is something they want or need.",
+          "duration_minutes": 3,
+          "interactive": false
+        },
+        {
+          "id": "phishing_signs",
+          "title": "Red Flags in Phishing Emails",
+          "content": "Common signs include: urgent language, spelling/grammar errors, suspicious sender addresses, unexpected attachments, and requests for personal information.",
+          "duration_minutes": 4,
+          "interactive": true,
+          "3d_scene": "email_viewer"
+        },
+        {
+          "id": "phishing_practice",
+          "title": "Practice Exercise",
+          "content": "Examine the following emails and identify which ones are phishing attempts.",
+          "duration_minutes": 8,
+          "interactive": true,
+          "3d_scene": "phishing_quiz"
+        }
+      ],
+      "quiz": {
+        "questions": [
+          {
+            "id": "q1",
+            "question": "Which of the following is a common sign of a phishing email?",
+            "options": [
+              {"id": "a", "text": "Professional formatting and grammar"},
+              {"id": "b", "text": "Urgent language demanding immediate action"},
+              {"id": "c", "text": "Email from a known colleague"},
+              {"id": "d", "text": "Contains only text, no links"}
+            ],
+            "correct": "b",
+            "explanation": "Phishing emails often use urgent language to pressure recipients into acting quickly without thinking."
+          },
+          {
+            "id": "q2",
+            "question": "What should you do if you receive a suspicious email?",
+            "options": [
+              {"id": "a", "text": "Click all links to verify"},
+              {"id": "b", "text": "Forward it to all colleagues"},
+              {"id": "c", "text": "Report it to IT security"},
+              {"id": "d", "text": "Reply asking if it's legitimate"}
+            ],
+            "correct": "c",
+            "explanation": "Always report suspicious emails to your IT security team. Never click links or forward to others."
+          },
+          {
+            "id": "q3",
+            "question": "What does 'spoofing' mean in the context of phishing?",
+            "options": [
+              {"id": "a", "text": "Creating fake websites"},
+              {"id": "b", "text": "Disguising email to appear from a trusted source"},
+              {"id": "c", "text": "Stealing passwords"},
+              {"id": "d", "text": "Installing malware"}
+            ],
+            "correct": "b",
+            "explanation": "Spoofing involves falsifying email headers to make messages appear to come from someone the recipient trusts."
+          }
+        ],
+        "passing_score": 70
+      }
+    },
+    {
+      "id": "passwords_001",
+      "title": "Password Security Best Practices",
+      "description": "Master the art of creating and managing secure passwords.",
+      "category": "Authentication",
+      "difficulty": "beginner",
+      "estimated_time_minutes": 12,
+      "lessons": [
+        {
+          "id": "password_importance",
+          "title": "Why Passwords Matter",
+          "content": "Passwords are your first line of defense against unauthorized access. Weak passwords account for over 80% of security breaches.",
+          "duration_minutes": 2,
+          "interactive": false
+        },
+        {
+          "id": "password_strength",
+          "title": "Understanding Password Strength",
+          "content": "Strong passwords use a mix of uppercase, lowercase, numbers, and symbols. They should be at least 12 characters long.",
+          "duration_minutes": 4,
+          "interactive": true,
+          "3d_scene": "password_strength"
+        },
+        {
+          "id": "password_management",
+          "title": "Password Management Tools",
+          "content": "Password managers help you create and store unique, complex passwords for every account.",
+          "duration_minutes": 3,
+          "interactive": false
+        }
+      ],
+      "quiz": {
+        "questions": [
+          {
+            "id": "q1",
+            "question": "What is the recommended minimum length for a secure password?",
+            "options": [
+              {"id": "a", "text": "6 characters"},
+              {"id": "b", "text": "8 characters"},
+              {"id": "c", "text": "12 characters"},
+              {"id": "d", "text": "16 characters"}
+            ],
+            "correct": "c",
+            "explanation": "Modern security standards recommend passwords of at least 12 characters for adequate protection."
+          },
+          {
+            "id": "q2",
+            "question": "Which of the following is the strongest password?",
+            "options": [
+              {"id": "a", "text": "Password123!"},
+              {"id": "b", "text": "correcthorsebatterystaple"},
+              {"id": "c", "text": "P@$$w0rd"},
+              {"id": "d", "text": "12345678"}
+            ],
+            "correct": "b",
+            "explanation": "Passphrases using random words are longer and harder to crack than shorter complex passwords."
+          },
+          {
+            "id": "q3",
+            "question": "Why should you avoid reusing passwords across multiple accounts?",
+            "options": [
+              {"id": "a", "text": "It's hard to remember"},
+              {"id": "b", "text": "One breach compromises all accounts"},
+              {"id": "c", "text": "It's against company policy"},
+              {"id": "d", "text": "Passwords expire faster"}
+            ],
+            "correct": "b",
+            "explanation": "If one account is breached, attackers will try the same password on your other accounts."
+          }
+        ],
+        "passing_score": 70
+      }
+    },
+    {
+      "id": "social_001",
+      "title": "Social Engineering Awareness",
+      "description": "Recognize and defend against social engineering tactics.",
+      "category": "Human Factor",
+      "difficulty": "intermediate",
+      "estimated_time_minutes": 18,
+      "lessons": [
+        {
+          "id": "social_intro",
+          "title": "What is Social Engineering?",
+          "content": "Social engineering is the psychological manipulation of people into performing actions or divulging confidential information.",
+          "duration_minutes": 3,
+          "interactive": false
+        },
+        {
+          "id": "social_techniques",
+          "title": "Common Social Engineering Techniques",
+          "content": "Techniques include pretexting, baiting, tailgating, quid pro quo, and vishing (voice phishing).",
+          "duration_minutes": 5,
+          "interactive": true,
+          "3d_scene": "social_scenarios"
+        },
+        {
+          "id": "social_defense",
+          "title": "Defending Against Social Engineering",
+          "content": "Always verify identities, be cautious with requests for information, and follow proper authentication procedures.",
+          "duration_minutes": 5,
+          "interactive": true,
+          "3d_scene": "defense_practice"
+        }
+      ],
+      "quiz": {
+        "questions": [
+          {
+            "id": "q1",
+            "question": "What is 'pretexting' in social engineering?",
+            "options": [
+              {"id": "a", "text": "Creating a fake scenario to gain trust"},
+              {"id": "b", "text": "Leaving infected USB drives"},
+              {"id": "c", "text": "Calling pretending to be IT support"},
+              {"id": "d", "text": "Shoulder surfing"}
+            ],
+            "correct": "a",
+            "explanation": "Pretexting involves creating a fabricated scenario to engage victims and gain their trust."
+          },
+          {
+            "id": "q2",
+            "question": "Someone calls claiming to be from IT and asks for your password. What should you do?",
+            "options": [
+              {"id": "a", "text": "Provide the password if they sound legitimate"},
+              {"id": "b", "text": "Hang up and call IT directly using official number"},
+              {"id": "c", "text": "Give them a hint instead of full password"},
+              {"id": "d", "text": "Ask them to email you"}
+            ],
+            "correct": "b",
+            "explanation": "Always verify identity through independent channels. IT will never ask for your password."
+          },
+          {
+            "id": "q3",
+            "question": "What is 'tailgating' in physical security?",
+            "options": [
+              {"id": "a", "text": "Following someone through a secure door"},
+              {"id": "b", "text": "Installing keyloggers"},
+              {"id": "c", "text": "Phishing via text message"},
+              {"id": "d", "text": "Stealing ID badges"}
+            ],
+            "correct": "a",
+            "explanation": "Tailgating is following an authorized person through a secure entry point without proper credentials."
+          }
+        ],
+        "passing_score": 75
+      }
+    },
+    {
+      "id": "data_001",
+      "title": "Data Handling & Protection",
+      "description": "Learn proper procedures for handling sensitive data.",
+      "category": "Data Security",
+      "difficulty": "intermediate",
+      "estimated_time_minutes": 14,
+      "lessons": [
+        {
+          "id": "data_classification",
+          "title": "Data Classification",
+          "content": "Data is classified into categories: Public, Internal, Confidential, and Restricted based on sensitivity.",
+          "duration_minutes": 3,
+          "interactive": false
+        },
+        {
+          "id": "data_handling",
+          "title": "Proper Data Handling",
+          "content": "Different data types require different handling procedures for storage, transmission, and disposal.",
+          "duration_minutes": 5,
+          "interactive": true,
+          "3d_scene": "data_classification"
+        },
+        {
+          "id": "data_breach_response",
+          "title": "Data Breach Response",
+          "content": "Know the steps to take if you suspect a data breach has occurred.",
+          "duration_minutes": 4,
+          "interactive": false
+        }
+      ],
+      "quiz": {
+        "questions": [
+          {
+            "id": "q1",
+            "question": "Which data classification is the most sensitive?",
+            "options": [
+              {"id": "a", "text": "Public"},
+              {"id": "b", "text": "Internal"},
+              {"id": "c", "text": "Confidential"},
+              {"id": "d", "text": "Restricted"}
+            ],
+            "correct": "d",
+            "explanation": "Restricted is the highest classification for the most sensitive data."
+          },
+          {
+            "id": "q2",
+            "question": "How should you dispose of documents containing confidential information?",
+            "options": [
+              {"id": "a", "text": "Regular trash bin"},
+              {"id": "b", "text": "Recycling bin"},
+              {"id": "c", "text": "Cross-cut shredder"},
+              {"id": "d", "text": "Leave on desk"}
+            ],
+            "correct": "c",
+            "explanation": "Confidential documents should be cross-cut shredded to prevent reconstruction."
+          },
+          {
+            "id": "q3",
+            "question": "What is the first step if you suspect a data breach?",
+            "options": [
+              {"id": "a", "text": "Try to fix it yourself"},
+              {"id": "b", "text": "Report to IT security immediately"},
+              {"id": "c", "text": "Delete the affected data"},
+              {"id": "d", "text": "Wait and see if it resolves"}
+            ],
+            "correct": "b",
+            "explanation": "Always report suspected breaches immediately to allow proper containment and investigation."
+          }
+        ],
+        "passing_score": 70
+      }
+    },
+    {
+      "id": "physical_001",
+      "title": "Physical Security Awareness",
+      "description": "Protect your workspace and equipment from physical threats.",
+      "category": "Physical Security",
+      "difficulty": "beginner",
+      "estimated_time_minutes": 10,
+      "lessons": [
+        {
+          "id": "physical_importance",
+          "title": "Why Physical Security Matters",
+          "content": "Physical security is the foundation of all other security measures. Without it, digital protections can be bypassed.",
+          "duration_minutes": 2,
+          "interactive": false
+        },
+        {
+          "id": "physical_practices",
+          "title": "Best Practices",
+          "content": "Lock screens, secure devices, clean desk policy, and visitor management are essential physical security practices.",
+          "duration_minutes": 4,
+          "interactive": true,
+          "3d_scene": "office_security"
+        },
+        {
+          "id": "physical_reporting",
+          "title": "Reporting Security Concerns",
+          "content": "Know how to report suspicious activity, lost devices, or security incidents.",
+          "duration_minutes": 2,
+          "interactive": false
+        }
+      ],
+      "quiz": {
+        "questions": [
+          {
+            "id": "q1",
+            "question": "What should you do when leaving your desk?",
+            "options": [
+              {"id": "a", "text": "Nothing special"},
+              {"id": "b", "text": "Lock your computer screen"},
+              {"id": "c", "text": "Just turn off the monitor"},
+              {"id": "d", "text": "Log out of email only"}
+            ],
+            "correct": "b",
+            "explanation": "Always lock your screen (Windows+L) when leaving your desk to prevent unauthorized access."
+          },
+          {
+            "id": "q2",
+            "question": "What is a 'clean desk policy'?",
+            "options": [
+              {"id": "a", "text": "Keeping desk spotless"},
+              {"id": "b", "text": "Removing all sensitive documents and materials at end of day"},
+              {"id": "c", "text": "Having no personal items"},
+              {"id": "d", "text": "Using only company equipment"}
+            ],
+            "correct": "b",
+            "explanation": "A clean desk policy requires securing all sensitive materials when not in use or at end of day."
+          },
+          {
+            "id": "q3",
+            "question": "You notice a stranger in a restricted area. What should you do?",
+            "options": [
+              {"id": "a", "text": "Ignore them"},
+              {"id": "b", "text": "Approach and question them"},
+              {"id": "c", "text": "Report to security immediately"},
+              {"id": "d", "text": "Take a photo"}
+            ],
+            "correct": "c",
+            "explanation": "Always report unauthorized individuals in restricted areas to security personnel."
+          }
+        ],
+        "passing_score": 70
+      }
+    }
+  ]
+}

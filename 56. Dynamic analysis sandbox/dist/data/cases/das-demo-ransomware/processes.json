@@ -1,0 +1,62 @@
+[
+  {
+    "pid": 1,
+    "name": "svchost32.exe",
+    "parent_pid": null,
+    "path": "C:\\Users\\Public\\svchost32.exe",
+    "command_line": "C:\\Users\\Public\\svchost32.exe",
+    "first_seen": 0.4,
+    "last_seen": 295.0,
+    "user": "Public",
+    "status": "seen",
+    "risk": ""
+  },
+  {
+    "pid": 2,
+    "name": "cmd.exe",
+    "parent_pid": 1,
+    "path": "C:\\Windows\\System32\\cmd.exe",
+    "command_line": "cmd.exe /c vssadmin delete shadows /all /quiet",
+    "first_seen": 4.6,
+    "last_seen": 299.0,
+    "user": "Public",
+    "status": "seen",
+    "risk": ""
+  },
+  {
+    "pid": 3,
+    "name": "powershell.exe",
+    "parent_pid": 2,
+    "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "command_line": "powershell -nop -w hidden -enc SQBFAFgA...",
+    "first_seen": 5.0,
+    "last_seen": 298.0,
+    "user": "Public",
+    "status": "seen",
+    "risk": ""
+  },
+  {
+    "pid": 4,
+    "name": "explorer.exe",
+    "parent_pid": 1,
+    "path": "C:\\Windows\\explorer.exe",
+    "command_line": "",
+    "first_seen": 139.9,
+    "last_seen": 141.0,
+    "user": "Public",
+    "status": "injected",
+    "risk": ""
+  },
+  {
+    "pid": 5,
+    "name": "lsass.exe",
+    "parent_pid": null,
+    "path": "C:\\Windows\\System32\\lsass.exe",
+    "command_line": "",
+    "first_seen": 0.0,
+    "last_seen": 0.0,
+    "user": "SYSTEM",
+    "status": "targeted",
+    "risk": ""
+  }
+]

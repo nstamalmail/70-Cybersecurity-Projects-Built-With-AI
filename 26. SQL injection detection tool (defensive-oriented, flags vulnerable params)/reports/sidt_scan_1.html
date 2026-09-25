@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SIDT Report - http://127.0.0.1:41785</title>
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; margin: 24px; color: #222; }
+  h1 { font-size: 22px; } h2 { font-size: 16px; margin-top: 28px; }
+  table { border-collapse: collapse; width: 100%; margin-top: 8px; }
+  th, td { border: 1px solid #ccc; padding: 6px 8px; font-size: 13px; text-align: left; vertical-align: top; }
+  th { background: #f0f0f0; }
+  .sev-critical { background: #b71c1c; color: #fff; font-weight: bold; }
+  .sev-high { background: #e53935; color: #fff; }
+  .sev-medium { background: #fb8c00; }
+  .sev-low { background: #fdd835; }
+  .sev-info { background: #bdbdbd; }
+  pre { background: #fafafa; border: 1px solid #eee; padding: 8px; font-size: 12px;
+        white-space: pre-wrap; word-break: break-all; max-height: 220px; overflow: auto; }
+  .meta { color: #555; font-size: 13px; }
+</style>
+</head>
+<body>
+<h1>SIDT — SQL Injection Detection Report</h1>
+<p class="meta">
+  Target: <b>http://127.0.0.1:41785</b><br>
+  Scan: 1 &middot; Started: n/a &middot; Finished: n/a<br>
+  Parameters tested: 4 &middot; Requests: 30 &middot;
+  Findings: 2 &middot; Errors: 0<br>
+  Safe mode: True &middot; WAF detected: none
+</p>
+<h2>Findings (1)</h2>
+<div class="finding">
+<h2><span class="sev-high">HIGH</span>
+ query:cat
+ — union-based (high confidence)</h2>
+<p><b>URL:</b> http://127.0.0.1:41785/list?cat=books<br>
+<b>Method:</b> GET<br>
+<b>DBMS hint:</b> n/a<br>
+<b>Signal:</b> UNION marker &#x27;sidt7f3a&#x27; reflected in response (detection marker only, no data extracted)<br>
+<b>Payload:</b> <code>&#x27; UNION SELECT sidt7f3a-- -</code><br>
+<b>Response delta:</b> {&quot;marker&quot;: &quot;sidt7f3a&quot;, &quot;status&quot;: 200}</p>
+<h3>Baseline request</h3><pre>GET http://127.0.0.1:41785/list?cat=books
+</pre>
+<h3>Injected request</h3><pre></pre>
+<h3>Baseline response</h3><pre>&lt;html&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;books&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/html&gt;</pre>
+<h3>Injected response</h3><pre>&lt;html&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;sidt7f3a&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/html&gt;</pre>
+<h3>Remediation</h3><pre>UNION SELECT payloads are accepted, allowing row-level data concatenation
+into responses (union-based SQLi).
+Fix:
+  1. Use parameterized queries / prepared statements.
+  2. Avoid echoing raw query results; map columns explicitly.
+  3. Restrict DB user to required tables only.
+
+Parameterized query examples:
+
+# Python (sqlite3 / DB-API)
+cur.execute(&quot;SELECT * FROM users WHERE name = ? AND pass = ?&quot;, (name, password))
+
+// Java JDBC
+PreparedStatement ps = conn.prepareStatement(
+    &quot;SELECT * FROM users WHERE name = ? AND pass = ?&quot;);
+ps.setString(1, name);
+ps.setString(2, password);
+
+// Node.js (mysql2 / pg)
+db.query(&#x27;SELECT * FROM users WHERE name = ? AND pass = ?&#x27;, [name, password])
+
+// PHP PDO
+$stmt = $pdo-&gt;prepare(&#x27;SELECT * FROM users WHERE name = :n AND pass = :p&#x27;);
+$stmt-&gt;execute([&#x27;n&#x27; =&gt; $name, &#x27;p&#x27; =&gt; $password]);
+
+WAF rule suggestions:
+  - Block/flag common SQLi tokens in parameters: &#x27; -- /* */ UNION SELECT SLEEP( WAITFOR 
+  - Enable SQLi ruleset (OWASP CRS 942xxx) in blocking mode after a log-only period.
+  - Rate-limit repeated 40x/500 responses from the same client (probing behaviour).
+
+References:
+  - OWASP Top 10 A03:2021 — Injection
+  - OWASP SQL Injection Prevention Cheat Sheet
+  - CWE-89: Improper Neutralization of Special Elements used in an SQL Command</pre>
+</div><h2>Coverage</h2><p>Parameters tested: 4; techniques used: n/a</p>
+</body>
+</html>

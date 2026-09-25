@@ -1,0 +1,243 @@
+{
+  "execution_id": "EXEC-2026-001",
+  "playbook_name": "Phishing Response Playbook",
+  "playbook_version": "1.0",
+  "incident_id": "INC-2026-0921-001",
+  "status": "completed",
+  "started_at": "2026-09-21T01:15:00Z",
+  "completed_at": "2026-09-21T01:23:45Z",
+  "total_duration_seconds": 525,
+  "triggered_by": "manual",
+  "operator": "soc_analyst_1",
+  "context": {
+    "incident_id": "INC-2026-0921-001",
+    "email_id": "MSG-789456",
+    "affected_users": ["jsmith@company.com", "mwilson@company.com"],
+    "sender_email": "invoice@malicious-domain.com",
+    "email_subject": "Urgent: Unpaid Invoice #INV-2026-8847",
+    "severity": "high",
+    "notes": "Multiple users reported suspicious email with PDF attachment"
+  },
+  "steps": [
+    {
+      "step_id": "step_1",
+      "step_name": "Extract IOCs from Email",
+      "status": "completed",
+      "started_at": "2026-09-21T01:15:00Z",
+      "completed_at": "2026-09-21T01:15:12Z",
+      "duration_seconds": 12,
+      "approval_required": false,
+      "approval_status": "auto_approved",
+      "outputs": {
+        "sender_email": "invoice@malicious-domain.com",
+        "sender_ip": "192.168.1.100",
+        "sender_domain": "malicious-domain.com",
+        "attachment_hashes": ["e99a18c428cb38d5f260853678922e03"],
+        "urls": ["https://malicious-domain.com/claim?id=8847"]
+      },
+      "error": null
+    },
+    {
+      "step_id": "step_2",
+      "step_name": "Check Sender Reputation",
+      "status": "completed",
+      "started_at": "2026-09-21T01:15:12Z",
+      "completed_at": "2026-09-21T01:15:45Z",
+      "duration_seconds": 33,
+      "approval_required": false,
+      "approval_status": "auto_approved",
+      "outputs": {
+        "reputation_score": 12,
+        "threat_type": "phishing",
+        "known_malicious": true,
+        "first_seen": "2026-09-20T08:30:00Z",
+        "report_count": 847
+      },
+      "error": null
+    },
+    {
+      "step_id": "step_3",
+      "step_name": "Analyze Attachment",
+      "status": "completed",
+      "started_at": "2026-09-21T01:15:45Z",
+      "completed_at": "2026-09-21T01:19:30Z",
+      "duration_seconds": 225,
+      "approval_required": false,
+      "approval_status": "auto_approved",
+      "outputs": {
+        "verdict": "malicious",
+        "malware_family": "AgentTesla",
+        "behavioral_indicators": [
+          "keylogger_detected",
+          "credential_harvesting",
+          "network_exfiltration"
+        ],
+        "detection_rate": 45,
+        "sandbox_duration": 225
+      },
+      "error": null
+    },
+    {
+      "step_id": "step_4",
+      "step_name": "Check for Matches in SIEM",
+      "status": "completed",
+      "started_at": "2026-09-21T01:19:30Z",
+      "completed_at": "2026-09-21T01:20:15Z",
+      "duration_seconds": 45,
+      "approval_required": false,
+      "approval_status": "auto_approved",
+      "outputs": {
+        "match_count": 3,
+        "related_incidents": ["INC-2026-0920-045", "INC-2026-0920-067", "INC-2026-0921-001"]
+      },
+      "error": null
+    },
+    {
+      "step_id": "step_5",
+      "step_name": "Block Sender Domain",
+      "status": "completed",
+      "started_at": "2026-09-21T01:20:15Z",
+      "completed_at": "2026-09-21T01:20:45Z",
+      "duration_seconds": 30,
+      "approval_required": true,
+      "approval_status": "approved",
+      "approved_by": "soc_analyst_1",
+      "approved_at": "2026-09-21T01:20:25Z",
+      "outputs": {
+        "block_status": "success",
+        "block_id": "BLK-2026-4421",
+        "block_type": "domain",
+        "expires_at": "2026-10-21T01:20:45Z"
+      },
+      "error": null
+    },
+    {
+      "step_id": "step_6",
+      "step_name": "Quarantine Malicious Email",
+      "status": "completed",
+      "started_at": "2026-09-21T01:20:45Z",
+      "completed_at": "2026-09-21T01:21:15Z",
+      "duration_seconds": 30,
+      "approval_required": true,
+      "approval_status": "approved",
+      "approved_by": "soc_analyst_1",
+      "approved_at": "2026-09-21T01:20:55Z",
+      "outputs": {
+        "quarantine_count": 2,
+        "quarantine_status": "success",
+        "quarantined_from": ["jsmith@company.com", "mwilson@company.com"]
+      },
+      "error": null
+    },
+    {
+      "step_id": "step_7",
+      "step_name": "Reset Affected User Passwords",
+      "status": "completed",
+      "started_at": "2026-09-21T01:21:15Z",
+      "completed_at": "2026-09-21T01:22:00Z",
+      "duration_seconds": 45,
+      "approval_required": true,
+      "approval_status": "approved",
+      "approved_by": "soc_analyst_1",
+      "approved_at": "2026-09-21T01:21:25Z",
+      "outputs": {
+        "reset_count": 2,
+        "reset_status": "success",
+        "affected_users": ["jsmith@company.com", "mwilson@company.com"],
+        "force_logout": true
+      },
+      "error": null
+    },
+    {
+      "step_id": "step_8",
+      "step_name": "Create SIEM Alert",
+      "status": "completed",
+      "started_at": "2026-09-21T01:22:00Z",
+      "completed_at": "2026-09-21T01:22:15Z",
+      "duration_seconds": 15,
+      "approval_required": false,
+      "approval_status": "auto_approved",
+      "outputs": {
+        "alert_id": "ALERT-2026-7892",
+        "alert_status": "open",
+        "assigned_to": "phishing-investigation-team"
+      },
+      "error": null
+    },
+    {
+      "step_id": "step_9",
+      "step_name": "Notify Affected Users",
+      "status": "completed",
+      "started_at": "2026-09-21T01:22:15Z",
+      "completed_at": "2026-09-21T01:22:45Z",
+      "duration_seconds": 30,
+      "approval_required": false,
+      "approval_status": "auto_approved",
+      "outputs": {
+        "notification_status": "sent",
+        "delivery_count": 2,
+        "template": "phishing_warning"
+      },
+      "error": null
+    },
+    {
+      "step_id": "step_10",
+      "step_name": "Generate Incident Report",
+      "status": "completed",
+      "started_at": "2026-09-21T01:22:45Z",
+      "completed_at": "2026-09-21T01:23:45Z",
+      "duration_seconds": 60,
+      "approval_required": false,
+      "approval_status": "auto_approved",
+      "outputs": {
+        "report_id": "RPT-2026-001",
+        "report_url": "https://siem.company.com/reports/RPT-2026-001",
+        "report_format": "pdf",
+        "sections": ["executive_summary", "timeline", "ioc_list", "actions_taken"]
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "total_steps": 10,
+    "completed_steps": 10,
+    "failed_steps": 0,
+    "skipped_steps": 0,
+    "approval_requests": 3,
+    "approvals_granted": 3,
+    "approvals_rejected": 0,
+    "total_duration": "8m 45s",
+    "mttr": "8m 45s"
+  },
+  "action_log": [
+    {
+      "timestamp": "2026-09-21T01:15:00Z",
+      "action": "execute_step",
+      "step": "step_1",
+      "method": "POST",
+      "url": "https://api.email-gateway.local/v1/parse",
+      "request_body": {"email_id": "MSG-789456"},
+      "response_code": 200,
+      "response_body": {"status": "success"},
+      "duration_ms": 12000
+    },
+    {
+      "timestamp": "2026-09-21T01:20:25Z",
+      "action": "approval_granted",
+      "step": "step_5",
+      "approved_by": "soc_analyst_1",
+      "reason": "Confirmed malicious domain"
+    },
+    {
+      "timestamp": "2026-09-21T01:20:45Z",
+      "action": "execute_step",
+      "step": "step_5",
+      "method": "POST",
+      "url": "https://firewall.company.com/api/v1/block",
+      "request_body": {"type": "domain", "value": "malicious-domain.com"},
+      "response_code": 200,
+      "response_body": {"block_id": "BLK-2026-4421"},
+      "duration_ms": 30000
+    }
+  ]
+}

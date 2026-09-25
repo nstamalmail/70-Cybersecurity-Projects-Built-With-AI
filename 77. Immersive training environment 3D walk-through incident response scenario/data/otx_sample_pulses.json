@@ -1,0 +1,74 @@
+{
+  "pulses": [
+    {
+      "id": "otx-001",
+      "name": "Lazarus Group Financial Sector Campaign",
+      "description": "North Korean APT group targeting financial institutions with sophisticated social engineering and custom malware",
+      "created": "2026-09-17T10:00:00Z",
+      "modified": "2026-09-17T14:30:00Z",
+      "tags": ["apt", "lazarus", "north-korea", "financial"],
+      "adversary": "Lazarus Group",
+      "malware_families": ["FALLCHILL", "Manuscrypt"],
+      "industries": ["Financial Services", "Banking", "Cryptocurrency"],
+      "references": ["https://cert advisories.example.com/2026-001"],
+      "indicators_count": 89,
+      "source": "OTX"
+    },
+    {
+      "id": "otx-002",
+      "name": "FIN7 Restaurant POS Malware Campaign",
+      "description": "Financially motivated threat actor deploying point-of-sale malware across restaurant chains",
+      "created": "2026-09-16T08:15:00Z",
+      "modified": "2026-09-17T09:45:00Z",
+      "tags": ["apt", "fin7", "pos-malware", "retail"],
+      "adversary": "FIN7",
+      "malware_families": ["荣ex", "ALPHAVANGUARD"],
+      "industries": ["Retail", "Hospitality", "Food Service"],
+      "references": ["https://threatintel.example.com/fin7-pos-2026"],
+      "indicators_count": 124,
+      "source": "OTX"
+    },
+    {
+      "id": "otx-003",
+      "name": "Volt Typhoon Critical Infrastructure Prepositioning",
+      "description": "Chinese state-sponsored group prepositioning in critical infrastructure networks for potential future disruption",
+      "created": "2026-09-15T12:00:00Z",
+      "modified": "2026-09-16T16:20:00Z",
+      "tags": ["apt", "volt-typhoon", "china", "critical-infrastructure"],
+      "adversary": "Volt Typhoon",
+      "malware_families": ["BOUNCER", "KV Botnet"],
+      "industries": ["Energy", "Water", "Telecommunications", "Transportation"],
+      "references": ["https://cisa.gov/alerts/aa26-247a"],
+      "indicators_count": 67,
+      "source": "OTX"
+    },
+    {
+      "id": "otx-004",
+      "name": "Scattered Spider Social Engineering Campaign",
+      "description": "Multi-factor authentication bypass and help desk social engineering targeting enterprise environments",
+      "created": "2026-09-14T15:30:00Z",
+      "modified": "2026-09-15T11:10:00Z",
+      "tags": ["social-engineering", "mfa-bypass", "enterprise"],
+      "adversary": "Scattered Spider",
+      "malware_families": [],
+      "industries": ["Technology", "Healthcare", "Government"],
+      "references": ["https://unit42.paloaltonetworks.com/scattered-spider-2026"],
+      "indicators_count": 43,
+      "source": "OTX"
+    },
+    {
+      "id": "otx-005",
+      "name": "BlackCat/ALPHV Ransomware-as-a-Service Update",
+      "description": "Updated BlackCat ransomware variant with enhanced evasion capabilities targeting mid-market companies",
+      "created": "2026-09-13T09:00:00Z",
+      "modified": "2026-09-14T20:45:00Z",
+      "tags": ["ransomware", "blackcat", "alphv", "raas"],
+      "adversary": "BlackCat",
+      "malware_families": ["BlackCat", "ALPHV"],
+      "industries": ["Manufacturing", "Legal", "Insurance"],
+      "references": ["https://malwarebytes.com/blog/threat-intelligence/blackcat-2026"],
+      "indicators_count": 78,
+      "source": "OTX"
+    }
+  ]
+}

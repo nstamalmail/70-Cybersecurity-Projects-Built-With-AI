@@ -1,0 +1,190 @@
+[
+  {
+    "id": "laptop-pro-15",
+    "name": "ProBook Ultra 15",
+    "category": "Laptop",
+    "base_price": 1299.99,
+    "description": "Powerful 15-inch laptop for professionals",
+    "options": {
+      "color": {
+        "label": "Chassis Color",
+        "choices": [
+          {"id": "silver", "name": "Silver", "hex": "#C0C0C0", "price": 0},
+          {"id": "space_gray", "name": "Space Gray", "hex": "#4A4A4A", "price": 0},
+          {"id": "midnight_blue", "name": "Midnight Blue", "hex": "#191970", "price": 50},
+          {"id": "rose_gold", "name": "Rose Gold", "hex": "#B76E79", "price": 75}
+        ]
+      },
+      "storage": {
+        "label": "Storage",
+        "choices": [
+          {"id": "256gb", "name": "256GB SSD", "price": 0},
+          {"id": "512gb", "name": "512GB SSD", "price": 200},
+          {"id": "1tb", "name": "1TB SSD", "price": 400},
+          {"id": "2tb", "name": "2TB SSD", "price": 700}
+        ]
+      },
+      "memory": {
+        "label": "Memory",
+        "choices": [
+          {"id": "8gb", "name": "8GB RAM", "price": 0},
+          {"id": "16gb", "name": "16GB RAM", "price": 200},
+          {"id": "32gb", "name": "32GB RAM", "price": 400}
+        ]
+      },
+      "accessories": {
+        "label": "Accessories",
+        "multiple": true,
+        "choices": [
+          {"id": "laptop_bag", "name": "Carrying Bag", "price": 79.99},
+          {"id": "mouse", "name": "Wireless Mouse", "price": 49.99},
+          {"id": "dock", "name": "USB-C Dock", "price": 149.99},
+          {"id": "pen", "name": "Stylus Pen", "price": 99.99}
+        ]
+      }
+    }
+  },
+  {
+    "id": "phone-x-14",
+    "name": "SmartX Pro 14",
+    "category": "Phone",
+    "base_price": 999.99,
+    "description": "Flagship smartphone with stunning display",
+    "options": {
+      "color": {
+        "label": "Phone Color",
+        "choices": [
+          {"id": "black", "name": "Midnight Black", "hex": "#1a1a1a", "price": 0},
+          {"id": "white", "name": "Pearl White", "hex": "#f5f5f5", "price": 0},
+          {"id": "blue", "name": "Ocean Blue", "hex": "#0066cc", "price": 0},
+          {"id": "green", "name": "Forest Green", "hex": "#228B22", "price": 0},
+          {"id": "purple", "name": "Ultra Violet", "hex": "#7B2D8E", "price": 50}
+        ]
+      },
+      "storage": {
+        "label": "Storage",
+        "choices": [
+          {"id": "128gb", "name": "128GB", "price": 0},
+          {"id": "256gb", "name": "256GB", "price": 100},
+          {"id": "512gb", "name": "512GB", "price": 200},
+          {"id": "1tb", "name": "1TB", "price": 400}
+        ]
+      },
+      "accessories": {
+        "label": "Accessories",
+        "multiple": true,
+        "choices": [
+          {"id": "case", "name": "Protective Case", "price": 39.99},
+          {"id": "charger", "name": "Fast Charger", "price": 49.99},
+          {"id": "earbuds", "name": "Wireless Earbuds", "price": 129.99},
+          {"id": "screen_protector", "name": "Screen Protector Pack", "price": 24.99}
+        ]
+      }
+    }
+  },
+  {
+    "id": "headphones-anc-500",
+    "name": "SoundMax ANC 500",
+    "category": "Headphones",
+    "base_price": 349.99,
+    "description": "Premium noise-cancelling over-ear headphones",
+    "options": {
+      "color": {
+        "label": "Color",
+        "choices": [
+          {"id": "matte_black", "name": "Matte Black", "hex": "#2d2d2d", "price": 0},
+          {"id": "white", "name": "Cloud White", "hex": "#f0f0f0", "price": 0},
+          {"id": "navy", "name": "Navy Blue", "hex": "#000080", "price": 25},
+          {"id": "rose", "name": "Rose Pink", "hex": "#FFB6C1", "price": 25}
+        ]
+      },
+      "material": {
+        "label": "Ear Cushion",
+        "choices": [
+          {"id": "leather", "name": "Premium Leather", "price": 0},
+          {"id": "velvet", "name": "Velvet Fabric", "price": 0},
+          {"id": "memory_foam", "name": "Memory Foam", "price": 30}
+        ]
+      },
+      "accessories": {
+        "label": "Accessories",
+        "multiple": true,
+        "choices": [
+          {"id": "case", "name": "Hard Carry Case", "price": 34.99},
+          {"id": "cable", "name": "Extra Cable", "price": 19.99},
+          {"id": "adapter", "name": "Airplane Adapter", "price": 14.99}
+        ]
+      }
+    }
+  },
+  {
+    "id": "watch-ultra-2",
+    "name": "Chrono Ultra Series 2",
+    "category": "Watch",
+    "base_price": 499.99,
+    "description": "Advanced smartwatch with health monitoring",
+    "options": {
+      "color": {
+        "label": "Case Color",
+        "choices": [
+          {"id": "silver", "name": "Silver Titanium", "hex": "#C0C0C0", "price": 0},
+          {"id": "black", "name": "Black Titanium", "hex": "#1a1a1a", "price": 0},
+          {"id": "gold", "name": "Gold", "hex": "#FFD700", "price": 100},
+          {"id": "graphite", "name": "Graphite", "hex": "#383838", "price": 50}
+        ]
+      },
+      "band": {
+        "label": "Band Style",
+        "choices": [
+          {"id": "sport", "name": "Sport Band", "price": 0},
+          {"id": "leather", "name": "Leather Band", "price": 49.99},
+          {"id": "metal", "name": "Metal Link", "price": 99.99},
+          {"id": "nylon", "name": "Nylon Weave", "price": 29.99}
+        ]
+      },
+      "accessories": {
+        "label": "Accessories",
+        "multiple": true,
+        "choices": [
+          {"id": "charger", "name": "Wireless Charger", "price": 39.99},
+          {"id": "stand", "name": "Charging Stand", "price": 29.99},
+          {"id": "protector", "name": "Screen Protector 3-Pack", "price": 19.99}
+        ]
+      }
+    }
+  },
+  {
+    "id": "camera-mirrorless-x",
+    "name": "VisionPro X Mirrorless",
+    "category": "Camera",
+    "base_price": 1899.99,
+    "description": "Professional mirrorless camera with 45MP sensor",
+    "options": {
+      "color": {
+        "label": "Body Color",
+        "choices": [
+          {"id": "black", "name": "Professional Black", "hex": "#1a1a1a", "price": 0},
+          {"id": "silver", "name": "Classic Silver", "hex": "#C0C0C0", "price": 0}
+        ]
+      },
+      "lens": {
+        "label": "Kit Lens",
+        "choices": [
+          {"id": "24_70", "name": "24-70mm f/2.8", "price": 0},
+          {"id": "24_105", "name": "24-105mm f/4", "price": 200},
+          {"id": "28_200", "name": "28-200mm f/2.8-5.6", "price": 400}
+        ]
+      },
+      "accessories": {
+        "label": "Accessories",
+        "multiple": true,
+        "choices": [
+          {"id": "bag", "name": "Camera Bag", "price": 89.99},
+          {"id": "tripod", "name": "Carbon Fiber Tripod", "price": 199.99},
+          {"id": "extra_battery", "name": "Extra Battery", "price": 69.99},
+          {"id": "memory_card", "name": "128GB SD Card", "price": 49.99}
+        ]
+      }
+    }
+  }
+]

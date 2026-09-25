@@ -1,0 +1,6 @@
+# WNA scope allowlist — one entry per line.
+# Format: <BSSID> or <BSSID>=<ESSID>
+# Only these lab access points may be assessed.
+#
+02:11:22:33:44:55=WNA-Lab-AP
+02:aa:bb:cc:dd:ee=WNA-Lab-AP-2

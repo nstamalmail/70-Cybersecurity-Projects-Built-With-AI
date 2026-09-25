@@ -1,0 +1,7 @@
+POST /api/users HTTP/1.1
+Host: 127.0.0.1:8000
+User-Agent: CBSEF-sample/1.0
+Content-Type: application/json
+Content-Length: 52
+
+{"username": "demo", "email": "demo@example.local"}

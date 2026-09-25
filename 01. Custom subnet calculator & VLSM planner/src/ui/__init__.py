@@ -1,0 +1,1 @@
+"""Presentation layer: tkinter views. No business logic beyond formatting."""

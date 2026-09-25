@@ -1,0 +1,25 @@
+======================================================================
+  Load Balancer Simulation Report
+======================================================================
+Simulation : sim-test
+Run at     : 2026-09-21T02:44:49
+Algorithm  : round_robin
+Duration   : 12.5s
+Requests   : 100
+Health chk : tcp every 5.0s (fall 3 / rise 2)
+
+[TRAFFIC DISTRIBUTION]
+BACKEND           MODE          REQUESTS  SHARE   FINAL STATE
+----------------------------------------------------------------------
+web-a             healthy       0         0.0     UP
+web-b             healthy       0         0.0     UP
+
+[STATE TRANSITIONS]
+  t1 web-b: UP -> DOWN (fall_threshold)
+
+[NOTES]
+Simulation only - backends are in-process mocks; no packets were sent.
+Round-robin should distribute evenly across equal-weight healthy backends;
+weighted WRR scales by weight; least-connections balances active load;
+ip-hash gives the same client the same backend (session affinity).
+======================================================================

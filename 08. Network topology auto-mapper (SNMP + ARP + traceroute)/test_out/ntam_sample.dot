@@ -1,0 +1,23 @@
+graph topology {
+  layout=neato; overlap=false;
+  node [shape=box style=filled fontname='Segoe UI' fontsize=10];
+  n0 [label="gw01.office.local\n192.168.10.1" fillcolor="#e74c3c" fontcolor="white"];
+  n1 [label="sw01.office.local\n192.168.10.2" fillcolor="#3498db" fontcolor="white"];
+  n2 [label="sw02.office.local\n192.168.10.2" fillcolor="#3498db" fontcolor="white"];
+  n3 [label="filesrv01.office.local\n192.168.10.10" fillcolor="#2ecc71" fontcolor="black"];
+  n4 [label="db01.office.local\n192.168.10.11" fillcolor="#2ecc71" fontcolor="black"];
+  n5 [label="192.168.10.21\n192.168.10.21" fillcolor="#95a5a6" fontcolor="black"];
+  n6 [label="anna-laptop\n192.168.10.34" fillcolor="#95a5a6" fontcolor="black"];
+  n7 [label="ben-workstation\n192.168.10.35" fillcolor="#95a5a6" fontcolor="black"];
+  n8 [label="192.168.10.36\n192.168.10.36" fillcolor="#f39c12" fontcolor="black"];
+  n9 [label="nas01.office.local\n192.168.10.40" fillcolor="#2ecc71" fontcolor="black"];
+  n0 -- n1 [label="L2"];
+  n0 -- n2 [label="L2"];
+  n1 -- n3 [label="L2"];
+  n1 -- n4 [label="L2"];
+  n2 -- n9 [label="L2"];
+  n0 -- n5 [label="L2"];
+  n1 -- n6 [label="L2"];
+  n1 -- n7 [label="L2"];
+  n2 -- n8 [label="L2"];
+}

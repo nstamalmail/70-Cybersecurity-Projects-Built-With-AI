@@ -1,0 +1,196 @@
+name: "Ransomware Containment Playbook"
+version: "1.0"
+author: "SOC Team"
+description: "Automated response to ransomware detection and containment"
+severity: "critical"
+tags:
+  - ransomware
+  - malware
+  - containment
+  - critical
+
+triggers:
+  - type: "alert"
+    source: "edr"
+    conditions:
+      - field: "detection_type"
+        operator: "equals"
+        value: "ransomware"
+
+variables:
+  affected_host: ""
+  ransomware_family: ""
+  encrypted_files: []
+  lateral_movement_detected: false
+
+steps:
+  - id: "step_1"
+    name: "Isolate Affected Host"
+    type: "destructive"
+    description: "Network isolate the compromised host immediately"
+    requires_approval: true
+    script: "isolate_host"
+    parameters:
+      host: "{{incident.affected_host}}"
+      method: "network_quarantine"
+      allow_management: true
+    outputs:
+      - isolation_status
+      - isolation_id
+    timeout: 30
+    next: "step_2"
+
+  - id: "step_2"
+    name: "Capture Memory Dump"
+    type: "action"
+    description: "Acquire volatile memory for forensic analysis"
+    script: "memory_dump"
+    parameters:
+      host: "{{incident.affected_host}}"
+      compress: true
+      encrypt: true
+    outputs:
+      - dump_path
+      - dump_size
+      - hash
+    timeout: 300
+    next: "step_3"
+
+  - id: "step_3"
+    name: "Identify Ransomware Family"
+    type: "action"
+    description: "Analyze encryption patterns to identify ransomware variant"
+    script: "identify_ransomware"
+    parameters:
+      host: "{{incident.affected_host}}"
+      sample_files: "{{incident.sample_encrypted_files}}"
+    outputs:
+      - ransomware_family
+      - decryption_possible
+      - known_decryptor
+    timeout: 120
+    next: "step_4"
+
+  - id: "step_4"
+    name: "Check Lateral Movement"
+    type: "action"
+    description: "Search for signs of lateral movement to other hosts"
+    script: "check_lateral_movement"
+    parameters:
+      source_host: "{{incident.affected_host}}"
+      time_window: "24h"
+      indicators:
+        - RDP_connections
+        - SMB_shares
+        - WMI_commands
+    outputs:
+      - lateral_movement_detected
+      - affected_hosts
+      - attack_path
+    timeout: 180
+    next: "step_5"
+
+  - id: "step_5"
+    name: "Isolate Additional Hosts"
+    type: "destructive"
+    description: "Isolate any hosts showing signs of lateral movement"
+    requires_approval: true
+    script: "isolate_hosts_bulk"
+    parameters:
+      hosts: "{{step_4.affected_hosts}}"
+      method: "network_quarantine"
+      reason: "Lateral movement from {{incident.affected_host}}"
+    outputs:
+      - isolation_count
+      - isolation_status
+    timeout: 120
+    next: "step_6"
+
+  - id: "step_6"
+    name: "Terminate Malicious Processes"
+    type: "destructive"
+    description: "Kill ransomware processes on all affected hosts"
+    requires_approval: true
+    script: "terminate_processes"
+    parameters:
+      hosts: "{{step_4.affected_hosts}}"
+      process_patterns:
+        - "*.encrypted"
+        - "*.locked"
+        - "svc*"
+        - "vssadmin*"
+      force: true
+    outputs:
+      - terminated_count
+      - process_list
+    timeout: 60
+    next: "step_7"
+
+  - id: "step_7"
+    name: "Collect Forensic Artifacts"
+    type: "action"
+    description: "Gather evidence from affected systems"
+    script: "collect_forensics"
+    parameters:
+      hosts: "{{step_4.affected_hosts}}"
+      artifacts:
+        - event_logs
+        - prefetch
+        - amcache
+        - mft
+      compress: true
+    outputs:
+      - artifact_count
+      - storage_path
+      - collection_id
+    timeout: 300
+    next: "step_8"
+
+  - id: "step_8"
+    name: "Block IOCs at Firewall"
+    type: "destructive"
+    description: "Block identified indicators at network perimeter"
+    requires_approval: true
+    script: "block_iocs"
+    parameters:
+      iocs: "{{incident.iocs}}"
+      scope: "network_perimeter"
+      duration: "30d"
+    outputs:
+      - blocked_count
+      - block_ids
+    timeout: 60
+    next: "step_9"
+
+  - id: "step_9"
+    name: "Notify Executive Team"
+    type: "action"
+    description: "Send critical incident notification to leadership"
+    script: "send_notification"
+    parameters:
+      recipients:
+        - ciso@company.com
+        - coo@company.com
+      priority: "critical"
+      template: "ransomware_critical"
+      include_business_impact: true
+    outputs:
+      - notification_status
+      - delivery_count
+    timeout: 30
+    next: "step_10"
+
+  - id: "step_10"
+    name: "Generate Incident Report"
+    type: "action"
+    description: "Compile comprehensive incident report"
+    script: "generate_report"
+    parameters:
+      incident_id: "{{incident.id}}"
+      include_timeline: true
+      include_forensics: true
+      include_business_impact: true
+    outputs:
+      - report_url
+      - report_id
+    timeout: 60

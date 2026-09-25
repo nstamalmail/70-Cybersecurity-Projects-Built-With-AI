@@ -1,0 +1,97 @@
+{
+  "kind": "ztn_audit",
+  "scenario": "c2_domain_fronting",
+  "seed": 99,
+  "generated_at": 1788972173.5225294,
+  "policy": {
+    "allow_band_max": 2,
+    "verify_band_max": 5
+  },
+  "counts": {
+    "allow": 5,
+    "verify": 0,
+    "deny": 3
+  },
+  "decisions": [
+    {
+      "src": "192.0.2.13",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.14",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.16",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.17",
+      "verdict": "deny",
+      "score": 8,
+      "rules": [
+        "D1"
+      ],
+      "reasons": [
+        "fronting: SNI=static.example Host=203.0.113.13",
+        "fronting: SNI=updates.example Host=203.0.113.11",
+        "fronting: SNI=static.example Host=203.0.113.11",
+        "fronting: SNI=updates.example Host=203.0.113.13",
+        "fronting: SNI=assets.example Host=203.0.113.10"
+      ]
+    },
+    {
+      "src": "192.0.2.18",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.23",
+      "verdict": "deny",
+      "score": 8,
+      "rules": [
+        "D1"
+      ],
+      "reasons": [
+        "fronting: SNI=static.example Host=203.0.113.12",
+        "fronting: SNI=updates.example Host=203.0.113.11",
+        "fronting: SNI=updates.example Host=203.0.113.14",
+        "fronting: SNI=cdn.example Host=203.0.113.13",
+        "fronting: SNI=updates.example Host=203.0.113.13"
+      ]
+    },
+    {
+      "src": "192.0.2.29",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.30",
+      "verdict": "deny",
+      "score": 8,
+      "rules": [
+        "D1"
+      ],
+      "reasons": [
+        "fronting: SNI=static.example Host=203.0.113.11",
+        "fronting: SNI=static.example Host=203.0.113.10",
+        "fronting: SNI=api.example Host=203.0.113.12",
+        "fronting: SNI=assets.example Host=203.0.113.13",
+        "fronting: SNI=assets.example Host=203.0.113.11"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "ioc_type": "url",
+    "value": "REMOTE=\"http://c2.demo-lab.example/gate.php\"",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.6,
+    "context": "ascii string at offset 0x00000060"
+  },
+  {
+    "ioc_type": "url",
+    "value": "SECOND=\"https://cdn-update.demo-lab.example/panel/fb.png\"",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.6,
+    "context": "ascii string at offset 0x0000008e"
+  },
+  {
+    "ioc_type": "ipv4",
+    "value": "185.220.101.44",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.55,
+    "context": "ascii string at offset 0x000000c9 port 8443"
+  },
+  {
+    "ioc_type": "user_agent",
+    "value": "AGENT=\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) BeaconClient/3.1\"",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.5,
+    "context": "ascii string at offset 0x000000ea"
+  },
+  {
+    "ioc_type": "command",
+    "value": "COMMANDS=\"cmd.exe /c vssadmin delete shadows /all /quiet; bcdedit /set {default} recoveryenabled No\"",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.45,
+    "context": "ascii string at offset 0x0000022c"
+  },
+  {
+    "ioc_type": "credential",
+    "value": "PASSWORD=\"admin123\"",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.5,
+    "context": "ascii string at offset 0x00000189"
+  },
+  {
+    "ioc_type": "hash",
+    "value": "213510999f2ebf5cd9eb6930b55d4274f12630b1",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.95,
+    "context": "SHA1 of the analysed file"
+  },
+  {
+    "ioc_type": "hash",
+    "value": "3446b10e19ee3b0b7a672dbf3fc8bcec",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.95,
+    "context": "MD5 of the analysed file"
+  },
+  {
+    "ioc_type": "hash",
+    "value": "7f4338870852a3d7a66cbdc490505a2cb9b8dd885c397f786740e7fd21efa74a",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.95,
+    "context": "SHA256 of the analysed file"
+  },
+  {
+    "ioc_type": "file_name",
+    "value": "demo_script.sh.SAMPLE",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.3,
+    "context": "Original file name"
+  }
+]

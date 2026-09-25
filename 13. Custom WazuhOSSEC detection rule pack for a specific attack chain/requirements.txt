@@ -1,0 +1,7 @@
+# Runtime dependencies: NONE — the app uses only the Python standard library
+# (tkinter, xml.etree, re, zipfile, json), so the exe is fully portable.
+#
+# To build the portable exe (dev machine only):
+#   pip install pyinstaller
+#   build_exe.bat  (Windows)  |  build_exe.sh  (Linux/macOS CI)
+pyinstaller>=6.0

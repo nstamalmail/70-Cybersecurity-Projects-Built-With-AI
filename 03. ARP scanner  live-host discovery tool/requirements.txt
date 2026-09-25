@@ -1,0 +1,4 @@
+# Runtime dependencies: NONE (Python stdlib only — see architecture.md §1)
+# Dev / build dependencies:
+pytest>=8.0
+pyinstaller>=6.0

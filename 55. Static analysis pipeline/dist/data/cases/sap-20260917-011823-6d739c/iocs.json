@@ -1,0 +1,154 @@
+[
+  {
+    "ioc_type": "url",
+    "value": "http://c2.demo-lab.example/gate.php",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.6,
+    "context": "ascii string at offset 0x00001000"
+  },
+  {
+    "ioc_type": "url",
+    "value": "https://cdn-update.demo-lab.example/panel/fb.png",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.6,
+    "context": "ascii string at offset 0x00001024"
+  },
+  {
+    "ioc_type": "ipv4",
+    "value": "185.220.101.44",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.55,
+    "context": "ascii string at offset 0x00001055 port 8443"
+  },
+  {
+    "ioc_type": "registry",
+    "value": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.5,
+    "context": "ascii string at offset 0x00001097"
+  },
+  {
+    "ioc_type": "registry",
+    "value": "Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.5,
+    "context": "ascii string at offset 0x00001069"
+  },
+  {
+    "ioc_type": "mutex",
+    "value": "Global\\Mutex_demo_9f2a",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.55,
+    "context": "ascii string at offset 0x00001149"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "=C:\\Users\\Public\\config.dat",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.45,
+    "context": "unicode string at offset 0x00001230"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\svchost32.exe",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.45,
+    "context": "ascii string at offset 0x0000119b"
+  },
+  {
+    "ioc_type": "user_agent",
+    "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) BeaconClient/3.1",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.5,
+    "context": "ascii string at offset 0x00001160"
+  },
+  {
+    "ioc_type": "command",
+    "value": "bcdedit /set {default} recoveryenabled No",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.45,
+    "context": "ascii string at offset 0x000011cb"
+  },
+  {
+    "ioc_type": "command",
+    "value": "cmd.exe /c vssadmin delete shadows /all /quiet",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.45,
+    "context": "ascii string at offset 0x000010ce"
+  },
+  {
+    "ioc_type": "command",
+    "value": "powershell -nop -w hidden -enc SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAKQA=",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.45,
+    "context": "ascii string at offset 0x000010fd"
+  },
+  {
+    "ioc_type": "credential",
+    "value": "password=admin123",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.5,
+    "context": "ascii string at offset 0x000011b9"
+  },
+  {
+    "ioc_type": "pdb_path",
+    "value": "D:\\builds\\rat\\Release\\client.pdb",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.55,
+    "context": "PDB path from the debug directory"
+  },
+  {
+    "ioc_type": "hash",
+    "value": "589a976ca61ff08d463bc819f07d593d",
+    "source": "static",
+    "sources": "static",
+    "confidence": 1.0,
+    "context": "IMPHASH of the analysed file"
+  },
+  {
+    "ioc_type": "hash",
+    "value": "38687408ebc1a4a559eb5f3a7291517a5a996d95",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.95,
+    "context": "SHA1 of the analysed file"
+  },
+  {
+    "ioc_type": "hash",
+    "value": "60733f16bd791904ce42f6bffe6a031dc52a7486f3d53b4d6efa81ded0b65cc7",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.95,
+    "context": "SHA256 of the analysed file"
+  },
+  {
+    "ioc_type": "hash",
+    "value": "8264030f481e6396ae674c311e861a5c",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.95,
+    "context": "MD5 of the analysed file"
+  },
+  {
+    "ioc_type": "file_name",
+    "value": "demo_synthetic_packed.exe.SAMPLE (in-memory)",
+    "source": "static",
+    "sources": "static",
+    "confidence": 0.3,
+    "context": "Original file name"
+  }
+]

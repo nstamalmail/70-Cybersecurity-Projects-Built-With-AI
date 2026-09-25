@@ -1,0 +1,41 @@
+{
+  "tool": "WNA",
+  "type": "audit-import",
+  "version": "1.0.0",
+  "comment": "Sample imported-audit file. Use Reports tab -> 'Import audit file' to generate a report without a capture. handshake_completeness: complete|partial|none.",
+  "audit": {
+    "audit_id": "sample lab posture audit",
+    "adapter": "wlan0mon",
+    "capture_method": "verification-only",
+    "allowlist": ["02:11:22:33:44:55"],
+    "notes": "Sample data for report-generation testing."
+  },
+  "targets": [
+    {
+      "bssid": "02:11:22:33:44:55",
+      "essid": "WNA-Lab-AP",
+      "channel": 6,
+      "encryption": "WPA2-PSK",
+      "handshake_captured": true,
+      "handshake_completeness": "complete",
+      "messages_present": ["M1", "M2", "M3", "M4"],
+      "pmkid_captured": true,
+      "hash_file": "lab_capture.cap.hc22000",
+      "crack_attempted": true,
+      "crack_tool": "internal-py",
+      "crack_result": "hunter2-but-longer",
+      "crack_duration_seconds": 4.2
+    },
+    {
+      "bssid": "02:aa:bb:cc:dd:ee",
+      "essid": "WNA-Lab-AP-2",
+      "channel": 11,
+      "encryption": "WPA2-PSK",
+      "handshake_captured": false,
+      "handshake_completeness": "partial",
+      "messages_present": ["M1", "M2"],
+      "pmkid_captured": false,
+      "crack_attempted": false
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+[
+  {
+    "id": "config-001",
+    "product_id": "laptop-pro-15",
+    "product_name": "ProBook Ultra 15",
+    "name": "Developer Workstation",
+    "selections": {
+      "color": "space_gray",
+      "storage": "1tb",
+      "memory": "32gb",
+      "accessories": [
+        "dock",
+        "mouse"
+      ]
+    },
+    "total_price": 2249.97,
+    "created_at": "2026-09-15T10:30:00Z"
+  },
+  {
+    "id": "config-002",
+    "product_id": "phone-x-14",
+    "product_name": "SmartX Pro 14",
+    "name": "Personal Phone",
+    "selections": {
+      "color": "blue",
+      "storage": "256gb",
+      "accessories": [
+        "case",
+        "screen_protector"
+      ]
+    },
+    "total_price": 1164.97,
+    "created_at": "2026-09-14T14:20:00Z"
+  },
+  {
+    "id": "config-003",
+    "product_id": "headphones-anc-500",
+    "product_name": "SoundMax ANC 500",
+    "name": "Studio Setup",
+    "selections": {
+      "color": "matte_black",
+      "material": "memory_foam",
+      "accessories": [
+        "case",
+        "cable"
+      ]
+    },
+    "total_price": 404.97,
+    "created_at": "2026-09-13T09:15:00Z"
+  },
+  {
+    "id": "config-0527f2",
+    "product_id": "phone-x-14",
+    "product_name": "SmartX Pro 14",
+    "name": "SmartX Pro 14",
+    "selections": {
+      "color": "white",
+      "storage": "1tb",
+      "accessories": [
+        "screen_protector"
+      ]
+    },
+    "total_price": 1424.98,
+    "created_at": "2026-09-20T23:33:54.536588"
+  }
+]

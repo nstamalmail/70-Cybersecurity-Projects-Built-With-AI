@@ -1,0 +1,94 @@
+{"offset": 376, "offset_hex": "0x00000178", "type": "ascii", "value": ".text", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 415, "offset_hex": "0x0000019f", "type": "ascii", "value": "`.rdata", "length": 7, "classification": "other", "labels": ["other"]}
+{"offset": 455, "offset_hex": "0x000001c7", "type": "ascii", "value": "@.data", "length": 6, "classification": "other", "labels": ["other"]}
+{"offset": 496, "offset_hex": "0x000001f0", "type": "ascii", "value": "UPX0", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 1207, "offset_hex": "0x000004b7", "type": "ascii", "value": "Z>e'", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 1398, "offset_hex": "0x00000576", "type": "ascii", "value": "b4xl", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 1412, "offset_hex": "0x00000584", "type": "ascii", "value": "!I?<", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 1523, "offset_hex": "0x000005f3", "type": "ascii", "value": "<<43", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 1531, "offset_hex": "0x000005fb", "type": "ascii", "value": "<g(v", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 1539, "offset_hex": "0x00000603", "type": "ascii", "value": "\"3)6", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 1568, "offset_hex": "0x00000620", "type": "ascii", "value": ">G:z", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 1672, "offset_hex": "0x00000688", "type": "ascii", "value": "PBq<*", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 1817, "offset_hex": "0x00000719", "type": "ascii", "value": "LLHp", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 1825, "offset_hex": "0x00000721", "type": "ascii", "value": "el3Tn", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 1843, "offset_hex": "0x00000733", "type": "ascii", "value": "]JOaM*", "length": 6, "classification": "other", "labels": ["other"]}
+{"offset": 1891, "offset_hex": "0x00000763", "type": "ascii", "value": ",)TB", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 1933, "offset_hex": "0x0000078d", "type": "ascii", "value": "`Z;0", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 1973, "offset_hex": "0x000007b5", "type": "ascii", "value": "[C24~", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 1982, "offset_hex": "0x000007be", "type": "ascii", "value": "GUgF", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 2195, "offset_hex": "0x00000893", "type": "ascii", "value": "FRY4", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 2344, "offset_hex": "0x00000928", "type": "ascii", "value": "7rik", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 2385, "offset_hex": "0x00000951", "type": "ascii", "value": "]X_r", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 2447, "offset_hex": "0x0000098f", "type": "ascii", "value": "7,I}", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 2493, "offset_hex": "0x000009bd", "type": "ascii", "value": "]YU5", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 2504, "offset_hex": "0x000009c8", "type": "ascii", "value": "q4QOG", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 2526, "offset_hex": "0x000009de", "type": "ascii", "value": "X-VTr", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 2754, "offset_hex": "0x00000ac2", "type": "ascii", "value": "CreateRemoteThread", "length": 18, "classification": "suspicious_api", "labels": ["suspicious_api"]}
+{"offset": 2776, "offset_hex": "0x00000ad8", "type": "ascii", "value": "VirtualAllocEx", "length": 14, "classification": "suspicious_api", "labels": ["suspicious_api"]}
+{"offset": 2794, "offset_hex": "0x00000aea", "type": "ascii", "value": "WriteProcessMemory", "length": 18, "classification": "suspicious_api", "labels": ["suspicious_api"]}
+{"offset": 2816, "offset_hex": "0x00000b00", "type": "ascii", "value": "LoadLibraryA", "length": 12, "classification": "other", "labels": ["other"]}
+{"offset": 2832, "offset_hex": "0x00000b10", "type": "ascii", "value": "GetProcAddress", "length": 14, "classification": "other", "labels": ["other"]}
+{"offset": 2850, "offset_hex": "0x00000b22", "type": "ascii", "value": "CreateFileW", "length": 11, "classification": "other", "labels": ["other"]}
+{"offset": 2880, "offset_hex": "0x00000b40", "type": "ascii", "value": "InternetOpenA", "length": 13, "classification": "other", "labels": ["other"]}
+{"offset": 2896, "offset_hex": "0x00000b50", "type": "ascii", "value": "InternetConnectA", "length": 16, "classification": "other", "labels": ["other"]}
+{"offset": 2916, "offset_hex": "0x00000b64", "type": "ascii", "value": "HttpSendRequestA", "length": 16, "classification": "other", "labels": ["other"]}
+{"offset": 2936, "offset_hex": "0x00000b78", "type": "ascii", "value": "URLDownloadToFileA", "length": 18, "classification": "suspicious_api", "labels": ["suspicious_api"]}
+{"offset": 3072, "offset_hex": "0x00000c00", "type": "ascii", "value": "KERNEL32.dll", "length": 12, "classification": "other", "labels": ["other"]}
+{"offset": 3093, "offset_hex": "0x00000c15", "type": "ascii", "value": "WININET.dll", "length": 11, "classification": "other", "labels": ["other"]}
+{"offset": 3392, "offset_hex": "0x00000d40", "type": "ascii", "value": "RSDS", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 3416, "offset_hex": "0x00000d58", "type": "ascii", "value": "D:\\builds\\rat\\Release\\client.pdb", "length": 32, "classification": "pdb_path", "labels": ["pdb_path", "file_path"]}
+{"offset": 4096, "offset_hex": "0x00001000", "type": "ascii", "value": "http://c2.demo-lab.example/gate.php", "length": 35, "classification": "url", "labels": ["url", "domain"]}
+{"offset": 4132, "offset_hex": "0x00001024", "type": "ascii", "value": "https://cdn-update.demo-lab.example/panel/fb.png", "length": 48, "classification": "url", "labels": ["url", "domain"]}
+{"offset": 4181, "offset_hex": "0x00001055", "type": "ascii", "value": "185.220.101.44:8443", "length": 19, "classification": "ipv4", "labels": ["ipv4"]}
+{"offset": 4201, "offset_hex": "0x00001069", "type": "ascii", "value": "Software\\Microsoft\\Windows\\CurrentVersion\\Run", "length": 45, "classification": "registry", "labels": ["registry"]}
+{"offset": 4247, "offset_hex": "0x00001097", "type": "ascii", "value": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce", "length": 54, "classification": "registry", "labels": ["registry", "registry"]}
+{"offset": 4302, "offset_hex": "0x000010ce", "type": "ascii", "value": "cmd.exe /c vssadmin delete shadows /all /quiet", "length": 46, "classification": "command", "labels": ["command"]}
+{"offset": 4349, "offset_hex": "0x000010fd", "type": "ascii", "value": "powershell -nop -w hidden -enc SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAKQA=", "length": 75, "classification": "command", "labels": ["command"]}
+{"offset": 4425, "offset_hex": "0x00001149", "type": "ascii", "value": "Global\\Mutex_demo_9f2a", "length": 22, "classification": "mutex", "labels": ["mutex"]}
+{"offset": 4448, "offset_hex": "0x00001160", "type": "ascii", "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) BeaconClient/3.1", "length": 58, "classification": "user_agent", "labels": ["user_agent"]}
+{"offset": 4507, "offset_hex": "0x0000119b", "type": "ascii", "value": "C:\\Users\\Public\\svchost32.exe", "length": 29, "classification": "file_path", "labels": ["file_path"]}
+{"offset": 4537, "offset_hex": "0x000011b9", "type": "ascii", "value": "password=admin123", "length": 17, "classification": "credential", "labels": ["credential"]}
+{"offset": 4555, "offset_hex": "0x000011cb", "type": "ascii", "value": "bcdedit /set {default} recoveryenabled No", "length": 41, "classification": "command", "labels": ["command"]}
+{"offset": 4597, "offset_hex": "0x000011f5", "type": "ascii", "value": "aGVsbG8gdGhpcyBpcyBhIGRlbW8gcGF5bG9hZCBibG9iIGZvciB0cmlhZ2U=", "length": 60, "classification": "base64_blob", "labels": ["base64_blob"]}
+{"offset": 4656, "offset_hex": "0x00001230", "type": "unicode", "value": "=C:\\Users\\Public\\config.dat", "length": 27, "classification": "file_path", "labels": ["file_path"]}
+{"offset": 5369, "offset_hex": "0x000014f9", "type": "ascii", "value": "@O'M9", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 5460, "offset_hex": "0x00001554", "type": "ascii", "value": "niic", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 5468, "offset_hex": "0x0000155c", "type": "ascii", "value": "{4@32mY", "length": 7, "classification": "other", "labels": ["other"]}
+{"offset": 5620, "offset_hex": "0x000015f4", "type": "ascii", "value": "|}TJ7", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 5694, "offset_hex": "0x0000163e", "type": "ascii", "value": "#D'#", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 5761, "offset_hex": "0x00001681", "type": "ascii", "value": "\"kp|", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 5842, "offset_hex": "0x000016d2", "type": "ascii", "value": "$f;t", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 5886, "offset_hex": "0x000016fe", "type": "ascii", "value": "?gG-b", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 5931, "offset_hex": "0x0000172b", "type": "ascii", "value": "O,oJ", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 6221, "offset_hex": "0x0000184d", "type": "ascii", "value": "!m<j]", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 6253, "offset_hex": "0x0000186d", "type": "ascii", "value": "%VA`I", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 6296, "offset_hex": "0x00001898", "type": "ascii", "value": "^J:#", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 6333, "offset_hex": "0x000018bd", "type": "ascii", "value": "m1(\"i7", "length": 6, "classification": "other", "labels": ["other"]}
+{"offset": 6395, "offset_hex": "0x000018fb", "type": "ascii", "value": "B0AxA", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 6443, "offset_hex": "0x0000192b", "type": "ascii", "value": "E0Tir&", "length": 6, "classification": "other", "labels": ["other"]}
+{"offset": 6473, "offset_hex": "0x00001949", "type": "ascii", "value": "+z4>]", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 6663, "offset_hex": "0x00001a07", "type": "ascii", "value": "ETS>", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 6736, "offset_hex": "0x00001a50", "type": "ascii", "value": "3wcmYD", "length": 6, "classification": "other", "labels": ["other"]}
+{"offset": 6850, "offset_hex": "0x00001ac2", "type": "ascii", "value": "PWxh'ok", "length": 7, "classification": "other", "labels": ["other"]}
+{"offset": 6907, "offset_hex": "0x00001afb", "type": "ascii", "value": "Ms.!!", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 6952, "offset_hex": "0x00001b28", "type": "ascii", "value": "^)a`q", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 7154, "offset_hex": "0x00001bf2", "type": "ascii", "value": "pW5y", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 7168, "offset_hex": "0x00001c00", "type": "ascii", "value": "&&/0", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 7276, "offset_hex": "0x00001c6c", "type": "ascii", "value": "m{hG", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 7287, "offset_hex": "0x00001c77", "type": "ascii", "value": "VA*9s", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 7426, "offset_hex": "0x00001d02", "type": "ascii", "value": "(Z+k%Q", "length": 6, "classification": "other", "labels": ["other"]}
+{"offset": 7547, "offset_hex": "0x00001d7b", "type": "ascii", "value": ":aXz", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 7620, "offset_hex": "0x00001dc4", "type": "ascii", "value": "Y,?W", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 7707, "offset_hex": "0x00001e1b", "type": "ascii", "value": ",+N<", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 7775, "offset_hex": "0x00001e5f", "type": "ascii", "value": "!l6/r", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 7797, "offset_hex": "0x00001e75", "type": "ascii", "value": "[{~T", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 7943, "offset_hex": "0x00001f07", "type": "ascii", "value": "M:Cj", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 7978, "offset_hex": "0x00001f2a", "type": "ascii", "value": "M}rj", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 8117, "offset_hex": "0x00001fb5", "type": "ascii", "value": "Fn/|", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 8293, "offset_hex": "0x00002065", "type": "ascii", "value": "{PO7c>z", "length": 7, "classification": "other", "labels": ["other"]}
+{"offset": 8345, "offset_hex": "0x00002099", "type": "ascii", "value": ":2+f", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 8463, "offset_hex": "0x0000210f", "type": "ascii", "value": "gc+L", "length": 4, "classification": "other", "labels": ["other"]}
+{"offset": 8519, "offset_hex": "0x00002147", "type": "ascii", "value": "tbqTB0", "length": 6, "classification": "other", "labels": ["other"]}
+{"offset": 8557, "offset_hex": "0x0000216d", "type": "ascii", "value": "`ex.h", "length": 5, "classification": "other", "labels": ["other"]}
+{"offset": 8650, "offset_hex": "0x000021ca", "type": "ascii", "value": "2+NG", "length": 4, "classification": "other", "labels": ["other"]}

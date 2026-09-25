@@ -1,0 +1,325 @@
+{
+  "app": {
+    "name": "Ransomware Pattern Study",
+    "acronym": "REPSW",
+    "version": "1.0.0"
+  },
+  "title": "Ransomware Encryption Pattern Analysis Report",
+  "subtitle": "locker_lockbit.exe.json",
+  "generated_at": "2026-09-17T02:59:51",
+  "run_id": "report-6734703433",
+  "verdict": "critical",
+  "risk_score": 100,
+  "summary": "No parseable API calls found.",
+  "meta": {
+    "Source": "locker_lockbit.exe.json",
+    "Format": "cuckoo",
+    "SHA-256": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2",
+    "Machine": "cuckoo-win10x64",
+    "API calls": "0",
+    "Processes": "1",
+    "Persistence mechanisms": "10",
+    "Indicators": "11",
+    "Verdict": "CRITICAL (100/100)"
+  },
+  "artifacts": [],
+  "iocs": [
+    {
+      "ioc_type": "file",
+      "value": "C:\\\\Users\\\\analyst\\\\Documents\\\\*",
+      "source": "FindFirstFileW",
+      "confidence": 0.7,
+      "context": ""
+    },
+    {
+      "ioc_type": "file",
+      "value": "report.docx",
+      "source": "FindNextFileW",
+      "confidence": 0.7,
+      "context": ""
+    },
+    {
+      "ioc_type": "file",
+      "value": "budget.xlsx",
+      "source": "FindNextFileW",
+      "confidence": 0.7,
+      "context": ""
+    },
+    {
+      "ioc_type": "file",
+      "value": "photo.jpg",
+      "source": "FindNextFileW",
+      "confidence": 0.7,
+      "context": ""
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\\\Users\\\\analyst\\\\Documents\\\\report.docx",
+      "source": "CreateFileW",
+      "confidence": 0.7,
+      "context": ""
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\\\Users\\\\analyst\\\\Documents\\\\report.docx.lockbit",
+      "source": "CreateFileW",
+      "confidence": 0.7,
+      "context": ""
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\\\Users\\\\analyst\\\\Documents\\\\budget.xlsx",
+      "source": "CreateFileW",
+      "confidence": 0.7,
+      "context": ""
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\\\Users\\\\analyst\\\\Documents\\\\budget.xlsx.lockbit",
+      "source": "WriteFile",
+      "confidence": 0.7,
+      "context": ""
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\\\Users\\\\analyst\\\\Pictures\\\\photo.jpg",
+      "source": "CreateFileW",
+      "confidence": 0.7,
+      "context": ""
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\\\Users\\\\analyst\\\\Pictures\\\\photo.jpg.lockbit",
+      "source": "WriteFile",
+      "confidence": 0.7,
+      "context": ""
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\\\Users\\\\Desktop\\\\README_LOCKED.txt",
+      "source": "CreateFileW",
+      "confidence": 0.7,
+      "context": ""
+    }
+  ],
+  "sections": [
+    {
+      "title": "Persistence mechanisms detected",
+      "kind": "table",
+      "data": {},
+      "columns": [
+        "Severity",
+        "Technique",
+        "Name",
+        "Source",
+        "Evidence",
+        "Confidence",
+        "Details"
+      ],
+      "rows": [
+        [
+          "high",
+          "RANS-004",
+          "Ransom Note Drop",
+          "behavior",
+          "",
+          "0.85",
+          "CreateFileW @ 2.15s; WriteFile @ 3.90s"
+        ],
+        [
+          "critical",
+          "RANS-002",
+          "In-Place File Encryption",
+          "behavior",
+          "",
+          "0.85",
+          "ReadFile @ 2.50s; CryptEncrypt @ 3.20s; WriteFile @ 3.90s"
+        ],
+        [
+          "critical",
+          "RANS-006",
+          "Mass File Encryption Loop",
+          "behavior",
+          "",
+          "0.85",
+          "ReadFile @ 2.50s; CryptEncrypt @ 3.20s; WriteFile @ 3.90s"
+        ],
+        [
+          "high",
+          "RANS-004",
+          "Ransom Note Drop",
+          "behavior",
+          "",
+          "0.85",
+          "CreateFileW @ 4.25s; WriteFile @ 5.30s"
+        ],
+        [
+          "critical",
+          "RANS-002",
+          "In-Place File Encryption",
+          "behavior",
+          "",
+          "0.85",
+          "ReadFile @ 4.60s; CryptEncrypt @ 4.95s; WriteFile @ 5.30s"
+        ],
+        [
+          "critical",
+          "RANS-006",
+          "Mass File Encryption Loop",
+          "behavior",
+          "",
+          "0.85",
+          "ReadFile @ 4.60s; CryptEncrypt @ 4.95s; WriteFile @ 5.30s"
+        ],
+        [
+          "high",
+          "RANS-004",
+          "Ransom Note Drop",
+          "behavior",
+          "",
+          "0.85",
+          "CreateFileW @ 5.65s; WriteFile @ 6.70s"
+        ],
+        [
+          "critical",
+          "RANS-002",
+          "In-Place File Encryption",
+          "behavior",
+          "",
+          "0.85",
+          "ReadFile @ 6.00s; CryptEncrypt @ 6.35s; WriteFile @ 6.70s"
+        ],
+        [
+          "critical",
+          "RANS-006",
+          "Mass File Encryption Loop",
+          "behavior",
+          "",
+          "0.85",
+          "ReadFile @ 6.00s; CryptEncrypt @ 6.35s; WriteFile @ 6.70s"
+        ],
+        [
+          "high",
+          "RANS-004",
+          "Ransom Note Drop",
+          "behavior",
+          "",
+          "0.85",
+          "CreateFileW @ 7.40s; WriteFile @ 7.75s"
+        ]
+      ],
+      "text": "",
+      "items": [],
+      "note": "Ordered by timestamp; mapped to MITRE ATT&CK persistence techniques."
+    },
+    {
+      "title": "Analysis statistics",
+      "kind": "kv",
+      "data": {
+        "Total API calls": "0",
+        "Processes": "1",
+        "Duration": "0.0s",
+        "Categories observed": "-"
+      },
+      "columns": [],
+      "rows": [],
+      "text": "",
+      "items": [],
+      "note": ""
+    },
+    {
+      "title": "Indicators of Compromise",
+      "kind": "table",
+      "data": {},
+      "columns": [
+        "Type",
+        "Value",
+        "Source",
+        "Confidence",
+        "Context"
+      ],
+      "rows": [
+        [
+          "file",
+          "C:\\\\Users\\\\analyst\\\\Documents\\\\*",
+          "FindFirstFileW",
+          "0.70",
+          ""
+        ],
+        [
+          "file",
+          "report.docx",
+          "FindNextFileW",
+          "0.70",
+          ""
+        ],
+        [
+          "file",
+          "budget.xlsx",
+          "FindNextFileW",
+          "0.70",
+          ""
+        ],
+        [
+          "file",
+          "photo.jpg",
+          "FindNextFileW",
+          "0.70",
+          ""
+        ],
+        [
+          "file",
+          "C:\\\\Users\\\\analyst\\\\Documents\\\\report.docx",
+          "CreateFileW",
+          "0.70",
+          ""
+        ],
+        [
+          "file",
+          "C:\\\\Users\\\\analyst\\\\Documents\\\\report.docx.lockbit",
+          "CreateFileW",
+          "0.70",
+          ""
+        ],
+        [
+          "file",
+          "C:\\\\Users\\\\analyst\\\\Documents\\\\budget.xlsx",
+          "CreateFileW",
+          "0.70",
+          ""
+        ],
+        [
+          "file",
+          "C:\\\\Users\\\\analyst\\\\Documents\\\\budget.xlsx.lockbit",
+          "WriteFile",
+          "0.70",
+          ""
+        ],
+        [
+          "file",
+          "C:\\\\Users\\\\analyst\\\\Pictures\\\\photo.jpg",
+          "CreateFileW",
+          "0.70",
+          ""
+        ],
+        [
+          "file",
+          "C:\\\\Users\\\\analyst\\\\Pictures\\\\photo.jpg.lockbit",
+          "WriteFile",
+          "0.70",
+          ""
+        ],
+        [
+          "file",
+          "C:\\\\Users\\\\Desktop\\\\README_LOCKED.txt",
+          "CreateFileW",
+          "0.70",
+          ""
+        ]
+      ],
+      "text": "",
+      "items": [],
+      "note": ""
+    }
+  ]
+}

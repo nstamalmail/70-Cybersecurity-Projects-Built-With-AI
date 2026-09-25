@@ -1,0 +1,210 @@
+# Report,API Call Sequence Analysis Report
+# Subtitle,locker_2026.exe.json · cuckoo
+# Generated,2026-09-17T02:20:36
+# Verdict,critical
+# Risk score,100
+# Tools,API Sequence Visualizer v1.0.0
+
+# Summary,"32 API calls across 3 process(es) over 11.2s of behaviour were normalised from a cuckoo report. High-severity behaviour matched: Credential store access; Encrypt in place; New service installed; Script interpreter launched; Self-modifying memory. Dominant categories: file 13, crypto 5, system 4, memory 4. 22 indicators were extracted from the call arguments. Behaviour score 100/100 (critical)."
+
+# Overview
+Field,Value
+Report,report-4599146086
+Source,locker_2026.exe.json
+Format,cuckoo
+Sample,locker_2026.exe
+SHA-256,3b7d1f5a9c2e6084d1a4f7e0b3c69d2f5a8b1e4c7d0f3a6b9c2e5d8f1a4b7c0e
+Machine,cuckoo-win7x64
+Analysis started,2026-09-12 11:22:05
+Duration,11.2s of behaviour
+API calls,32 (records: 32)
+Processes,3
+Unique APIs,20
+Patterns matched,8
+Indicators,22
+Behaviour score,100/100 (critical)
+Sandbox signatures,"creates_service, modifies_shadow_copies, mass_file_encryption, creates_mutex, persistence_run_key"
+
+# Indicators of Compromise
+ioc_type,value,source,confidence,context
+registry,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run\LockerService,"RegCreateKeyExW (pid 788), RegSetValueExW (pid 788)",0.95,"regkey=HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run, value_name=LockerService"
+registry,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run,"RegCreateKeyExW (pid 788), RegSetValueExW (pid 788), summary:keys",0.85,"regkey=HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run, value_name=LockerService"
+file,budget.xlsx,FindNextFileW (pid 788),0.75,file_name=budget.xlsx
+file,C:\Users\analyst\Desktop\notes.txt,ReadFile (pid 788),0.75,"file_name=C:\Users\analyst\Desktop\notes.txt, size=4096"
+file,C:\Users\analyst\Desktop\notes.txt.locked,"WriteFile (pid 788), summary:files",0.75,"file_name=C:\Users\analyst\Desktop\notes.txt.locked, size=4096"
+file,C:\Users\analyst\Desktop\README_LOCKED.txt,"CreateFileW (pid 788), WriteFile (pid 788), summary:files",0.75,"file_name=C:\Users\analyst\Desktop\README_LOCKED.txt, desired_access=GENERIC_WRITE"
+file,C:\Users\analyst\Documents\*,FindFirstFileW (pid 788),0.75,file_name=C:\Users\analyst\Documents\*
+file,C:\Users\analyst\Documents\budget.xlsx,ReadFile (pid 788),0.75,"file_name=C:\Users\analyst\Documents\budget.xlsx, size=40960"
+file,C:\Users\analyst\Documents\budget.xlsx.locked,"WriteFile (pid 788), summary:files",0.75,"file_name=C:\Users\analyst\Documents\budget.xlsx.locked, size=40960"
+file,C:\Users\analyst\Documents\report.docx,ReadFile (pid 788),0.75,"file_name=C:\Users\analyst\Documents\report.docx, size=32768"
+file,C:\Users\analyst\Documents\report.docx.locked,"WriteFile (pid 788), summary:files",0.75,"file_name=C:\Users\analyst\Documents\report.docx.locked, size=32768"
+file,C:\Users\analyst\Pictures\scan.png,ReadFile (pid 788),0.75,"file_name=C:\Users\analyst\Pictures\scan.png, size=51200"
+file,C:\Users\analyst\Pictures\scan.png.locked,"WriteFile (pid 788), summary:files",0.75,"file_name=C:\Users\analyst\Pictures\scan.png.locked, size=51200"
+file,C:\Windows\System32\cmd.exe,CreateProcessW (pid 788),0.75,"application_name=C:\Windows\System32\cmd.exe, command_line=cmd.exe /c bcdedit /set {default} recoveryenabled No"
+file,C:\Windows\System32\vssadmin.exe,CreateProcessW (pid 788),0.75,"application_name=C:\Windows\System32\vssadmin.exe, command_line=vssadmin.exe delete shadows /all /quiet"
+file,report.docx,FindNextFileW (pid 788),0.75,file_name=report.docx
+file,C:\Users\analyst\Desktop\locker_2026.exe,"RegSetValueExW (pid 788), CreateServiceW (pid 788)",0.60,"regkey=HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run, value_name=LockerService, value=C:\Users\analyst\Desktop\locker_2026.exe -k"
+file,C:\Users\analyst\Documents\,FindFirstFileW (pid 788),0.60,file_name=C:\Users\analyst\Documents\*
+mutex,Global\LKR-2026-LOCK,"CreateMutexW (pid 788), summary:mutexes",0.80,mutex_name=Global\LKR-2026-LOCK
+service,LockSvc,"CreateServiceW (pid 788), StartServiceW (pid 788), summary:services",0.85,"service_name=LockSvc, binary_path=C:\Users\analyst\Desktop\locker_2026.exe"
+command,cmd.exe /c bcdedit /set {default} recoveryenabled No,"CreateProcessW (pid 788), summary:executed_commands",0.70,"application_name=C:\Windows\System32\cmd.exe, command_line=cmd.exe /c bcdedit /set {default} recoveryenabled No"
+command,vssadmin.exe delete shadows /all /quiet,"CreateProcessW (pid 788), summary:executed_commands",0.70,"application_name=C:\Windows\System32\vssadmin.exe, command_line=vssadmin.exe delete shadows /all /quiet"
+
+# Section: Behavioural findings
+# note,Ordered API sequences matched by the pattern engine (architecture §3.4).
+Severity,Pattern,Process,Start (s),Span (s),API chain,Target
+critical,Encrypt in place,locker_2026.exe,2.15,1.05,ReadFile -> CryptEncrypt -> WriteFile,C:\Users\analyst\Documents\report.docx
+critical,Encrypt in place,locker_2026.exe,3.55,0.70,ReadFile -> CryptEncrypt -> WriteFile,C:\Users\analyst\Documents\budget.xlsx
+critical,Encrypt in place,locker_2026.exe,4.60,0.70,ReadFile -> CryptEncrypt -> WriteFile,C:\Users\analyst\Pictures\scan.png
+critical,Encrypt in place,locker_2026.exe,5.65,0.70,ReadFile -> CryptEncrypt -> WriteFile,C:\Users\analyst\Desktop\notes.txt
+high,Script interpreter launched,locker_2026.exe,6.70,0.70,CreateProcessW -> CreateFileW,C:\Windows\System32\vssadmin.exe
+critical,New service installed,locker_2026.exe,8.80,0.70,OpenSCManagerW -> CreateServiceW -> StartServiceW,LockSvc
+critical,Credential store access,locker_2026.exe,9.85,1.05,OpenProcess -> ReadProcessMemory -> WriteProcessMemory,4
+high,Self-modifying memory,locker_2026.exe,10.55,0.70,VirtualAlloc -> WriteProcessMemory -> VirtualProtect,-
+
+# Section: Finding details
+item
+[critical] RANS-002 Encrypt in place — pid 788 (locker_2026.exe) at t=2.15s target: C:\Users\analyst\Documents\report.docx | ReadFile -> CryptEncrypt -> WriteFile
+[critical] RANS-002 Encrypt in place — pid 788 (locker_2026.exe) at t=3.55s target: C:\Users\analyst\Documents\budget.xlsx | ReadFile -> CryptEncrypt -> WriteFile
+[critical] RANS-002 Encrypt in place — pid 788 (locker_2026.exe) at t=4.60s target: C:\Users\analyst\Pictures\scan.png | ReadFile -> CryptEncrypt -> WriteFile
+[critical] RANS-002 Encrypt in place — pid 788 (locker_2026.exe) at t=5.65s target: C:\Users\analyst\Desktop\notes.txt | ReadFile -> CryptEncrypt -> WriteFile
+[high] EXEC-003 Script interpreter launched — pid 788 (locker_2026.exe) at t=6.70s target: C:\Windows\System32\vssadmin.exe | CreateProcessW -> CreateFileW
+[critical] PERS-002 New service installed — pid 788 (locker_2026.exe) at t=8.80s target: LockSvc | OpenSCManagerW -> CreateServiceW -> StartServiceW
+[critical] CRED-001 Credential store access — pid 788 (locker_2026.exe) at t=9.85s target: 4 | OpenProcess -> ReadProcessMemory -> WriteProcessMemory
+[high] MEM-001 Self-modifying memory — pid 788 (locker_2026.exe) at t=10.55s | VirtualAlloc -> WriteProcessMemory -> VirtualProtect
+
+# Section: Behaviour statistics
+Field,Value
+"Total calls (records, loop-collapsed)",32 (32)
+Unique APIs,20
+Processes,3
+Behaviour duration,11.25s
+Calls per second,2.844
+Failed calls,1 (3.1%)
+Collapsed repeat runs,0
+Categories observed,"file, crypto, system, memory, process, registry, sync"
+
+# Section: API category distribution
+# note,Volume per category; a large memory + process share is injection-shaped.
+Category,Calls,Share
+file,13,40.6%
+crypto,5,15.6%
+system,4,12.5%
+memory,4,12.5%
+process,3,9.4%
+registry,2,6.2%
+sync,1,3.1%
+
+# Section: Most frequent APIs
+API,Calls
+WriteFile,5
+ReadFile,4
+CryptEncrypt,4
+FindNextFileW,2
+CreateProcessW,2
+IsDebuggerPresent,1
+CreateMutexW,1
+FindFirstFileW,1
+CryptGenKey,1
+CreateFileW,1
+RegCreateKeyExW,1
+RegSetValueExW,1
+OpenSCManagerW,1
+CreateServiceW,1
+StartServiceW,1
+
+# Section: Recurring API sequences
+# note,Frequent ordered chains mined from the call stream (maximal recurring sequences).
+Steps,Support,Process,Start (s),Span (s),Chain
+8,3,-,0.00,0.00,CryptEncrypt -> WriteFile -> ReadFile -> CryptEncrypt -> WriteFile -> ReadFile -> CryptEncrypt -> WriteFile
+
+# Section: Frequent n-grams
+Occurrences,Length,Score,Process,Chain
+3,5,15,all,CryptEncrypt -> WriteFile -> ReadFile -> CryptEncrypt -> WriteFile
+3,4,12,all,CryptEncrypt -> WriteFile -> ReadFile -> CryptEncrypt
+3,4,12,all,WriteFile -> ReadFile -> CryptEncrypt -> WriteFile
+2,5,10,all,WriteFile -> ReadFile -> CryptEncrypt -> WriteFile -> ReadFile
+2,5,10,all,ReadFile -> CryptEncrypt -> WriteFile -> ReadFile -> CryptEncrypt
+3,3,9,all,CryptEncrypt -> WriteFile -> ReadFile
+3,3,9,all,WriteFile -> ReadFile -> CryptEncrypt
+3,3,9,all,ReadFile -> CryptEncrypt -> WriteFile
+2,4,8,all,ReadFile -> CryptEncrypt -> WriteFile -> ReadFile
+4,2,8,all,CryptEncrypt -> WriteFile
+3,2,6,all,WriteFile -> ReadFile
+3,2,6,all,ReadFile -> CryptEncrypt
+
+# Section: API transition matrix (top)
+# note,First-order Markov transitions; these edges drive the behaviour graph.
+From,To,Count,Probability,Process
+CryptEncrypt,WriteFile,4,100.0%,all
+ReadFile,CryptEncrypt,3,75.0%,all
+WriteFile,ReadFile,3,60.0%,all
+IsDebuggerPresent,CreateMutexW,1,100.0%,all
+CreateMutexW,FindFirstFileW,1,100.0%,all
+FindFirstFileW,FindNextFileW,1,100.0%,all
+CryptGenKey,CryptEncrypt,1,100.0%,all
+CreateFileW,WriteFile,1,100.0%,all
+RegCreateKeyExW,RegSetValueExW,1,100.0%,all
+RegSetValueExW,OpenSCManagerW,1,100.0%,all
+OpenSCManagerW,CreateServiceW,1,100.0%,all
+CreateServiceW,StartServiceW,1,100.0%,all
+StartServiceW,OpenProcess,1,100.0%,all
+OpenProcess,ReadProcessMemory,1,100.0%,all
+ReadProcessMemory,VirtualAlloc,1,100.0%,all
+VirtualAlloc,WriteProcessMemory,1,100.0%,all
+WriteProcessMemory,VirtualProtect,1,100.0%,all
+FindNextFileW,FindNextFileW,1,50.0%,all
+FindNextFileW,ReadFile,1,50.0%,all
+CreateProcessW,CreateProcessW,1,50.0%,all
+CreateProcessW,CreateFileW,1,50.0%,all
+ReadFile,CryptGenKey,1,25.0%,all
+WriteFile,CreateProcessW,1,20.0%,all
+WriteFile,RegCreateKeyExW,1,20.0%,all
+
+# Section: Reconstructed process tree
+Process,PID,Parent,First seen (s),Calls,Failures,Top categories,Path
+locker_2026.exe,788,-,0.20,32,1,"file:13, crypto:5, system:4, memory:4",C:\Users\analyst\Desktop\locker_2026.exe
+vssadmin.exe,1216,788,0.00,0,0,,C:\Windows\System32\vssadmin.exe
+cmd.exe,2044,788,0.00,0,0,,C:\Windows\System32\cmd.exe
+
+# Section: Suspicious process notes
+item
+PID 788 locker_2026.exe: process + memory APIs (injection-capable)
+
+# Section: Highest-probability behaviour paths
+item
+WriteFile -> ReadFile -> CryptEncrypt
+CryptEncrypt -> WriteFile -> ReadFile -> CryptGenKey
+ReadFile -> CryptEncrypt -> WriteFile -> CreateProcessW -> CreateFileW
+FindNextFileW -> ReadFile -> CryptEncrypt -> WriteFile -> CreateProcessW -> CreateFileW
+CreateProcessW -> CreateFileW -> WriteFile -> ReadFile -> CryptEncrypt
+IsDebuggerPresent -> CreateMutexW -> FindFirstFileW -> FindNextFileW -> ReadFile -> CryptEncrypt -> WriteFile -> CreateProcessW
+CreateMutexW -> FindFirstFileW -> FindNextFileW -> ReadFile -> CryptEncrypt -> WriteFile -> CreateProcessW -> CreateFileW
+FindFirstFileW -> FindNextFileW -> ReadFile -> CryptEncrypt -> WriteFile -> CreateProcessW -> CreateFileW
+CryptGenKey -> CryptEncrypt -> WriteFile -> ReadFile
+CreateFileW -> WriteFile -> ReadFile -> CryptEncrypt
+
+# Section: Indicators of Compromise
+Type,Value,Source,Confidence,Context
+registry,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run\LockerService,"RegCreateKeyExW (pid 788), RegSetValueExW (pid 788)",0.95,"regkey=HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run, value_name=LockerService"
+registry,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run,"RegCreateKeyExW (pid 788), RegSetValueExW (pid 788), summary:keys",0.85,"regkey=HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run, value_name=LockerService"
+file,budget.xlsx,FindNextFileW (pid 788),0.75,file_name=budget.xlsx
+file,C:\Users\analyst\Desktop\notes.txt,ReadFile (pid 788),0.75,"file_name=C:\Users\analyst\Desktop\notes.txt, size=4096"
+file,C:\Users\analyst\Desktop\notes.txt.locked,"WriteFile (pid 788), summary:files",0.75,"file_name=C:\Users\analyst\Desktop\notes.txt.locked, size=4096"
+file,C:\Users\analyst\Desktop\README_LOCKED.txt,"CreateFileW (pid 788), WriteFile (pid 788), summary:files",0.75,"file_name=C:\Users\analyst\Desktop\README_LOCKED.txt, desired_access=GENERIC_WRITE"
+file,C:\Users\analyst\Documents\*,FindFirstFileW (pid 788),0.75,file_name=C:\Users\analyst\Documents\*
+file,C:\Users\analyst\Documents\budget.xlsx,ReadFile (pid 788),0.75,"file_name=C:\Users\analyst\Documents\budget.xlsx, size=40960"
+file,C:\Users\analyst\Documents\budget.xlsx.locked,"WriteFile (pid 788), summary:files",0.75,"file_name=C:\Users\analyst\Documents\budget.xlsx.locked, size=40960"
+file,C:\Users\analyst\Documents\report.docx,ReadFile (pid 788),0.75,"file_name=C:\Users\analyst\Documents\report.docx, size=32768"
+file,C:\Users\analyst\Documents\report.docx.locked,"WriteFile (pid 788), summary:files",0.75,"file_name=C:\Users\analyst\Documents\report.docx.locked, size=32768"
+file,C:\Users\analyst\Pictures\scan.png,ReadFile (pid 788),0.75,"file_name=C:\Users\analyst\Pictures\scan.png, size=51200"
+file,C:\Users\analyst\Pictures\scan.png.locked,"WriteFile (pid 788), summary:files",0.75,"file_name=C:\Users\analyst\Pictures\scan.png.locked, size=51200"
+file,C:\Windows\System32\cmd.exe,CreateProcessW (pid 788),0.75,"application_name=C:\Windows\System32\cmd.exe, command_line=cmd.exe /c bcdedit /set {default} recoveryenabled No"
+file,C:\Windows\System32\vssadmin.exe,CreateProcessW (pid 788),0.75,"application_name=C:\Windows\System32\vssadmin.exe, command_line=vssadmin.exe delete shadows /all /quiet"
+file,report.docx,FindNextFileW (pid 788),0.75,file_name=report.docx
+file,C:\Users\analyst\Desktop\locker_2026.exe,"RegSetValueExW (pid 788), CreateServiceW (pid 788)",0.60,"regkey=HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run, value_name=LockerService, value=C:\Users\analyst\Desktop\locker_2026.exe -k"
+file,C:\Users\analyst\Documents\,FindFirstFileW (pid 788),0.60,file_name=C:\Users\analyst\Documents\*
+mutex,Global\LKR-2026-LOCK,"CreateMutexW (pid 788), summary:mutexes",0.80,mutex_name=Global\LKR-2026-LOCK
+service,LockSvc,"CreateServiceW (pid 788), StartServiceW (pid 788), summary:services",0.85,"service_name=LockSvc, binary_path=C:\Users\analyst\Desktop\locker_2026.exe"
+command,cmd.exe /c bcdedit /set {default} recoveryenabled No,"CreateProcessW (pid 788), summary:executed_commands",0.70,"application_name=C:\Windows\System32\cmd.exe, command_line=cmd.exe /c bcdedit /set {default} recoveryenabled No"
+command,vssadmin.exe delete shadows /all /quiet,"CreateProcessW (pid 788), summary:executed_commands",0.70,"application_name=C:\Windows\System32\vssadmin.exe, command_line=vssadmin.exe delete shadows /all /quiet"

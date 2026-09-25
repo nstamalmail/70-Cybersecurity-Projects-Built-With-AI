@@ -1,0 +1,91 @@
+type,value,source,confidence,first_seen,last_seen,tags,threat_type,malware_family,tlp
+ipv4,192.168.1.100,OTX AlienVault,85,2024-01-15T10:00:00Z,2024-01-15T10:30:00Z,"malware,c2",malware,emotet,GREEN
+ipv4,10.0.0.50,URLhaus,72,2024-01-14T08:00:00Z,2024-01-15T10:30:00Z,"scanner",scanner,,GREEN
+ipv4,172.16.0.25,MISP,90,2024-01-13T12:00:00Z,2024-01-15T10:30:00Z,"c2,apt",c2,cobalt_strike,AMBER
+ipv4,203.0.113.50,Custom CSV,45,2024-01-12T14:00:00Z,2024-01-15T10:30:00Z,"phishing",phishing,,GREEN
+ipv4,198.51.100.25,Manual Import,65,2024-01-11T16:00:00Z,2024-01-15T10:30:00Z,"malware",malware,trickbot,GREEN
+ipv4,192.0.2.100,OTX AlienVault,78,2024-01-10T18:00:00Z,2024-01-15T10:30:00Z,"scanner,bruteforce",scanner,,GREEN
+ipv4,10.10.10.10,URLhaus,82,2024-01-09T20:00:00Z,2024-01-15T10:30:00Z,"malware,c2",malware,emotet,GREEN
+ipv4,172.16.255.255,MISP,88,2024-01-08T22:00:00Z,2024-01-15T10:30:00Z,"apt,lateral_movement",malware,apt28,RED
+ipv4,10.0.0.1,Custom CSV,35,2024-01-07T12:00:00Z,2024-01-15T10:30:00Z,"scanner",scanner,,GREEN
+ipv4,192.168.100.1,Manual Import,55,2024-01-06T14:00:00Z,2024-01-15T10:30:00Z,"phishing",phishing,,GREEN
+ipv4,10.1.1.1,OTX AlienVault,70,2024-01-05T16:00:00Z,2024-01-15T10:30:00Z,"malware",malware,lockbit,GREEN
+ipv4,172.20.0.1,URLhaus,60,2024-01-04T18:00:00Z,2024-01-15T10:30:00Z,"c2",c2,,GREEN
+ipv4,203.0.113.100,MISP,95,2024-01-03T20:00:00Z,2024-01-15T10:30:00Z,"apt,data_exfil",c2,apt29,RED
+ipv4,198.51.100.50,Custom CSV,40,2024-01-02T22:00:00Z,2024-01-15T10:30:00Z,"spam",spam,,GREEN
+ipv4,192.0.2.50,Manual Import,50,2024-01-01T12:00:00Z,2024-01-15T10:30:00Z,"scanner",scanner,,GREEN
+domain,malware-c2.evil.com,OTX AlienVault,88,2024-01-15T10:00:00Z,2024-01-15T10:30:00Z,"malware,c2",malware,emotet,GREEN
+domain,phishing-site.scam.net,URLhaus,75,2024-01-14T08:00:00Z,2024-01-15T10:30:00Z,"phishing",phishing,,GREEN
+domain,apt-command.bad.org,MISP,92,2024-01-13T12:00:00Z,2024-01-15T10:30:00Z,"apt,c2",c2,apt28,RED
+domain,botnet-controller.dark.net,Custom CSV,80,2024-01-12T14:00:00Z,2024-01-15T10:30:00Z,"malware,c2",malware,emotet,GREEN
+domain,ransomware-pay.evil.com,Manual Import,85,2024-01-11T16:00:00Z,2024-01-15T10:30:00Z,"ransomware",malware,lockbit,GREEN
+domain,credential-steal.bad.net,OTX AlienVault,70,2024-01-10T18:00:00Z,2024-01-15T10:30:00Z,"credential_theft",malware,trickbot,GREEN
+domain,dns-tunnel.evil.com,URLhaus,65,2024-01-09T20:00:00Z,2024-01-15T10:30:00Z,"exfiltration",malware,,GREEN
+domain,exploit-kit.dark.net,MISP,78,2024-01-08T22:00:00Z,2024-01-15T10:30:00Z,"exploit",malware,,GREEN
+domain,spam-relay.scam.net,Custom CSV,45,2024-01-07T12:00:00Z,2024-01-15T10:30:00Z,"spam",spam,,GREEN
+domain,crypto-miner.bad.org,Manual Import,55,2024-01-06T14:00:00Z,2024-01-15T10:30:00Z,"cryptojacking",malware,,GREEN
+domain,keylogger-host.evil.com,OTX AlienVault,82,2024-01-05T16:00:00Z,2024-01-15T10:30:00Z,"keylogger",malware,emotet,GREEN
+domain,backdoor-c2.dark.net,URLhaus,76,2024-01-04T18:00:00Z,2024-01-15T10:30:00Z,"backdoor",malware,cobalt_strike,GREEN
+domain,watering-hole.scam.net,MISP,88,2024-01-03T20:00:00Z,2024-01-15T10:30:00Z,"apt,watering_hole",malware,apt29,RED
+domain,typosquat.bad.org,Custom CSV,60,2024-01-02T22:00:00Z,2024-01-15T10:30:00Z,"phishing",phishing,,GREEN
+domain,dga-generated.evil.com,Manual Import,70,2024-01-01T12:00:00Z,2024-01-15T10:30:00Z,"malware,dga",malware,emotet,GREEN
+url,http://malware-c2.evil.com/payload.exe,OTX AlienVault,90,2024-01-15T10:00:00Z,2024-01-15T10:30:00Z,"malware,download",malware,emotet,GREEN
+url,https://phishing-site.scam.net/login.php,URLhaus,78,2024-01-14T08:00:00Z,2024-01-15T10:30:00Z,"phishing",phishing,,GREEN
+url,http://apt-command.bad.org/command?id=123,MISP,95,2024-01-13T12:00:00Z,2024-01-15T10:30:00Z,"apt,c2",c2,apt28,RED
+url,https://botnet-controller.dark.net/beacon,Custom CSV,85,2024-01-12T14:00:00Z,2024-01-15T10:30:00Z,"malware,c2",malware,emotet,GREEN
+url,http://ransomware-pay.evil.com/decrypt,Manual Import,88,2024-01-11T16:00:00Z,2024-01-15T10:30:00Z,"ransomware",malware,lockbit,GREEN
+url,https://credential-steal.bad.net/harvest,OTX AlienVault,72,2024-01-10T18:00:00Z,2024-01-15T10:30:00Z,"credential_theft",malware,trickbot,GREEN
+url,http://dns-tunnel.evil.com/exfil,URLhaus,68,2024-01-09T20:00:00Z,2024-01-15T10:30:00Z,"exfiltration",malware,,GREEN
+url,https://exploit-kit.dark.net/exploit,MISP,80,2024-01-08T22:00:00Z,2024-01-15T10:30:00Z,"exploit",malware,,GREEN
+url,http://spam-relay.scam.net/send,Custom CSV,50,2024-01-07T12:00:00Z,2024-01-15T10:30:00Z,"spam",spam,,GREEN
+url,https://crypto-miner.bad.org/mine,Manual Import,58,2024-01-06T14:00:00Z,2024-01-15T10:30:00Z,"cryptojacking",malware,,GREEN
+url,http://keylogger-host.evil.com/capture,OTX AlienVault,84,2024-01-05T16:00:00Z,2024-01-15T10:30:00Z,"keylogger",malware,emotet,GREEN
+url,https://backdoor-c2.dark.net/callback,URLhaus,78,2024-01-04T18:00:00Z,2024-01-15T10:30:00Z,"backdoor",malware,cobalt_strike,GREEN
+url,http://watering-hole.scam.net/infect,MISP,90,2024-01-03T20:00:00Z,2024-01-15T10:30:00Z,"apt,watering_hole",malware,apt29,RED
+url,https://typosquat.bad.org/steal,Custom CSV,62,2024-01-02T22:00:00Z,2024-01-15T10:30:00Z,"phishing",phishing,,GREEN
+url,http://dga-generated.evil.com/dga.exe,Manual Import,74,2024-01-01T12:00:00Z,2024-01-15T10:30:00Z,"malware,dga",malware,emotet,GREEN
+md5,44d88612fea8a8f36de82e1278abb02f,OTX AlienVault,88,2024-01-15T10:00:00Z,2024-01-15T10:30:00Z,"malware,trojan",malware,emotet,GREEN
+md5,d41d8cd98f00b204e9800998ecf8427e,URLhaus,72,2024-01-14T08:00:00Z,2024-01-15T10:30:00Z,"malware",malware,,GREEN
+md5,e99a18c428cb38d5f260853678922e03,MISP,92,2024-01-13T12:00:00Z,2024-01-15T10:30:00Z,"apt,rat",malware,apt28,RED
+md5,5d41402abc4b2a76b9719d911017c592,Custom CSV,65,2024-01-12T14:00:00Z,2024-01-15T10:30:00Z,"malware",malware,trickbot,GREEN
+md5,098f6bcd4621d373cade4e832627b4f6,Manual Import,78,2024-01-11T16:00:00Z,2024-01-15T10:30:00Z,"ransomware",malware,lockbit,GREEN
+md5,b10a8db164e0754105b7a99be72e3fe5,OTX AlienVault,82,2024-01-10T18:00:00Z,2024-01-15T10:30:00Z,"malware",malware,emotet,GREEN
+md5,7c6a180b36896a65e511f1b8fd502360,URLhaus,68,2024-01-09T20:00:00Z,2024-01-15T10:30:00Z,"malware",malware,,GREEN
+md5,6c569aabbf7775ef8fc570e228c19b91,MISP,85,2024-01-08T22:00:00Z,2024-01-15T10:30:00Z,"apt,backdoor",malware,cobalt_strike,GREEN
+md5,3c59dc048e8850243be8079a5c74d079,Custom CSV,55,2024-01-07T12:00:00Z,2024-01-15T10:30:00Z,"malware",malware,,GREEN
+md5,bfd0941c9ff6a457b7f1f06e5f6d22d1,Manual Import,70,2024-01-06T14:00:00Z,2024-01-15T10:30:00Z,"malware",malware,emotet,GREEN
+md5,ac3478d69a3c81fa62e60f0c4d8d7cda,OTX AlienVault,76,2024-01-05T16:00:00Z,2024-01-15T10:30:00Z,"malware",malware,trickbot,GREEN
+md5,900150983cd24fb0d6963f7d28e17f72,URLhaus,60,2024-01-04T18:00:00Z,2024-01-15T10:30:00Z,"malware",malware,,GREEN
+md5,310dc539614e9b38427e8f0a4f6d22b8,MISP,88,2024-01-03T20:00:00Z,2024-01-15T10:30:00Z,"apt,rootkit",malware,apt29,RED
+md5,d8578edf8458ce06fbc5bb76a58c5ca4,Custom CSV,48,2024-01-02T22:00:00Z,2024-01-15T10:30:00Z,"malware",malware,,GREEN
+md5,eb61e32277fa42fd79c15e0c0d7b6e7e,Manual Import,62,2024-01-01T12:00:00Z,2024-01-15T10:30:00Z,"malware",malware,lockbit,GREEN
+sha1,3395856ce81f2b7382dee72602f798b642f14140,OTX AlienVault,90,2024-01-15T10:00:00Z,2024-01-15T10:30:00Z,"malware,trojan",malware,emotet,GREEN
+sha1,2aae6c35c94fcfb415dbe95f408b9ce91ee846ed,URLhaus,78,2024-01-14T08:00:00Z,2024-01-15T10:30:00Z,"malware",malware,,GREEN
+sha1,596d2f51e5c186740367e2d1e3ef1f1c8e808396,MISP,95,2024-01-13T12:00:00Z,2024-01-15T10:30:00Z,"apt,rat",malware,apt28,RED
+sha1,b4c5e39f06eb0f12d219520e40be053e309d45a4,Custom CSV,68,2024-01-12T14:00:00Z,2024-01-15T10:30:00Z,"malware",malware,trickbot,GREEN
+sha1,7c222fb2927d828af22f77d2150f3105f8524222,Manual Import,82,2024-01-11T16:00:00Z,2024-01-15T10:30:00Z,"ransomware",malware,lockbit,GREEN
+sha256,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,OTX AlienVault,92,2024-01-15T10:00:00Z,2024-01-15T10:30:00Z,"malware,trojan",malware,emotet,GREEN
+sha256,275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f,URLhaus,82,2024-01-14T08:00:00Z,2024-01-15T10:30:00Z,"malware",malware,,GREEN
+sha256,9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08,MISP,98,2024-01-13T12:00:00Z,2024-01-15T10:30:00Z,"apt,rat",malware,apt28,RED
+sha256,4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640d782fa2254b42,Custom CSV,75,2024-01-12T14:00:00Z,2024-01-15T10:30:00Z,"malware",malware,trickbot,GREEN
+sha256,ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec96f29a6e2e68e,Manual Import,85,2024-01-11T16:00:00Z,2024-01-15T10:30:00Z,"ransomware",malware,lockbit,GREEN
+sha256,2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824,OTX AlienVault,88,2024-01-10T18:00:00Z,2024-01-15T10:30:00Z,"malware",malware,emotet,GREEN
+sha256,18ac3e7343f016890c512e1a5af442339a0330e7a7403f10c29e0ef0c9a8d017,URLhaus,72,2024-01-09T20:00:00Z,2024-01-15T10:30:00Z,"malware",malware,,GREEN
+sha256,6b51d431df5d7f141cbececcf79edf3dd861c3b4069f0b110814c28e73a8d12e,MISP,90,2024-01-08T22:00:00Z,2024-01-15T10:30:00Z,"apt,backdoor",malware,cobalt_strike,GREEN
+sha256,3eb4a5ae51d42f3f5c09a84e7b8a02d37a36f58c2b0c2e6b3a4f5d6e7f809101,Custom CSV,58,2024-01-07T12:00:00Z,2024-01-15T10:30:00Z,"malware",malware,,GREEN
+sha256,a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f00111,Manual Import,72,2024-01-06T14:00:00Z,2024-01-15T10:30:00Z,"malware",malware,emotet,GREEN
+email,attacker@evil-domain.com,OTX AlienVault,65,2024-01-15T10:00:00Z,2024-01-15T10:30:00Z,"phishing",phishing,,GREEN
+email,phisher@scam-site.net,URLhaus,58,2024-01-14T08:00:00Z,2024-01-15T10:30:00Z,"phishing",phishing,,GREEN
+email,c2operator@dark-network.org,MISP,88,2024-01-13T12:00:00Z,2024-01-15T10:30:00Z,"apt,c2",c2,apt28,RED
+email,spammer@relay-host.com,Custom CSV,42,2024-01-12T14:00:00Z,2024-01-15T10:30:00Z,"spam",spam,,GREEN
+email,dropper@malware-site.evil,Manual Import,70,2024-01-11T16:00:00Z,2024-01-15T10:30:00Z,"malware",malware,emotet,GREEN
+email,ransom@pay-or-else.com,OTX AlienVault,75,2024-01-10T18:00:00Z,2024-01-15T10:30:00Z,"ransomware",malware,lockbit,GREEN
+email,keylog@surveillance.net,URLhaus,68,2024-01-09T20:00:00Z,2024-01-15T10:30:00Z,"keylogger",malware,,GREEN
+email,exploit@vuln-scan.org,MISP,82,2024-01-08T22:00:00Z,2024-01-15T10:30:00Z,"exploit",malware,,GREEN
+email,bot@net-herd.evil.com,Custom CSV,55,2024-01-07T12:00:00Z,2024-01-15T10:30:00Z,"malware,c2",malware,emotet,GREEN
+email,crypto@mining-pool.bad,Manual Import,48,2024-01-06T14:00:00Z,2024-01-15T10:30:00Z,"cryptojacking",malware,,GREEN
+email,backdoor@apt-c2.dark,OTX AlienVault,80,2024-01-05T16:00:00Z,2024-01-15T10:30:00Z,"apt,backdoor",malware,apt29,RED
+email,watering@apt-infect.scam,URLhaus,72,2024-01-04T18:00:00Z,2024-01-15T10:30:00Z,"apt,watering_hole",malware,apt28,RED
+email,typosquat@phish-bait.com,MISP,62,2024-01-03T20:00:00Z,2024-01-15T10:30:00Z,"phishing",phishing,,GREEN
+email,dga@random-domain.evil,Custom CSV,52,2024-01-02T22:00:00Z,2024-01-15T10:30:00Z,"malware,dga",malware,emotet,GREEN
+email,lateral@movement-apt.dark,Manual Import,85,2024-01-01T12:00:00Z,2024-01-15T10:30:00Z,"apt,lateral_movement",malware,apt29,RED

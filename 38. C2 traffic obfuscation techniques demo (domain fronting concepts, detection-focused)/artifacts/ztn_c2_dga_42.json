@@ -1,0 +1,110 @@
+{
+  "kind": "ztn_audit",
+  "scenario": "c2_dga",
+  "seed": 42,
+  "generated_at": 1788972173.187504,
+  "policy": {
+    "allow_band_max": 2,
+    "verify_band_max": 5
+  },
+  "counts": {
+    "allow": 2,
+    "verify": 3,
+    "deny": 3
+  },
+  "decisions": [
+    {
+      "src": "192.0.2.11",
+      "verdict": "deny",
+      "score": 8,
+      "rules": [
+        "D1"
+      ],
+      "reasons": [
+        "fronting: SNI=api.example Host=203.0.113.13",
+        "fronting: SNI=assets.example Host=203.0.113.10",
+        "fronting: SNI=static.example Host=203.0.113.10",
+        "fronting: SNI=updates.example Host=203.0.113.11",
+        "fronting: SNI=cdn.example Host=203.0.113.10"
+      ]
+    },
+    {
+      "src": "192.0.2.12",
+      "verdict": "verify",
+      "score": 3,
+      "rules": [
+        "D2+"
+      ],
+      "reasons": [
+        "DGA-like NXDOMAIN probe decoy (noise, not the campaign)"
+      ]
+    },
+    {
+      "src": "192.0.2.13",
+      "verdict": "verify",
+      "score": 3,
+      "rules": [
+        "D2+"
+      ],
+      "reasons": [
+        "DNS A bv7xk2qmzp41tn9w3jfx8c2d.invalid -> 198.51.100.53"
+      ]
+    },
+    {
+      "src": "192.0.2.14",
+      "verdict": "deny",
+      "score": 8,
+      "rules": [
+        "D1",
+        "D2+"
+      ],
+      "reasons": [
+        "DNS A k4pr82tmxq50z1n6hc4vs3d7.invalid -> 198.51.100.53",
+        "DNS A w2r6y3u8o1e5q0s4a7d9g2h5j.invalid -> 198.51.100.53",
+        "fronting: SNI=assets.example Host=203.0.113.12",
+        "fronting: SNI=updates.example Host=203.0.113.14",
+        "fronting: SNI=static.example Host=203.0.113.10"
+      ]
+    },
+    {
+      "src": "192.0.2.18",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.19",
+      "verdict": "deny",
+      "score": 8,
+      "rules": [
+        "D1"
+      ],
+      "reasons": [
+        "fronting: SNI=api.example Host=203.0.113.12",
+        "fronting: SNI=cdn.example Host=203.0.113.14",
+        "fronting: SNI=static.example Host=203.0.113.12",
+        "fronting: SNI=api.example Host=203.0.113.13",
+        "fronting: SNI=static.example Host=203.0.113.11"
+      ]
+    },
+    {
+      "src": "192.0.2.22",
+      "verdict": "allow",
+      "score": 0,
+      "rules": [],
+      "reasons": []
+    },
+    {
+      "src": "192.0.2.27",
+      "verdict": "verify",
+      "score": 3,
+      "rules": [
+        "D2+"
+      ],
+      "reasons": [
+        "DNS A p9q2wk5m8zx1j3f7dx4nb6c2h5t.invalid -> 198.51.100.53"
+      ]
+    }
+  ]
+}

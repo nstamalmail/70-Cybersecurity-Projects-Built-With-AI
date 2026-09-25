@@ -1,0 +1,16 @@
+{
+  "session_id": "das-demo-ransomware",
+  "analysed_at": "2026-09-17T01:25:25",
+  "score": 100,
+  "severity": "critical",
+  "options": {
+    "mode": "ingest",
+    "source": "das",
+    "max_events": 500000
+  },
+  "vm": {
+    "adapter": "none (ingested telemetry)",
+    "snapshot": "clean-baseline"
+  },
+  "lifecycle": []
+}

@@ -1,0 +1,24 @@
+[02:24:27] INFO    Parsed cape report: 32 calls, 3 processes
+[02:24:27] INFO    Mined 4 frequent n-grams, 1 sequence clusters, 26 transitions
+[02:24:27] INFO    Matched 9 behavioural patterns
+[02:24:27] INFO    Extracted 16 indicators
+[02:24:27] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\dist\data\cases.db
+[02:24:27] INFO    Parsed cuckoo report: 32 calls, 3 processes
+[02:24:27] INFO    Mined 12 frequent n-grams, 1 sequence clusters, 24 transitions
+[02:24:27] INFO    Matched 8 behavioural patterns
+[02:24:27] INFO    Extracted 22 indicators
+[02:24:27] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\dist\data\cases.db
+[02:24:27] INFO    Parsed jsonl report: 21 calls, 1 processes
+[02:24:27] INFO    Mined 6 frequent n-grams, 2 sequence clusters, 15 transitions
+[02:24:27] INFO    Matched 3 behavioural patterns
+[02:24:27] INFO    Extracted 15 indicators
+[02:24:27] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\dist\data\cases.db
+[02:24:27] INFO    Parsed cape-bson report: 18 calls, 2 processes
+[02:24:27] INFO    Mined 1 frequent n-grams, 0 sequence clusters, 15 transitions
+[02:24:27] INFO    Matched 3 behavioural patterns
+[02:24:27] INFO    Extracted 10 indicators
+[02:24:27] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\dist\data\cases.db
+[02:26:47] INFO    API Sequence Visualizer v1.0.0 started
+[02:26:47] INFO    Data directory: E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\dist\data
+[02:44:57] INFO    API Sequence Visualizer v1.0.0 started
+[02:44:57] INFO    Data directory: E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\dist\data

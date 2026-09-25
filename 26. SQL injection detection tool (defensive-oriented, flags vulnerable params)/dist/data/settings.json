@@ -1,0 +1,21 @@
+{
+  "target_url": "",
+  "method": "GET",
+  "headers_text": "",
+  "cookies_text": "",
+  "body": "",
+  "body_type": "none",
+  "techniques": [
+    "error",
+    "boolean"
+  ],
+  "safe_mode": true,
+  "threads": 4,
+  "delay_ms": 40,
+  "timeout": 10.0,
+  "time_threshold_s": 5.0,
+  "max_requests": 800,
+  "follow_redirects": true,
+  "verify_ssl": true,
+  "proxy": ""
+}

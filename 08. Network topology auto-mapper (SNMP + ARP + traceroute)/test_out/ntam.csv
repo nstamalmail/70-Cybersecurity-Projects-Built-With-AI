@@ -1,0 +1,3 @@
+ip,mac,hostname,vendor,device_type,snmp_accessible
+127.0.0.1,,DESKTOP-8I7DB1K,,host,False
+127.0.0.2,,,,host,False

@@ -1,0 +1,994 @@
+[
+  {
+    "ioc_type": "ipv4",
+    "value": "185.220.101.44",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 1.0,
+    "context": "Network connection by svchost32.exe at 00:06.500; Network connection by svchost32.exe at 00:36.500; Network connection by svchost32.exe at 01:06.500; Network connection by svchost32.exe at 01:36.500; Network connection b"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "cdn-update.demo-lab.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.8500000000000003,
+    "context": "DNS query by svchost32.exe at 00:06.000; HTTP request by svchost32.exe at 00:09.000; HTTP request by svchost32.exe at 00:39.000; HTTP request by svchost32.exe at 01:09.000; HTTP request by svchost32.exe at 01:39.000; HTT"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "1zulfy27g0o4ov.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:26.400"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "2gngpxmgnjrvx8.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:12.000"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "2u25ksaxftixj8.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:50.400"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "88mqhmyyvjx73u.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:24.000"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "ayjkhb8nz6ps5o.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:55.200"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "bsywpw24xnc7ta.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:48.000"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "bucqlhhhptcj69.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:21.600"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "dq3nsgvpzgpuwr.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:07.200"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "dwqrjpdxqdmhyu.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:02.400"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "ekffd9ru2esaau.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:43.200"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "grotsuq3pvauik.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:52.800"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "ibin7xssgpq6ia.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:14.400"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "iw2dmt4nm7zbk7.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:09.600"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "j0m04two0zz3vo.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:00.000"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "pjjtitc1zmbu2r.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:31.200"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "qbg1mkx213il6d.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:40.800"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "rnstgow70ascni.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:36.000"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "ro7nqoqkwyywd6.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:19.200"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "te3ios9u72tnai.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:33.600"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "tenf70g34xdptd.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:45.600"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "tkt87241hizap4.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:38.400"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "u69sr67vv48z31.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:16.800"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "wrpzgc1ooi6n2a.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:04.800"
+  },
+  {
+    "ioc_type": "domain",
+    "value": "ys1713o0p8ahod.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "DNS query by svchost32.exe at 01:28.800"
+  },
+  {
+    "ioc_type": "url",
+    "value": "https://cdn-update.demo-lab.example/panel/fb.png",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.9500000000000002,
+    "context": "HTTP request by svchost32.exe at 00:09.000; HTTP request by svchost32.exe at 00:39.000; HTTP request by svchost32.exe at 01:09.000; HTTP request by svchost32.exe at 01:39.000; HTTP request by svchost32.exe at 02:09.000; "
+  },
+  {
+    "ioc_type": "port",
+    "value": "443",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.45,
+    "context": "HTTP request by svchost32.exe at 00:09.000"
+  },
+  {
+    "ioc_type": "port",
+    "value": "8443",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.45,
+    "context": "Network connection by svchost32.exe at 00:06.500"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\ProgramData\\svc\\update.exe",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "File written by powershell.exe at 00:05.400; Dropped file by powershell.exe at 00:05.600"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\HOW_TO_DECRYPT.txt",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 04:15.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_000.jpg.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:00.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_001.pdf.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:01.600"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_002.txt.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:03.200"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_003.txt.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:04.800"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_004.jpg.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:06.400"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_005.docx.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:08.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_006.xlsx.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:09.600"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_007.zip.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:11.200"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_008.pdf.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:12.800"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_009.jpg.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:14.400"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_010.sql.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:16.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_011.txt.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:17.600"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_012.txt.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:19.200"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_013.zip.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:20.800"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_014.docx.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:22.400"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_015.jpg.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:24.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_016.txt.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:25.600"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_017.jpg.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:27.200"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_018.pdf.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:28.800"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_019.xlsx.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:30.400"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_020.sql.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:32.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_021.jpg.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:33.600"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_022.sql.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:35.200"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_023.xlsx.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:36.800"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_024.txt.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:38.400"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_025.jpg.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:40.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_026.docx.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:41.600"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_027.jpg.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:43.200"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_028.xlsx.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:44.800"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_029.jpg.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:46.400"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_030.jpg.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:48.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_031.sql.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:49.600"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_032.txt.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:51.200"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_033.txt.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:52.800"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_034.jpg.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:54.400"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_035.docx.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:56.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_036.zip.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:57.600"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_037.docx.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 03:59.200"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_038.txt.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 04:00.800"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\file_039.xlsx.locked",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 04:02.400"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\report_00.pdf.lockbit",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File renamed by svchost32.exe at 03:10.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\report_01.pdf.lockbit",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File renamed by svchost32.exe at 03:12.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\report_02.pdf.lockbit",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File renamed by svchost32.exe at 03:14.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\report_03.pdf.lockbit",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File renamed by svchost32.exe at 03:16.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\report_04.pdf.lockbit",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File renamed by svchost32.exe at 03:18.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\report_05.pdf.lockbit",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File renamed by svchost32.exe at 03:20.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\report_06.pdf.lockbit",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File renamed by svchost32.exe at 03:22.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\report_07.pdf.lockbit",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File renamed by svchost32.exe at 03:24.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\report_08.pdf.lockbit",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File renamed by svchost32.exe at 03:26.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\report_09.pdf.lockbit",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File renamed by svchost32.exe at 03:28.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\report_10.pdf.lockbit",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File renamed by svchost32.exe at 03:30.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\Documents\\report_11.pdf.lockbit",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File renamed by svchost32.exe at 03:32.000"
+  },
+  {
+    "ioc_type": "file_path",
+    "value": "C:\\Users\\Public\\svchost32.exe",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.5,
+    "context": "File written by svchost32.exe at 00:02.400"
+  },
+  {
+    "ioc_type": "dropped_file",
+    "value": "C:\\Users\\Public\\svchost32.exe",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.8500000000000001,
+    "context": "File written by svchost32.exe at 00:02.400; File written by svchost32.exe at 00:02.400 (user-writable location); Registry set by svchost32.exe at 00:03.000 (autostart payload)"
+  },
+  {
+    "ioc_type": "dropped_file",
+    "value": "C:\\ProgramData\\svc\\update.exe",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.8,
+    "context": "Service created by svchost32.exe at 00:03.900; File written by powershell.exe at 00:05.400; Dropped file by powershell.exe at 00:05.600"
+  },
+  {
+    "ioc_type": "service",
+    "value": "WinDefendUpdate",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.8,
+    "context": "Service created by svchost32.exe at 00:03.900"
+  },
+  {
+    "ioc_type": "scheduled_task",
+    "value": "\\MicrosoftUpdate",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.8,
+    "context": "Scheduled task created by svchost32.exe at 00:04.300"
+  },
+  {
+    "ioc_type": "command",
+    "value": "powershell -nop -w hidden -enc SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkA",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.75,
+    "context": "Scheduled task created by svchost32.exe at 00:04.300; Process created by powershell.exe at 00:05.000"
+  },
+  {
+    "ioc_type": "command",
+    "value": "vssadmin delete shadows /all /quiet",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.7,
+    "context": "Command executed by cmd.exe at 00:04.700"
+  },
+  {
+    "ioc_type": "command",
+    "value": "C:\\Users\\Public\\svchost32.exe",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "Process created by svchost32.exe at 00:00.400"
+  },
+  {
+    "ioc_type": "command",
+    "value": "cmd.exe /c vssadmin delete shadows /all /quiet",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.55,
+    "context": "Process created by cmd.exe at 00:04.600"
+  },
+  {
+    "ioc_type": "user_agent",
+    "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) BeaconClient/3.1",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.7500000000000002,
+    "context": "HTTP request by svchost32.exe at 00:09.000; HTTP request by svchost32.exe at 00:39.000; HTTP request by svchost32.exe at 01:09.000; HTTP request by svchost32.exe at 01:39.000; HTTP request by svchost32.exe at 02:09.000; "
+  },
+  {
+    "ioc_type": "hash",
+    "value": "9f2a4c1de8b74503fa1d6c0be2f4a9182233445566778899aabbccddeeff0011",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 1.0,
+    "context": "SHA-256 of demo_sample_placeholder.txt.SAMPLE; dropped file C:\\Users\\Public\\svchost32.exe"
+  },
+  {
+    "ioc_type": "hash",
+    "value": "1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7f809",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.9,
+    "context": "dropped file C:\\ProgramData\\svc\\update.exe"
+  },
+  {
+    "ioc_type": "hash",
+    "value": "d41d8cd98f00b204e9800998ecf8427e",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.9,
+    "context": "MD5 of demo_sample_placeholder.txt.SAMPLE"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "1zulfy27g0o4ov.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:26.400"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "2gngpxmgnjrvx8.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:12.000"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "2u25ksaxftixj8.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:50.400"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "88mqhmyyvjx73u.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:24.000"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "ayjkhb8nz6ps5o.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:55.200"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "bsywpw24xnc7ta.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:48.000"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "bucqlhhhptcj69.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:21.600"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "cdn-update.demo-lab.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 00:06.000"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "dq3nsgvpzgpuwr.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:07.200"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "dwqrjpdxqdmhyu.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:02.400"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "ekffd9ru2esaau.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:43.200"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "grotsuq3pvauik.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:52.800"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "ibin7xssgpq6ia.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:14.400"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "iw2dmt4nm7zbk7.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:09.600"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "j0m04two0zz3vo.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:00.000"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "pjjtitc1zmbu2r.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:31.200"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "qbg1mkx213il6d.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:40.800"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "rnstgow70ascni.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:36.000"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "ro7nqoqkwyywd6.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:19.200"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "te3ios9u72tnai.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:33.600"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "tenf70g34xdptd.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:45.600"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "tkt87241hizap4.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:38.400"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "u69sr67vv48z31.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:16.800"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "wrpzgc1ooi6n2a.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:04.800"
+  },
+  {
+    "ioc_type": "dns_query",
+    "value": "ys1713o0p8ahod.dyndns-demo.example",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.6,
+    "context": "DNS query by svchost32.exe at 01:28.800"
+  },
+  {
+    "ioc_type": "process",
+    "value": "cmd.exe",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.3,
+    "context": "Process created by cmd.exe at 00:04.600"
+  },
+  {
+    "ioc_type": "process",
+    "value": "powershell.exe",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.3,
+    "context": "Process created by powershell.exe at 00:05.000"
+  },
+  {
+    "ioc_type": "process",
+    "value": "svchost32.exe",
+    "source": "dynamic",
+    "sources": "dynamic",
+    "confidence": 0.3,
+    "context": "Process created by svchost32.exe at 00:00.400"
+  }
+]

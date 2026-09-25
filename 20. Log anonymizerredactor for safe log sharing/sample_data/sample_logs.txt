@@ -1,0 +1,25 @@
+2024-01-15 08:23:11 [INFO] User login successful: john.doe@example.com from 192.168.1.105
+2024-01-15 08:23:15 [DEBUG] Session token generated: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+2024-01-15 08:24:01 [INFO] API key validated: ak_live_4eC39HqLyjWDarjtT1zdp7dc
+2024-01-15 08:24:30 [WARN] Failed login attempt for user admin@company.org from 10.0.0.55
+2024-01-15 08:25:12 [INFO] Password reset requested for: sarah.connor@skynet.com
+2024-01-15 08:25:45 [ERROR] Database connection failed: host=db.prod.internal port=5432 user=app_user password=SuperSecret123!
+2024-01-15 08:26:01 [INFO] AWS credentials detected: AKIAIOSFODNN7EXAMPLE and wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+2024-01-15 08:26:30 [DEBUG] UUID detected: 550e8400-e29b-41d4-a716-446655440000
+2024-01-15 08:27:15 [INFO] Credit card transaction: card number 4111-1111-1111-1111, amount $250.00
+2024-01-15 08:27:45 [WARN] SSN found in record: 123-45-6789
+2024-01-15 08:28:01 [INFO] Email sent to user@example.com regarding account update
+2024-01-15 08:28:30 [DEBUG] Connection from IP: 172.16.0.100 established
+2024-01-15 08:29:01 [ERROR] Authentication failed for user: bob.miller@test.co.uk
+2024-01-15 08:29:30 [INFO] API endpoint /api/v1/users accessed by client_id=9876543210
+2024-01-15 08:30:01 [WARN] Suspicious activity from 203.0.113.42 - multiple failed attempts
+2024-01-15 08:30:30 [INFO] User alice.wonderland@fantasyland.com updated profile
+2024-01-15 08:31:01 [DEBUG] Token refreshed: Bearer sk-proj-abc123def456ghi789jkl012mno345pqr678stu901vwx234
+2024-01-15 08:31:30 [INFO] Database query executed: SELECT * FROM users WHERE email = 'charlie@chocolate.com'
+2024-01-15 08:32:01 [ERROR] Permission denied for user: dave@unix.org from 10.10.10.10
+2024-01-15 08:32:30 [INFO] SSH key fingerprint: SHA256:AbC123xYz456Def789Ghi012jKl345Mno678Pqr
+2024-01-15 08:33:01 [WARN] Password in plaintext detected: mypassword123
+2024-01-15 08:33:30 [INFO] IP whitelist updated: include 198.51.100.0/24
+2024-01-15 08:34:01 [DEBUG] MAC address found: 00:1A:2B:3C:4D:5E
+2024-01-15 08:34:30 [INFO] User eve@malware.net attempted unauthorized access
+2024-01-15 08:35:01 [INFO] Encryption key rotated: key_id=KEY-2024-ABCD1234

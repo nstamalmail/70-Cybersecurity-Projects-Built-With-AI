@@ -1,0 +1,22 @@
+[01:25:24] WARN    Running the detonation workflow with the simulation harness (dry-run VM commands, synthetic telemetry)
+[01:25:24] INFO    Submitting demo_sample_placeholder.txt.SAMPLE (a7d748247ac66678…) to win10-analysis
+[01:25:24] WARN    VBoxManage was not found on PATH - install VirtualBox or switch to the simulation harness.
+[01:25:24] WARN    Falling back to the simulation harness (behaviour is synthetic).
+[01:25:24] INFO    Hypervisor back end: simulated (Simulation harness (no hypervisor interaction).)
+[01:25:24] WARN    Isolation: Simulation harness - no guest is started; behaviour is synthesised and clearly labelled.
+[01:25:24] INFO    [dry-run] $ <simulated> revert win10-analysis to clean-baseline
+[01:25:24] INFO    [dry-run] $ <simulated> isolate-network win10-analysis
+[01:25:24] INFO    [dry-run] $ <simulated> start win10-analysis headless
+[01:25:24] WARN    Simulation harness: synthesising guest telemetry (process tree, API calls, registry, file system, network)
+[01:25:24] INFO    Guest telemetry collected
+[01:25:24] INFO    [dry-run] $ <simulated> stop win10-analysis
+[01:25:24] INFO    [dry-run] $ <simulated> revert win10-analysis to clean-baseline
+[01:25:24] SUCCESS Detonation workflow complete → CRITICAL (score 100), 119 events
+[01:25:25] WARN    Wrote synthetic session telemetry to E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\56. Dynamic analysis sandbox\dist\data\demo\demo_ransomware_session.json
+[01:25:25] INFO    Ingesting demo_ransomware_session.json as 'das-json' telemetry
+[01:25:25] SUCCESS Ingested 119 events from demo_ransomware_session.json → CRITICAL (score 100)
+[01:25:25] INFO    Wrote synthetic benign session telemetry to E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\56. Dynamic analysis sandbox\dist\data\demo\demo_benign_session.json
+[01:25:25] INFO    Ingesting demo_benign_session.json as 'das-json' telemetry
+[01:25:25] SUCCESS Ingested 16 events from demo_benign_session.json → INFO (score 0)
+[01:44:44] INFO    Dynamic Analysis Sandbox v1.0.0 started
+[01:44:44] INFO    Data directory: E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\56. Dynamic analysis sandbox\dist\data

@@ -1,0 +1,13 @@
+{
+  "verdict": "LIKELY CLEAN",
+  "score": 10,
+  "raw_score": 10,
+  "rationale": [
+    {
+      "indicator": "Network indicators in strings (1 URLs/IPs/domains)",
+      "weight": 10,
+      "source": "string extractor",
+      "note": "Hard-coded endpoints are typical of C2 or downloaders."
+    }
+  ]
+}

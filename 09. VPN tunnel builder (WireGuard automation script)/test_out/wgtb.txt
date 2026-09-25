@@ -1,0 +1,32 @@
+======================================================================
+  WireGuard Tunnel Provisioning Report
+======================================================================
+Session      : a3fdc69a67
+Interface    : wg0
+Server IP    : 10.0.0.1/24
+Listen port  : 51820
+DNS          : 10.0.0.1
+Server pubkey: +ExbZiXl81lQCXPGjzfXTyIBnIHB/9Fp7gU0tP4mmDY=
+Fingerprint  : a4d18420527d6bfa
+Peers        : 3 (PSK enabled on 2)
+
+[PEERS]
+NAME          TUNNEL IP         ALLOWED     FINGERPRINT
+----------------------------------------------------------------------
+laptop        10.0.0.2          0.0.0.0/0   31f750e3b53ddcb6
+phone         10.0.0.3          0.0.0.0/0   fbc104c2bd5e6a20
+branch        10.0.0.4          192.168.20.0/249d49d4ae3dbc977f
+
+[DEPLOYMENT]
+1. Copy the server config to /etc/wireguard/wg0.conf (Linux) or import
+   into the WireGuard app (Windows/macOS).
+2. Start: sudo wg-quick up wg0   (Linux)  /  install tunnel service (Windows).
+3. Distribute peer configs (QR code for mobile) over a SECURE channel.
+4. Verify handshakes: wg show
+
+[SECURITY NOTES]
+- Private keys are never included in reports.
+- Distribute peer configs over a secure channel; anyone with a config
+  can join the tunnel.
+- Preshared keys add post-quantum resistance.
+======================================================================

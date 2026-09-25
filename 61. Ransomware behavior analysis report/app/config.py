@@ -1,0 +1,165 @@
+"""Malware Persistence Technique Cataloger - metadata and portable runtime paths."""
+from __future__ import annotations
+
+import json
+import os
+import sys
+from pathlib import Path
+
+APP: dict = {
+    "slug": "repsw",
+    "acronym": "REPSW",
+    "exe": "REPSW-RansomwareStudy",
+    "name": "Ransomware Pattern Study",
+    "title": "Ransomware Behavior Analysis Report",
+    "subtitle": "Encryption pattern study \\u00b7 IOC extraction \\u00b7 ATT\\u0026CK mapping \\u00b7 remediation",
+    "version": "1.0.0",
+    "vendor": "Malware Analysis Workbench",
+    "report_title": "Ransomware Encryption Pattern Analysis Report",
+    "artifact_noun": "report",
+    "accent": "#e5484d",
+    "accent_dim": "#3a1c1f",
+    "file_filters": [
+        ("Sandbox reports (*.json *.jsonl *.bson *.log *.log.bson)", "*.json *.jsonl *.bson *.log"),
+        ("All files (*)", "*"),
+    ],
+    "description": (
+        "Identifies and catalogs malware persistence mechanisms from sandbox behaviour reports. "
+        "Maps each technique to MITRE ATT&CK, extracts actionable IOCs (registry keys, service names, "
+        "scheduled tasks), and generates remediation scripts."
+    ),
+    "settings": {
+        "max_calls": 2_000_000,
+        "collapse_loops": True,
+        "collapse_threshold": 3,
+        "pattern_min_severity": "low",
+        "ioc_min_confidence": 0.0,
+        "redact_exports": False,
+        "store_sqlite": True,
+        "fixture_calls": 420,
+    },
+    "severities": ["critical", "high", "medium", "low", "info"],
+}
+
+FROZEN: bool = bool(getattr(sys, "frozen", False))
+
+_data_root_cache: Path | None = None
+
+
+def project_root() -> Path:
+    if FROZEN:
+        return Path(sys.executable).resolve().parent
+    return Path(__file__).resolve().parent.parent
+
+
+def _is_writable(path: Path) -> bool:
+    try:
+        path.mkdir(parents=True, exist_ok=True)
+        probe = path / ".repsw_write_probe"
+        probe.write_text("ok", encoding="utf-8")
+        probe.unlink()
+        return True
+    except Exception:
+        return False
+
+
+def data_root() -> Path:
+    global _data_root_cache
+    if _data_root_cache is not None:
+        return _data_root_cache
+    portable = project_root() / "data"
+    if _is_writable(portable):
+        _data_root_cache = portable
+        return portable
+    if os.name == "nt":
+        base = Path(os.environ.get("LOCALAPPDATA") or Path.home() / "AppData" / "Local")
+    else:
+        base = Path(os.environ.get("XDG_DATA_HOME") or Path.home() / ".local" / "share")
+    fallback = base / APP["slug"]
+    fallback.mkdir(parents=True, exist_ok=True)
+    _data_root_cache = fallback
+    return fallback
+
+
+def _sub(name: str) -> Path:
+    p = data_root() / name
+    p.mkdir(parents=True, exist_ok=True)
+    return p
+
+
+def reports_dir() -> Path:
+    return _sub("reports")
+
+def logs_dir() -> Path:
+    return _sub("logs")
+
+def cases_dir() -> Path:
+    return _sub("cases")
+
+def cache_dir() -> Path:
+    return _sub("cache")
+
+def demo_dir() -> Path:
+    return _sub("demo")
+
+def exports_dir() -> Path:
+    p = data_root() / "exports"
+    p.mkdir(parents=True, exist_ok=True)
+    return p
+
+def patterns_dir() -> Path:
+    return _sub("patterns")
+
+def case_db_path() -> Path:
+    return data_root() / "cases.db"
+
+def settings_path() -> Path:
+    return data_root() / "settings.json"
+
+
+DEFAULT_SETTINGS: dict = {
+    "max_file_size_mb": 500,
+    "enable_network_lookups": False,
+    "theme": "dark",
+    "redact_exports": False,
+    "analyst": os.environ.get("USERNAME") or os.environ.get("USER") or "analyst",
+}
+DEFAULT_SETTINGS.update(APP.get("settings", {}))
+
+
+class Settings:
+    def __init__(self, defaults: dict | None = None) -> None:
+        self._defaults = dict(defaults or DEFAULT_SETTINGS)
+        self._data: dict = dict(self._defaults)
+        self.load()
+
+    def load(self) -> None:
+        path = settings_path()
+        if path.exists():
+            try:
+                loaded = json.loads(path.read_text(encoding="utf-8"))
+                if isinstance(loaded, dict):
+                    self._data.update(loaded)
+            except Exception:
+                pass
+
+    def save(self) -> None:
+        try:
+            settings_path().write_text(json.dumps(self._data, indent=2), encoding="utf-8")
+        except Exception:
+            pass
+
+    def get(self, key: str, default=None):
+        return self._data.get(key, self._defaults.get(key, default))
+
+    def set(self, key: str, value) -> None:
+        self._data[key] = value
+
+    def update(self, values: dict) -> None:
+        self._data.update(values)
+
+    def as_dict(self) -> dict:
+        return dict(self._data)
+
+
+SETTINGS = Settings()

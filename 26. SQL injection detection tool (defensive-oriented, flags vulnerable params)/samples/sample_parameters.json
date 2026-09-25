@@ -1,0 +1,15 @@
+{
+  "tool": "SIDT",
+  "type": "parameters-import",
+  "version": "1.0.0",
+  "comment": "Manual parameter definitions. Import via Parameters tab -> 'Import parameters JSON' or Target tab. Edit names/values freely; location must be one of: query, body, header, cookie.",
+  "parameters": [
+    { "location": "query", "name": "user", "value": "admin", "enabled": true },
+    { "location": "query", "name": "id", "value": "5", "enabled": true },
+    { "location": "query", "name": "cat", "value": "books", "enabled": true },
+    { "location": "query", "name": "q", "value": "search term", "enabled": false },
+    { "location": "body", "name": "username", "value": "demo", "enabled": true },
+    { "location": "header", "name": "X-Forwarded-For", "value": "10.0.0.15", "enabled": false },
+    { "location": "cookie", "name": "session", "value": "abc123", "enabled": false }
+  ]
+}

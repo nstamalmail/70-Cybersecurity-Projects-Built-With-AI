@@ -1,0 +1,4 @@
+peer_name,assigned_ip,public_key,fingerprint,allowed_ips,endpoint,keepalive,preshared_key
+laptop,10.0.0.2,55GePOihgmunpDpr/Q6dQWad3Alpnq7EiLtskq+D2w8=,31f750e3b53ddcb6,0.0.0.0/0,-,25,yes
+phone,10.0.0.3,xVIolf7Z2hG5Ium0wxuKKVgiFuU4ziZmI+XzRkeoRXA=,fbc104c2bd5e6a20,0.0.0.0/0,-,25,yes
+branch,10.0.0.4,3J/P788qI0AX7a3q1JQd6tjKg1i/t3rYq8ZFxvKxVFM=,9d49d4ae3dbc977f,192.168.20.0/24,-,25,no

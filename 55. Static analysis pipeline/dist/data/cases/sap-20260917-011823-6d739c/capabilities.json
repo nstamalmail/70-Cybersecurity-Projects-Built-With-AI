@@ -1,0 +1,37 @@
+[
+  {
+    "api": "CreateRemoteThread",
+    "dll": "KERNEL32.dll",
+    "capability": "process injection",
+    "weight": 12,
+    "note": "Classic remote thread injection"
+  },
+  {
+    "api": "WriteProcessMemory",
+    "dll": "KERNEL32.dll",
+    "capability": "process injection",
+    "weight": 12,
+    "note": "Writes into another process"
+  },
+  {
+    "api": "VirtualAllocEx",
+    "dll": "KERNEL32.dll",
+    "capability": "process injection",
+    "weight": 10,
+    "note": "Remote memory allocation"
+  },
+  {
+    "api": "LoadLibraryA",
+    "dll": "KERNEL32.dll",
+    "capability": "execution",
+    "weight": 4,
+    "note": "Runtime library load (possible reflective load)"
+  },
+  {
+    "api": "GetProcAddress",
+    "dll": "KERNEL32.dll",
+    "capability": "execution",
+    "weight": 4,
+    "note": "Dynamic API resolution (hiding imports)"
+  }
+]

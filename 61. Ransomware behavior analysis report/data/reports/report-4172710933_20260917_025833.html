@@ -1,0 +1,145 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'>
+<title>Ransomware Encryption Pattern Analysis Report</title><style>
+
+:root { color-scheme: light; }
+body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; margin: 0; background: #f6f7f9; color: #17181c; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 28px 64px; background: #fff;
+        box-shadow: 0 0 0 1px #e3e5e9; }
+h1 { margin: 0 0 4px; font-size: 26px; }
+h2 { margin: 28px 0 8px; font-size: 17px; border-bottom: 1px solid #e3e5e9; padding-bottom: 6px; }
+.sub { color: #5d6069; margin: 0 0 4px; }
+.stamp { color: #8b8d98; font-size: 12px; margin-bottom: 18px; }
+.banner { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 10px;
+          background: #f2f3f5; border-left: 6px solid #e5484d; margin: 18px 0; }
+.banner .verdict { font-size: 18px; font-weight: 700; color: #e5484d; }
+.banner .score { margin-left: auto; font-size: 13px; color: #5d6069; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0 4px; font-size: 13px; }
+th, td { border: 1px solid #e3e5e9; padding: 6px 9px; text-align: left; vertical-align: top; }
+th { background: #f2f3f5; font-weight: 600; }
+tr:nth-child(even) td { background: #fafbfc; }
+code, pre { font-family: 'Cascadia Mono', Consolas, monospace; font-size: 12px; }
+pre { background: #f6f7f9; border: 1px solid #e3e5e9; border-radius: 8px; padding: 12px;
+      overflow-x: auto; white-space: pre-wrap; }
+.note { color: #8b8d98; font-size: 12px; margin: 0 0 8px; }
+ul { margin: 6px 0 6px 18px; padding: 0; }
+.summary { background: #f2f3f5; border-radius: 10px; padding: 12px 14px; margin: 16px 0; }
+.foot { margin-top: 36px; padding-top: 12px; border-top: 1px solid #e3e5e9; color: #8b8d98; font-size: 12px; }
+@media print { .wrap { box-shadow: none; max-width: none; } }
+
+</style></head><body><div class='wrap'>
+<h1>Ransomware Encryption Pattern Analysis Report</h1>
+<p class='sub'>blackcat_loader.exe.json</p>
+<div class='stamp'>Generated 2026-09-17 02:58:33 &middot; Ransomware Pattern Study v1.0.0 &middot; run report-4172710933</div>
+<div class='banner'>
+<span class='verdict'>critical</span>
+<span class='score'>Risk score: 82</span>
+</div>
+<div class='summary'>No parseable API calls found.</div>
+<h2>Persistence mechanisms detected</h2>
+<p class='note'>Ordered by timestamp; mapped to MITRE ATT&amp;CK persistence techniques.</p>
+<table><thead><tr>
+<th>Severity</th>
+<th>Technique</th>
+<th>Name</th>
+<th>Source</th>
+<th>Evidence</th>
+<th>Confidence</th>
+<th>Details</th>
+</tr></thead><tbody>
+<tr>
+<td>high</td>
+<td>RANS-004</td>
+<td>Ransom Note Drop</td>
+<td>behavior</td>
+<td></td>
+<td>0.85</td>
+<td>CreateFileW @ 3.55s; WriteFile @ 4.95s</td>
+</tr>
+<tr>
+<td>critical</td>
+<td>RANS-002</td>
+<td>In-Place File Encryption</td>
+<td>behavior</td>
+<td></td>
+<td>0.85</td>
+<td>ReadFile @ 3.90s; CryptEncrypt @ 4.60s; WriteFile @ 4.95s</td>
+</tr>
+<tr>
+<td>critical</td>
+<td>RANS-006</td>
+<td>Mass File Encryption Loop</td>
+<td>behavior</td>
+<td></td>
+<td>0.85</td>
+<td>ReadFile @ 3.90s; CryptEncrypt @ 4.60s; WriteFile @ 4.95s</td>
+</tr>
+<tr>
+<td>high</td>
+<td>RANS-004</td>
+<td>Ransom Note Drop</td>
+<td>behavior</td>
+<td></td>
+<td>0.85</td>
+<td>CreateFileW @ 5.30s; WriteFile @ 5.65s</td>
+</tr>
+</tbody></table>
+<h2>Analysis statistics</h2>
+<table>
+<tr><th>Total API calls</th><td>0</td></tr>
+<tr><th>Processes</th><td>1</td></tr>
+<tr><th>Duration</th><td>0.0s</td></tr>
+<tr><th>Categories observed</th><td>-</td></tr>
+</table>
+<h2>Indicators of Compromise</h2>
+<table><thead><tr>
+<th>Type</th>
+<th>Value</th>
+<th>Source</th>
+<th>Confidence</th>
+<th>Context</th>
+</tr></thead><tbody>
+<tr>
+<td>file</td>
+<td>C:\\Users\\*</td>
+<td>FindFirstFileW</td>
+<td>0.70</td>
+<td></td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\\Users\\analyst\\Documents\\*</td>
+<td>FindFirstFileW</td>
+<td>0.70</td>
+<td></td>
+</tr>
+<tr>
+<td>file</td>
+<td>data.csv</td>
+<td>FindNextFileW</td>
+<td>0.70</td>
+<td></td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\\Users\\analyst\\Documents\\data.csv</td>
+<td>CreateFileW</td>
+<td>0.70</td>
+<td></td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\\Users\\analyst\\Documents\\data.csv.alphv</td>
+<td>WriteFile</td>
+<td>0.70</td>
+<td></td>
+</tr>
+<tr>
+<td>file</td>
+<td>C:\\Users\\Desktop\\RECOVER-FILES.txt</td>
+<td>CreateFileW</td>
+<td>0.70</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class='foot'>Ransomware Pattern Study v1.0.0 &middot; Malware Analysis Workbench &middot; generated 2026-09-17 02:58:33</div>
+</div></body></html>

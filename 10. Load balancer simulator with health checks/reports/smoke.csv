@@ -1,0 +1,6 @@
+backend,requests,percent,final_health,mode,weight
+web-a,0,0.0,UP,healthy,1
+web-b,0,0.0,UP,healthy,1
+
+timestamp,backend,from_state,to_state,reason
+t1,web-b,UP,DOWN,fall_threshold

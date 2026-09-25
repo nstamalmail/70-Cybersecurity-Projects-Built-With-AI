@@ -1,0 +1,75 @@
+{
+  "sample_name": "Legacy Web/DB Server",
+  "description": "Synthetic scan result representing a misconfigured legacy server. Use 'File > Import Scan Data (JSON)' in MMPS to load, review results, and export a report without running a live scan.",
+  "target": "10.10.10.50",
+  "resolved_ip": "10.10.10.50",
+  "scan_mode": "tcp_connect",
+  "timestamp": "2026-09-19T21:40:11",
+  "os_fingerprint": "Linux/Unix family (TTL 64)",
+  "total_scanned": 1000,
+  "duration_seconds": 18.4,
+  "open_ports": [
+    {
+      "port": 21,
+      "state": "OPEN",
+      "service": "ftp",
+      "version": "vsftpd 2.3.4",
+      "banner": "220 (vsFTPd 2.3.4)",
+      "cves": ["CVE-2011-2523 (vsftpd backdoor)"],
+      "risk_level": "medium",
+      "next_steps": ["nmap --script ftp-anon -p21 %TARGET%", "hydra -L users -P pass %TARGET% ftp"]
+    },
+    {
+      "port": 22,
+      "state": "OPEN",
+      "service": "ssh",
+      "version": "OpenSSH 7.2p1",
+      "banner": "SSH-2.0-OpenSSH_7.2p1 Ubuntu-4ubuntu2.8",
+      "cves": ["CVE-2023-38408 (OpenSSH ssh-agent RCE)", "CVE-2016-6210 (user enumeration)"],
+      "risk_level": "medium",
+      "next_steps": ["ssh-audit %TARGET%", "nmap -p22 --script ssh-auth-methods %TARGET%"]
+    },
+    {
+      "port": 80,
+      "state": "OPEN",
+      "service": "http",
+      "version": "Apache httpd 2.4.18",
+      "banner": "HTTP/1.1 200 OK\\nServer: Apache/2.4.18 (Ubuntu)",
+      "cves": ["CVE-2021-41773 (path traversal / RCE)"],
+      "risk_level": "medium",
+      "next_steps": ["whatweb %TARGET%", "gobuster dir -u http://%TARGET% -w <wordlist>"]
+    },
+    {
+      "port": 445,
+      "state": "OPEN",
+      "service": "microsoft-ds",
+      "version": "Samba 4.3.11",
+      "banner": null,
+      "cves": ["CVE-2017-0144 (EternalBlue SMBv1)"],
+      "risk_level": "critical",
+      "next_steps": ["enum4linux -a %TARGET%", "crackmapexec smb %TARGET%"]
+    },
+    {
+      "port": 3306,
+      "state": "OPEN",
+      "service": "mysql",
+      "version": "mysql 5.7.16",
+      "banner": "5.7.16-0ubuntu0.16.04.1",
+      "cves": [],
+      "risk_level": "medium",
+      "next_steps": ["nmap --script mysql-info -p3306 %TARGET%"]
+    },
+    {
+      "port": 6667,
+      "state": "OPEN",
+      "service": "irc",
+      "version": "UnrealIRCd 3.2.8.1",
+      "banner": ":irc.lab Welcome to UnrealIRCd 3.2.8.1",
+      "cves": ["CVE-2010-2075 (UnrealIRCd backdoor)"],
+      "risk_level": "high",
+      "next_steps": ["nmap --script irc-botnet-channels -p6667 %TARGET%"]
+    }
+  ],
+  "closed_ports": [23, 111, 139, 443, 1433, 3389, 5432, 5900, 6379, 8080],
+  "filtered_ports": [256, 257, 258, 259, 260]
+}

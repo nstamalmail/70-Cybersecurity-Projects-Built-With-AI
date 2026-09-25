@@ -1,0 +1,34 @@
+# Report,Threat Actor TTP Profile Report
+# Subtitle,shellcode_msf.bin.json
+# Generated,2026-09-17T02:59:52
+# Verdict,clean
+# Risk score,0
+# Tools,TTP Profiler v1.0.0
+
+# Summary,No parseable API calls found.
+
+# Overview
+Field,Value
+Source,shellcode_msf.bin.json
+Format,cuckoo
+SHA-256,d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5
+Machine,cuckoo-win7x64
+API calls,0
+Processes,1
+Persistence mechanisms,0
+Indicators,0
+Verdict,CLEAN (0/100)
+
+# Indicators of Compromise
+ioc_type,value,source,confidence,context
+
+# Section: Persistence mechanisms detected
+text
+No persistence mechanisms were identified.
+
+# Section: Analysis statistics
+Field,Value
+Total API calls,0
+Processes,1
+Duration,0.0s
+Categories observed,-

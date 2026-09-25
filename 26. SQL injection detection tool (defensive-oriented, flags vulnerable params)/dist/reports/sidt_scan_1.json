@@ -1,0 +1,48 @@
+{
+  "tool": "SIDT",
+  "version": 1,
+  "scan": {
+    "id": 1,
+    "target": "http://127.0.0.1:3881",
+    "parameters_tested": 4,
+    "total_requests": 30,
+    "findings_count": 2,
+    "errors": 0,
+    "safe_mode": true,
+    "waf": "",
+    "started_at": "n/a",
+    "finished_at": "n/a"
+  },
+  "findings": [
+    {
+      "id": null,
+      "scan_id": null,
+      "url": "http://127.0.0.1:3881/list?cat=books",
+      "method": "GET",
+      "parameter_name": "cat",
+      "parameter_location": "query",
+      "technique": "union",
+      "confidence": "high",
+      "severity": "high",
+      "dbms_hint": "",
+      "signal": "UNION marker 'sidt7f3a' reflected in response (detection marker only, no data extracted)",
+      "payload": "' UNION SELECT sidt7f3a-- -",
+      "baseline_request": "GET http://127.0.0.1:3881/list?cat=books\n",
+      "injected_request": "",
+      "baseline_response_snippet": "<html><table><tr><td>books</td></tr></table></html>",
+      "injected_response_snippet": "<html><table><tr><td>sidt7f3a</td></tr></table></html>",
+      "response_delta": {
+        "marker": "sidt7f3a",
+        "status": 200
+      },
+      "remediation": "UNION SELECT payloads are accepted, allowing row-level data concatenation\ninto responses (union-based SQLi).\nFix:\n  1. Use parameterized queries / prepared statements.\n  2. Avoid echoing raw query results; map columns explicitly.\n  3. Restrict DB user to required tables only.\n\nParameterized query examples:\n\n# Python (sqlite3 / DB-API)\ncur.execute(\"SELECT * FROM users WHERE name = ? AND pass = ?\", (name, password))\n\n// Java JDBC\nPreparedStatement ps = conn.prepareStatement(\n    \"SELECT * FROM users WHERE name = ? AND pass = ?\");\nps.setString(1, name);\nps.setString(2, password);\n\n// Node.js (mysql2 / pg)\ndb.query('SELECT * FROM users WHERE name = ? AND pass = ?', [name, password])\n\n// PHP PDO\n$stmt = $pdo->prepare('SELECT * FROM users WHERE name = :n AND pass = :p');\n$stmt->execute(['n' => $name, 'p' => $password]);\n\nWAF rule suggestions:\n  - Block/flag common SQLi tokens in parameters: ' -- /* */ UNION SELECT SLEEP( WAITFOR \n  - Enable SQLi ruleset (OWASP CRS 942xxx) in blocking mode after a log-only period.\n  - Rate-limit repeated 40x/500 responses from the same client (probing behaviour).\n\nReferences:\n  - OWASP Top 10 A03:2021 \u2014 Injection\n  - OWASP SQL Injection Prevention Cheat Sheet\n  - CWE-89: Improper Neutralization of Special Elements used in an SQL Command",
+      "references": [
+        "OWASP Top 10 A03:2021 \u2014 Injection",
+        "OWASP SQL Injection Prevention Cheat Sheet",
+        "CWE-89: Improper Neutralization of Special Elements used in an SQL Command"
+      ],
+      "status": 0,
+      "resp_time_ms": 0.0
+    }
+  ]
+}

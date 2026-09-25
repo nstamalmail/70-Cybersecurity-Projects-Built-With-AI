@@ -1,0 +1,20 @@
+WNA self-test: PASS (18/18 checks)
+
+[PASS] StateStore writes memory.md
+[PASS] synthetic handshake capture written — 5 frames
+[PASS] pcap parsed — 5 packets
+[PASS] beacon ESSID extracted — [{'bssid': '02:11:22:33:44:55', 'essid': 'WNA-Lab-AP'}]
+[PASS] 4 EAPOL-Key frames found — 4
+[PASS] M1..M4 classified — ['M1', 'M2', 'M3', 'M4']
+[PASS] PMKID detected in M1
+[PASS] handshake complete — complete 4-way handshake (M1, M2, M3, M4) for WNA-Lab-AP
+[PASS] BSSID identified — 02:11:22:33:44:55
+[PASS] ESSID identified — WNA-Lab-AP
+[PASS] partial handshake detected (not complete) — partial EAPOL only (M1, M2) for WNA-Lab-AP
+[PASS] hashcat 22000 line(s) produced — 1 lines
+[PASS] 22000 line has correct prefix and MACs
+[PASS] internal cracker recovers PSK — found='hunter2-but-longer'
+[PASS] internal cracker exhausts wordlist — found=''
+[PASS] HTML audit report exported
+[PASS] CSV audit report exported
+[PASS] JSON audit report exported

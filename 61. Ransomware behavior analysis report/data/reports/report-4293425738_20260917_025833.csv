@@ -1,0 +1,70 @@
+# Report,Ransomware Encryption Pattern Analysis Report
+# Subtitle,conti_encryptor.exe.json
+# Generated,2026-09-17T02:58:33
+# Verdict,critical
+# Risk score,100
+# Tools,Ransomware Pattern Study v1.0.0
+
+# Summary,No parseable API calls found.
+
+# Overview
+Field,Value
+Source,conti_encryptor.exe.json
+Format,cuckoo
+SHA-256,c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4
+Machine,cuckoo-win7x64
+API calls,0
+Processes,1
+Persistence mechanisms,11
+Indicators,11
+Verdict,CRITICAL (100/100)
+
+# Indicators of Compromise
+ioc_type,value,source,confidence,context
+file,C:\\Users\\analyst\\Documents\\*,FindFirstFileW,0.70,
+file,notes.txt,FindNextFileW,0.70,
+file,presentation.pptx,FindNextFileW,0.70,
+file,database.db,FindNextFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\notes.txt,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\notes.txt.encrypted,WriteFile,0.70,
+file,C:\\Users\\analyst\\Documents\\presentation.pptx,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\presentation.pptx.encrypted,WriteFile,0.70,
+file,C:\\Users\\analyst\\Documents\\database.db,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\database.db.encrypted,WriteFile,0.70,
+file,C:\\Users\\Desktop\\HOW_TO_DECRYPT.txt,CreateFileW,0.70,
+
+# Section: Persistence mechanisms detected
+# note,Ordered by timestamp; mapped to MITRE ATT&CK persistence techniques.
+Severity,Technique,Name,Source,Evidence,Confidence,Details
+high,RANS-004,Ransom Note Drop,behavior,,0.85,CreateFileW @ 1.80s; WriteFile @ 3.20s
+critical,RANS-002,In-Place File Encryption,behavior,,0.85,ReadFile @ 2.15s; CryptEncrypt @ 2.85s; WriteFile @ 3.20s
+critical,RANS-006,Mass File Encryption Loop,behavior,,0.85,ReadFile @ 2.15s; CryptEncrypt @ 2.85s; WriteFile @ 3.20s
+high,RANS-004,Ransom Note Drop,behavior,,0.85,CreateFileW @ 3.55s; WriteFile @ 4.60s
+critical,RANS-002,In-Place File Encryption,behavior,,0.85,ReadFile @ 3.90s; CryptEncrypt @ 4.25s; WriteFile @ 4.60s
+critical,RANS-006,Mass File Encryption Loop,behavior,,0.85,ReadFile @ 3.90s; CryptEncrypt @ 4.25s; WriteFile @ 4.60s
+high,RANS-004,Ransom Note Drop,behavior,,0.85,CreateFileW @ 4.95s; WriteFile @ 6.00s
+critical,RANS-002,In-Place File Encryption,behavior,,0.85,ReadFile @ 5.30s; CryptEncrypt @ 5.65s; WriteFile @ 6.00s
+critical,RANS-006,Mass File Encryption Loop,behavior,,0.85,ReadFile @ 5.30s; CryptEncrypt @ 5.65s; WriteFile @ 6.00s
+critical,RANS-005,Recovery Prevention,behavior,,0.85,CreateProcessW @ 6.35s; CreateProcessW @ 6.70s
+high,RANS-004,Ransom Note Drop,behavior,,0.85,CreateFileW @ 7.05s; WriteFile @ 7.40s
+
+# Section: Analysis statistics
+Field,Value
+Total API calls,0
+Processes,1
+Duration,0.0s
+Categories observed,-
+
+# Section: Indicators of Compromise
+Type,Value,Source,Confidence,Context
+file,C:\\Users\\analyst\\Documents\\*,FindFirstFileW,0.70,
+file,notes.txt,FindNextFileW,0.70,
+file,presentation.pptx,FindNextFileW,0.70,
+file,database.db,FindNextFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\notes.txt,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\notes.txt.encrypted,WriteFile,0.70,
+file,C:\\Users\\analyst\\Documents\\presentation.pptx,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\presentation.pptx.encrypted,WriteFile,0.70,
+file,C:\\Users\\analyst\\Documents\\database.db,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\database.db.encrypted,WriteFile,0.70,
+file,C:\\Users\\Desktop\\HOW_TO_DECRYPT.txt,CreateFileW,0.70,

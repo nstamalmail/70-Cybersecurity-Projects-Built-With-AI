@@ -1,0 +1,21 @@
+rule_number,name,source,destination,service,action,track,enabled,comments
+1,Allow-Web-Traffic,Internal-Net,Any,HTTP/HTTPS,accept,log,Yes,Allow internal users to access web
+2,Block-Telnet,Any,Any,Telnet,drop,log,Yes,Block insecure Telnet protocol
+3,Allow-DNS,Internal-Net,DNS-Servers,DNS,accept,log,Yes,Allow DNS resolution
+4,Permissive-Any-Any,Any,Any,Any,accept,log,Yes,DANGER - overly permissive rule
+5,Allow-SSH-Admin,Admin-Network,Server-Farm,SSH,accept,log,Yes,Allow admin SSH access
+6,Allow-Email,Internal-Net,Mail-Servers,SMTP/POP3/IMAP,accept,log,Yes,Allow email services
+7,Allow-VPN-Site2Site,VPN-Gateway,Internal-Net,Any,accept,log,Yes,Site-to-site VPN traffic
+8,Block-Outbound-Any,Internal-Net,Any,Any,drop,log,Yes,Block direct internet access
+9,Allow-Database,App-Servers,DB-Servers,MySQL,accept,log,No,Application to database access - NO LOGGING
+10,Allow-RDP-Internal,Internal-Net,Internal-Net,RDP,accept,log,Yes,Allow RDP between servers
+11,Legacy-FTP,Any,File-Servers,FTP,accept,log,No,Legacy FTP access - INSECURE PROTOCOL
+12,Allow-Management,Management,All-Servers,SSH/HTTPS,accept,log,Yes,Management access
+13,Block-Guest-Internal,Guest-WiFi,Internal-Net,Any,drop,log,Yes,Block guest access to internal
+14,Allow-ICMP,Internal-Net,Any,ICMP,accept,log,Yes,Allow ping for troubleshooting
+15,Disabled-Legacy-Rule,Old-Network,Any,Any,accept,log,No,Legacy rule - no longer needed
+16,Allow-Cloud-Services,Internal-Net,Cloud-Subnet,HTTPS,accept,log,Yes,Allow cloud SaaS access
+17,Insecure-SNMP-Access,Any,Network-Devices,SNMP,accept,log,No,SNMP v2c - INSECURE
+18,Allow-Intranet,Internal-Net,Intranet,HTTP/HTTPS,accept,log,Yes,Intranet access
+19,Block-All-Default,Any,Any,Any,drop,log,Yes,Default implicit deny
+20,Allow-Backup,Backup-Net,Servers,TCP-22/TCP-443,accept,log,Yes,Backup traffic access

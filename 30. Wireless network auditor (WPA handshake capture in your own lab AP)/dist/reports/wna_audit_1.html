@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WNA Audit Report - selftest</title>
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; margin: 24px; color: #222; }
+  h1 { font-size: 22px; } h2 { font-size: 16px; margin-top: 28px; }
+  table { border-collapse: collapse; width: 100%; margin-top: 8px; }
+  th, td { border: 1px solid #ccc; padding: 6px 8px; font-size: 13px; text-align: left; vertical-align: top; }
+  th { background: #f0f0f0; }
+  .ok { background: #2e7d32; color: #fff; padding: 2px 10px; border-radius: 4px; }
+  .partial { background: #fb8c00; color: #fff; padding: 2px 10px; border-radius: 4px; }
+  .none { background: #bdbdbd; color: #fff; padding: 2px 10px; border-radius: 4px; }
+  pre { background: #fafafa; border: 1px solid #eee; padding: 8px; font-size: 12px;
+        white-space: pre-wrap; word-break: break-all; max-height: 220px; overflow: auto; }
+  .meta { color: #555; font-size: 13px; }
+</style>
+</head>
+<body>
+<h1>WNA — Wireless Network Audit Report</h1>
+<p class="meta">
+  Audit: selftest &middot; Generated: now<br>
+  Scope (allowlist BSSIDs): 02:11:22:33:44:55<br>
+  Adapter: wlan0mon &middot; Capture method: verification-only<br>
+  Targets assessed: 1
+</p>
+<h2>Posture summary</h2>
+<p>This report validates the security posture of lab access points within the
+declared scope. Evidence: capture files, EAPOL message completeness, hash
+material, and (where attempted) PSK resilience. Hardening recommendations are
+listed per target.</p>
+
+<h3>WNA-Lab-AP
+ <span class="badge">WPA2-PSK</span></h3>
+<table>
+<tr><th>BSSID</th><th>Channel</th><th>Handshake</th><th>PMKID</th>
+    <th>Crack attempted</th><th>Result</th></tr>
+<tr><td>02:11:22:33:44:55</td>
+    <td>6</td>
+    <td><span class='ok'>COMPLETE</span>
+        (M1, M2, M3, M4)</td>
+    <td>yes</td>
+    <td>internal-py</td>
+    <td>PSK cracked: <b>hunter2-but-longer</b></td></tr>
+</table>
+<h4>Hardening recommendations</h4>
+<pre>- PSK was recovered from the wordlist — replace it with a long random passphrase (16+ chars) or move to WPA3-SAE / enterprise auth.
+- WPA2-PSK is offline-crackable after one handshake: prefer WPA3-SAE (or WPA2/WPA3 mixed with SAE required for capable clients).
+- A complete 4-way handshake is obtainable in your lab — assume PSK-only networks are exposed to offline attacks by anyone in radio range.
+- General: disable WPS, use a unique SSID (not disclosing model/site), and rotate PSKs on staff turnover.</pre>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "lab_id": "lab-sample-002",
+  "description": "Sample defended lab session: source port randomization + DNSSEC enabled, attack fails. Import via 'Import Lab Session...' in DRCP.",
+  "timestamp": "2026-09-19T21:30:02",
+  "resolver_port": 5311,
+  "upstream_port": 5301,
+  "target_domain": "bank.test.lab",
+  "legitimate_answer": "203.0.113.12",
+  "forged_answer": "6.6.6.6",
+  "port_randomization": true,
+  "dnssec_mode": true,
+  "strategy": "random",
+  "attempts": 20000,
+  "poisoning_successful": false,
+  "cache_before": [
+    {"domain": "test.lab", "type": "A", "value": "203.0.113.10", "ttl": 40, "source": "legitimate"}
+  ],
+  "cache_after": [
+    {"domain": "test.lab", "type": "A", "value": "203.0.113.10", "ttl": 39, "source": "legitimate"},
+    {"domain": "bank.test.lab", "type": "A", "value": "203.0.113.12", "ttl": 60, "source": "legitimate"}
+  ],
+  "steps": [
+    {"step_number": 1, "action": "Trigger query", "timestamp": "2026-09-19T21:29:40", "details": "Stub asked bank.test.lab; resolver forwarded upstream with randomized sport=49213", "success": true},
+    {"step_number": 2, "action": "Flood forged responses", "timestamp": "2026-09-19T21:29:41", "details": "20000 random transaction ids attempted against randomized source port", "success": false},
+    {"step_number": 3, "action": "DNSSEC rejection", "timestamp": "2026-09-19T21:29:41", "details": "Forged answers lacked valid RRSIG (LABSIG) - rejected at validation", "success": false},
+    {"step_number": 4, "action": "Legitimate reply accepted", "timestamp": "2026-09-19T21:29:41", "details": "Real answer 203.0.113.12 validated and cached", "success": true}
+  ],
+  "resolver_log": [
+    {"ts": "21:29:40.880", "kind": "query", "detail": "stub 127.0.0.1:55101 asks bank.test.lab A", "color": "blue"},
+    {"ts": "21:29:40.882", "kind": "forward", "detail": "upstream 127.0.0.1:5301 txn=0x2f19 sport=49213", "color": "orange"},
+    {"ts": "21:29:40.901", "kind": "reject", "detail": "DNSSEC: no valid RRSIG - forged response REJECTED", "color": "red"},
+    {"ts": "21:29:40.905", "kind": "reject", "detail": "txn ID mismatch (got 0x0042 expected 0x2f19) - forged response REJECTED", "color": "red"},
+    {"ts": "21:29:40.940", "kind": "dnssec", "detail": "DNSSEC signature validated", "color": "green"},
+    {"ts": "21:29:40.941", "kind": "cache-put", "detail": "bank.test.lab -> 203.0.113.12 cached (TTL 60, legitimate)", "color": "green"}
+  ],
+  "attack_log": [
+    {"ts": "21:29:40.950", "msg": "attack started: target=bank.test.lab forged-ip=6.6.6.6 strategy=random", "color": "red"},
+    {"ts": "21:29:45.960", "msg": "...5000 forged attempts, still guessing", "color": "gray"},
+    {"ts": "21:29:50.970", "msg": "...10000 forged attempts, still guessing", "color": "gray"},
+    {"ts": "21:29:55.980", "msg": "...15000 forged attempts, still guessing", "color": "gray"},
+    {"ts": "21:30:00.990", "msg": "...20000 forged attempts, still guessing", "color": "gray"},
+    {"ts": "21:30:01.100", "msg": "attack finished WITHOUT success after 20000 attempts (defenses held)", "color": "green"}
+  ]
+}

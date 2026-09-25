@@ -1,0 +1,24 @@
+# Indicators of Compromise
+ioc_type,value,source,confidence,context
+registry,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run\LockerService,"RegCreateKeyExW (pid 788), RegSetValueExW (pid 788)",0.95,"regkey=HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run, value_name=LockerService"
+registry,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run,"RegCreateKeyExW (pid 788), RegSetValueExW (pid 788), summary:keys",0.85,"regkey=HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run, value_name=LockerService"
+file,budget.xlsx,FindNextFileW (pid 788),0.75,file_name=budget.xlsx
+file,C:\Users\analyst\Desktop\notes.txt,ReadFile (pid 788),0.75,"file_name=C:\Users\analyst\Desktop\notes.txt, size=4096"
+file,C:\Users\analyst\Desktop\notes.txt.locked,"WriteFile (pid 788), summary:files",0.75,"file_name=C:\Users\analyst\Desktop\notes.txt.locked, size=4096"
+file,C:\Users\analyst\Desktop\README_LOCKED.txt,"CreateFileW (pid 788), WriteFile (pid 788), summary:files",0.75,"file_name=C:\Users\analyst\Desktop\README_LOCKED.txt, desired_access=GENERIC_WRITE"
+file,C:\Users\analyst\Documents\*,FindFirstFileW (pid 788),0.75,file_name=C:\Users\analyst\Documents\*
+file,C:\Users\analyst\Documents\budget.xlsx,ReadFile (pid 788),0.75,"file_name=C:\Users\analyst\Documents\budget.xlsx, size=40960"
+file,C:\Users\analyst\Documents\budget.xlsx.locked,"WriteFile (pid 788), summary:files",0.75,"file_name=C:\Users\analyst\Documents\budget.xlsx.locked, size=40960"
+file,C:\Users\analyst\Documents\report.docx,ReadFile (pid 788),0.75,"file_name=C:\Users\analyst\Documents\report.docx, size=32768"
+file,C:\Users\analyst\Documents\report.docx.locked,"WriteFile (pid 788), summary:files",0.75,"file_name=C:\Users\analyst\Documents\report.docx.locked, size=32768"
+file,C:\Users\analyst\Pictures\scan.png,ReadFile (pid 788),0.75,"file_name=C:\Users\analyst\Pictures\scan.png, size=51200"
+file,C:\Users\analyst\Pictures\scan.png.locked,"WriteFile (pid 788), summary:files",0.75,"file_name=C:\Users\analyst\Pictures\scan.png.locked, size=51200"
+file,C:\Windows\System32\cmd.exe,CreateProcessW (pid 788),0.75,"application_name=C:\Windows\System32\cmd.exe, command_line=cmd.exe /c bcdedit /set {default} recoveryenabled No"
+file,C:\Windows\System32\vssadmin.exe,CreateProcessW (pid 788),0.75,"application_name=C:\Windows\System32\vssadmin.exe, command_line=vssadmin.exe delete shadows /all /quiet"
+file,report.docx,FindNextFileW (pid 788),0.75,file_name=report.docx
+file,C:\Users\analyst\Desktop\locker_2026.exe,"RegSetValueExW (pid 788), CreateServiceW (pid 788)",0.60,"regkey=HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run, value_name=LockerService, value=C:\Users\analyst\Desktop\locker_2026.exe -k"
+file,C:\Users\analyst\Documents\,FindFirstFileW (pid 788),0.60,file_name=C:\Users\analyst\Documents\*
+mutex,Global\LKR-2026-LOCK,"CreateMutexW (pid 788), summary:mutexes",0.80,mutex_name=Global\LKR-2026-LOCK
+service,LockSvc,"CreateServiceW (pid 788), StartServiceW (pid 788), summary:services",0.85,"service_name=LockSvc, binary_path=C:\Users\analyst\Desktop\locker_2026.exe"
+command,cmd.exe /c bcdedit /set {default} recoveryenabled No,"CreateProcessW (pid 788), summary:executed_commands",0.70,"application_name=C:\Windows\System32\cmd.exe, command_line=cmd.exe /c bcdedit /set {default} recoveryenabled No"
+command,vssadmin.exe delete shadows /all /quiet,"CreateProcessW (pid 788), summary:executed_commands",0.70,"application_name=C:\Windows\System32\vssadmin.exe, command_line=vssadmin.exe delete shadows /all /quiet"

@@ -1,0 +1,85 @@
+[02:20:36] INFO    Parsed cape report: 32 calls, 3 processes
+[02:20:36] INFO    Mined 4 frequent n-grams, 1 sequence clusters, 26 transitions
+[02:20:36] INFO    Matched 9 behavioural patterns
+[02:20:36] INFO    Extracted 16 indicators
+[02:20:36] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\data\cases.db
+[02:20:36] INFO    Parsed cuckoo report: 32 calls, 3 processes
+[02:20:36] INFO    Mined 12 frequent n-grams, 1 sequence clusters, 24 transitions
+[02:20:36] INFO    Matched 8 behavioural patterns
+[02:20:36] INFO    Extracted 22 indicators
+[02:20:36] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\data\cases.db
+[02:20:37] INFO    Parsed jsonl report: 21 calls, 1 processes
+[02:20:37] INFO    Mined 6 frequent n-grams, 2 sequence clusters, 15 transitions
+[02:20:37] INFO    Matched 3 behavioural patterns
+[02:20:37] INFO    Extracted 15 indicators
+[02:20:37] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\data\cases.db
+[02:20:37] INFO    Parsed cape-bson report: 18 calls, 2 processes
+[02:20:37] INFO    Mined 1 frequent n-grams, 0 sequence clusters, 15 transitions
+[02:20:37] INFO    Matched 3 behavioural patterns
+[02:20:37] INFO    Extracted 10 indicators
+[02:20:37] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\data\cases.db
+[02:21:09] INFO    Parsed cuckoo report: 32 calls, 3 processes
+[02:21:09] INFO    Mined 12 frequent n-grams, 1 sequence clusters, 24 transitions
+[02:21:09] INFO    Matched 8 behavioural patterns
+[02:21:09] INFO    Extracted 22 indicators
+[02:21:09] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\data\cases.db
+[02:29:11] INFO    Parsed cape report: 32 calls, 3 processes
+[02:29:11] INFO    Mined 4 frequent n-grams, 1 sequence clusters, 26 transitions
+[02:29:11] INFO    Matched 9 behavioural patterns
+[02:29:11] INFO    Extracted 16 indicators
+[02:29:11] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\data\cases.db
+[02:29:11] INFO    Parsed cuckoo report: 32 calls, 3 processes
+[02:29:11] INFO    Mined 12 frequent n-grams, 1 sequence clusters, 24 transitions
+[02:29:11] INFO    Matched 8 behavioural patterns
+[02:29:11] INFO    Extracted 22 indicators
+[02:29:11] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\data\cases.db
+[02:29:11] INFO    Parsed jsonl report: 21 calls, 1 processes
+[02:29:11] INFO    Mined 6 frequent n-grams, 2 sequence clusters, 15 transitions
+[02:29:11] INFO    Matched 3 behavioural patterns
+[02:29:11] INFO    Extracted 15 indicators
+[02:29:11] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\data\cases.db
+[02:29:12] INFO    Parsed cape-bson report: 18 calls, 2 processes
+[02:29:12] INFO    Mined 1 frequent n-grams, 0 sequence clusters, 15 transitions
+[02:29:12] INFO    Matched 3 behavioural patterns
+[02:29:12] INFO    Extracted 10 indicators
+[02:29:12] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\data\cases.db
+[02:29:22] INFO    Parsed cape report: 32 calls, 3 processes
+[02:29:22] INFO    Mined 4 frequent n-grams, 1 sequence clusters, 26 transitions
+[02:29:22] INFO    Matched 9 behavioural patterns
+[02:29:22] INFO    Extracted 16 indicators
+[02:29:22] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\data\cases.db
+[02:29:22] INFO    Parsed cuckoo report: 32 calls, 3 processes
+[02:29:22] INFO    Mined 12 frequent n-grams, 1 sequence clusters, 24 transitions
+[02:29:22] INFO    Matched 8 behavioural patterns
+[02:29:22] INFO    Extracted 22 indicators
+[02:29:22] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\data\cases.db
+[02:29:22] INFO    Parsed jsonl report: 21 calls, 1 processes
+[02:29:22] INFO    Mined 6 frequent n-grams, 2 sequence clusters, 15 transitions
+[02:29:22] INFO    Matched 3 behavioural patterns
+[02:29:22] INFO    Extracted 15 indicators
+[02:29:22] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\data\cases.db
+[02:29:22] INFO    Parsed cape-bson report: 18 calls, 2 processes
+[02:29:22] INFO    Mined 1 frequent n-grams, 0 sequence clusters, 15 transitions
+[02:29:22] INFO    Matched 3 behavioural patterns
+[02:29:22] INFO    Extracted 10 indicators
+[02:29:22] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\data\cases.db
+[03:02:21] INFO    Parsed cape report: 32 calls, 3 processes
+[03:02:21] INFO    Mined 4 frequent n-grams, 1 sequence clusters, 26 transitions
+[03:02:21] INFO    Matched 9 behavioural patterns
+[03:02:21] INFO    Extracted 16 indicators
+[03:02:21] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\data\cases.db
+[03:02:21] INFO    Parsed cuckoo report: 32 calls, 3 processes
+[03:02:21] INFO    Mined 12 frequent n-grams, 1 sequence clusters, 24 transitions
+[03:02:21] INFO    Matched 8 behavioural patterns
+[03:02:21] INFO    Extracted 22 indicators
+[03:02:21] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\data\cases.db
+[03:02:21] INFO    Parsed jsonl report: 21 calls, 1 processes
+[03:02:21] INFO    Mined 6 frequent n-grams, 2 sequence clusters, 15 transitions
+[03:02:21] INFO    Matched 3 behavioural patterns
+[03:02:21] INFO    Extracted 15 indicators
+[03:02:21] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\data\cases.db
+[03:02:21] INFO    Parsed cape-bson report: 18 calls, 2 processes
+[03:02:21] INFO    Mined 1 frequent n-grams, 0 sequence clusters, 15 transitions
+[03:02:21] INFO    Matched 3 behavioural patterns
+[03:02:21] INFO    Extracted 10 indicators
+[03:02:21] INFO    Case stored in E:\AI Masterclass\01. Day 01_Class 01 & 02\Assignments\Track 6 — Malware Analysis (Analysis, Not Weaponization)\59. API call sequence visualizer for a sample's behavior\data\cases.db

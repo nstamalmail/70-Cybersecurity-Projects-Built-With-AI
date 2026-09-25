@@ -1,0 +1,38 @@
+# HashArmor builtin wordlists — SYNTHETIC / EDUCATIONAL ONLY
+#
+# These lists are hand-written for demonstrations and self-tests. They are
+# deliberately small and do NOT contain real breach corpus data (rockyou,
+# crackstation, etc.). Point the tool at your own wordlist files for real
+# audits — that data never ships with HashArmor.
+
+100000
+123456
+12345678
+password
+qwerty
+abc123
+monkey
+letmein
+dragon
+welcome
+admin
+iloveyou
+sunshine
+princess
+football
+baseball
+master
+hello
+freedom
+whatever
+trustno1
+changeme
+secret
+passw0rd
+p@ssw0rd
+qazwsx
+starwars
+summer2024
+Winter@2025
+Test@123
+P@ssw0rd!

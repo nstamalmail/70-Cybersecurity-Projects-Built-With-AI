@@ -1,0 +1,598 @@
+{
+  "app": {
+    "name": "API Sequence Visualizer",
+    "acronym": "ACSV",
+    "version": "1.0.0"
+  },
+  "title": "API Call Sequence Analysis Report",
+  "subtitle": "loader_b7.bin.log.bson · cape-bson",
+  "generated_at": "2026-09-17T02:20:37",
+  "run_id": "report-7276867243",
+  "verdict": "high",
+  "risk_score": 71,
+  "summary": "18 API calls across 2 process(es) over 6.3s of behaviour were normalised from a cape-bson report. High-severity behaviour matched: Hollowed remote process; Network beacon setup; Self-modifying memory. Dominant categories: memory 6, network 6, process 4, registry 2. 10 indicators were extracted from the call arguments. Behaviour score 71/100 (high).",
+  "meta": {
+    "Report": "report-7276867243",
+    "Source": "loader_b7.bin.log.bson",
+    "Format": "cape-bson",
+    "Sample": "loader_b7.bin",
+    "SHA-256": "c4f0a8e2b6d19c5f3a7e0b4d8c2f6a9e1d5b7c0f4a8e2b6d9c3f7a1e5b0d4c8a",
+    "Machine": "cape-vm-win10x64",
+    "Analysis started": "-",
+    "Duration": "6.3s of behaviour",
+    "API calls": "18 (records: 18)",
+    "Processes": "2",
+    "Unique APIs": "14",
+    "Patterns matched": "3",
+    "Indicators": "10",
+    "Behaviour score": "71/100 (high)",
+    "Sandbox signatures": "unpacks_self, hollows_process, creates_scheduled_task"
+  },
+  "artifacts": [
+    "demo://loader_b7.bin.log.bson"
+  ],
+  "iocs": [
+    {
+      "ioc_type": "ipv4",
+      "value": "91.219.236.14",
+      "source": "connect (pid 3404), summary:hosts",
+      "confidence": 0.9,
+      "context": "ip_address=91.219.236.14, port=8080"
+    },
+    {
+      "ioc_type": "ipv4",
+      "value": "91.219.236.14:8080",
+      "source": "connect (pid 3404)",
+      "confidence": 0.7,
+      "context": "ip_address=91.219.236.14, port=8080"
+    },
+    {
+      "ioc_type": "domain",
+      "value": "node7.relay-control.org",
+      "source": "gethostbyname (pid 3404), summary:hosts",
+      "confidence": 0.8,
+      "context": "hostname=node7.relay-control.org"
+    },
+    {
+      "ioc_type": "registry",
+      "value": "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\WinUpd",
+      "source": "RegSetValueExW (pid 2748)",
+      "confidence": 0.95,
+      "context": "regkey=HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run, value_name=WinUpd"
+    },
+    {
+      "ioc_type": "registry",
+      "value": "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+      "source": "RegCreateKeyExW (pid 2748), RegSetValueExW (pid 2748), summary:keys",
+      "confidence": 0.85,
+      "context": "regkey=HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\Windows\\System32\\schtasks.exe",
+      "source": "CreateProcessW (pid 2748)",
+      "confidence": 0.75,
+      "context": "application_name=C:\\Windows\\System32\\schtasks.exe, command_line=schtasks /create /tn WindowsUpdateTask /tr C:\\Windows\\Temp\\svc.dll /sc onlogon /f"
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\Windows\\System32\\svchost.exe",
+      "source": "CreateProcessW (pid 2748)",
+      "confidence": 0.75,
+      "context": "application_name=C:\\Windows\\System32\\svchost.exe, command_line=svchost.exe -k netsvcs, creation_flags=CREATE_SUSPENDED"
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\Windows\\Temp\\svc.dll",
+      "source": "CreateProcessW (pid 2748)",
+      "confidence": 0.6,
+      "context": "application_name=C:\\Windows\\System32\\schtasks.exe, command_line=schtasks /create /tn WindowsUpdateTask /tr C:\\Windows\\Temp\\svc.dll /sc onlogon /f"
+    },
+    {
+      "ioc_type": "command",
+      "value": "schtasks /create /tn WindowsUpdateTask /tr C:\\Windows\\Temp\\svc.dll /sc onlogon /f",
+      "source": "CreateProcessW (pid 2748), summary:executed_commands",
+      "confidence": 0.7,
+      "context": "application_name=C:\\Windows\\System32\\schtasks.exe, command_line=schtasks /create /tn WindowsUpdateTask /tr C:\\Windows\\Temp\\svc.dll /sc onlogon /f"
+    },
+    {
+      "ioc_type": "command",
+      "value": "svchost.exe -k netsvcs",
+      "source": "CreateProcessW (pid 2748), summary:executed_commands",
+      "confidence": 0.7,
+      "context": "application_name=C:\\Windows\\System32\\svchost.exe, command_line=svchost.exe -k netsvcs, creation_flags=CREATE_SUSPENDED"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Behavioural findings",
+      "kind": "table",
+      "data": {},
+      "columns": [
+        "Severity",
+        "Pattern",
+        "Process",
+        "Start (s)",
+        "Span (s)",
+        "API chain",
+        "Target"
+      ],
+      "rows": [
+        [
+          "high",
+          "Self-modifying memory",
+          "loader_b7.bin",
+          "0.40",
+          "0.70",
+          "VirtualAlloc -> WriteProcessMemory -> VirtualProtect",
+          "-"
+        ],
+        [
+          "critical",
+          "Hollowed remote process",
+          "loader_b7.bin",
+          "1.45",
+          "1.40",
+          "CreateProcessW -> NtUnmapViewOfSection -> VirtualAllocEx -> SetThreadContext",
+          "C:\\Windows\\System32\\svchost.exe"
+        ],
+        [
+          "high",
+          "Network beacon setup",
+          "svchost.exe",
+          "4.60",
+          "0.70",
+          "gethostbyname -> connect -> send",
+          "node7.relay-control.org"
+        ]
+      ],
+      "text": "",
+      "items": [],
+      "note": "Ordered API sequences matched by the pattern engine (architecture §3.4)."
+    },
+    {
+      "title": "Finding details",
+      "kind": "list",
+      "data": {},
+      "columns": [],
+      "rows": [],
+      "text": "",
+      "items": [
+        "[high] MEM-001 Self-modifying memory — pid 2748 (loader_b7.bin) at t=0.40s | VirtualAlloc -> WriteProcessMemory -> VirtualProtect",
+        "[critical] INJ-004 Hollowed remote process — pid 2748 (loader_b7.bin) at t=1.45s target: C:\\Windows\\System32\\svchost.exe | CreateProcessW -> NtUnmapViewOfSection -> VirtualAllocEx -> SetThreadContext",
+        "[high] NET-002 Network beacon setup — pid 3404 (svchost.exe) at t=4.60s target: node7.relay-control.org | gethostbyname -> connect -> send"
+      ],
+      "note": ""
+    },
+    {
+      "title": "Behaviour statistics",
+      "kind": "kv",
+      "data": {
+        "Total calls (records, loop-collapsed)": "18 (18)",
+        "Unique APIs": "14",
+        "Processes": "2",
+        "Behaviour duration": "6.35s",
+        "Calls per second": "2.835",
+        "Failed calls": "0 (0.0%)",
+        "Collapsed repeat runs": "0",
+        "Categories observed": "memory, network, process, registry"
+      },
+      "columns": [],
+      "rows": [],
+      "text": "",
+      "items": [],
+      "note": ""
+    },
+    {
+      "title": "API category distribution",
+      "kind": "table",
+      "data": {},
+      "columns": [
+        "Category",
+        "Calls",
+        "Share"
+      ],
+      "rows": [
+        [
+          "memory",
+          "6",
+          "33.3%"
+        ],
+        [
+          "network",
+          "6",
+          "33.3%"
+        ],
+        [
+          "process",
+          "4",
+          "22.2%"
+        ],
+        [
+          "registry",
+          "2",
+          "11.1%"
+        ]
+      ],
+      "text": "",
+      "items": [],
+      "note": "Volume per category; a large memory + process share is injection-shaped."
+    },
+    {
+      "title": "Most frequent APIs",
+      "kind": "table",
+      "data": {},
+      "columns": [
+        "API",
+        "Calls"
+      ],
+      "rows": [
+        [
+          "send",
+          "3"
+        ],
+        [
+          "WriteProcessMemory",
+          "2"
+        ],
+        [
+          "CreateProcessW",
+          "2"
+        ],
+        [
+          "VirtualAlloc",
+          "1"
+        ],
+        [
+          "VirtualProtect",
+          "1"
+        ],
+        [
+          "NtUnmapViewOfSection",
+          "1"
+        ],
+        [
+          "VirtualAllocEx",
+          "1"
+        ],
+        [
+          "SetThreadContext",
+          "1"
+        ],
+        [
+          "ResumeThread",
+          "1"
+        ],
+        [
+          "RegCreateKeyExW",
+          "1"
+        ],
+        [
+          "RegSetValueExW",
+          "1"
+        ],
+        [
+          "gethostbyname",
+          "1"
+        ],
+        [
+          "connect",
+          "1"
+        ],
+        [
+          "recv",
+          "1"
+        ]
+      ],
+      "text": "",
+      "items": [],
+      "note": ""
+    },
+    {
+      "title": "Frequent n-grams",
+      "kind": "table",
+      "data": {},
+      "columns": [
+        "Occurrences",
+        "Length",
+        "Score",
+        "Process",
+        "Chain"
+      ],
+      "rows": [
+        [
+          "2",
+          "2",
+          "4",
+          "all",
+          "send -> send"
+        ]
+      ],
+      "text": "",
+      "items": [],
+      "note": ""
+    },
+    {
+      "title": "API transition matrix (top)",
+      "kind": "table",
+      "data": {},
+      "columns": [
+        "From",
+        "To",
+        "Count",
+        "Probability",
+        "Process"
+      ],
+      "rows": [
+        [
+          "send",
+          "send",
+          "2",
+          "66.7%",
+          "all"
+        ],
+        [
+          "VirtualAlloc",
+          "WriteProcessMemory",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "VirtualProtect",
+          "CreateProcessW",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "NtUnmapViewOfSection",
+          "VirtualAllocEx",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "VirtualAllocEx",
+          "WriteProcessMemory",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "SetThreadContext",
+          "ResumeThread",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "ResumeThread",
+          "CreateProcessW",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "RegCreateKeyExW",
+          "RegSetValueExW",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "gethostbyname",
+          "connect",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "connect",
+          "send",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "WriteProcessMemory",
+          "VirtualProtect",
+          "1",
+          "50.0%",
+          "all"
+        ],
+        [
+          "CreateProcessW",
+          "NtUnmapViewOfSection",
+          "1",
+          "50.0%",
+          "all"
+        ],
+        [
+          "WriteProcessMemory",
+          "SetThreadContext",
+          "1",
+          "50.0%",
+          "all"
+        ],
+        [
+          "CreateProcessW",
+          "RegCreateKeyExW",
+          "1",
+          "50.0%",
+          "all"
+        ],
+        [
+          "send",
+          "recv",
+          "1",
+          "33.3%",
+          "all"
+        ]
+      ],
+      "text": "",
+      "items": [],
+      "note": "First-order Markov transitions; these edges drive the behaviour graph."
+    },
+    {
+      "title": "Reconstructed process tree",
+      "kind": "table",
+      "data": {},
+      "columns": [
+        "Process",
+        "PID",
+        "Parent",
+        "First seen (s)",
+        "Calls",
+        "Failures",
+        "Top categories",
+        "Path"
+      ],
+      "rows": [
+        [
+          "loader_b7.bin",
+          "2748",
+          "-",
+          "0.40",
+          "12",
+          "0",
+          "memory:6, process:4, registry:2",
+          "-"
+        ],
+        [
+          "svchost.exe",
+          "3404",
+          "2748",
+          "4.60",
+          "6",
+          "0",
+          "network:6",
+          "C:\\Windows\\System32\\svchost.exe"
+        ]
+      ],
+      "text": "",
+      "items": [],
+      "note": ""
+    },
+    {
+      "title": "Suspicious process notes",
+      "kind": "list",
+      "data": {},
+      "columns": [],
+      "rows": [],
+      "text": "",
+      "items": [
+        "PID 2748 loader_b7.bin: process + memory APIs (injection-capable)"
+      ],
+      "note": ""
+    },
+    {
+      "title": "Highest-probability behaviour paths",
+      "kind": "list",
+      "data": {},
+      "columns": [],
+      "rows": [],
+      "text": "",
+      "items": [
+        "WriteProcessMemory -> VirtualProtect -> CreateProcessW -> NtUnmapViewOfSection -> VirtualAllocEx",
+        "CreateProcessW -> NtUnmapViewOfSection -> VirtualAllocEx -> WriteProcessMemory -> VirtualProtect",
+        "VirtualAlloc -> WriteProcessMemory -> VirtualProtect -> CreateProcessW -> NtUnmapViewOfSection -> VirtualAllocEx",
+        "VirtualProtect -> CreateProcessW -> NtUnmapViewOfSection -> VirtualAllocEx -> WriteProcessMemory -> SetThreadContext -> ResumeThread",
+        "NtUnmapViewOfSection -> VirtualAllocEx -> WriteProcessMemory -> VirtualProtect -> CreateProcessW -> RegCreateKeyExW -> RegSetValueExW",
+        "VirtualAllocEx -> WriteProcessMemory -> VirtualProtect -> CreateProcessW -> NtUnmapViewOfSection",
+        "SetThreadContext -> ResumeThread -> CreateProcessW -> NtUnmapViewOfSection -> VirtualAllocEx -> WriteProcessMemory -> VirtualProtect",
+        "ResumeThread -> CreateProcessW -> NtUnmapViewOfSection -> VirtualAllocEx -> WriteProcessMemory -> VirtualProtect",
+        "gethostbyname -> connect -> send -> recv",
+        "connect -> send -> recv"
+      ],
+      "note": ""
+    },
+    {
+      "title": "Indicators of Compromise",
+      "kind": "table",
+      "data": {},
+      "columns": [
+        "Type",
+        "Value",
+        "Source",
+        "Confidence",
+        "Context"
+      ],
+      "rows": [
+        [
+          "ipv4",
+          "91.219.236.14",
+          "connect (pid 3404), summary:hosts",
+          "0.90",
+          "ip_address=91.219.236.14, port=8080"
+        ],
+        [
+          "ipv4",
+          "91.219.236.14:8080",
+          "connect (pid 3404)",
+          "0.70",
+          "ip_address=91.219.236.14, port=8080"
+        ],
+        [
+          "domain",
+          "node7.relay-control.org",
+          "gethostbyname (pid 3404), summary:hosts",
+          "0.80",
+          "hostname=node7.relay-control.org"
+        ],
+        [
+          "registry",
+          "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\WinUpd",
+          "RegSetValueExW (pid 2748)",
+          "0.95",
+          "regkey=HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run, value_name=WinUpd"
+        ],
+        [
+          "registry",
+          "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+          "RegCreateKeyExW (pid 2748), RegSetValueExW (pid 2748), summary:keys",
+          "0.85",
+          "regkey=HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"
+        ],
+        [
+          "file",
+          "C:\\Windows\\System32\\schtasks.exe",
+          "CreateProcessW (pid 2748)",
+          "0.75",
+          "application_name=C:\\Windows\\System32\\schtasks.exe, command_line=schtasks /create /tn WindowsUpdateTask /tr C:\\Windows\\Temp\\svc.dll /sc onlogon /f"
+        ],
+        [
+          "file",
+          "C:\\Windows\\System32\\svchost.exe",
+          "CreateProcessW (pid 2748)",
+          "0.75",
+          "application_name=C:\\Windows\\System32\\svchost.exe, command_line=svchost.exe -k netsvcs, creation_flags=CREATE_SUSPENDED"
+        ],
+        [
+          "file",
+          "C:\\Windows\\Temp\\svc.dll",
+          "CreateProcessW (pid 2748)",
+          "0.60",
+          "application_name=C:\\Windows\\System32\\schtasks.exe, command_line=schtasks /create /tn WindowsUpdateTask /tr C:\\Windows\\Temp\\svc.dll /sc onlogon /f"
+        ],
+        [
+          "command",
+          "schtasks /create /tn WindowsUpdateTask /tr C:\\Windows\\Temp\\svc.dll /sc onlogon /f",
+          "CreateProcessW (pid 2748), summary:executed_commands",
+          "0.70",
+          "application_name=C:\\Windows\\System32\\schtasks.exe, command_line=schtasks /create /tn WindowsUpdateTask /tr C:\\Windows\\Temp\\svc.dll /sc onlogon /f"
+        ],
+        [
+          "command",
+          "svchost.exe -k netsvcs",
+          "CreateProcessW (pid 2748), summary:executed_commands",
+          "0.70",
+          "application_name=C:\\Windows\\System32\\svchost.exe, command_line=svchost.exe -k netsvcs, creation_flags=CREATE_SUSPENDED"
+        ]
+      ],
+      "text": "",
+      "items": [],
+      "note": ""
+    }
+  ]
+}

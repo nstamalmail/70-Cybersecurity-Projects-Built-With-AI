@@ -1,0 +1,8 @@
+# Dynamic Analysis Sandbox (DAS) - runtime dependencies
+PySide6>=6.6            # Qt6 GUI toolkit (LGPL)
+requests>=2.31          # guest-agent / hypervisor HTTP clients (optional at runtime)
+# --- optional: only needed when you enable the features that use them ---
+# pyvbox>=1.2.0         # VirtualBox Web Service bindings (real hypervisor runs)
+# libvirt-python>=9.0   # KVM/QEMU orchestration
+# dpkt>=1.9.8           # host-side PCAP parsing
+# pyinstaller>=6.0      # build_exe.py (portable one-file build)

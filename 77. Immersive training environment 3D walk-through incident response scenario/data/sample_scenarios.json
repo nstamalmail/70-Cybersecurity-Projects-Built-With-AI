@@ -1,0 +1,326 @@
+{
+  "scenarios": [
+    {
+      "id": "ransomware_001",
+      "title": "Ransomware Attack on Corporate Network",
+      "description": "A ransomware attack has been detected. Navigate through the office to identify the source, contain the spread, and recover systems.",
+      "difficulty": "advanced",
+      "estimated_time_minutes": 30,
+      "rooms": [
+        {
+          "id": "reception",
+          "name": "Reception Area",
+          "description": "Main entrance with security desk and visitor logs",
+          "position": {"x": 0, "y": 0, "z": 0},
+          "size": {"width": 8, "height": 3, "depth": 6},
+          "objects": [
+            {
+              "id": "reception_pc",
+              "type": "computer",
+              "name": "Reception Computer",
+              "description": "The receptionist reports strange pop-ups appearing on their screen",
+              "interactive": true,
+              "clue": "Suspicious email attachment opened this morning",
+              "position": {"x": -3, "y": 0.8, "z": 2},
+              "rotation": 0
+            },
+            {
+              "id": "visitor_log",
+              "type": "file",
+              "name": "Visitor Logbook",
+              "description": "Physical visitor log from the past week",
+              "interactive": true,
+              "clue": "A vendor visited IT department yesterday with USB drive",
+              "position": {"x": 2, "y": 0.9, "z": 1},
+              "rotation": 0
+            },
+            {
+              "id": "security_phone",
+              "type": "phone",
+              "name": "Security Phone",
+              "description": "Direct line to security operations center",
+              "interactive": true,
+              "clue": "Alert received at 8:47 AM about unusual network activity",
+              "position": {"x": 3, "y": 0.8, "z": -1},
+              "rotation": 90
+            }
+          ],
+          "decision_points": [
+            {
+              "id": "initial_response",
+              "question": "What is your first action?",
+              "options": [
+                {"id": "a", "text": "Isolate the reception computer immediately", "score": 8, "feedback": "Good - quick containment prevents spread"},
+                {"id": "b", "text": "Check all computers in the building first", "score": 3, "feedback": "Too slow - ransomware spreads quickly"},
+                {"id": "c", "text": "Call the IT help desk", "score": 5, "feedback": "Helpful but not urgent enough for active attack"}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "it_office",
+          "name": "IT Department",
+          "description": "Server room and IT workstations",
+          "position": {"x": 0, "y": 0, "z": -8},
+          "size": {"width": 10, "height": 3, "depth": 8},
+          "objects": [
+            {
+              "id": "server_rack",
+              "type": "computer",
+              "name": "Main Server Rack",
+              "description": "Central server infrastructure showing encryption in progress",
+              "interactive": true,
+              "clue": "Ransomware is actively encrypting shared drives",
+              "position": {"x": -4, "y": 0, "z": -3},
+              "rotation": 0
+            },
+            {
+              "id": "it_desktop",
+              "type": "computer",
+              "name": "IT Admin Workstation",
+              "description": "Admin console showing network connections",
+              "interactive": true,
+              "clue": "Attack originated from HR department workstation",
+              "position": {"x": 3, "y": 0.8, "z": 2},
+              "rotation": 180
+            },
+            {
+              "id": "backup_drive",
+              "type": "file",
+              "name": "Backup External Drive",
+              "description": "Offline backup drive stored in safe",
+              "interactive": true,
+              "clue": "Last backup was 24 hours ago - data can be restored",
+              "position": {"x": 4, "y": 0.5, "z": -2},
+              "rotation": 0
+            }
+          ],
+          "decision_points": [
+            {
+              "id": "containment",
+              "question": "How do you contain the ransomware spread?",
+              "options": [
+                {"id": "a", "text": "Disconnect all network cables immediately", "score": 9, "feedback": "Excellent - complete network isolation stops spread"},
+                {"id": "b", "text": "Shut down servers only", "score": 4, "feedback": "Partial - workstations can still spread malware"},
+                {"id": "c", "text": "Enable firewall rules to block traffic", "score": 6, "feedback": "Good but may be too late if already inside network"}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "hr_office",
+          "name": "Human Resources Office",
+          "description": "Origin point of the attack",
+          "position": {"x": -10, "y": 0, "z": -4},
+          "size": {"width": 6, "height": 3, "depth": 6},
+          "objects": [
+            {
+              "id": "hr_computer",
+              "type": "computer",
+              "name": "HR Manager Workstation",
+              "description": "Patient zero - infected computer",
+              "interactive": true,
+              "clue": "Opened 'Invoice.zip' attachment from fake vendor email",
+              "position": {"x": 0, "y": 0.8, "z": 2},
+              "rotation": 0
+            },
+            {
+              "id": "employee_files",
+              "type": "file",
+              "name": "Employee Records Cabinet",
+              "description": "Physical backup of sensitive employee data",
+              "interactive": true,
+              "clue": "Contains PII that could be exposed in breach",
+              "position": {"x": -2, "y": 0, "z": -1},
+              "rotation": 90
+            }
+          ],
+          "decision_points": [
+            {
+              "id": "forensics",
+              "question": "What forensic evidence should you collect?",
+              "options": [
+                {"id": "a", "text": "Image the hard drive before shutdown", "score": 10, "feedback": "Perfect - preserves volatile memory and evidence"},
+                {"id": "b", "text": "Just take screenshots of the screen", "score": 3, "feedback": "Insufficient - loses critical forensic data"},
+                {"id": "c", "text": "Reinstall the OS immediately", "score": 1, "feedback": "Destroys all forensic evidence!"}
+              ]
+            }
+          ]
+        }
+      ],
+      "completion_criteria": {
+        "minimum_score": 60,
+        "required_rooms": ["reception", "it_office", "hr_office"],
+        "time_limit_minutes": 45
+      }
+    },
+    {
+      "id": "data_breach_001",
+      "title": "Customer Data Breach Investigation",
+      "description": "Customer payment data has been exfiltrated. Investigate the breach, identify the vulnerability, and implement controls.",
+      "difficulty": "intermediate",
+      "estimated_time_minutes": 25,
+      "rooms": [
+        {
+          "id": "lobby",
+          "name": "Company Lobby",
+          "description": "Main entry point with visitor management",
+          "position": {"x": 0, "y": 0, "z": 0},
+          "size": {"width": 8, "height": 3, "depth": 6},
+          "objects": [
+            {
+              "id": "lobby_kiosk",
+              "type": "computer",
+              "name": "Visitor Check-in Kiosk",
+              "description": "Self-service kiosk with network access",
+              "interactive": true,
+              "clue": "Kiosk has unrestricted access to internal network",
+              "position": {"x": 0, "y": 0.8, "z": 2},
+              "rotation": 0
+            }
+          ],
+          "decision_points": [
+            {
+              "id": "initial_assessment",
+              "question": "How do you begin the breach investigation?",
+              "options": [
+                {"id": "a", "text": "Review network logs for unusual traffic", "score": 9, "feedback": "Excellent - logs show data exfiltration pattern"},
+                {"id": "b", "text": "Interview employees who handled customer data", "score": 5, "feedback": "Helpful but logs provide objective evidence first"},
+                {"id": "c", "text": "Shut down all customer-facing systems", "score": 4, "feedback": "Disruptive and may destroy evidence"}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "server_room",
+          "name": "Database Server Room",
+          "description": "Houses customer payment database",
+          "position": {"x": 0, "y": 0, "z": -8},
+          "size": {"width": 6, "height": 3, "depth": 6},
+          "objects": [
+            {
+              "id": "db_server",
+              "type": "computer",
+              "name": "Payment Database Server",
+              "description": "Contains encrypted customer payment information",
+              "interactive": true,
+              "clue": "SQL injection vulnerability detected in API endpoint",
+              "position": {"x": 0, "y": 0, "z": -2},
+              "rotation": 0
+            },
+            {
+              "id": "firewall_config",
+              "type": "file",
+              "name": "Firewall Configuration",
+              "description": "Network security device settings",
+              "interactive": true,
+              "clue": "Outbound traffic to unknown IP addresses logged",
+              "position": {"x": 2, "y": 1, "z": -3},
+              "rotation": 0
+            }
+          ],
+          "decision_points": [
+            {
+              "id": "vulnerability_response",
+              "question": "How do you address the SQL injection vulnerability?",
+              "options": [
+                {"id": "a", "text": "Apply WAF rules immediately and patch code", "score": 10, "feedback": "Perfect - immediate protection while permanent fix develops"},
+                {"id": "b", "text": "Take the payment system offline", "score": 6, "feedback": "Secure but impacts business operations"},
+                {"id": "c", "text": "Schedule patch for next maintenance window", "score": 2, "feedback": "Too slow - active exploitation ongoing"}
+              ]
+            }
+          ]
+        }
+      ],
+      "completion_criteria": {
+        "minimum_score": 70,
+        "required_rooms": ["lobby", "server_room"],
+        "time_limit_minutes": 35
+      }
+    },
+    {
+      "id": "insider_threat_001",
+      "title": "Insider Threat Detection",
+      "description": "An employee is suspected of stealing intellectual property. Navigate the office to gather evidence while maintaining confidentiality.",
+      "difficulty": "intermediate",
+      "estimated_time_minutes": 20,
+      "rooms": [
+        {
+          "id": "open_office",
+          "name": "Open Office Area",
+          "description": "Main workspace with multiple workstations",
+          "position": {"x": 0, "y": 0, "z": 0},
+          "size": {"width": 12, "height": 3, "depth": 8},
+          "objects": [
+            {
+              "id": "suspect_desk",
+              "type": "computer",
+              "name": "Suspect's Workstation",
+              "description": "Employee's primary computer with monitoring software",
+              "interactive": true,
+              "clue": "Large file transfers detected after hours to personal cloud storage",
+              "position": {"x": 4, "y": 0.8, "z": 3},
+              "rotation": 0
+            },
+            {
+              "id": "usb_drive",
+              "type": "file",
+              "name": "Unusual USB Drive",
+              "description": "External storage device found near workstation",
+              "interactive": true,
+              "clue": "Contains copies of proprietary source code",
+              "position": {"x": 5, "y": 0.85, "z": 3.5},
+              "rotation": 45
+            }
+          ],
+          "decision_points": [
+            {
+              "id": "investigation_approach",
+              "question": "How do you proceed with the investigation?",
+              "options": [
+                {"id": "a", "text": "Discreetly monitor digital activity", "score": 8, "feedback": "Good - preserves evidence without alerting suspect"},
+                {"id": "b", "text": "Confront the employee immediately", "score": 3, "feedback": "Premature - may destroy evidence or cause flight"},
+                {"id": "c", "text": "Search their desk while they're away", "score": 4, "feedback": "May compromise investigation legally"}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "conference_room",
+          "name": "Private Conference Room",
+          "description": "Secure meeting space for investigation team",
+          "position": {"x": 8, "y": 0, "z": -4},
+          "size": {"width": 5, "height": 3, "depth": 5},
+          "objects": [
+            {
+              "id": "case_files",
+              "type": "file",
+              "name": "Investigation Case Files",
+              "description": "Documentation of evidence collected",
+              "interactive": true,
+              "clue": "Timeline shows pattern of escalating data access",
+              "position": {"x": 0, "y": 0.9, "z": 0},
+              "rotation": 0
+            }
+          ],
+          "decision_points": [
+            {
+              "id": "escalation",
+              "question": "When should you escalate this investigation?",
+              "options": [
+                {"id": "a", "text": "Immediately to legal and HR leadership", "score": 9, "feedback": "Correct - insider threats require cross-functional response"},
+                {"id": "b", "text": "After gathering more evidence yourself", "score": 5, "feedback": "Risk of investigation going too far without oversight"},
+                {"id": "c", "text": "Only if you find definitive proof", "score": 2, "feedback": "Too late - damage may be irreparable"}
+              ]
+            }
+          ]
+        }
+      ],
+      "completion_criteria": {
+        "minimum_score": 65,
+        "required_rooms": ["open_office", "conference_room"],
+        "time_limit_minutes": 30
+      }
+    }
+  ]
+}

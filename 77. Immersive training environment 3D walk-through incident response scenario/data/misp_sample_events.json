@@ -1,0 +1,59 @@
+{
+  "events": [
+    {
+      "id": "1001",
+      "info": "APT29 Cozy Bear Campaign Targeting Government Networks",
+      "date": "2026-09-17",
+      "threat_level_id": "1",
+      "analysis": "2",
+      "timestamp": "1694928000",
+      "tag": ["apt29", "cozy-bear", "russia", "government"],
+      "attribute_count": 45,
+      "source": "MISP"
+    },
+    {
+      "id": "1002",
+      "info": "Ransomware Attack on Healthcare Infrastructure - LockBit 4.0",
+      "date": "2026-09-16",
+      "threat_level_id": "1",
+      "analysis": "2",
+      "timestamp": "1694841600",
+      "tag": ["ransomware", "lockbit", "healthcare", "critical-infrastructure"],
+      "attribute_count": 32,
+      "source": "MISP"
+    },
+    {
+      "id": "1003",
+      "info": "Supply Chain Attack - Compromised NPM Package",
+      "date": "2026-09-15",
+      "threat_level_id": "2",
+      "analysis": "1",
+      "timestamp": "1694755200",
+      "tag": ["supply-chain", "npm", "javascript", "backdoor"],
+      "attribute_count": 18,
+      "source": "MISP"
+    },
+    {
+      "id": "1004",
+      "info": "Credential Harvesting Campaign Targeting AWS Credentials",
+      "date": "2026-09-14",
+      "threat_level_id": "2",
+      "analysis": "1",
+      "timestamp": "1694668800",
+      "tag": ["phishing", "aws", "credentials", "cloud"],
+      "attribute_count": 27,
+      "source": "MISP"
+    },
+    {
+      "id": "1005",
+      "info": "Zero-Day Exploit in OpenSSL - CVE-2026-XXXX",
+      "date": "2026-09-13",
+      "threat_level_id": "1",
+      "analysis": "2",
+      "timestamp": "1694582400",
+      "tag": ["zero-day", "openssl", "cve", "critical"],
+      "attribute_count": 52,
+      "source": "MISP"
+    }
+  ]
+}

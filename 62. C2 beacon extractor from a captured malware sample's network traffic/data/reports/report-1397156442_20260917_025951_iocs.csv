@@ -1,0 +1,6 @@
+# Indicators of Compromise
+ioc_type,value,source,confidence,context
+registry,HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run,PERS-007,0.90,
+file,C:\\Users\\analyst\\AppData\\Roaming\\invoice.exe,CreateFileW,0.70,
+domain,mail.server-update.net,gethostbyname,0.80,
+ipv4,185.220.101.45,connect,0.80,

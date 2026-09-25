@@ -1,0 +1,122 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'>
+<title>Persistence Technique Analysis Report</title><style>
+
+:root { color-scheme: light; }
+body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; margin: 0; background: #f6f7f9; color: #17181c; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 32px 28px 64px; background: #fff;
+        box-shadow: 0 0 0 1px #e3e5e9; }
+h1 { margin: 0 0 4px; font-size: 26px; }
+h2 { margin: 28px 0 8px; font-size: 17px; border-bottom: 1px solid #e3e5e9; padding-bottom: 6px; }
+.sub { color: #5d6069; margin: 0 0 4px; }
+.stamp { color: #8b8d98; font-size: 12px; margin-bottom: 18px; }
+.banner { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 10px;
+          background: #f2f3f5; border-left: 6px solid #f5a524; margin: 18px 0; }
+.banner .verdict { font-size: 18px; font-weight: 700; color: #f5a524; }
+.banner .score { margin-left: auto; font-size: 13px; color: #5d6069; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0 4px; font-size: 13px; }
+th, td { border: 1px solid #e3e5e9; padding: 6px 9px; text-align: left; vertical-align: top; }
+th { background: #f2f3f5; font-weight: 600; }
+tr:nth-child(even) td { background: #fafbfc; }
+code, pre { font-family: 'Cascadia Mono', Consolas, monospace; font-size: 12px; }
+pre { background: #f6f7f9; border: 1px solid #e3e5e9; border-radius: 8px; padding: 12px;
+      overflow-x: auto; white-space: pre-wrap; }
+.note { color: #8b8d98; font-size: 12px; margin: 0 0 8px; }
+ul { margin: 6px 0 6px 18px; padding: 0; }
+.summary { background: #f2f3f5; border-radius: 10px; padding: 12px 14px; margin: 16px 0; }
+.foot { margin-top: 36px; padding-top: 12px; border-top: 1px solid #e3e5e9; color: #8b8d98; font-size: 12px; }
+@media print { .wrap { box-shadow: none; max-width: none; } }
+
+</style></head><body><div class='wrap'>
+<h1>Persistence Technique Analysis Report</h1>
+<p class='sub'>loader_trickbot.dll.json</p>
+<div class='stamp'>Generated 2026-09-17 02:48:37 &middot; Persistence Technique Cataloger v1.0.0 &middot; run report-4395751851</div>
+<div class='banner'>
+<span class='verdict'>medium</span>
+<span class='score'>Risk score: 48</span>
+</div>
+<div class='summary'>No parseable API calls found.</div>
+<h2>Persistence mechanisms detected</h2>
+<p class='note'>Ordered by timestamp; mapped to MITRE ATT&amp;CK persistence techniques.</p>
+<table><thead><tr>
+<th>Severity</th>
+<th>Technique</th>
+<th>Name</th>
+<th>Source</th>
+<th>Evidence</th>
+<th>Confidence</th>
+<th>Details</th>
+</tr></thead><tbody>
+<tr>
+<td>critical</td>
+<td>PERS-002</td>
+<td>Windows Service Installation</td>
+<td>behavior</td>
+<td>WindowsUpdateSvc</td>
+<td>0.85</td>
+<td>OpenSCManagerW @ 0.40s; CreateServiceW @ 0.75s; StartServiceW @ 1.10s</td>
+</tr>
+<tr>
+<td>high</td>
+<td>PERS-001</td>
+<td>Registry Run Key Persistence</td>
+<td>behavior</td>
+<td>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run</td>
+<td>0.85</td>
+<td>RegSetValueExW @ 1.80s; CreateFileW @ 2.15s</td>
+</tr>
+<tr>
+<td>medium</td>
+<td>PERS-010</td>
+<td>Office Application Startup</td>
+<td>behavior</td>
+<td>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run</td>
+<td>0.85</td>
+<td>RegSetValueExW @ 1.80s; CreateFileW @ 2.15s</td>
+</tr>
+</tbody></table>
+<h2>Analysis statistics</h2>
+<table>
+<tr><th>Total API calls</th><td>0</td></tr>
+<tr><th>Processes</th><td>2</td></tr>
+<tr><th>Duration</th><td>0.0s</td></tr>
+<tr><th>Categories observed</th><td>-</td></tr>
+</table>
+<h2>Indicators of Compromise</h2>
+<table><thead><tr>
+<th>Type</th>
+<th>Value</th>
+<th>Source</th>
+<th>Confidence</th>
+<th>Context</th>
+</tr></thead><tbody>
+<tr>
+<td>service</td>
+<td>WindowsUpdateSvc</td>
+<td>PERS-002</td>
+<td>0.90</td>
+<td></td>
+</tr>
+<tr>
+<td>registry</td>
+<td>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run</td>
+<td>PERS-001</td>
+<td>0.90</td>
+<td></td>
+</tr>
+<tr>
+<td>domain</td>
+<td>exfil.trickbot-c2.com</td>
+<td>gethostbyname</td>
+<td>0.80</td>
+<td></td>
+</tr>
+<tr>
+<td>ipv4</td>
+<td>91.215.85.142</td>
+<td>connect</td>
+<td>0.80</td>
+<td></td>
+</tr>
+</tbody></table>
+<div class='foot'>Persistence Technique Cataloger v1.0.0 &middot; Malware Analysis Workbench &middot; generated 2026-09-17 02:48:37</div>
+</div></body></html>

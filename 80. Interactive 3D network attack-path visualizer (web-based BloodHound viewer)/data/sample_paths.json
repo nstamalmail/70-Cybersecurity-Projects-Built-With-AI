@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Workstation to Domain Admin via Service Account",
+    "source": "n32",
+    "target": "n1",
+    "risk_score": 95,
+    "path": ["n32", "n31", "n18", "n11", "n19", "n30", "n6", "n1"],
+    "edges": ["MemberOf", "HasSession", "AdminTo", "MemberOf", "AdminTo", "AdminTo", "DCSync"],
+    "description": "Intern account -> session on workstation -> admin escalation through service account -> Domain Admin group -> Domain Controller DCSync"
+  },
+  {
+    "id": 2,
+    "name": "HelpDesk to Domain Admin via File Server",
+    "source": "n16",
+    "target": "n1",
+    "risk_score": 88,
+    "path": ["n16", "n8", "n34", "n32", "n31", "n18", "n11", "n19", "n30", "n6", "n1"],
+    "edges": ["MemberOf", "GenericAll", "HasSession", "MemberOf", "MemberOf", "HasSession", "AdminTo", "MemberOf", "AdminTo", "DCSync"],
+    "description": "HelpDesk user -> full control of workstation -> chain to intern session -> escalate through multiple hops to Domain Admin"
+  },
+  {
+    "id": 3,
+    "name": "SQL Admin to Domain Controller Direct",
+    "source": "n29",
+    "target": "n1",
+    "risk_score": 92,
+    "path": ["n29", "n14", "n15", "n6", "n1"],
+    "edges": ["AdminTo", "AdminTo", "AdminTo", "DCSync"],
+    "description": "SQL Admin -> DB Server -> Domain Controller -> Domain Admin -> Domain"
+  },
+  {
+    "id": 4,
+    "name": "Backup Admin Lateral Movement",
+    "source": "n28",
+    "target": "n1",
+    "risk_score": 85,
+    "path": ["n28", "n5", "n13", "n26", "n22", "n5", "n15", "n6", "n1"],
+    "edges": ["MemberOf", "GenericAll", "AdminTo", "AdminTo", "MemberOf", "AdminTo", "AdminTo", "DCSync"],
+    "description": "Backup Admin -> IT-Admins group -> App Server -> Web Server -> Admin escalation -> Domain Controller"
+  },
+  {
+    "id": 5,
+    "name": "VPN to Internal Network Attack Path",
+    "source": "n47",
+    "target": "n1",
+    "risk_score": 78,
+    "path": ["n47", "n46", "n44", "n43", "n39", "n40", "n43", "n15", "n6", "n1"],
+    "edges": ["HasSession", "AdminTo", "MemberOf", "AdminTo", "HasSession", "MemberOf", "GenericAll", "AdminTo", "DCSync"],
+    "description": "VPN User -> VPN Gateway -> Network Admin -> Monitoring Server -> Monitoring Service -> Network Admins group -> Domain Controller"
+  }
+]

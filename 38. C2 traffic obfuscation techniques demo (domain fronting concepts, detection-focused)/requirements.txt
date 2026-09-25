@@ -1,0 +1,4 @@
+# Runtime: stdlib only (tkinter ships with python.org Windows builds).
+# Dev/test/packaging:
+pytest>=8.0
+pyinstaller>=6.0

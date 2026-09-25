@@ -1,0 +1,29 @@
+From: Newsletter <newsletter@company.com>
+To: alice@company.com
+Subject: Weekly Company Update - September 21
+Date: Mon, 21 Sep 2026 09:00:00 -0400
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Received: from mail.company.com (mail.company.com [10.0.0.1])
+    by mx.company.com with ESMTP id abc123
+    for <alice@company.com>; Mon, 21 Sep 2026 09:00:00 -0400
+Authentication-Results: mx.company.com;
+    spf=pass (domain of newsletter@company.com designates 10.0.0.1 as permitted sender);
+    dkim=pass header1=company.com;
+    dmarc=pass (p=none) header.from=company.com
+Received-SPF: pass (mx.company.com: domain of newsletter@company.com designates 10.0.0.1 as permitted sender)
+ARC-Authentication-Results: i=1; mx.company.com; spf=pass; dkim=pass; dmarc=pass
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=company.com; s=default;
+    bh=abc123=; b=xyz789=
+Message-ID: <abc123@company.com>
+
+<html>
+<body>
+<h2>Weekly Company Update</h2>
+<p>Hi Team,</p>
+<p>Here is this week's update. Please review the attached PDF for details.</p>
+<p>No urgent action required.</p>
+<p>Best regards,<br>Company Communications</p>
+</body>
+</html>

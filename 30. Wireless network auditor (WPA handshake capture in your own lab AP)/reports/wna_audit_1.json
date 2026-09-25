@@ -1,0 +1,36 @@
+{
+  "tool": "WNA",
+  "version": 1,
+  "audit": {
+    "id": 1,
+    "audit_id": "selftest",
+    "generated": "now",
+    "allowlist": [
+      "02:11:22:33:44:55"
+    ],
+    "adapter": "wlan0mon",
+    "capture_method": "verification-only"
+  },
+  "targets": [
+    {
+      "bssid": "02:11:22:33:44:55",
+      "essid": "WNA-Lab-AP",
+      "channel": 6,
+      "encryption": "WPA2-PSK",
+      "handshake_captured": true,
+      "handshake_completeness": "complete",
+      "messages_present": [
+        "M1",
+        "M2",
+        "M3",
+        "M4"
+      ],
+      "pmkid_captured": true,
+      "hash_file": "E:\\AI Masterclass\\01. Day 01_Session 01 & 02\\Assignments\\All Folder\\Track 3 \u2014 Offensive Security OR Ethical Hacking\\30. Wireless network auditor (WPA handshake capture in your own lab AP)\\data\\selftest_lab.cap.hc22000",
+      "crack_attempted": true,
+      "crack_tool": "internal-py",
+      "crack_result": "hunter2-but-longer",
+      "crack_duration_seconds": 1.2
+    }
+  ]
+}

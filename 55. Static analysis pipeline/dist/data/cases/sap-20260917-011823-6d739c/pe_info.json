@@ -1,0 +1,122 @@
+{
+  "is_pe": true,
+  "path": "(memory) demo_synthetic_packed.exe.SAMPLE (in-memory)",
+  "machine": "x86 (i386)",
+  "machine_raw": "0x014c",
+  "timestamp_raw": 2080374784,
+  "timestamp": "2035-12-04 09:53:04 UTC",
+  "characteristics": "EXECUTABLE_IMAGE | 32BIT_MACHINE",
+  "is_dll": false,
+  "entry_point": 16640,
+  "image_base": 4194304,
+  "subsystem": "Windows GUI",
+  "dll_characteristics": "(none)",
+  "size_of_image": 20480,
+  "size_of_headers": 1024,
+  "linker": "14.0",
+  "os_version": "6.0",
+  "checksum": 0,
+  "overlay_offset": 6656,
+  "overlay_size": 2048,
+  "file_size": 8704,
+  "sections": [
+    {
+      "name": ".text",
+      "virtual_address": 4096,
+      "virtual_size": 1536,
+      "raw_size": 1536,
+      "raw_pointer": 1024,
+      "entropy": 7.8679,
+      "entropy_str": "7.87",
+      "characteristics": "CNT_CODE | MEM_EXECUTE | MEM_READ",
+      "flags": "R-X",
+      "wx": false,
+      "executable": true,
+      "size_str": "1.5 KB",
+      "packer": null,
+      "md5": "5fe2ca0e897462c53e572ac7fddb3590"
+    },
+    {
+      "name": ".rdata",
+      "virtual_address": 8192,
+      "virtual_size": 1536,
+      "raw_size": 1536,
+      "raw_pointer": 2560,
+      "entropy": 1.7034,
+      "entropy_str": "1.70",
+      "characteristics": "CNT_INITIALIZED_DATA | MEM_READ",
+      "flags": "R--",
+      "wx": false,
+      "executable": false,
+      "size_str": "1.5 KB",
+      "packer": null,
+      "md5": "7f9a7aa5bc946b09bb8c1e5eedf3aa32"
+    },
+    {
+      "name": ".data",
+      "virtual_address": 12288,
+      "virtual_size": 1024,
+      "raw_size": 1024,
+      "raw_pointer": 4096,
+      "entropy": 4.0808,
+      "entropy_str": "4.08",
+      "characteristics": "CNT_INITIALIZED_DATA | MEM_READ | MEM_WRITE",
+      "flags": "RW-",
+      "wx": false,
+      "executable": false,
+      "size_str": "1.0 KB",
+      "packer": null,
+      "md5": "e9e6b0ee2e029e10e40d37b7323a8fa3"
+    },
+    {
+      "name": "UPX0",
+      "virtual_address": 16384,
+      "virtual_size": 1536,
+      "raw_size": 1536,
+      "raw_pointer": 5120,
+      "entropy": 7.8768,
+      "entropy_str": "7.88",
+      "characteristics": "CNT_CODE | MEM_EXECUTE | MEM_READ | MEM_WRITE",
+      "flags": "RWX",
+      "wx": true,
+      "executable": true,
+      "size_str": "1.5 KB",
+      "packer": "UPX",
+      "md5": "11e69584948df64f661239f2c0859f75"
+    }
+  ],
+  "section_count": 4,
+  "imports": {
+    "KERNEL32.dll": [
+      "CreateRemoteThread",
+      "VirtualAllocEx",
+      "WriteProcessMemory",
+      "LoadLibraryA",
+      "GetProcAddress",
+      "CreateFileW"
+    ],
+    "WININET.dll": [
+      "InternetOpenA",
+      "InternetConnectA",
+      "HttpSendRequestA",
+      "URLDownloadToFileA"
+    ]
+  },
+  "import_count": 10,
+  "imphash": "589a976ca61ff08d463bc819f07d593d",
+  "exports": [],
+  "debug_entries": [
+    {
+      "type": "UNKNOWN",
+      "timestamp": "",
+      "pdb": "D:\\builds\\rat\\Release\\client.pdb",
+      "size": 0
+    }
+  ],
+  "pdb_path": "D:\\builds\\rat\\Release\\client.pdb",
+  "resources": [],
+  "has_rich_header": false,
+  "has_tls": false,
+  "load_config": false,
+  "entry_section": "UPX0"
+}

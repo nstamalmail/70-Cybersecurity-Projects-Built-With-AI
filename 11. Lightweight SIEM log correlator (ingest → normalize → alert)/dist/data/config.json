@@ -1,0 +1,9 @@
+{
+  "raw_queue_size": 10000,
+  "max_events_kept": 50000,
+  "poll_interval": 0.5,
+  "syslog_port": 514,
+  "alert_beep": true,
+  "max_events_rows": 5000,
+  "max_alerts_rows": 500
+}

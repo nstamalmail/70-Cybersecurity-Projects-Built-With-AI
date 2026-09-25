@@ -1,0 +1,37 @@
+{
+  "verdict": "SUSPICIOUS",
+  "score": 50,
+  "raw_score": 50,
+  "rationale": [
+    {
+      "indicator": "Network indicators in strings (3 URLs/IPs/domains)",
+      "weight": 10,
+      "source": "string extractor",
+      "note": "Hard-coded endpoints are typical of C2 or downloaders."
+    },
+    {
+      "indicator": "Command execution strings (1)",
+      "weight": 8,
+      "source": "string extractor",
+      "note": "Shell/CLI invocations embedded in the binary."
+    },
+    {
+      "indicator": "c2 keywords in strings (4)",
+      "weight": 8,
+      "source": "string extractor",
+      "note": "e.g. REMOTE=\"http://c2.demo-lab.example/gate.php\"; SECOND=\"https://cdn-update.demo-lab.example/panel/fb.png\""
+    },
+    {
+      "indicator": "credential theft keywords in strings (1)",
+      "weight": 12,
+      "source": "string extractor",
+      "note": "e.g. PASSWORD=\"admin123\""
+    },
+    {
+      "indicator": "ransomware keywords in strings (1)",
+      "weight": 12,
+      "source": "string extractor",
+      "note": "e.g. COMMANDS=\"cmd.exe /c vssadmin delete shadows /all /quiet; bc"
+    }
+  ]
+}

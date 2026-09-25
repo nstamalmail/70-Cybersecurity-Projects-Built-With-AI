@@ -1,0 +1,153 @@
+{
+  "title": "DNS Cache Poisoning Lab Report",
+  "lab_id": "lab-sample-001",
+  "timestamp": "2026-09-19T21:12:44",
+  "resolver_port": 5311,
+  "upstream_port": 5301,
+  "target_domain": "bank.test.lab",
+  "legitimate_answer": "203.0.113.12",
+  "forged_answer": "6.6.6.6",
+  "port_randomization": false,
+  "dnssec_mode": false,
+  "strategy": "known",
+  "attempts": 3,
+  "poisoning_successful": true,
+  "cache_before": [
+    {
+      "domain": "test.lab",
+      "type": "A",
+      "value": "203.0.113.10",
+      "ttl": 42,
+      "source": "legitimate"
+    },
+    {
+      "domain": "www.test.lab",
+      "type": "A",
+      "value": "203.0.113.11",
+      "ttl": 58,
+      "source": "legitimate"
+    }
+  ],
+  "cache_after": [
+    {
+      "domain": "test.lab",
+      "type": "A",
+      "value": "203.0.113.10",
+      "ttl": 41,
+      "source": "legitimate"
+    },
+    {
+      "domain": "www.test.lab",
+      "type": "A",
+      "value": "203.0.113.11",
+      "ttl": 57,
+      "source": "legitimate"
+    },
+    {
+      "domain": "bank.test.lab",
+      "type": "A",
+      "value": "6.6.6.6",
+      "ttl": 300,
+      "source": "forged"
+    }
+  ],
+  "poisoned_entries": 1,
+  "steps": [
+    {
+      "step_number": 1,
+      "action": "Trigger query",
+      "timestamp": "2026-09-19T21:12:20",
+      "details": "Stub client asked bank.test.lab; resolver cache MISS, forwarded upstream txn=0x9a41 sport=53153",
+      "success": true
+    },
+    {
+      "step_number": 2,
+      "action": "Observe txn ID",
+      "timestamp": "2026-09-19T21:12:20",
+      "details": "Attacker read the in-flight transaction id 0x9a41 and source port 53153",
+      "success": true
+    },
+    {
+      "step_number": 3,
+      "action": "Send forged response",
+      "timestamp": "2026-09-19T21:12:21",
+      "details": "Forged reply bank.test.lab -> 6.6.6.6 with matching txn id arrived first",
+      "success": true
+    },
+    {
+      "step_number": 4,
+      "action": "Legitimate reply arrives",
+      "timestamp": "2026-09-19T21:12:21",
+      "details": "Legitimate 203.0.113.12 answer discarded (txn id already consumed)",
+      "success": true
+    },
+    {
+      "step_number": 5,
+      "action": "Verify poisoning",
+      "timestamp": "2026-09-19T21:12:22",
+      "details": "Resolver now answers 6.6.6.6 from cache - poisoned for TTL 300",
+      "success": true
+    }
+  ],
+  "resolver_log": [
+    {
+      "ts": "21:12:20.114",
+      "kind": "query",
+      "detail": "stub 127.0.0.1:54321 asks bank.test.lab A",
+      "color": "blue"
+    },
+    {
+      "ts": "21:12:20.115",
+      "kind": "cache-hit",
+      "detail": "MISS - forwarding to upstream",
+      "color": "gray"
+    },
+    {
+      "ts": "21:12:20.116",
+      "kind": "forward",
+      "detail": "upstream 127.0.0.1:5301 txn=0x9a41 sport=53153",
+      "color": "orange"
+    },
+    {
+      "ts": "21:12:20.140",
+      "kind": "reject",
+      "detail": "txn ID mismatch (got 0x9a42 expected 0x9a41) - forged response REJECTED",
+      "color": "red"
+    },
+    {
+      "ts": "21:12:21.003",
+      "kind": "cache-put",
+      "detail": "bank.test.lab -> 6.6.6.6 cached (TTL 300, forged accepted)",
+      "color": "red"
+    },
+    {
+      "ts": "21:12:21.004",
+      "kind": "reject",
+      "detail": "late legitimate reply discarded (socket already closed)",
+      "color": "gray"
+    }
+  ],
+  "attack_log": [
+    {
+      "ts": "21:12:20.200",
+      "msg": "attack started: target=bank.test.lab forged-ip=6.6.6.6 strategy=known",
+      "color": "red"
+    },
+    {
+      "ts": "21:12:21.001",
+      "msg": "attempt 1: guess=0x9a40 mismatch",
+      "color": "gray"
+    },
+    {
+      "ts": "21:12:21.002",
+      "msg": "attempt 2: guess=0x9a41 MATCH - forged response accepted",
+      "color": "red"
+    },
+    {
+      "ts": "21:12:21.003",
+      "msg": "SUCCESS after 2 attempts: txn=0x9a41 spoofed sport=53153 - cache POISONED",
+      "color": "red"
+    }
+  ],
+  "report_generated": "2026-09-21T02:44:28"
+}

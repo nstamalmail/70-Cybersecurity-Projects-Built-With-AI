@@ -1,0 +1,44 @@
+{
+  "session_id": "wg-sample-001",
+  "description": "Sample WireGuard tunnel session for WGTB. Import via 'File > Import Session (JSON)' to review peers, regenerate configs and export a report without generating new keys.",
+  "interface_name": "wg0",
+  "server_public_key": "8Kx1mQ7ZrR4vT9nY2wL5pQ3sX8cV1bN6mA0dJ9fH2gE=",
+  "server_ip": "10.0.0.1",
+  "server_network": "10.0.0.0/24",
+  "listen_port": 51820,
+  "dns": "10.0.0.1",
+  "created_at": "2026-09-19T19:05:12",
+  "status": "configured",
+  "peers": [
+    {
+      "peer_id": "p1",
+      "name": "laptop-anna",
+      "public_key": "Q7vF2mN9xR4tL8wK1pY3sD5aG0hJ6cB2eV9uX1zA4o=",
+      "assigned_ip": "10.0.0.2",
+      "allowed_ips": "0.0.0.0/0",
+      "endpoint": "203.0.113.7:51820",
+      "persistent_keepalive": 25,
+      "dns": "10.0.0.1"
+    },
+    {
+      "peer_id": "p2",
+      "name": "phone-ben",
+      "public_key": "Z3xK9cV2bN5mL1qW8eR4tY7uI0oP6aS3dF9gH2jJ5k=",
+      "assigned_ip": "10.0.0.3",
+      "allowed_ips": "0.0.0.0/0",
+      "endpoint": "203.0.113.7:51820",
+      "persistent_keepalive": 25,
+      "dns": "10.0.0.1"
+    },
+    {
+      "peer_id": "p3",
+      "name": "site-b-branch-router",
+      "public_key": "L5pQ3sX8cV1bN6mA0dJ9fH2gE8Kx1mQ7ZrR4vT9nY2w=",
+      "assigned_ip": "10.0.0.4",
+      "allowed_ips": "192.168.20.0/24",
+      "endpoint": "203.0.113.7:51820",
+      "persistent_keepalive": 25,
+      "dns": "10.0.0.1"
+    }
+  ]
+}

@@ -1,0 +1,248 @@
+{
+  "app": {
+    "name": "Ransomware Pattern Study",
+    "acronym": "REPSW",
+    "version": "1.0.0"
+  },
+  "title": "Ransomware Encryption Pattern Analysis Report",
+  "subtitle": "bulk_encryptor.exe.json",
+  "generated_at": "2026-09-17T02:59:51",
+  "run_id": "report-9482270494",
+  "verdict": "medium",
+  "risk_score": 45,
+  "summary": "No parseable API calls found.",
+  "meta": {
+    "Source": "bulk_encryptor.exe.json",
+    "Format": "cuckoo",
+    "SHA-256": "d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5",
+    "Machine": "cuckoo-win10x64",
+    "API calls": "0",
+    "Processes": "1",
+    "Persistence mechanisms": "3",
+    "Indicators": "10",
+    "Verdict": "MEDIUM (45/100)"
+  },
+  "artifacts": [],
+  "iocs": [
+    {
+      "ioc_type": "file",
+      "value": "C:\\\\Users\\\\analyst\\\\*",
+      "source": "FindFirstFileW",
+      "confidence": 0.7,
+      "context": ""
+    },
+    {
+      "ioc_type": "file",
+      "value": "file1.txt",
+      "source": "FindNextFileW",
+      "confidence": 0.7,
+      "context": ""
+    },
+    {
+      "ioc_type": "file",
+      "value": "file2.txt",
+      "source": "FindNextFileW",
+      "confidence": 0.7,
+      "context": ""
+    },
+    {
+      "ioc_type": "file",
+      "value": "file3.txt",
+      "source": "FindNextFileW",
+      "confidence": 0.7,
+      "context": ""
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\\\Users\\\\analyst\\\\file1.txt",
+      "source": "CreateFileW",
+      "confidence": 0.7,
+      "context": ""
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\\\Users\\\\analyst\\\\file1.txt.encrypted",
+      "source": "WriteFile",
+      "confidence": 0.7,
+      "context": ""
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\\\Users\\\\analyst\\\\file2.txt",
+      "source": "CreateFileW",
+      "confidence": 0.7,
+      "context": ""
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\\\Users\\\\analyst\\\\file2.txt.encrypted",
+      "source": "WriteFile",
+      "confidence": 0.7,
+      "context": ""
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\\\Users\\\\analyst\\\\file3.txt",
+      "source": "CreateFileW",
+      "confidence": 0.7,
+      "context": ""
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\\\Users\\\\analyst\\\\file3.txt.encrypted",
+      "source": "WriteFile",
+      "confidence": 0.7,
+      "context": ""
+    }
+  ],
+  "sections": [
+    {
+      "title": "Persistence mechanisms detected",
+      "kind": "table",
+      "data": {},
+      "columns": [
+        "Severity",
+        "Technique",
+        "Name",
+        "Source",
+        "Evidence",
+        "Confidence",
+        "Details"
+      ],
+      "rows": [
+        [
+          "high",
+          "RANS-004",
+          "Ransom Note Drop",
+          "behavior",
+          "",
+          "0.85",
+          "CreateFileW @ 1.80s; WriteFile @ 2.50s"
+        ],
+        [
+          "high",
+          "RANS-004",
+          "Ransom Note Drop",
+          "behavior",
+          "",
+          "0.85",
+          "CreateFileW @ 2.85s; WriteFile @ 3.55s"
+        ],
+        [
+          "high",
+          "RANS-004",
+          "Ransom Note Drop",
+          "behavior",
+          "",
+          "0.85",
+          "CreateFileW @ 3.90s; WriteFile @ 4.60s"
+        ]
+      ],
+      "text": "",
+      "items": [],
+      "note": "Ordered by timestamp; mapped to MITRE ATT&CK persistence techniques."
+    },
+    {
+      "title": "Analysis statistics",
+      "kind": "kv",
+      "data": {
+        "Total API calls": "0",
+        "Processes": "1",
+        "Duration": "0.0s",
+        "Categories observed": "-"
+      },
+      "columns": [],
+      "rows": [],
+      "text": "",
+      "items": [],
+      "note": ""
+    },
+    {
+      "title": "Indicators of Compromise",
+      "kind": "table",
+      "data": {},
+      "columns": [
+        "Type",
+        "Value",
+        "Source",
+        "Confidence",
+        "Context"
+      ],
+      "rows": [
+        [
+          "file",
+          "C:\\\\Users\\\\analyst\\\\*",
+          "FindFirstFileW",
+          "0.70",
+          ""
+        ],
+        [
+          "file",
+          "file1.txt",
+          "FindNextFileW",
+          "0.70",
+          ""
+        ],
+        [
+          "file",
+          "file2.txt",
+          "FindNextFileW",
+          "0.70",
+          ""
+        ],
+        [
+          "file",
+          "file3.txt",
+          "FindNextFileW",
+          "0.70",
+          ""
+        ],
+        [
+          "file",
+          "C:\\\\Users\\\\analyst\\\\file1.txt",
+          "CreateFileW",
+          "0.70",
+          ""
+        ],
+        [
+          "file",
+          "C:\\\\Users\\\\analyst\\\\file1.txt.encrypted",
+          "WriteFile",
+          "0.70",
+          ""
+        ],
+        [
+          "file",
+          "C:\\\\Users\\\\analyst\\\\file2.txt",
+          "CreateFileW",
+          "0.70",
+          ""
+        ],
+        [
+          "file",
+          "C:\\\\Users\\\\analyst\\\\file2.txt.encrypted",
+          "WriteFile",
+          "0.70",
+          ""
+        ],
+        [
+          "file",
+          "C:\\\\Users\\\\analyst\\\\file3.txt",
+          "CreateFileW",
+          "0.70",
+          ""
+        ],
+        [
+          "file",
+          "C:\\\\Users\\\\analyst\\\\file3.txt.encrypted",
+          "WriteFile",
+          "0.70",
+          ""
+        ]
+      ],
+      "text": "",
+      "items": [],
+      "note": ""
+    }
+  ]
+}

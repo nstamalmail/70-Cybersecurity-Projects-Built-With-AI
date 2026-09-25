@@ -1,0 +1,18 @@
+CBSEF self-test: PASS (16/16 checks)
+
+[PASS] StateStore writes memory.md
+[PASS] mass-assignment probes built — 4 probes
+[PASS] probe adds canary field
+[PASS] mass-assignment finding on echo
+[PASS] finding has high/medium confidence — medium
+[PASS] finding has remediation
+[PASS] no finding when server ignores canary
+[PASS] jwt alg=none flagged
+[PASS] oauth redirect bypass flagged — mutated redirect_uri accepted: https://evil.example.com
+[PASS] bridge health endpoint
+[PASS] bridge accepts finding
+[PASS] finding received via bridge
+[PASS] bridge rejects bad token
+[PASS] HTML report exported
+[PASS] CSV report exported
+[PASS] JSON report exported

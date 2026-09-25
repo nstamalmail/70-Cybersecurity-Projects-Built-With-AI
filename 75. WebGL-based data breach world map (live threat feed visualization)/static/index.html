@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Breach World Map - Live Threat Visualization</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="app">
+        <header id="header">
+            <div class="logo">
+                <span class="logo-icon">🛡️</span>
+                <h1>CyberThreat Globe</h1>
+            </div>
+            <div class="stats-bar">
+                <div class="stat">
+                    <span class="stat-value" id="totalBreaches">0</span>
+                    <span class="stat-label">Breaches</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value" id="totalRecords">0</span>
+                    <span class="stat-label">Records</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value" id="activeThreats">0</span>
+                    <span class="stat-label">Active Threats</span>
+                </div>
+            </div>
+            <button id="reportBtn" class="btn-primary">Generate Report</button>
+        </header>
+
+        <main id="main">
+            <aside id="sidebar">
+                <div class="sidebar-section">
+                    <h3>Filters</h3>
+                    <div class="filter-group">
+                        <label>Severity</label>
+                        <select id="severityFilter">
+                            <option value="">All Severities</option>
+                            <option value="critical">Critical</option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Region</label>
+                        <select id="regionFilter">
+                            <option value="">All Regions</option>
+                            <option value="north_america">North America</option>
+                            <option value="south_america">South America</option>
+                            <option value="europe">Europe</option>
+                            <option value="asia">Asia</option>
+                            <option value="africa">Africa</option>
+                            <option value="oceania">Oceania</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Date From</label>
+                        <input type="date" id="dateFrom" value="2026-06-01">
+                    </div>
+                    <div class="filter-group">
+                        <label>Date To</label>
+                        <input type="date" id="dateTo" value="2026-09-30">
+                    </div>
+                    <button id="applyFilters" class="btn-secondary">Apply Filters</button>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>Severity Legend</h3>
+                    <div class="legend">
+                        <div class="legend-item"><span class="legend-dot critical"></span> Critical</div>
+                        <div class="legend-item"><span class="legend-dot high"></span> High</div>
+                        <div class="legend-item"><span class="legend-dot medium"></span> Medium</div>
+                        <div class="legend-item"><span class="legend-dot low"></span> Low</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>Top Targets</h3>
+                    <div id="topTargets"></div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>Recent Activity</h3>
+                    <div id="recentActivity"></div>
+                </div>
+            </aside>
+
+            <div id="globe-container">
+                <canvas id="globe"></canvas>
+                <div id="tooltip"></div>
+            </div>
+
+            <div id="details-panel" class="hidden">
+                <button id="closePanel" class="close-btn">&times;</button>
+                <h3 id="panelTitle">Breach Details</h3>
+                <div id="panelContent"></div>
+            </div>
+        </main>
+
+        <div id="loading">
+            <div class="spinner"></div>
+            <p>Loading threat data...</p>
+        </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

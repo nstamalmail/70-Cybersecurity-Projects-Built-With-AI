@@ -1,0 +1,53 @@
+# Report,Ransomware Encryption Pattern Analysis Report
+# Subtitle,blackcat_loader.exe.json
+# Generated,2026-09-17T03:02:22
+# Verdict,critical
+# Risk score,82
+# Tools,Ransomware Pattern Study v1.0.0
+
+# Summary,No parseable API calls found.
+
+# Overview
+Field,Value
+Source,blackcat_loader.exe.json
+Format,cape
+SHA-256,b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3
+Machine,cape-vm-win10x64
+API calls,0
+Processes,1
+Persistence mechanisms,4
+Indicators,6
+Verdict,CRITICAL (82/100)
+
+# Indicators of Compromise
+ioc_type,value,source,confidence,context
+file,C:\\Users\\*,FindFirstFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\*,FindFirstFileW,0.70,
+file,data.csv,FindNextFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\data.csv,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\data.csv.alphv,WriteFile,0.70,
+file,C:\\Users\\Desktop\\RECOVER-FILES.txt,CreateFileW,0.70,
+
+# Section: Persistence mechanisms detected
+# note,Ordered by timestamp; mapped to MITRE ATT&CK persistence techniques.
+Severity,Technique,Name,Source,Evidence,Confidence,Details
+high,RANS-004,Ransom Note Drop,behavior,,0.85,CreateFileW @ 3.55s; WriteFile @ 4.95s
+critical,RANS-002,In-Place File Encryption,behavior,,0.85,ReadFile @ 3.90s; CryptEncrypt @ 4.60s; WriteFile @ 4.95s
+critical,RANS-006,Mass File Encryption Loop,behavior,,0.85,ReadFile @ 3.90s; CryptEncrypt @ 4.60s; WriteFile @ 4.95s
+high,RANS-004,Ransom Note Drop,behavior,,0.85,CreateFileW @ 5.30s; WriteFile @ 5.65s
+
+# Section: Analysis statistics
+Field,Value
+Total API calls,0
+Processes,1
+Duration,0.0s
+Categories observed,-
+
+# Section: Indicators of Compromise
+Type,Value,Source,Confidence,Context
+file,C:\\Users\\*,FindFirstFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\*,FindFirstFileW,0.70,
+file,data.csv,FindNextFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\data.csv,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\data.csv.alphv,WriteFile,0.70,
+file,C:\\Users\\Desktop\\RECOVER-FILES.txt,CreateFileW,0.70,

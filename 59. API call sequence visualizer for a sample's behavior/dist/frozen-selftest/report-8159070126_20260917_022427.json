@@ -1,0 +1,890 @@
+{
+  "app": {
+    "name": "API Sequence Visualizer",
+    "acronym": "ACSV",
+    "version": "1.0.0"
+  },
+  "title": "API Call Sequence Analysis Report",
+  "subtitle": "invoice_2026_09.doc.exe.json · cape",
+  "generated_at": "2026-09-17T02:24:27",
+  "run_id": "report-8159070126",
+  "verdict": "critical",
+  "risk_score": 100,
+  "summary": "32 API calls across 3 process(es) over 11.2s of behaviour were normalised from a cape report. High-severity behaviour matched: Classic remote process injection; Dropped file executed; Enumerate and open a target; Network beacon setup; Run key persistence; Self-modifying memory. Dominant categories: network 9, system 7, process 6, file 5. 16 indicators were extracted from the call arguments. Behaviour score 100/100 (critical).",
+  "meta": {
+    "Report": "report-8159070126",
+    "Source": "invoice_2026_09.doc.exe.json",
+    "Format": "cape",
+    "Sample": "invoice_2026_09.doc.exe",
+    "SHA-256": "9f2c1d4b7a5e8f0c3b6a1d9e4f7a2c5b8d1e4f7a0c3b6d9e2f5a8c1b4d7e0f3a",
+    "Machine": "cape-vm-win10x64",
+    "Analysis started": "2026-09-12 10:04:21",
+    "Duration": "11.2s of behaviour",
+    "API calls": "32 (records: 32)",
+    "Processes": "3",
+    "Unique APIs": "22",
+    "Patterns matched": "9",
+    "Indicators": "16",
+    "Behaviour score": "100/100 (critical)",
+    "Sandbox signatures": "injects_into_remote_process, creates_hidden_file, persistence_autorun, network_c2_beacon, antidebug_checks"
+  },
+  "artifacts": [
+    "demo://invoice_2026_09.doc.exe.json"
+  ],
+  "iocs": [
+    {
+      "ioc_type": "ipv4",
+      "value": "185.199.42.17",
+      "source": "connect (pid 3096), summary:hosts",
+      "confidence": 0.9,
+      "context": "ip_address=185.199.42.17, port=8443"
+    },
+    {
+      "ioc_type": "ipv4",
+      "value": "185.199.42.17:8443",
+      "source": "connect (pid 3096)",
+      "confidence": 0.7,
+      "context": "ip_address=185.199.42.17, port=8443"
+    },
+    {
+      "ioc_type": "domain",
+      "value": "updates.secure-delivery-cdn.com",
+      "source": "GetHostByName (pid 3096), summary:hosts",
+      "confidence": 0.8,
+      "context": "hostname=updates.secure-delivery-cdn.com"
+    },
+    {
+      "ioc_type": "registry",
+      "value": "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\InvoiceUpdater",
+      "source": "RegCreateKeyExW (pid 1544), RegSetValueExW (pid 1544)",
+      "confidence": 0.95,
+      "context": "regkey=HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run, value_name=InvoiceUpdater"
+    },
+    {
+      "ioc_type": "registry",
+      "value": "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+      "source": "RegCreateKeyExW (pid 1544), RegSetValueExW (pid 1544), summary:keys",
+      "confidence": 0.85,
+      "context": "regkey=HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run, value_name=InvoiceUpdater"
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll",
+      "source": "CreateFileW (pid 1544), WriteFile (pid 1544), summary:files",
+      "confidence": 0.75,
+      "context": "file_name=C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll, desired_access=GENERIC_WRITE"
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\Users\\analyst\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\helper.lnk",
+      "source": "CreateFileW (pid 3096), WriteFile (pid 3096), summary:files",
+      "confidence": 0.75,
+      "context": "file_name=C:\\Users\\analyst\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\helper.lnk, desired_access=GENERIC_WRITE"
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\Windows\\System32\\rundll32.exe",
+      "source": "CreateProcessW (pid 1544)",
+      "confidence": 0.75,
+      "context": "application_name=C:\\Windows\\System32\\rundll32.exe, command_line=rundll32.exe C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll,Entry"
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\Users\\analyst\\AppData\\Local\\Temp\\invoice_2026_09.doc.exe",
+      "source": "RegSetValueExW (pid 1544)",
+      "confidence": 0.6,
+      "context": "regkey=HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run, value_name=InvoiceUpdater, value=C:\\Users\\analyst\\AppData\\Local\\Temp\\invoice_2026_09.doc.exe"
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll,Entry",
+      "source": "CreateProcessW (pid 1544)",
+      "confidence": 0.6,
+      "context": "application_name=C:\\Windows\\System32\\rundll32.exe, command_line=rundll32.exe C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll,Entry"
+    },
+    {
+      "ioc_type": "file",
+      "value": "C:\\Users\\analyst\\AppData\\Roaming\\Microsoft\\Windows\\Start",
+      "source": "CreateFileW (pid 3096), WriteFile (pid 3096)",
+      "confidence": 0.6,
+      "context": "file_name=C:\\Users\\analyst\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\helper.lnk, desired_access=GENERIC_WRITE"
+    },
+    {
+      "ioc_type": "file",
+      "value": "handle:0x1a4",
+      "source": "CloseHandle (pid 1544)",
+      "confidence": 0.4,
+      "context": "handle=0x1a4"
+    },
+    {
+      "ioc_type": "mutex",
+      "value": "\\Local\\Temp\\invoice_2026_09.doc.exe",
+      "source": "RegSetValueExW (pid 1544)",
+      "confidence": 0.8,
+      "context": "regkey=HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run, value_name=InvoiceUpdater, value=C:\\Users\\analyst\\AppData\\Local\\Temp\\invoice_2026_09.doc.exe"
+    },
+    {
+      "ioc_type": "mutex",
+      "value": "\\Local\\Temp\\svchost.dll",
+      "source": "CreateFileW (pid 1544), WriteFile (pid 1544)",
+      "confidence": 0.8,
+      "context": "file_name=C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll, desired_access=GENERIC_WRITE"
+    },
+    {
+      "ioc_type": "mutex",
+      "value": "\\Local\\Temp\\svchost.dll,Entry",
+      "source": "CreateProcessW (pid 1544)",
+      "confidence": 0.8,
+      "context": "application_name=C:\\Windows\\System32\\rundll32.exe, command_line=rundll32.exe C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll,Entry"
+    },
+    {
+      "ioc_type": "command",
+      "value": "rundll32.exe C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll,Entry",
+      "source": "CreateProcessW (pid 1544), summary:executed_commands",
+      "confidence": 0.7,
+      "context": "application_name=C:\\Windows\\System32\\rundll32.exe, command_line=rundll32.exe C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll,Entry"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Behavioural findings",
+      "kind": "table",
+      "data": {},
+      "columns": [
+        "Severity",
+        "Pattern",
+        "Process",
+        "Start (s)",
+        "Span (s)",
+        "API chain",
+        "Target"
+      ],
+      "rows": [
+        [
+          "medium",
+          "Environment fingerprinting",
+          "invoice_2026_09.doc.exe",
+          "0.75",
+          "0.70",
+          "GetSystemInfo -> GetComputerNameW -> GetVolumeInformationW",
+          "-"
+        ],
+        [
+          "high",
+          "Enumerate and open a target",
+          "invoice_2026_09.doc.exe",
+          "1.80",
+          "1.05",
+          "Process32FirstW -> Process32NextW -> OpenProcess",
+          "2212"
+        ],
+        [
+          "medium",
+          "Process enumeration",
+          "invoice_2026_09.doc.exe",
+          "1.80",
+          "0.70",
+          "Process32FirstW -> Process32NextW -> Process32NextW",
+          "-"
+        ],
+        [
+          "critical",
+          "Classic remote process injection",
+          "invoice_2026_09.doc.exe",
+          "2.85",
+          "1.40",
+          "OpenProcess -> VirtualAllocEx -> WriteProcessMemory -> CreateRemoteThread",
+          "2212"
+        ],
+        [
+          "high",
+          "Self-modifying memory",
+          "invoice_2026_09.doc.exe",
+          "3.20",
+          "0.70",
+          "VirtualAllocEx -> WriteProcessMemory -> VirtualProtectEx",
+          "-"
+        ],
+        [
+          "high",
+          "Run key persistence",
+          "invoice_2026_09.doc.exe",
+          "4.95",
+          "0.70",
+          "RegCreateKeyExW -> RegSetValueExW -> CreateFileW",
+          "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"
+        ],
+        [
+          "high",
+          "Dropped file executed",
+          "invoice_2026_09.doc.exe",
+          "6.00",
+          "0.70",
+          "WriteFile -> CloseHandle -> CreateProcessW",
+          "C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll"
+        ],
+        [
+          "high",
+          "Network beacon setup",
+          "rundll32.exe",
+          "7.05",
+          "0.70",
+          "GetHostByName -> connect -> send",
+          "updates.secure-delivery-cdn.com"
+        ],
+        [
+          "medium",
+          "Repeated socket send burst",
+          "rundll32.exe",
+          "7.75",
+          "1.05",
+          "send -> send -> send -> send",
+          "-"
+        ]
+      ],
+      "text": "",
+      "items": [],
+      "note": "Ordered API sequences matched by the pattern engine (architecture §3.4)."
+    },
+    {
+      "title": "Finding details",
+      "kind": "list",
+      "data": {},
+      "columns": [],
+      "rows": [],
+      "text": "",
+      "items": [
+        "[medium] DEF-003 Environment fingerprinting — pid 1544 (invoice_2026_09.doc.exe) at t=0.75s | GetSystemInfo -> GetComputerNameW -> GetVolumeInformationW",
+        "[high] DISC-002 Enumerate and open a target — pid 1544 (invoice_2026_09.doc.exe) at t=1.80s target: 2212 | Process32FirstW -> Process32NextW -> OpenProcess",
+        "[medium] DISC-001 Process enumeration — pid 1544 (invoice_2026_09.doc.exe) at t=1.80s | Process32FirstW -> Process32NextW -> Process32NextW",
+        "[critical] INJ-001 Classic remote process injection — pid 1544 (invoice_2026_09.doc.exe) at t=2.85s target: 2212 | OpenProcess -> VirtualAllocEx -> WriteProcessMemory -> CreateRemoteThread",
+        "[high] MEM-001 Self-modifying memory — pid 1544 (invoice_2026_09.doc.exe) at t=3.20s | VirtualAllocEx -> WriteProcessMemory -> VirtualProtectEx",
+        "[high] PERS-001 Run key persistence — pid 1544 (invoice_2026_09.doc.exe) at t=4.95s target: HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run | RegCreateKeyExW -> RegSetValueExW -> CreateFileW",
+        "[high] EXEC-001 Dropped file executed — pid 1544 (invoice_2026_09.doc.exe) at t=6.00s target: C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll | WriteFile -> CloseHandle -> CreateProcessW",
+        "[high] NET-002 Network beacon setup — pid 3096 (rundll32.exe) at t=7.05s target: updates.secure-delivery-cdn.com | GetHostByName -> connect -> send",
+        "[medium] NET-003 Repeated socket send burst — pid 3096 (rundll32.exe) at t=7.75s | send -> send -> send -> send"
+      ],
+      "note": ""
+    },
+    {
+      "title": "Behaviour statistics",
+      "kind": "kv",
+      "data": {
+        "Total calls (records, loop-collapsed)": "32 (32)",
+        "Unique APIs": "22",
+        "Processes": "3",
+        "Behaviour duration": "11.25s",
+        "Calls per second": "2.844",
+        "Failed calls": "1 (3.1%)",
+        "Collapsed repeat runs": "0",
+        "Categories observed": "network, system, process, file, memory, registry"
+      },
+      "columns": [],
+      "rows": [],
+      "text": "",
+      "items": [],
+      "note": ""
+    },
+    {
+      "title": "API category distribution",
+      "kind": "table",
+      "data": {},
+      "columns": [
+        "Category",
+        "Calls",
+        "Share"
+      ],
+      "rows": [
+        [
+          "network",
+          "9",
+          "28.1%"
+        ],
+        [
+          "system",
+          "7",
+          "21.9%"
+        ],
+        [
+          "process",
+          "6",
+          "18.8%"
+        ],
+        [
+          "file",
+          "5",
+          "15.6%"
+        ],
+        [
+          "memory",
+          "3",
+          "9.4%"
+        ],
+        [
+          "registry",
+          "2",
+          "6.2%"
+        ]
+      ],
+      "text": "",
+      "items": [],
+      "note": "Volume per category; a large memory + process share is injection-shaped."
+    },
+    {
+      "title": "Most frequent APIs",
+      "kind": "table",
+      "data": {},
+      "columns": [
+        "API",
+        "Calls"
+      ],
+      "rows": [
+        [
+          "send",
+          "6"
+        ],
+        [
+          "SleepEx",
+          "3"
+        ],
+        [
+          "Process32NextW",
+          "2"
+        ],
+        [
+          "CreateFileW",
+          "2"
+        ],
+        [
+          "WriteFile",
+          "2"
+        ],
+        [
+          "IsDebuggerPresent",
+          "1"
+        ],
+        [
+          "GetSystemInfo",
+          "1"
+        ],
+        [
+          "GetComputerNameW",
+          "1"
+        ],
+        [
+          "GetVolumeInformationW",
+          "1"
+        ],
+        [
+          "Process32FirstW",
+          "1"
+        ],
+        [
+          "OpenProcess",
+          "1"
+        ],
+        [
+          "VirtualAllocEx",
+          "1"
+        ],
+        [
+          "WriteProcessMemory",
+          "1"
+        ],
+        [
+          "VirtualProtectEx",
+          "1"
+        ],
+        [
+          "CreateRemoteThread",
+          "1"
+        ]
+      ],
+      "text": "",
+      "items": [],
+      "note": ""
+    },
+    {
+      "title": "Recurring API sequences",
+      "kind": "table",
+      "data": {},
+      "columns": [
+        "Steps",
+        "Support",
+        "Process",
+        "Start (s)",
+        "Span (s)",
+        "Chain"
+      ],
+      "rows": [
+        [
+          "4",
+          "3",
+          "-",
+          "0.00",
+          "0.00",
+          "send -> send -> send -> send"
+        ]
+      ],
+      "text": "",
+      "items": [],
+      "note": "Frequent ordered chains mined from the call stream (maximal recurring sequences)."
+    },
+    {
+      "title": "Frequent n-grams",
+      "kind": "table",
+      "data": {},
+      "columns": [
+        "Occurrences",
+        "Length",
+        "Score",
+        "Process",
+        "Chain"
+      ],
+      "rows": [
+        [
+          "3",
+          "3",
+          "9",
+          "all",
+          "send -> send -> send"
+        ],
+        [
+          "2",
+          "4",
+          "8",
+          "all",
+          "send -> send -> send -> send"
+        ],
+        [
+          "4",
+          "2",
+          "8",
+          "all",
+          "send -> send"
+        ],
+        [
+          "2",
+          "2",
+          "4",
+          "all",
+          "CreateFileW -> WriteFile"
+        ]
+      ],
+      "text": "",
+      "items": [],
+      "note": ""
+    },
+    {
+      "title": "API transition matrix (top)",
+      "kind": "table",
+      "data": {},
+      "columns": [
+        "From",
+        "To",
+        "Count",
+        "Probability",
+        "Process"
+      ],
+      "rows": [
+        [
+          "send",
+          "send",
+          "4",
+          "66.7%",
+          "all"
+        ],
+        [
+          "CreateFileW",
+          "WriteFile",
+          "2",
+          "100.0%",
+          "all"
+        ],
+        [
+          "IsDebuggerPresent",
+          "GetSystemInfo",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "GetSystemInfo",
+          "GetComputerNameW",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "GetComputerNameW",
+          "GetVolumeInformationW",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "GetVolumeInformationW",
+          "Process32FirstW",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "Process32FirstW",
+          "Process32NextW",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "OpenProcess",
+          "VirtualAllocEx",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "VirtualAllocEx",
+          "WriteProcessMemory",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "WriteProcessMemory",
+          "VirtualProtectEx",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "VirtualProtectEx",
+          "CreateRemoteThread",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "CreateRemoteThread",
+          "SleepEx",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "RegCreateKeyExW",
+          "RegSetValueExW",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "RegSetValueExW",
+          "CreateFileW",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "WriteFile",
+          "CloseHandle",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "CloseHandle",
+          "CreateProcessW",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "GetHostByName",
+          "connect",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "connect",
+          "send",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "recv",
+          "SleepEx",
+          "1",
+          "100.0%",
+          "all"
+        ],
+        [
+          "Process32NextW",
+          "Process32NextW",
+          "1",
+          "50.0%",
+          "all"
+        ],
+        [
+          "Process32NextW",
+          "OpenProcess",
+          "1",
+          "50.0%",
+          "all"
+        ],
+        [
+          "SleepEx",
+          "RegCreateKeyExW",
+          "1",
+          "33.3%",
+          "all"
+        ],
+        [
+          "SleepEx",
+          "send",
+          "1",
+          "33.3%",
+          "all"
+        ],
+        [
+          "SleepEx",
+          "CreateFileW",
+          "1",
+          "33.3%",
+          "all"
+        ],
+        [
+          "send",
+          "recv",
+          "1",
+          "16.7%",
+          "all"
+        ],
+        [
+          "send",
+          "SleepEx",
+          "1",
+          "16.7%",
+          "all"
+        ]
+      ],
+      "text": "",
+      "items": [],
+      "note": "First-order Markov transitions; these edges drive the behaviour graph."
+    },
+    {
+      "title": "Reconstructed process tree",
+      "kind": "table",
+      "data": {},
+      "columns": [
+        "Process",
+        "PID",
+        "Parent",
+        "First seen (s)",
+        "Calls",
+        "Failures",
+        "Top categories",
+        "Path"
+      ],
+      "rows": [
+        [
+          "invoice_2026_09.doc.exe",
+          "1544",
+          "-",
+          "0.20",
+          "19",
+          "1",
+          "process:6, system:5, memory:3, file:3",
+          "C:\\Users\\analyst\\AppData\\Local\\Temp\\invoice_2026_09.doc.exe"
+        ],
+        [
+          "explorer.exe",
+          "2212",
+          "1544",
+          "0.00",
+          "0",
+          "0",
+          "",
+          "C:\\Windows\\explorer.exe"
+        ],
+        [
+          "rundll32.exe",
+          "3096",
+          "1544",
+          "6.85",
+          "13",
+          "0",
+          "network:9, system:2, file:2",
+          "C:\\Windows\\System32\\rundll32.exe"
+        ]
+      ],
+      "text": "",
+      "items": [],
+      "note": ""
+    },
+    {
+      "title": "Suspicious process notes",
+      "kind": "list",
+      "data": {},
+      "columns": [],
+      "rows": [],
+      "text": "",
+      "items": [
+        "PID 1544 invoice_2026_09.doc.exe: process + memory APIs (injection-capable)"
+      ],
+      "note": ""
+    },
+    {
+      "title": "Highest-probability behaviour paths",
+      "kind": "list",
+      "data": {},
+      "columns": [],
+      "rows": [],
+      "text": "",
+      "items": [
+        "send -> recv -> SleepEx -> RegCreateKeyExW -> RegSetValueExW -> CreateFileW -> WriteFile -> CloseHandle",
+        "SleepEx -> RegCreateKeyExW -> RegSetValueExW -> CreateFileW -> WriteFile -> CloseHandle -> CreateProcessW",
+        "CreateFileW -> WriteFile -> CloseHandle -> CreateProcessW",
+        "Process32NextW -> OpenProcess -> VirtualAllocEx -> WriteProcessMemory -> VirtualProtectEx -> CreateRemoteThread -> SleepEx -> RegCreateKeyExW",
+        "IsDebuggerPresent -> GetSystemInfo -> GetComputerNameW -> GetVolumeInformationW -> Process32FirstW -> Process32NextW -> OpenProcess -> VirtualAllocEx",
+        "GetSystemInfo -> GetComputerNameW -> GetVolumeInformationW -> Process32FirstW -> Process32NextW -> OpenProcess -> VirtualAllocEx -> WriteProcessMemory",
+        "GetComputerNameW -> GetVolumeInformationW -> Process32FirstW -> Process32NextW -> OpenProcess -> VirtualAllocEx -> WriteProcessMemory -> VirtualProtectEx",
+        "GetVolumeInformationW -> Process32FirstW -> Process32NextW -> OpenProcess -> VirtualAllocEx -> WriteProcessMemory -> VirtualProtectEx -> CreateRemoteThread",
+        "Process32FirstW -> Process32NextW -> OpenProcess -> VirtualAllocEx -> WriteProcessMemory -> VirtualProtectEx -> CreateRemoteThread -> SleepEx",
+        "OpenProcess -> VirtualAllocEx -> WriteProcessMemory -> VirtualProtectEx -> CreateRemoteThread -> SleepEx -> RegCreateKeyExW -> RegSetValueExW"
+      ],
+      "note": ""
+    },
+    {
+      "title": "Indicators of Compromise",
+      "kind": "table",
+      "data": {},
+      "columns": [
+        "Type",
+        "Value",
+        "Source",
+        "Confidence",
+        "Context"
+      ],
+      "rows": [
+        [
+          "ipv4",
+          "185.199.42.17",
+          "connect (pid 3096), summary:hosts",
+          "0.90",
+          "ip_address=185.199.42.17, port=8443"
+        ],
+        [
+          "ipv4",
+          "185.199.42.17:8443",
+          "connect (pid 3096)",
+          "0.70",
+          "ip_address=185.199.42.17, port=8443"
+        ],
+        [
+          "domain",
+          "updates.secure-delivery-cdn.com",
+          "GetHostByName (pid 3096), summary:hosts",
+          "0.80",
+          "hostname=updates.secure-delivery-cdn.com"
+        ],
+        [
+          "registry",
+          "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\InvoiceUpdater",
+          "RegCreateKeyExW (pid 1544), RegSetValueExW (pid 1544)",
+          "0.95",
+          "regkey=HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run, value_name=InvoiceUpdater"
+        ],
+        [
+          "registry",
+          "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+          "RegCreateKeyExW (pid 1544), RegSetValueExW (pid 1544), summary:keys",
+          "0.85",
+          "regkey=HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run, value_name=InvoiceUpdater"
+        ],
+        [
+          "file",
+          "C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll",
+          "CreateFileW (pid 1544), WriteFile (pid 1544), summary:files",
+          "0.75",
+          "file_name=C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll, desired_access=GENERIC_WRITE"
+        ],
+        [
+          "file",
+          "C:\\Users\\analyst\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\helper.lnk",
+          "CreateFileW (pid 3096), WriteFile (pid 3096), summary:files",
+          "0.75",
+          "file_name=C:\\Users\\analyst\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\helper.lnk, desired_access=GENERIC_WRITE"
+        ],
+        [
+          "file",
+          "C:\\Windows\\System32\\rundll32.exe",
+          "CreateProcessW (pid 1544)",
+          "0.75",
+          "application_name=C:\\Windows\\System32\\rundll32.exe, command_line=rundll32.exe C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll,Entry"
+        ],
+        [
+          "file",
+          "C:\\Users\\analyst\\AppData\\Local\\Temp\\invoice_2026_09.doc.exe",
+          "RegSetValueExW (pid 1544)",
+          "0.60",
+          "regkey=HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run, value_name=InvoiceUpdater, value=C:\\Users\\analyst\\AppData\\Local\\Temp\\invoice_2026_09.doc.exe"
+        ],
+        [
+          "file",
+          "C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll,Entry",
+          "CreateProcessW (pid 1544)",
+          "0.60",
+          "application_name=C:\\Windows\\System32\\rundll32.exe, command_line=rundll32.exe C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll,Entry"
+        ],
+        [
+          "file",
+          "C:\\Users\\analyst\\AppData\\Roaming\\Microsoft\\Windows\\Start",
+          "CreateFileW (pid 3096), WriteFile (pid 3096)",
+          "0.60",
+          "file_name=C:\\Users\\analyst\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\helper.lnk, desired_access=GENERIC_WRITE"
+        ],
+        [
+          "file",
+          "handle:0x1a4",
+          "CloseHandle (pid 1544)",
+          "0.40",
+          "handle=0x1a4"
+        ],
+        [
+          "mutex",
+          "\\Local\\Temp\\invoice_2026_09.doc.exe",
+          "RegSetValueExW (pid 1544)",
+          "0.80",
+          "regkey=HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run, value_name=InvoiceUpdater, value=C:\\Users\\analyst\\AppData\\Local\\Temp\\invoice_2026_09.doc.exe"
+        ],
+        [
+          "mutex",
+          "\\Local\\Temp\\svchost.dll",
+          "CreateFileW (pid 1544), WriteFile (pid 1544)",
+          "0.80",
+          "file_name=C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll, desired_access=GENERIC_WRITE"
+        ],
+        [
+          "mutex",
+          "\\Local\\Temp\\svchost.dll,Entry",
+          "CreateProcessW (pid 1544)",
+          "0.80",
+          "application_name=C:\\Windows\\System32\\rundll32.exe, command_line=rundll32.exe C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll,Entry"
+        ],
+        [
+          "command",
+          "rundll32.exe C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll,Entry",
+          "CreateProcessW (pid 1544), summary:executed_commands",
+          "0.70",
+          "application_name=C:\\Windows\\System32\\rundll32.exe, command_line=rundll32.exe C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll,Entry"
+        ]
+      ],
+      "text": "",
+      "items": [],
+      "note": ""
+    }
+  ]
+}

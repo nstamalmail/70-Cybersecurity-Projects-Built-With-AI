@@ -1,0 +1,504 @@
+{
+ "info": {
+  "machine": {
+   "name": "cape-vm-win10x64"
+  },
+  "platform": "windows",
+  "started": "2026-09-12 10:04:21",
+  "version": "CAPE 2.4",
+  "score": 9.1
+ },
+ "target": {
+  "file": {
+   "name": "invoice_2026_09.doc.exe",
+   "sha256": "9f2c1d4b7a5e8f0c3b6a1d9e4f7a2c5b8d1e4f7a0c3b6d9e2f5a8c1b4d7e0f3a",
+   "size": 348160
+  }
+ },
+ "analysis": {
+  "started": "2026-09-12 10:04:21",
+  "duration": 23.2,
+  "platform": "windows"
+ },
+ "malscore": 9.1,
+ "signatures": [
+  {
+   "name": "injects_into_remote_process",
+   "severity": 3
+  },
+  {
+   "name": "creates_hidden_file",
+   "severity": 3
+  },
+  {
+   "name": "persistence_autorun",
+   "severity": 3
+  },
+  {
+   "name": "network_c2_beacon",
+   "severity": 3
+  },
+  {
+   "name": "antidebug_checks",
+   "severity": 3
+  }
+ ],
+ "behavior": {
+  "processtree": [
+   {
+    "pid": 1544,
+    "name": "invoice_2026_09.doc.exe",
+    "path": "C:\\Users\\analyst\\AppData\\Local\\Temp\\invoice_2026_09.doc.exe",
+    "command_line": "invoice_2026_09.doc.exe /quiet",
+    "children": [
+     {
+      "pid": 2212,
+      "name": "explorer.exe",
+      "path": "C:\\Windows\\explorer.exe"
+     },
+     {
+      "pid": 3096,
+      "name": "rundll32.exe",
+      "path": "C:\\Windows\\System32\\rundll32.exe"
+     }
+    ]
+   }
+  ],
+  "processes": [
+   {
+    "process_id": 1544,
+    "process_name": "invoice_2026_09.doc.exe",
+    "first_seen": 0.2,
+    "calls": [
+     {
+      "api": "IsDebuggerPresent",
+      "category": "system",
+      "timestamp": 0.4,
+      "thread_id": 1644,
+      "status": "FAILURE",
+      "return_value": "0xC0000005",
+      "arguments": {},
+      "caller": "0x00401000"
+     },
+     {
+      "api": "GetSystemInfo",
+      "category": "system",
+      "timestamp": 0.75,
+      "thread_id": 1644,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {},
+      "caller": "0x00401011"
+     },
+     {
+      "api": "GetComputerNameW",
+      "category": "system",
+      "timestamp": 1.1,
+      "thread_id": 1644,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "name": "DESKTOP-7KQ2L"
+      },
+      "caller": "0x00401022"
+     },
+     {
+      "api": "GetVolumeInformationW",
+      "category": "system",
+      "timestamp": 1.45,
+      "thread_id": 1644,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "volume": "C:\\"
+      },
+      "caller": "0x00401033"
+     },
+     {
+      "api": "Process32FirstW",
+      "category": "process",
+      "timestamp": 1.8,
+      "thread_id": 1644,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "process_identifier": 4,
+       "process_name": "System"
+      },
+      "caller": "0x00401044"
+     },
+     {
+      "api": "Process32NextW",
+      "category": "process",
+      "timestamp": 2.15,
+      "thread_id": 1644,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "process_identifier": 1544,
+       "process_name": "invoice_2026_09.doc.exe"
+      },
+      "caller": "0x00401055"
+     },
+     {
+      "api": "Process32NextW",
+      "category": "process",
+      "timestamp": 2.5,
+      "thread_id": 1644,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "process_identifier": 2212,
+       "process_name": "explorer.exe"
+      },
+      "caller": "0x00401066"
+     },
+     {
+      "api": "OpenProcess",
+      "category": "process",
+      "timestamp": 2.85,
+      "thread_id": 1644,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "process_identifier": 2212,
+       "desired_access": "0x1F0FFF"
+      },
+      "caller": "0x00401077"
+     },
+     {
+      "api": "VirtualAllocEx",
+      "category": "memory",
+      "timestamp": 3.2,
+      "thread_id": 1644,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "process_identifier": 2212,
+       "size": 172032,
+       "protection": "PAGE_EXECUTE_READWRITE"
+      },
+      "caller": "0x00401088"
+     },
+     {
+      "api": "WriteProcessMemory",
+      "category": "memory",
+      "timestamp": 3.55,
+      "thread_id": 1644,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "process_identifier": 2212,
+       "size": 172032,
+       "buffer": "4d5a90000300000004000000"
+      },
+      "caller": "0x00401099"
+     },
+     {
+      "api": "VirtualProtectEx",
+      "category": "memory",
+      "timestamp": 3.9,
+      "thread_id": 1644,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "process_identifier": 2212,
+       "new_protection": "PAGE_EXECUTE_READ"
+      },
+      "caller": "0x004010aa"
+     },
+     {
+      "api": "CreateRemoteThread",
+      "category": "process",
+      "timestamp": 4.25,
+      "thread_id": 1644,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "process_identifier": 2212,
+       "start_address": "0x0000000001A40000"
+      },
+      "caller": "0x004010bb"
+     },
+     {
+      "api": "SleepEx",
+      "category": "system",
+      "timestamp": 4.6,
+      "thread_id": 1644,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "milliseconds": 3000
+      },
+      "caller": "0x004010cc"
+     },
+     {
+      "api": "RegCreateKeyExW",
+      "category": "registry",
+      "timestamp": 4.95,
+      "thread_id": 1644,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "regkey": "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+       "value_name": "InvoiceUpdater"
+      },
+      "caller": "0x004010dd"
+     },
+     {
+      "api": "RegSetValueExW",
+      "category": "registry",
+      "timestamp": 5.3,
+      "thread_id": 1644,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "regkey": "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+       "value_name": "InvoiceUpdater",
+       "value": "C:\\Users\\analyst\\AppData\\Local\\Temp\\invoice_2026_09.doc.exe"
+      },
+      "caller": "0x004010ee"
+     },
+     {
+      "api": "CreateFileW",
+      "category": "file",
+      "timestamp": 5.65,
+      "thread_id": 1644,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "file_name": "C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll",
+       "desired_access": "GENERIC_WRITE"
+      },
+      "caller": "0x004010ff"
+     },
+     {
+      "api": "WriteFile",
+      "category": "file",
+      "timestamp": 6.0,
+      "thread_id": 1644,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "file_name": "C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll",
+       "size": 65536
+      },
+      "caller": "0x00401110"
+     },
+     {
+      "api": "CloseHandle",
+      "category": "file",
+      "timestamp": 6.35,
+      "thread_id": 1644,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "handle": "0x1a4"
+      },
+      "caller": "0x00401121"
+     },
+     {
+      "api": "CreateProcessW",
+      "category": "process",
+      "timestamp": 6.7,
+      "thread_id": 1644,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "application_name": "C:\\Windows\\System32\\rundll32.exe",
+       "command_line": "rundll32.exe C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll,Entry"
+      },
+      "caller": "0x00401132"
+     }
+    ],
+    "path": "C:\\Users\\analyst\\AppData\\Local\\Temp\\invoice_2026_09.doc.exe"
+   },
+   {
+    "process_id": 3096,
+    "process_name": "rundll32.exe",
+    "first_seen": 6.85,
+    "calls": [
+     {
+      "api": "GetHostByName",
+      "category": "network",
+      "timestamp": 7.05,
+      "thread_id": 3196,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "hostname": "updates.secure-delivery-cdn.com"
+      },
+      "caller": "0x00401143"
+     },
+     {
+      "api": "connect",
+      "category": "network",
+      "timestamp": 7.4,
+      "thread_id": 3196,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "ip_address": "185.199.42.17",
+       "port": 8443
+      },
+      "caller": "0x00401154"
+     },
+     {
+      "api": "send",
+      "category": "network",
+      "timestamp": 7.75,
+      "thread_id": 3196,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "buffer": "POST /gate.php HTTP/1.1"
+      },
+      "caller": "0x00401165"
+     },
+     {
+      "api": "send",
+      "category": "network",
+      "timestamp": 8.1,
+      "thread_id": 3196,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "buffer": "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64)"
+      },
+      "caller": "0x00401176"
+     },
+     {
+      "api": "send",
+      "category": "network",
+      "timestamp": 8.45,
+      "thread_id": 3196,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "buffer": "Cookie: sid=Zx8f..."
+      },
+      "caller": "0x00401187"
+     },
+     {
+      "api": "send",
+      "category": "network",
+      "timestamp": 8.8,
+      "thread_id": 3196,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "buffer": "body: win=1&pid=3096"
+      },
+      "caller": "0x00401198"
+     },
+     {
+      "api": "send",
+      "category": "network",
+      "timestamp": 9.15,
+      "thread_id": 3196,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "buffer": "body: host=DESKTOP-7KQ2L"
+      },
+      "caller": "0x004011a9"
+     },
+     {
+      "api": "recv",
+      "category": "network",
+      "timestamp": 9.5,
+      "thread_id": 3196,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "size": 512
+      },
+      "caller": "0x004011ba"
+     },
+     {
+      "api": "SleepEx",
+      "category": "system",
+      "timestamp": 9.85,
+      "thread_id": 3196,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "milliseconds": 60000
+      },
+      "caller": "0x004011cb"
+     },
+     {
+      "api": "send",
+      "category": "network",
+      "timestamp": 10.2,
+      "thread_id": 3196,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "buffer": "GET /ping HTTP/1.1"
+      },
+      "caller": "0x004011dc"
+     },
+     {
+      "api": "SleepEx",
+      "category": "system",
+      "timestamp": 10.55,
+      "thread_id": 3196,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "milliseconds": 60000
+      },
+      "caller": "0x004011ed"
+     },
+     {
+      "api": "CreateFileW",
+      "category": "file",
+      "timestamp": 10.9,
+      "thread_id": 3196,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "file_name": "C:\\Users\\analyst\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\helper.lnk",
+       "desired_access": "GENERIC_WRITE"
+      },
+      "caller": "0x004011fe"
+     },
+     {
+      "api": "WriteFile",
+      "category": "file",
+      "timestamp": 11.25,
+      "thread_id": 3196,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "file_name": "C:\\Users\\analyst\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\helper.lnk",
+       "size": 2048
+      },
+      "caller": "0x0040120f"
+     }
+    ],
+    "path": "C:\\Windows\\System32\\rundll32.exe",
+    "parent_id": 1544
+   }
+  ],
+  "summary": {
+   "files": [
+    "C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll",
+    "C:\\Users\\analyst\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\helper.lnk"
+   ],
+   "keys": [
+    "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"
+   ],
+   "mutexes": [],
+   "hosts": [
+    "185.199.42.17",
+    "updates.secure-delivery-cdn.com"
+   ],
+   "services": [],
+   "executed_commands": [
+    "rundll32.exe C:\\Users\\analyst\\AppData\\Local\\Temp\\svchost.dll,Entry"
+   ]
+  }
+ }
+}

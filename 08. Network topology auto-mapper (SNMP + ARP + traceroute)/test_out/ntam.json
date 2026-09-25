@@ -1,0 +1,28 @@
+{
+  "title": "Network Topology Report",
+  "topology_id": "12bdd368e3",
+  "timestamp": "2026-09-21T02:44:43",
+  "seed_ip": "127.0.0.1",
+  "subnets": [
+    "127.0.0.0/30"
+  ],
+  "discovery_duration": 5.030999999959022,
+  "device_count": 2,
+  "link_count": 1,
+  "by_type": {
+    "host": 2
+  },
+  "vendors": {
+    "unknown": 2
+  },
+  "snmp_accessible": 0,
+  "devices": [
+    "NetworkDevice(device_id='38a62d20', ip='127.0.0.1', mac=None, hostname='DESKTOP-8I7DB1K', sys_descr=None, vendor=None, device_type='host', interfaces=[], first_seen=datetime.datetime(2026, 9, 21, 2, 44, 43, 129079), snmp_accessible=False, hops=0)",
+    "NetworkDevice(device_id='040e8f60', ip='127.0.0.2', mac=None, hostname=None, sys_descr=None, vendor=None, device_type='host', interfaces=[], first_seen=datetime.datetime(2026, 9, 21, 2, 44, 43, 129079), snmp_accessible=False, hops=None)"
+  ],
+  "links": [
+    "NetworkLink(link_id='L1', source_device='38a62d20', dest_device='040e8f60', source_interface=None, dest_interface=None, link_type='L2', bandwidth=None)"
+  ],
+  "traceroute": null,
+  "report_generated": "2026-09-21T02:44:48"
+}

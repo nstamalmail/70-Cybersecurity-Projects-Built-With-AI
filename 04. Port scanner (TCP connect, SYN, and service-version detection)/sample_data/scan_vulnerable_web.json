@@ -1,0 +1,65 @@
+{
+  "sample_name": "Kali-style Web Server",
+  "description": "Synthetic scan of a deliberately vulnerable web target. Import via 'File > Import Scan Data (JSON)'.",
+  "target": "10.10.10.80",
+  "resolved_ip": "10.10.10.80",
+  "scan_mode": "syn",
+  "timestamp": "2026-09-19T22:05:33",
+  "os_fingerprint": "Linux/Unix family (TTL 64)",
+  "total_scanned": 100,
+  "duration_seconds": 4.9,
+  "open_ports": [
+    {
+      "port": 22,
+      "state": "OPEN",
+      "service": "ssh",
+      "version": "OpenSSH 4.7p1 Debian 8ubuntu1.2",
+      "banner": "SSH-2.0-OpenSSH_4.7p1",
+      "cves": ["CVE-2016-6210 (user enumeration)"],
+      "risk_level": "medium",
+      "next_steps": ["ssh-audit %TARGET%"]
+    },
+    {
+      "port": 80,
+      "state": "OPEN",
+      "service": "http",
+      "version": "Apache httpd 2.2.8",
+      "banner": "HTTP/1.1 200 OK\\nServer: Apache/2.2.8 (Ubuntu) PHP/5.2.4-2ubuntu5.10",
+      "cves": [],
+      "risk_level": "info",
+      "next_steps": ["nikto -h http://%TARGET%", "gobuster dir -u http://%TARGET% -w <wordlist>"]
+    },
+    {
+      "port": 139,
+      "state": "OPEN",
+      "service": "netbios-ssn",
+      "version": "Samba smbd 3.X",
+      "banner": null,
+      "cves": ["CVE-2007-2447 (username map script RCE)"],
+      "risk_level": "high",
+      "next_steps": ["enum4linux -a %TARGET%"]
+    },
+    {
+      "port": 445,
+      "state": "OPEN",
+      "service": "microsoft-ds",
+      "version": "Samba smbd 3.0.20-Debian",
+      "banner": null,
+      "cves": ["CVE-2007-2447 (Samba username map script RCE)"],
+      "risk_level": "critical",
+      "next_steps": ["enum4linux -a %TARGET%", "msfconsole -q -x 'use exploit/multi/samba/usermap_script'"]
+    },
+    {
+      "port": 3128,
+      "state": "OPEN",
+      "service": "squid-proxy",
+      "version": "Squid 2.6.STABLE16",
+      "banner": null,
+      "cves": [],
+      "risk_level": "medium",
+      "next_steps": ["nmap --script http-open-proxy -p3128 %TARGET%"]
+    }
+  ],
+  "closed_ports": [21, 23, 25, 53, 111, 443, 514, 873, 2049, 3306, 3389, 5432, 5900, 6379, 8080],
+  "filtered_ports": []
+}

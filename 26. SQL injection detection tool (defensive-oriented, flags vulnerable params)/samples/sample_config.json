@@ -1,0 +1,31 @@
+{
+  "tool": "SIDT",
+  "type": "config",
+  "version": "1.0.0",
+  "comment": "Sample configuration. Import via toolbar: 'Import config'. Point target_url at your own authorized test target, or run the bundled demo target (samples/demo_target.py) and use its URLs below.",
+  "target": {
+    "target_url": "http://127.0.0.1:8765/search?user=admin",
+    "method": "GET",
+    "headers": {
+      "Accept": "text/html"
+    },
+    "cookies": {
+      "session": "demo-session-42"
+    },
+    "body": "",
+    "body_type": "none",
+    "parameters": [
+      { "location": "query", "name": "user", "value": "admin", "enabled": true },
+      { "location": "cookie", "name": "session", "value": "demo-session-42", "enabled": false }
+    ]
+  },
+  "scan": {
+    "safe_mode": true,
+    "techniques": ["error", "boolean"],
+    "delay_ms": 20,
+    "timeout": 10.0,
+    "time_threshold_s": 5.0,
+    "verify_ssl": true,
+    "proxy": ""
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "nodes": [
+    {
+      "id": "N-001",
+      "kind": "User",
+      "name": "jdoe",
+      "sid": "S-1-5-21-1234567890-1234567890-1234567890-1101",
+      "enabled": 1,
+      "admincount": 0,
+      "hasspn": 0,
+      "properties_json": "{}"
+    },
+    {
+      "id": "N-002",
+      "kind": "User",
+      "name": "jsmith",
+      "sid": "S-1-5-21-1234567890-1234567890-1234567890-1102",
+      "enabled": 1,
+      "admincount": 0,
+      "hasspn": 1,
+      "properties_json": "{}"
+    },
+    {
+      "id": "N-003",
+      "kind": "Group",
+      "name": "Domain Admins",
+      "sid": "S-1-5-21-1234567890-1234567890-1234567890-512",
+      "enabled": 1,
+      "admincount": 1,
+      "hasspn": 0,
+      "properties_json": "{}"
+    },
+    {
+      "id": "N-004",
+      "kind": "Group",
+      "name": "Domain Users",
+      "sid": "S-1-5-21-1234567890-1234567890-1234567890-513",
+      "enabled": 1,
+      "admincount": 0,
+      "hasspn": 0,
+      "properties_json": "{}"
+    },
+    {
+      "id": "N-005",
+      "kind": "Computer",
+      "name": "WS01",
+      "sid": "S-1-5-21-1234567890-1234567890-1234567890-1001",
+      "enabled": 1,
+      "admincount": 0,
+      "hasspn": 0,
+      "properties_json": "{}"
+    },
+    {
+      "id": "N-006",
+      "kind": "Computer",
+      "name": "DC01",
+      "sid": "S-1-5-21-1234567890-1234567890-1234567890-1002",
+      "enabled": 1,
+      "admincount": 1,
+      "hasspn": 1,
+      "properties_json": "{}"
+    },
+    {
+      "id": "N-007",
+      "kind": "OU",
+      "name": "IT OU",
+      "sid": "S-1-5-21-1234567890-1234567890-1234567890-700",
+      "enabled": 1,
+      "admincount": 0,
+      "hasspn": 0,
+      "properties_json": "{}"
+    },
+    {
+      "id": "N-008",
+      "kind": "GPO",
+      "name": "Default Domain Policy",
+      "sid": "S-1-5-21-1234567890-1234567890-1234567890-110",
+      "enabled": 1,
+      "admincount": 0,
+      "hasspn": 0,
+      "properties_json": "{}"
+    }
+  ],
+  "edges": [
+    {
+      "id": 1,
+      "source": "N-001",
+      "target": "N-003",
+      "kind": "MemberOf",
+      "properties_json": "{}"
+    },
+    {
+      "id": 2,
+      "source": "N-002",
+      "target": "N-003",
+      "kind": "MemberOf",
+      "properties_json": "{}"
+    },
+    {
+      "id": 3,
+      "source": "N-005",
+      "target": "N-003",
+      "kind": "MemberOf",
+      "properties_json": "{}"
+    },
+    {
+      "id": 4,
+      "source": "N-006",
+      "target": "N-003",
+      "kind": "MemberOf",
+      "properties_json": "{}"
+    },
+    {
+      "id": 5,
+      "source": "N-001",
+      "target": "N-005",
+      "kind": "HasSession",
+      "properties_json": "{}"
+    },
+    {
+      "id": 6,
+      "source": "N-002",
+      "target": "N-005",
+      "kind": "HasSession",
+      "properties_json": "{}"
+    },
+    {
+      "id": 7,
+      "source": "N-003",
+      "target": "N-007",
+      "kind": "MemberOf",
+      "properties_json": "{}"
+    },
+    {
+      "id": 8,
+      "source": "N-003",
+      "target": "N-008",
+      "kind": "GPOLink",
+      "properties_json": "{}"
+    },
+    {
+      "id": 9,
+      "source": "N-004",
+      "target": "N-001",
+      "kind": "MemberOf",
+      "properties_json": "{}"
+    },
+    {
+      "id": 10,
+      "source": "N-004",
+      "target": "N-002",
+      "kind": "MemberOf",
+      "properties_json": "{}"
+    }
+  ]
+}

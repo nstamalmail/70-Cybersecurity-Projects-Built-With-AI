@@ -1,0 +1,12 @@
+# CPS sample blocklist rules - one per line.
+# Exact host:      ads.example.com
+# Wildcard:        *.tracker.net
+# CIDR network:    203.0.113.0/24
+# Regex (re:):     re:blocked-.*\.net
+# Lines starting with # are comments.
+ads.example.com
+*.tracker.net
+*.adsnet.com
+malware-c2.com
+203.0.113.0/24
+re:blocked-.*\.net

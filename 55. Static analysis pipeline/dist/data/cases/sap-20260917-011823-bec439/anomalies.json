@@ -1,0 +1,8 @@
+[
+  {
+    "id": "no-debug-directory",
+    "severity": "low",
+    "title": "No debug directory / PDB path",
+    "detail": "Production builds normally strip symbols; combined with other flags this is mildly suspicious."
+  }
+]

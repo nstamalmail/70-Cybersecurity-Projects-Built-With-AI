@@ -1,0 +1,14 @@
+{
+  "max_file_size_mb": 500,
+  "enable_network_lookups": false,
+  "theme": "dark",
+  "redact_exports": false,
+  "analyst": "MSI",
+  "max_calls": 2000000,
+  "collapse_loops": true,
+  "collapse_threshold": 3,
+  "pattern_min_severity": "low",
+  "ioc_min_confidence": 0.0,
+  "store_sqlite": true,
+  "fixture_calls": 420
+}

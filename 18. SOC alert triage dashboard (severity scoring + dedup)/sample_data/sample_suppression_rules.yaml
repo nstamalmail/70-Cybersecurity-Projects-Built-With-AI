@@ -1,0 +1,61 @@
+rules:
+  - id: SUP-001
+    name: Suppress USB alerts on development workstations
+    description: Auto-suppress USB connection alerts from known dev machines
+    enabled: true
+    conditions:
+      source: OSSEC
+      title_contains: "USB device connected"
+      entity_contains: "WORKSTATION-35"
+    action: suppress
+    severity_override: Low
+    expiry_hours: 24
+    created_by: soc_admin
+
+  - id: SUP-002
+    name: Suppress Windows Update failures
+    description: Low-priority update failures in non-critical workstations
+    enabled: true
+    conditions:
+      source: Microsoft Defender
+      title_contains: "Software update failed"
+      severity: Low
+    action: suppress
+    severity_override: Info
+    expiry_hours: 48
+    created_by: soc_admin
+
+  - id: SUP-003
+    name: Suppress SSL certificate expiry on non-prod
+    description: Auto-close SSL cert expiry alerts for non-production
+    enabled: false
+    conditions:
+      source: Nessus
+      title_contains: "SSL certificate expiring"
+    action: suppress
+    severity_override: Low
+    expiry_hours: 168
+    created_by: soc_admin
+
+  - id: SUP-004
+    name: Suppress HTTP header info disclosure
+    description: Informational HTTP header findings - low risk
+    enabled: true
+    conditions:
+      source: Qualys
+      title_contains: "Information disclosure via HTTP"
+    action: suppress
+    severity_override: Info
+    expiry_hours: 72
+    created_by: soc_admin
+
+  - id: SUP-005
+    name: Auto-escalate ransomware to Critical
+    description: Always ensure ransomware alerts are Critical regardless of source severity
+    enabled: true
+    conditions:
+      title_contains: "ransomware"
+    action: escalate
+    severity_override: Critical
+    expiry_hours: 0
+    created_by: soc_admin

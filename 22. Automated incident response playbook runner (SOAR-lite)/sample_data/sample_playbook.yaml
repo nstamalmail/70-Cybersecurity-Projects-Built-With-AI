@@ -1,0 +1,168 @@
+name: "Phishing Response Playbook"
+version: "1.0"
+author: "SOC Team"
+description: "Automated response to phishing email incidents"
+severity: "high"
+tags:
+  - phishing
+  - email
+  - credential-theft
+
+triggers:
+  - type: "alert"
+    source: "email-security-gateway"
+    conditions:
+      - field: "classification"
+        operator: "equals"
+        value: "phishing"
+
+variables:
+  sender_email: ""
+  recipient_email: ""
+  email_subject: ""
+  attachment_hash: ""
+  affected_users: []
+
+steps:
+  - id: "step_1"
+    name: "Extract IOCs from Email"
+    type: "action"
+    description: "Parse email headers and extract indicators of compromise"
+    script: "extract_iocs"
+    parameters:
+      email_id: "{{incident.email_id}}"
+    outputs:
+      - sender_ip
+      - sender_domain
+      - attachment_hashes
+      - urls
+    timeout: 30
+    next: "step_2"
+
+  - id: "step_2"
+    name: "Check Sender Reputation"
+    type: "action"
+    description: "Query threat intelligence for sender reputation"
+    script: "check_reputation"
+    parameters:
+      sender_email: "{{step_1.sender_email}}"
+      sender_ip: "{{step_1.sender_ip}}"
+    outputs:
+      - reputation_score
+      - threat_type
+    timeout: 60
+    next: "step_3"
+
+  - id: "step_3"
+    name: "Analyze Attachment"
+    type: "action"
+    description: "Submit attachment to sandbox for analysis"
+    script: "sandbox_analysis"
+    parameters:
+      file_hash: "{{step_1.attachment_hashes}}"
+    outputs:
+      - verdict
+      - malware_family
+      - behavioral_indicators
+    timeout: 300
+    next: "step_4"
+
+  - id: "step_4"
+    name: "Check for Matches in SIEM"
+    type: "action"
+    description: "Search SIEM for related indicators"
+    script: "siem_search"
+    parameters:
+      query: "sender={{step_1.sender_email}} OR hash={{step_1.attachment_hashes}}"
+    outputs:
+      - match_count
+      - related_incidents
+    timeout: 60
+    next: "step_5"
+
+  - id: "step_5"
+    name: "Block Sender Domain"
+    type: "destructive"
+    description: "Add sender domain to blocklist"
+    requires_approval: true
+    script: "block_domain"
+    parameters:
+      domain: "{{step_1.sender_domain}}"
+    outputs:
+      - block_status
+      - block_id
+    timeout: 30
+    next: "step_6"
+
+  - id: "step_6"
+    name: "Quarantine Malicious Email"
+    type: "destructive"
+    description: "Remove phishing email from all mailboxes"
+    requires_approval: true
+    script: "quarantine_email"
+    parameters:
+      email_id: "{{incident.email_id}}"
+      recipients: "{{incident.affected_users}}"
+    outputs:
+      - quarantine_count
+      - quarantine_status
+    timeout: 60
+    next: "step_7"
+
+  - id: "step_7"
+    name: "Reset Affected User Passwords"
+    type: "destructive"
+    description: "Force password reset for users who clicked links"
+    requires_approval: true
+    script: "reset_passwords"
+    parameters:
+      users: "{{incident.affected_users}}"
+      force_logout: true
+    outputs:
+      - reset_count
+      - reset_status
+    timeout: 120
+    next: "step_8"
+
+  - id: "step_8"
+    name: "Create SIEM Alert"
+    type: "action"
+    description: "Create correlation alert for future detection"
+    script: "create_alert"
+    parameters:
+      title: "Phishing Campaign - {{step_1.sender_domain}}"
+      severity: "high"
+      iocs: "{{step_1}}"
+    outputs:
+      - alert_id
+    timeout: 30
+    next: "step_9"
+
+  - id: "step_9"
+    name: "Notify Affected Users"
+    type: "action"
+    description: "Send security notification to affected users"
+    script: "send_notification"
+    parameters:
+      users: "{{incident.affected_users}}"
+      template: "phishing_warning"
+      include_instructions: true
+    outputs:
+      - notification_status
+      - delivery_count
+    timeout: 60
+    next: "step_10"
+
+  - id: "step_10"
+    name: "Generate Incident Report"
+    type: "action"
+    description: "Compile incident details and actions taken"
+    script: "generate_report"
+    parameters:
+      incident_id: "{{incident.id}}"
+      include_timeline: true
+      include_iocs: true
+    outputs:
+      - report_url
+      - report_id
+    timeout: 30

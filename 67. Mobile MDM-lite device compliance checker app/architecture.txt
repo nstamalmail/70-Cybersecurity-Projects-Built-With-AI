@@ -1,0 +1,668 @@
+# Architecture: Mobile MDM-Lite — Device Compliance Checker
+
+**Codename:** `SentinelMDM`
+**Document Version:** 1.0.0
+**Target Platform:** Android 8.0+ (API 26+); full Device Owner capabilities on API 29+
+**Build Target:** `.apk` via Buildozer / python-for-android
+**Author Role:** Senior Security Developer
+**Classification:** Internal Engineering Spec
+
+---
+
+## 1. Executive Summary
+
+SentinelMDM is a **lightweight, local-only** device compliance checker for Android. It evaluates the device against a declarative policy (password strength, encryption status, root detection, USB debugging, unknown sources, etc.) and presents a compliance dashboard. In **Device Owner mode**, it can enforce remediation actions (disable camera, lock device, wipe, enforce password policy) using the `DevicePolicyManager` API.
+
+The GUI is built in **Python 3.11 + KivyMD**, packaged via **Buildozer**. Android framework access is bridged through **pyjnius** to `DevicePolicyManager`, `DeviceAdminReceiver`, and related system services.
+
+> **Reality check (senior-dev honesty):** A true MDM "lite" app is only as powerful as its provisioning mode. Without **Device Owner** enrollment (which requires factory reset + QR/NFC/zero-touch provisioning), the app degrades to a **compliance viewer** that can read some device state but cannot enforce policies. This dual-mode design is specified below.
+
+---
+
+## 2. Design Goals & Threat Model
+
+### 2.1 Goals
+
+| ID | Goal |
+|----|------|
+| G1 | Evaluate device compliance against a user/organization-defined policy. |
+| G2 | Enforce remediation actions when running as Device Owner. |
+| G3 | Operate fully on-device — no server dependency required (optional sync). |
+| G4 | Support both Device Owner (full control) and legacy Device Admin (limited) modes. |
+| G5 | Zero data exfiltration: policy and results stay local unless explicitly exported. |
+| G6 | Auditable compliance history (encrypted at rest). |
+| G7 | Graceful degradation with clear UI indicating capability level. |
+
+### 2.2 Threat Model (STRIDE-lite)
+
+**In scope:**
+- Compromised or non-compliant device being checked.
+- Malicious app attempting to bypass or disable SentinelMDM.
+- Lost/stolen managed device (policy enforcement should persist).
+- Policy tampering (signed policy bundles, encrypted results).
+- Privilege escalation via Device Admin API abuse (we constrain to declared policies).
+
+**Out of scope:**
+- Rooted device with kernel-level compromise (detection is best-effort).
+- Compromised OS / malicious firmware.
+- Physical attacks on the device.
+- Supply chain attacks on the APK build.
+
+---
+
+## 3. High-Level Architecture
+
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│                           SentinelMDM APK                            │
+│                                                                      │
+│  ┌────────────────────────────────────────────────────────────────┐  │
+│  │                 PRESENTATION LAYER (KivyMD)                    │  │
+│  │  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌──────────┐  │  │
+│  │  │Dashboard    │ │PolicyEditor │ │Enforcement  │ │Settings  │  │  │
+│  │  │(Compliance) │ │             │ │Log/Audit    │ │          │  │  │
+│  │  └──────┬──────┘ └──────┬──────┘ └──────┬──────┘ └────┬─────┘  │  │
+│  └─────────┼───────────────┼───────────────┼──────────────┼───────┘  │
+│            │               │               │              │          │
+│  ┌─────────▼───────────────▼───────────────▼──────────────▼───────┐  │
+│  │                  APPLICATION CORE (Python)                    │  │
+│  │  PolicyEngine │ ComplianceEvaluator │ EnforcementService      │  │
+│  │  ProvisioningService │ AuditService │ PrefsService            │  │
+│  └────────┬──────────────┬──────────────┬──────────────┬─────────┘  │
+│           │              │              │              │            │
+│  ┌────────▼──────────────▼──────────────▼──────────────▼─────────┐  │
+│  │                    MDM BRIDGE LAYER                           │  │
+│  │  ┌─────────────────────┐  ┌─────────────────────────────────┐ │  │
+│  │  │ DevicePolicyBridge  │  │ DeviceAdminReceiver (Java shim) │ │  │
+│  │  │ (pyjnius → DPM)     │  │ (broadcast callbacks → Python)  │ │  │
+│  │  └──────────┬──────────┘  └──────────────┬──────────────────┘ │  │
+│  └─────────────┼────────────────────────────┼────────────────────┘  │
+│                │                            │                       │
+│  ┌─────────────▼────────────────────────────▼────────────────────┐  │
+│  │                    STORAGE LAYER                              │  │
+│  │  compliance.db │ policies.enc │ audit.log.enc │ prefs.enc     │  │
+│  │  (SQLCipher)   │ (AES-GCM)    │ (AES-GCM)     │ (AES-GCM)     │  │
+│  └───────────────────────────────────────────────────────────────┘  │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
+         │                              │                     │
+         ▼                              ▼                     ▼
+   Android Framework            Android Keystore        Device Owner
+   (DevicePolicyManager,        (wrapping keys)         Provisioning
+    PackageManager,                                     (QR/NFC)
+    Settings.Global)
+```
+
+---
+
+## 4. Technology Stack
+
+| Layer | Technology | Rationale |
+|-------|-----------|-----------|
+| Language | Python 3.11 | Mandated. |
+| GUI | **KivyMD 1.1+** on Kivy 2.3 | Material UI, Android-friendly. |
+| Packaging | **Buildozer 1.5+** | Produces signed APK/AAB. |
+| Android bridge | **pyjnius** | Bind to `DevicePolicyManager`, `DeviceAdminReceiver`, `PackageManager`. |
+| Local DB | **SQLite** + **SQLCipher** | Encrypted compliance history. |
+| Crypto | **cryptography** (AES-GCM) + **argon2-cffi** | Policy/audit encryption. |
+| Java shim | Minimal `DeviceAdminReceiver` subclass | Required for Device Admin registration. |
+| Foreground service | p4a service + `android` module | Background compliance checks. |
+
+---
+
+## 5. Capability Modes
+
+SentinelMDM operates in one of three modes, determined at runtime:
+
+### 5.1 Mode Comparison
+
+| Capability | Viewer (No Admin) | Device Admin (Legacy) | Device Owner (Full) |
+|------------|-------------------|----------------------|---------------------|
+| Read password policy | Limited | ✅ | ✅ |
+| Enforce password policy | ❌ | ✅ (basic) | ✅ |
+| Disable camera | ❌ | ❌ | ✅ |
+| Lock device | ❌ | ✅ | ✅ |
+| Wipe device | ❌ | ✅ | ✅ |
+| Kiosk mode | ❌ | ❌ | ✅ |
+| Silent app install | ❌ | ❌ | ✅ |
+| Hardware restrictions | ❌ | ❌ | ✅ |
+| User removal | N/A | Easy | Requires factory reset |
+
+**Device Admin is deprecated** (Android 10+) but still functional for basic password policies and wipe. **Device Owner is the modern standard** and grants full system-level control.
+
+### 5.2 Provisioning Requirements
+
+| Mode | Requirement |
+|------|-------------|
+| Viewer | None — just install APK. |
+| Device Admin | User manually enables in Settings → Security → Device admin apps. |
+| **Device Owner** | **Factory reset required**; provision via QR code, NFC, or zero-touch during OOBE. |
+
+> **Critical constraint:** Device Owner can only be set on a device with **no user data configured**. Once provisioned, the user cannot remove the Device Owner app without a factory reset.
+
+---
+
+## 6. Policy Engine Design
+
+### 6.1 Policy Schema (JSON)
+
+```json
+{
+  "policy_version": "1.0",
+  "name": "Corporate Standard",
+  "rules": [
+    {
+      "id": "password_min_length",
+      "type": "password_complexity",
+      "params": { "min_length": 8, "require_alphanumeric": true },
+      "severity": "high",
+      "enforcement": "setPasswordQuality"
+    },
+    {
+      "id": "device_encryption",
+      "type": "encryption_status",
+      "params": { "require_encrypted": true },
+      "severity": "critical",
+      "enforcement": null
+    },
+    {
+      "id": "root_detection",
+      "type": "integrity_check",
+      "params": { "check_su_binary": true, "check_build_tags": true },
+      "severity": "critical",
+      "enforcement": "wipe"
+    },
+    {
+      "id": "usb_debugging",
+      "type": "settings_check",
+      "params": { "setting": "ADB_ENABLED", "expected": 0 },
+      "severity": "medium",
+      "enforcement": "addUserRestriction"
+    },
+    {
+      "id": "camera_policy",
+      "type": "hardware_restriction",
+      "params": { "camera_disabled": true },
+      "severity": "high",
+      "enforcement": "setCameraDisabled"
+    }
+  ]
+}
+```
+
+### 6.2 Rule Types
+
+| Type | Data Source | Enforcement Method |
+|------|-------------|-------------------|
+| `password_complexity` | `DevicePolicyManager.getPasswordQuality()` | `setPasswordQuality()` |
+| `encryption_status` | `DevicePolicyManager.getStorageEncryptionStatus()` | None (report only) |
+| `integrity_check` | File system checks + Build props | `wipeData()` on violation |
+| `settings_check` | `Settings.Global` queries | `addUserRestriction()` |
+| `hardware_restriction` | N/A (policy only) | `setCameraDisabled()`, `setBluetoothDisabled()` |
+| `app_restriction` | `PackageManager` | `setApplicationHidden()` |
+
+### 6.3 Policy Signing
+
+Policies can be bundled with a **Ed25519 signature**. The public key is embedded in the APK. This prevents policy tampering on the device.
+
+```
+policy.json + policy.sig → verify(pubkey, policy.json, policy.sig) → load
+```
+
+---
+
+## 7. Data Model
+
+### 7.1 SQLite Schema (SQLCipher-encrypted)
+
+```sql
+-- Compliance check results
+CREATE TABLE compliance_checks (
+  id          INTEGER PRIMARY KEY,
+  timestamp   INTEGER NOT NULL,
+  rule_id     TEXT NOT NULL,
+  status      TEXT NOT NULL,  -- PASS, FAIL, ERROR, UNKNOWN
+  severity    TEXT NOT NULL,
+  details     TEXT,
+  remediated  INTEGER DEFAULT 0
+);
+CREATE INDEX idx_checks_ts ON compliance_checks(timestamp);
+
+-- Enforcement actions log
+CREATE TABLE enforcement_log (
+  id          INTEGER PRIMARY KEY,
+  timestamp   INTEGER NOT NULL,
+  action      TEXT NOT NULL,
+  rule_id     TEXT,
+  success     INTEGER NOT NULL,
+  error_msg   TEXT
+);
+
+-- Installed apps inventory (for app policy checks)
+CREATE TABLE app_inventory (
+  package_name TEXT PRIMARY KEY,
+  label        TEXT,
+  is_system    INTEGER,
+  first_seen   INTEGER,
+  last_seen    INTEGER,
+  policy_state TEXT  -- ALLOWED, BLOCKED, HIDDEN
+);
+
+-- Device state snapshots
+CREATE TABLE device_snapshots (
+  id          INTEGER PRIMARY KEY,
+  timestamp   INTEGER NOT NULL,
+  android_ver INTEGER,
+  security_patch TEXT,
+  bootloader    TEXT,
+  build_fingerprint TEXT
+);
+```
+
+### 7.2 Encryption Model
+
+| Artifact | Encryption | Key Source |
+|----------|-----------|------------|
+| `compliance.db` | SQLCipher (AES-256) | Random DB key wrapped by Keystore |
+| `policies.enc` | AES-256-GCM | HKDF from device-bound secret |
+| `audit.log.enc` | AES-256-GCM | Same as above |
+| `prefs.enc` | AES-256-GCM | Same as above |
+
+**Key derivation:** A device-specific secret is generated on first run, stored in Android Keystore (StrongBox if available). All encryption keys are derived via HKDF-SHA256. No secrets are stored in plaintext.
+
+---
+
+## 8. Module Breakdown
+
+### 8.1 `core/mdm/`
+
+| Module | Responsibility |
+|--------|----------------|
+| `device_policy_bridge.py` | pyjnius wrapper around `DevicePolicyManager` — all DPM calls centralized. |
+| `device_admin_receiver.py` | Python-side handler for DeviceAdminReceiver callbacks (password failed, disabled, etc.). |
+| `provisioning.py` | Handle Device Owner provisioning completion; detect current mode. |
+| `user_restrictions.py` | Manage `UserManager` restrictions via DPM. |
+
+### 8.2 `core/compliance/`
+
+| Module | Responsibility |
+|--------|----------------|
+| `policy_engine.py` | Load, validate, and sign-check policies. |
+| `evaluator.py` | Execute rules against device state; produce compliance report. |
+| `rules/` | Individual rule implementations (password, encryption, root, etc.). |
+| `root_detector.py` | Multi-vector root detection (su binary, build tags, dangerous props). |
+| `integrity_checker.py` | Verify app signature, detect tampering. |
+
+### 8.3 `core/enforcement/`
+
+| Module | Responsibility |
+|--------|----------------|
+| `enforcer.py` | Apply remediation actions based on policy + compliance result. |
+| `actions/` | Individual enforcement actions (lock, wipe, disable camera, etc.). |
+| `rollback.py` | Undo enforcement when policy changes (where possible). |
+
+### 8.4 `core/storage/`
+
+| Module | Responsibility |
+|--------|----------------|
+| `db.py` | SQLCipher open/migrate; key management. |
+| `check_repo.py` | Compliance check persistence. |
+| `audit_repo.py` | Enforcement log persistence. |
+| `paths.py` | App-private directories only. |
+
+### 8.5 `ui/`
+
+| Screen | Responsibility |
+|--------|----------------|
+| `DashboardScreen` | Overall compliance status, pass/fail counts, critical issues. |
+| `PolicyEditorScreen` | Load/edit policies; import signed policy bundles. |
+| `RuleDetailScreen` | Per-rule status, details, remediation button. |
+| `EnforcementLogScreen` | Audit trail of actions taken. |
+| `SettingsScreen` | Mode indicator, provisioning status, export options. |
+| `widgets/` | `ComplianceBadge`, `SeverityChip`, `RuleCard`. |
+
+### 8.6 `platform/`
+
+| Module | Responsibility |
+|--------|----------------|
+| `mode_detector.py` | Determine Viewer / Device Admin / Device Owner mode. |
+| `permissions.py` | Check and request required permissions. |
+| `foreground.py` | Background compliance check service. |
+| `secure_window.py` | `FLAG_SECURE` on sensitive screens. |
+
+---
+
+## 9. Device Owner Provisioning Flow
+
+```
+Factory Reset Device
+       │
+       ▼
+OOBE (Out-of-Box Experience)
+       │
+       ├─► Tap 6 times on welcome screen → QR scanner opens
+       │
+       ▼
+Scan QR Code containing:
+{
+  "android.app.extra.PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME":
+    "com.sentinel.mdm/.DeviceAdminReceiver",
+  "android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_DOWNLOAD_LOCATION":
+    "https://example.com/sentinelmdm.apk",
+  "android.app.extra.PROVISIONING_DEVICE_ADMIN_SIGNATURE_CHECKSUM":
+    "base64-sha256-of-apk-signature",
+  "android.app.extra.PROVISIONING_SKIP_ENCRYPTION": false
+}
+       │
+       ▼
+Android downloads APK, verifies signature, installs
+       │
+       ▼
+Android grants Device Owner status
+       │
+       ▼
+DeviceAdminReceiver.onProfileProvisioningComplete() fired
+       │
+       ▼
+SentinelMDM applies initial policy bundle
+```
+
+**QR payload constants** (from `DevicePolicyManager`):
+- `EXTRA_PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME`
+- `EXTRA_PROVISIONING_DEVICE_ADMIN_PACKAGE_DOWNLOAD_LOCATION`
+- `EXTRA_PROVISIONING_DEVICE_ADMIN_SIGNATURE_CHECKSUM`
+- `EXTRA_PROVISIONING_SKIP_ENCRYPTION`
+
+---
+
+## 10. Key API Bindings (pyjnius → DevicePolicyManager)
+
+### 10.1 Compliance Reads
+
+| Check | API Call |
+|-------|----------|
+| Password quality | `dpm.getPasswordQuality(admin)` |
+| Password min length | `dpm.getPasswordMinimumLength(admin)` |
+| Storage encryption | `dpm.getStorageEncryptionStatus()` |
+| Camera disabled | `dpm.getCameraDisabled(admin)` |
+| Failed password attempts | `dpm.getCurrentFailedPasswordAttempts()` |
+| Is Device Owner | `dpm.isDeviceOwnerApp(packageName)` |
+| Is Profile Owner | `dpm.isProfileOwnerApp(packageName)` |
+
+### 10.2 Enforcement Writes
+
+| Action | API Call |
+|--------|----------|
+| Set password policy | `dpm.setPasswordQuality(admin, quality)` |
+| Set min password length | `dpm.setPasswordMinimumLength(admin, length)` |
+| Wipe data | `dpm.wipeData(flags)` |
+| Lock device | `dpm.lockNow()` |
+| Disable camera | `dpm.setCameraDisabled(admin, disabled)` |
+| Add restriction | `dpm.addUserRestriction(admin, key)` |
+| Clear restriction | `dpm.clearUserRestriction(admin, key)` |
+| Hide app | `dpm.setApplicationHidden(admin, packageName, true)` |
+| Max failed passwords | `dpm.setMaximumFailedPasswordsForWipe(admin, num)` |
+
+> **Security note:** All enforcement methods throw `SecurityException` if the app is not a Device Owner or Profile Owner. The bridge layer catches these and reports "insufficient privilege" to the UI.
+
+---
+
+## 11. Android Manifest (key entries)
+
+```xml
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+<uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+                 tools:ignore="QueryAllPackagesPermission"/>
+
+<application
+    android:allowBackup="false"
+    android:fullBackupContent="false"
+    android:dataExtractionRules="@xml/no_backup"
+    android:usesCleartextTraffic="false">
+
+    <!-- Device Admin Receiver (required for Device Admin/Owner) -->
+    <receiver
+        android:name=".DeviceAdminReceiver"
+        android:permission="android.permission.BIND_DEVICE_ADMIN"
+        android:exported="true">
+        <meta-data
+            android:name="android.app.device_admin"
+            android:resource="@xml/device_admin_policies"/>
+        <intent-filter>
+            <action android:name="android.app.action.DEVICE_ADMIN_ENABLED"/>
+            <action android:name="android.app.action.PROFILE_PROVISIONING_COMPLETE"/>
+            <action android:name="android.app.action.ACTION_PASSWORD_FAILED"/>
+            <action android:name="android.app.action.ACTION_PASSWORD_SUCCEEDED"/>
+        </intent-filter>
+    </receiver>
+
+    <!-- Foreground service for background compliance checks -->
+    <service
+        android:name=".ComplianceService"
+        android:foregroundServiceType="dataSync"
+        android:exported="false"/>
+</application>
+```
+
+### 11.1 `res/xml/device_admin_policies.xml`
+
+```xml
+<device-admin xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-policies>
+        <limit-password />
+        <watch-login />
+        <reset-password />
+        <force-lock />
+        <wipe-data />
+        <expire-password />
+        <encrypted-storage />
+        <disable-camera />
+    </uses-policies>
+</device-admin>
+```
+
+---
+
+## 12. Build Pipeline (Buildozer)
+
+### 12.1 `buildozer.spec` (key entries)
+
+```ini
+[app]
+title = SentinelMDM
+package.name = sentinelmdm
+package.domain = com.sentinel
+source.dir = .
+source.include_exts = py,png,jpg,kv,atlas,json,xml
+version = 1.0.0
+
+requirements = python3,kivy==2.3.0,kivymd==1.1.1,pyjnius,android,cryptography,argon2-cffi
+
+android.permissions = RECEIVE_BOOT_COMPLETED,FOREGROUND_SERVICE,POST_NOTIFICATIONS,QUERY_ALL_PACKAGES
+android.api = 34
+android.minapi = 26
+android.ndk = 25c
+android.archs = arm64-v8a, armeabi-v7a
+android.allow_backup = False
+android.enable_androidx = True
+android.add_src = java/
+android.extra_manifest_xml = manifest_extras.xml
+p4a.branch = develop
+android.enable_artifact_signing = True
+```
+
+### 12.2 Build Commands
+
+```bash
+pip install buildozer cython
+buildozer -v android debug      # → bin/sentinelmdm-1.0.0-debug.apk
+buildozer -v android release    # signed AAB for Play
+```
+
+### 12.3 Java Shim Compilation
+
+The `DeviceAdminReceiver` must be a Java/Kotlin class. The `java/` directory contains:
+
+```
+java/
+└── com/sentinel/mdm/
+    └── DeviceAdminReceiver.java   # Extends android.app.admin.DeviceAdminReceiver
+```
+
+This is compiled by python-for-android and included in the APK. The Python side communicates with it via `pyjnius.autoclass()`.
+
+---
+
+## 13. Security Controls Matrix
+
+| Control | Implementation | Verification |
+|---------|----------------|--------------|
+| Policy integrity | Ed25519 signature verify | Unit test |
+| Encrypted audit log | AES-256-GCM | Integration test |
+| No data exfiltration | No `INTERNET` permission by default | `aapt dump permissions` gate |
+| Device Owner persistence | Cannot be removed without factory reset | Manual test |
+| Enforcement authorization | `SecurityException` caught; UI shows mode | Integration test |
+| Root detection | Multi-vector (su, build tags, props) | Unit + device test |
+| Tamper detection | APK signature self-check | Instrumented test |
+| Secure screens | `FLAG_SECURE` on policy editor | UI test |
+| Backup exclusion | `allowBackup=false` | Manifest lint |
+
+---
+
+## 14. Testing Strategy
+
+| Layer | Tool | Coverage |
+|-------|------|----------|
+| Unit (policy) | `pytest` | Rule parsing, signature verify |
+| Unit (evaluator) | `pytest` + mocks | Rule execution, severity calc |
+| Unit (enforcer) | `pytest` + DPM mocks | Action selection, error handling |
+| Integration | Emulator with Device Owner | Full provisioning → check → enforce |
+| Instrumented | `pytest` + `adb` | DPM API calls, broadcast reception |
+| Device matrix | Physical devices | Mode detection, API compatibility |
+| Manual | OWASP MASVS | Checklist |
+
+### 14.1 MASVS Mapping
+
+- **MASVS-STORAGE-1/2** ✅ Encrypted DB, no backup
+- **MASVS-CRYPTO-1/2** ✅ Vetted primitives only
+- **MASVS-AUTH-1** ✅ Device Owner cannot be removed
+- **MASVS-PLATFORM-1/2** ✅ Minimal permissions, FLAG_SECURE
+- **MASVS-RESILIENCE-1/2** ✅ Root detection, tamper checks
+
+---
+
+## 15. Known Limitations & Residual Risk
+
+1. **Device Owner requires factory reset.** This is an Android platform constraint, not a design choice. Users with existing devices cannot become Device Owner without wiping.
+
+2. **Device Admin is deprecated.** Android 10+ significantly restricts legacy Device Admin capabilities. Only basic password policies and wipe remain functional.
+
+3. **Root detection is heuristic.** A determined attacker with a custom ROM can evade all userspace detection. This is documented; no app can guarantee root detection without hardware attestation.
+
+4. **No server-side sync by default.** Policies must be sideloaded or QR-provisioned. Enterprise users would need an external sync mechanism (out of scope for v1.0).
+
+5. **Python overhead in compliance checks.** Complex policy evaluation may take 100–500 ms. Acceptable for periodic checks; not real-time.
+
+6. **Keystore availability.** Some low-end devices lack StrongBox. Key operations fall back to TEE, which is still acceptable.
+
+7. **Android 14+ policy resolution.** If multiple Device Policy Management agents exist, Android 14 resolves conflicts using precedence rules (most recent, most restrictive). SentinelMDM as the sole Device Owner is unaffected.
+
+---
+
+## 16. Roadmap
+
+| Version | Feature |
+|---------|---------|
+| 1.0 | Compliance viewer, Device Admin mode, basic enforcement (lock, wipe) |
+| 1.1 | Device Owner provisioning (QR/NFC), full enforcement suite |
+| 1.2 | Signed policy bundles, encrypted export/import |
+| 1.3 | Kiosk mode / lock task configuration |
+| 1.4 | App inventory + app policy (block/hide) |
+| 2.0 | Optional server sync (Android Management API compatible) |
+
+---
+
+## 17. Appendix A — Directory Skeleton
+
+```
+sentinelmdm/
+├── architecture.md
+├── buildozer.spec
+├── requirements.txt
+├── main.py
+├── manifest_extras.xml
+├── core/
+│   ├── mdm/
+│   │   ├── device_policy_bridge.py
+│   │   ├── device_admin_receiver.py
+│   │   ├── provisioning.py
+│   │   └── user_restrictions.py
+│   ├── compliance/
+│   │   ├── policy_engine.py
+│   │   ├── evaluator.py
+│   │   ├── root_detector.py
+│   │   ├── integrity_checker.py
+│   │   └── rules/
+│   │       ├── password_rule.py
+│   │       ├── encryption_rule.py
+│   │       ├── root_rule.py
+│   │       ├── settings_rule.py
+│   │       └── hardware_rule.py
+│   ├── enforcement/
+│   │   ├── enforcer.py
+│   │   ├── actions/
+│   │   │   ├── lock_action.py
+│   │   │   ├── wipe_action.py
+│   │   │   ├── camera_action.py
+│   │   │   └── restriction_action.py
+│   │   └── rollback.py
+│   └── storage/
+│       ├── db.py
+│       ├── check_repo.py
+│       ├── audit_repo.py
+│       └── paths.py
+├── ui/
+│   ├── dashboard_screen.py
+│   ├── policy_editor_screen.py
+│   ├── rule_detail_screen.py
+│   ├── enforcement_log_screen.py
+│   ├── settings_screen.py
+│   └── widgets/
+├── platform/
+│   ├── mode_detector.py
+│   ├── permissions.py
+│   ├── foreground.py
+│   └── secure_window.py
+├── java/
+│   └── com/sentinel/mdm/
+│       └── DeviceAdminReceiver.java
+├── res/
+│   └── xml/
+│       └── device_admin_policies.xml
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   └── instrumented/
+└── assets/
+    └── default_policy.json
+```
+
+## 18. Appendix B — Constants
+
+| Constant | Value |
+|----------|-------|
+| Policy version | 1.0 |
+| DB cipher | SQLCipher 4 (AES-256) |
+| Key wrap | AES-256-GCM |
+| Policy signature | Ed25519 |
+| Compliance check interval | 1 hour (configurable) |
+| Audit log retention | 90 days |
+| Max policy size | 256 KB |
+| QR provisioning timeout | 5 minutes |
+
+---
+
+**End of document.**
+*Review cycle: quarterly, or on any change to §5 (capability modes), §6 (policy schema), or §10 (API bindings). Any new enforcement action requires second senior reviewer sign-off.*

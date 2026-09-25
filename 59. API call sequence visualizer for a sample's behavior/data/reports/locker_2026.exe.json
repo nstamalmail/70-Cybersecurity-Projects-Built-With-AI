@@ -1,0 +1,494 @@
+{
+ "info": {
+  "machine": {
+   "name": "cuckoo-win7x64"
+  },
+  "platform": "windows",
+  "started": "2026-09-12 11:22:05"
+ },
+ "target": {
+  "file": {
+   "name": "locker_2026.exe",
+   "sha256": "3b7d1f5a9c2e6084d1a4f7e0b3c69d2f5a8b1e4c7d0f3a6b9c2e5d8f1a4b7c0e"
+  }
+ },
+ "score": 10.0,
+ "signatures": [
+  {
+   "name": "creates_service"
+  },
+  {
+   "name": "modifies_shadow_copies"
+  },
+  {
+   "name": "mass_file_encryption"
+  },
+  {
+   "name": "creates_mutex"
+  },
+  {
+   "name": "persistence_run_key"
+  }
+ ],
+ "behavior": {
+  "processtree": [
+   {
+    "pid": 788,
+    "name": "locker_2026.exe",
+    "path": "C:\\Users\\analyst\\Desktop\\locker_2026.exe",
+    "command_line": "locker_2026.exe -k",
+    "children": [
+     {
+      "pid": 1216,
+      "name": "vssadmin.exe",
+      "path": "C:\\Windows\\System32\\vssadmin.exe"
+     },
+     {
+      "pid": 2044,
+      "name": "cmd.exe",
+      "path": "C:\\Windows\\System32\\cmd.exe"
+     }
+    ]
+   }
+  ],
+  "processes": [
+   {
+    "process_id": 788,
+    "process_name": "locker_2026.exe",
+    "first_seen": 0.2,
+    "calls": [
+     {
+      "api": "IsDebuggerPresent",
+      "category": "system",
+      "timestamp": 0.4,
+      "thread_id": 888,
+      "status": "FAILURE",
+      "return_value": "0xC0000005",
+      "arguments": {},
+      "caller": "0x00401000"
+     },
+     {
+      "api": "CreateMutexW",
+      "category": "sync",
+      "timestamp": 0.75,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "mutex_name": "Global\\LKR-2026-LOCK"
+      },
+      "caller": "0x00401011"
+     },
+     {
+      "api": "FindFirstFileW",
+      "category": "file",
+      "timestamp": 1.1,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "file_name": "C:\\Users\\analyst\\Documents\\*"
+      },
+      "caller": "0x00401022"
+     },
+     {
+      "api": "FindNextFileW",
+      "category": "file",
+      "timestamp": 1.45,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "file_name": "report.docx"
+      },
+      "caller": "0x00401033"
+     },
+     {
+      "api": "FindNextFileW",
+      "category": "file",
+      "timestamp": 1.8,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "file_name": "budget.xlsx"
+      },
+      "caller": "0x00401044"
+     },
+     {
+      "api": "ReadFile",
+      "category": "file",
+      "timestamp": 2.15,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "file_name": "C:\\Users\\analyst\\Documents\\report.docx",
+       "size": 32768
+      },
+      "caller": "0x00401055"
+     },
+     {
+      "api": "CryptGenKey",
+      "category": "crypto",
+      "timestamp": 2.5,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "algorithm": "CALG_AES_256"
+      },
+      "caller": "0x00401066"
+     },
+     {
+      "api": "CryptEncrypt",
+      "category": "crypto",
+      "timestamp": 2.85,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "buffer": "7a1f0c",
+       "size": 32768
+      },
+      "caller": "0x00401077"
+     },
+     {
+      "api": "WriteFile",
+      "category": "file",
+      "timestamp": 3.2,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "file_name": "C:\\Users\\analyst\\Documents\\report.docx.locked",
+       "size": 32768
+      },
+      "caller": "0x00401088"
+     },
+     {
+      "api": "ReadFile",
+      "category": "file",
+      "timestamp": 3.55,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "file_name": "C:\\Users\\analyst\\Documents\\budget.xlsx",
+       "size": 40960
+      },
+      "caller": "0x00401099"
+     },
+     {
+      "api": "CryptEncrypt",
+      "category": "crypto",
+      "timestamp": 3.9,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "buffer": "9b2e41",
+       "size": 40960
+      },
+      "caller": "0x004010aa"
+     },
+     {
+      "api": "WriteFile",
+      "category": "file",
+      "timestamp": 4.25,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "file_name": "C:\\Users\\analyst\\Documents\\budget.xlsx.locked",
+       "size": 40960
+      },
+      "caller": "0x004010bb"
+     },
+     {
+      "api": "ReadFile",
+      "category": "file",
+      "timestamp": 4.6,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "file_name": "C:\\Users\\analyst\\Pictures\\scan.png",
+       "size": 51200
+      },
+      "caller": "0x004010cc"
+     },
+     {
+      "api": "CryptEncrypt",
+      "category": "crypto",
+      "timestamp": 4.95,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "buffer": "1c7d55",
+       "size": 51200
+      },
+      "caller": "0x004010dd"
+     },
+     {
+      "api": "WriteFile",
+      "category": "file",
+      "timestamp": 5.3,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "file_name": "C:\\Users\\analyst\\Pictures\\scan.png.locked",
+       "size": 51200
+      },
+      "caller": "0x004010ee"
+     },
+     {
+      "api": "ReadFile",
+      "category": "file",
+      "timestamp": 5.65,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "file_name": "C:\\Users\\analyst\\Desktop\\notes.txt",
+       "size": 4096
+      },
+      "caller": "0x004010ff"
+     },
+     {
+      "api": "CryptEncrypt",
+      "category": "crypto",
+      "timestamp": 6.0,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "buffer": "aa31de",
+       "size": 4096
+      },
+      "caller": "0x00401110"
+     },
+     {
+      "api": "WriteFile",
+      "category": "file",
+      "timestamp": 6.35,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "file_name": "C:\\Users\\analyst\\Desktop\\notes.txt.locked",
+       "size": 4096
+      },
+      "caller": "0x00401121"
+     },
+     {
+      "api": "CreateProcessW",
+      "category": "process",
+      "timestamp": 6.7,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "application_name": "C:\\Windows\\System32\\vssadmin.exe",
+       "command_line": "vssadmin.exe delete shadows /all /quiet"
+      },
+      "caller": "0x00401132"
+     },
+     {
+      "api": "CreateProcessW",
+      "category": "process",
+      "timestamp": 7.05,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "application_name": "C:\\Windows\\System32\\cmd.exe",
+       "command_line": "cmd.exe /c bcdedit /set {default} recoveryenabled No"
+      },
+      "caller": "0x00401143"
+     },
+     {
+      "api": "CreateFileW",
+      "category": "file",
+      "timestamp": 7.4,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "file_name": "C:\\Users\\analyst\\Desktop\\README_LOCKED.txt",
+       "desired_access": "GENERIC_WRITE"
+      },
+      "caller": "0x00401154"
+     },
+     {
+      "api": "WriteFile",
+      "category": "file",
+      "timestamp": 7.75,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "file_name": "C:\\Users\\analyst\\Desktop\\README_LOCKED.txt",
+       "size": 1024
+      },
+      "caller": "0x00401165"
+     },
+     {
+      "api": "RegCreateKeyExW",
+      "category": "registry",
+      "timestamp": 8.1,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "regkey": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+       "value_name": "LockerService"
+      },
+      "caller": "0x00401176"
+     },
+     {
+      "api": "RegSetValueExW",
+      "category": "registry",
+      "timestamp": 8.45,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "regkey": "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+       "value_name": "LockerService",
+       "value": "C:\\Users\\analyst\\Desktop\\locker_2026.exe -k"
+      },
+      "caller": "0x00401187"
+     },
+     {
+      "api": "OpenSCManagerW",
+      "category": "system",
+      "timestamp": 8.8,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "service_name": "LockSvc"
+      },
+      "caller": "0x00401198"
+     },
+     {
+      "api": "CreateServiceW",
+      "category": "system",
+      "timestamp": 9.15,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "service_name": "LockSvc",
+       "binary_path": "C:\\Users\\analyst\\Desktop\\locker_2026.exe"
+      },
+      "caller": "0x004011a9"
+     },
+     {
+      "api": "StartServiceW",
+      "category": "system",
+      "timestamp": 9.5,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "service_name": "LockSvc"
+      },
+      "caller": "0x004011ba"
+     },
+     {
+      "api": "OpenProcess",
+      "category": "process",
+      "timestamp": 9.85,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "process_identifier": 4,
+       "desired_access": "0x1F0FFF"
+      },
+      "caller": "0x004011cb"
+     },
+     {
+      "api": "ReadProcessMemory",
+      "category": "memory",
+      "timestamp": 10.2,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "process_identifier": 4,
+       "buffer": "0100"
+      },
+      "caller": "0x004011dc"
+     },
+     {
+      "api": "VirtualAlloc",
+      "category": "memory",
+      "timestamp": 10.55,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "size": 131072,
+       "protection": "PAGE_EXECUTE_READWRITE"
+      },
+      "caller": "0x004011ed"
+     },
+     {
+      "api": "WriteProcessMemory",
+      "category": "memory",
+      "timestamp": 10.9,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "size": 131072,
+       "buffer": "fc4883e4f0"
+      },
+      "caller": "0x004011fe"
+     },
+     {
+      "api": "VirtualProtect",
+      "category": "memory",
+      "timestamp": 11.25,
+      "thread_id": 888,
+      "status": "SUCCESS",
+      "return_value": "0x00000000",
+      "arguments": {
+       "new_protection": "PAGE_EXECUTE_READ"
+      },
+      "caller": "0x0040120f"
+     }
+    ],
+    "path": "C:\\Users\\analyst\\Desktop\\locker_2026.exe"
+   }
+  ],
+  "summary": {
+   "files": [
+    "C:\\Users\\analyst\\Desktop\\README_LOCKED.txt",
+    "C:\\Users\\analyst\\Desktop\\notes.txt.locked",
+    "C:\\Users\\analyst\\Documents\\budget.xlsx.locked",
+    "C:\\Users\\analyst\\Documents\\report.docx.locked",
+    "C:\\Users\\analyst\\Pictures\\scan.png.locked"
+   ],
+   "keys": [
+    "HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"
+   ],
+   "mutexes": [
+    "Global\\LKR-2026-LOCK"
+   ],
+   "hosts": [],
+   "services": [
+    "LockSvc"
+   ],
+   "executed_commands": [
+    "vssadmin.exe delete shadows /all /quiet",
+    "cmd.exe /c bcdedit /set {default} recoveryenabled No"
+   ]
+  }
+ }
+}

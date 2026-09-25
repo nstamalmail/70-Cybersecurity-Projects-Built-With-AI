@@ -1,0 +1,2 @@
+severity,confidence,technique,parameter_location,parameter_name,dbms_hint,signal,payload,url,method,status,resp_time_ms
+high,high,union,query,cat,,"UNION marker 'sidt7f3a' reflected in response (detection marker only, no data extracted)",' UNION SELECT sidt7f3a-- -,http://127.0.0.1:3881/list?cat=books,GET,0,0.0

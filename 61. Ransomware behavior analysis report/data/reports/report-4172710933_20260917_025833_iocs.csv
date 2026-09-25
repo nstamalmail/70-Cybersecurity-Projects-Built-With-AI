@@ -1,0 +1,8 @@
+# Indicators of Compromise
+ioc_type,value,source,confidence,context
+file,C:\\Users\\*,FindFirstFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\*,FindFirstFileW,0.70,
+file,data.csv,FindNextFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\data.csv,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\data.csv.alphv,WriteFile,0.70,
+file,C:\\Users\\Desktop\\RECOVER-FILES.txt,CreateFileW,0.70,

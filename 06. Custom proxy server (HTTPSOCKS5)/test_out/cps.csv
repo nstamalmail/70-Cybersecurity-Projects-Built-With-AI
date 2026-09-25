@@ -1,0 +1,4 @@
+timestamp,client_ip,dest_host,dest_port,protocol,bytes_up,bytes_down,duration_ms,status,detail
+2026-09-21T02:44:29,127.0.0.1,127.0.0.1,8901,HTTP,54,157,0,ALLOWED,
+2026-09-21T02:44:29,127.0.0.1,127.0.0.1,8901,SOCKS5,54,157,0,ALLOWED,
+2026-09-21T02:44:29,127.0.0.1,evil.blocked.example,443,HTTP,0,0,0,BLOCKED,wildcard *.blocked.example

@@ -1,0 +1,2 @@
+severity,confidence,xss_type,context,parameter_location,parameter_name,encoding_applied,browser_confirmed,confirmation_method,signal,payload,url,method,status
+high,,reflected,html_body,query,q,none,False,reflection,raw reflection,<script>alert(1)</script>,http://127.0.0.1:3888,GET,

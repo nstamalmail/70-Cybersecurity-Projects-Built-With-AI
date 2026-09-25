@@ -1,0 +1,1254 @@
+{
+  "title": "Bandwidth Monitor Report",
+  "generated": "2026-09-21T02:44:32",
+  "period_start": "2026-09-21T02:44:30",
+  "period_end": "2026-09-21T02:44:32",
+  "snapshot_count": 4,
+  "total_up": 2678.9493489637784,
+  "total_down": 5178.113945869021,
+  "avg_up": 669.7373372409446,
+  "avg_down": 1294.5284864672553,
+  "peak_up": 1891.4728682051057,
+  "peak_down": 2906.796116426005,
+  "peak_time": "2026-09-21T02:44:31",
+  "top_processes": [
+    {
+      "name": "svchost.exe (16828)",
+      "samples": 4,
+      "peak_rate": 0.0
+    },
+    {
+      "name": "System (4)",
+      "samples": 4,
+      "peak_rate": 0.0
+    },
+    {
+      "name": "svchost.exe (5792)",
+      "samples": 4,
+      "peak_rate": 0.0
+    },
+    {
+      "name": "StartMenuExperienceHost.exe (12184)",
+      "samples": 4,
+      "peak_rate": 0.0
+    },
+    {
+      "name": "freebuff.exe (13660)",
+      "samples": 4,
+      "peak_rate": 0.0
+    },
+    {
+      "name": "svchost.exe (9672)",
+      "samples": 4,
+      "peak_rate": 0.0
+    },
+    {
+      "name": "wininit.exe (1668)",
+      "samples": 4,
+      "peak_rate": 0.0
+    },
+    {
+      "name": "svchost.exe (4120)",
+      "samples": 4,
+      "peak_rate": 0.0
+    },
+    {
+      "name": "svchost.exe (7516)",
+      "samples": 4,
+      "peak_rate": 0.0
+    },
+    {
+      "name": "explorer.exe (3616)",
+      "samples": 4,
+      "peak_rate": 0.0
+    },
+    {
+      "name": "svchost.exe (2520)",
+      "samples": 4,
+      "peak_rate": 0.0
+    },
+    {
+      "name": "lsass.exe (1844)",
+      "samples": 4,
+      "peak_rate": 0.0
+    },
+    {
+      "name": "svchost.exe (764)",
+      "samples": 4,
+      "peak_rate": 0.0
+    },
+    {
+      "name": "opencode.exe (11740)",
+      "samples": 4,
+      "peak_rate": 0.0
+    },
+    {
+      "name": "svchost.exe (2548)",
+      "samples": 4,
+      "peak_rate": 0.0
+    }
+  ],
+  "interfaces": [
+    {
+      "name": "Bluetooth Network Connection",
+      "sent": 0,
+      "recv": 0
+    },
+    {
+      "name": "Ethernet",
+      "sent": 0,
+      "recv": 0
+    },
+    {
+      "name": "Ethernet 3",
+      "sent": 0,
+      "recv": 0
+    },
+    {
+      "name": "Ethernet 4",
+      "sent": 0,
+      "recv": 0
+    },
+    {
+      "name": "Local Area Connection* 10",
+      "sent": 0,
+      "recv": 0
+    },
+    {
+      "name": "Local Area Connection* 9",
+      "sent": 0,
+      "recv": 0
+    },
+    {
+      "name": "Loopback Pseudo-Interface 1",
+      "sent": 0,
+      "recv": 0
+    },
+    {
+      "name": "Wi-Fi",
+      "sent": 329085680,
+      "recv": 595137311
+    }
+  ],
+  "alerts": [
+    {
+      "ts": "now",
+      "msg": "test alert"
+    }
+  ],
+  "system": "test system",
+  "snapshots": [
+    {
+      "timestamp": "2026-09-21T02:44:30",
+      "total_upload_bps": 0.0,
+      "total_download_bps": 0.0,
+      "connection_count": 80,
+      "interfaces": {
+        "Ethernet 3": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Ethernet 4": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Local Area Connection* 9": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Local Area Connection* 10": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Wi-Fi": {
+          "bytes_sent": 329084298,
+          "bytes_recv": 595134642,
+          "packets_sent": 360882,
+          "packets_recv": 970532,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Bluetooth Network Connection": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Ethernet": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Loopback Pseudo-Interface 1": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        }
+      },
+      "interface_rates": {
+        "Ethernet 3": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Ethernet 4": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Local Area Connection* 9": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Local Area Connection* 10": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Wi-Fi": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Bluetooth Network Connection": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Ethernet": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Loopback Pseudo-Interface 1": {
+          "up": 0.0,
+          "down": 0.0
+        }
+      },
+      "processes": [
+        {
+          "pid": 16828,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 16
+        },
+        {
+          "pid": 4,
+          "name": "System",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 12
+        },
+        {
+          "pid": 5792,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 4
+        },
+        {
+          "pid": 12184,
+          "name": "StartMenuExperienceHost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 13660,
+          "name": "freebuff.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 8
+        },
+        {
+          "pid": 9672,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 1668,
+          "name": "wininit.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 4120,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 6
+        },
+        {
+          "pid": 7516,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 3616,
+          "name": "explorer.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 2520,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 6
+        },
+        {
+          "pid": 1844,
+          "name": "lsass.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 764,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 11740,
+          "name": "opencode.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 1
+        },
+        {
+          "pid": 2548,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 14632,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 1812,
+          "name": "services.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 15292,
+          "name": "OneDrive.Sync.Service.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 1
+        },
+        {
+          "pid": 5824,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 1
+        },
+        {
+          "pid": 3584,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 5328,
+          "name": "spoolsv.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 5932,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 1
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-09-21T02:44:31",
+      "total_upload_bps": 1891.4728682051057,
+      "total_download_bps": 2166.6666666529795,
+      "connection_count": 80,
+      "interfaces": {
+        "Ethernet 3": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Ethernet 4": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Local Area Connection* 9": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Local Area Connection* 10": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Wi-Fi": {
+          "bytes_sent": 329085274,
+          "bytes_recv": 595135760,
+          "packets_sent": 360886,
+          "packets_recv": 970538,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Bluetooth Network Connection": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Ethernet": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Loopback Pseudo-Interface 1": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        }
+      },
+      "interface_rates": {
+        "Ethernet 3": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Ethernet 4": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Local Area Connection* 9": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Local Area Connection* 10": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Wi-Fi": {
+          "up": 1891.4728682051057,
+          "down": 2166.6666666529795
+        },
+        "Bluetooth Network Connection": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Ethernet": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Loopback Pseudo-Interface 1": {
+          "up": 0.0,
+          "down": 0.0
+        }
+      },
+      "processes": [
+        {
+          "pid": 16828,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 16
+        },
+        {
+          "pid": 4,
+          "name": "System",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 12
+        },
+        {
+          "pid": 5792,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 4
+        },
+        {
+          "pid": 12184,
+          "name": "StartMenuExperienceHost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 13660,
+          "name": "freebuff.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 8
+        },
+        {
+          "pid": 9672,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 1668,
+          "name": "wininit.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 4120,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 6
+        },
+        {
+          "pid": 7516,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 3616,
+          "name": "explorer.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 2520,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 6
+        },
+        {
+          "pid": 1844,
+          "name": "lsass.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 764,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 11740,
+          "name": "opencode.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 1
+        },
+        {
+          "pid": 2548,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 14632,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 1812,
+          "name": "services.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 15292,
+          "name": "OneDrive.Sync.Service.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 1
+        },
+        {
+          "pid": 5824,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 1
+        },
+        {
+          "pid": 3584,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 5328,
+          "name": "spoolsv.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 5932,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 1
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-09-21T02:44:31",
+      "total_upload_bps": 337.864077660738,
+      "total_download_bps": 2906.796116426005,
+      "connection_count": 80,
+      "interfaces": {
+        "Ethernet 3": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Ethernet 4": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Local Area Connection* 9": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Local Area Connection* 10": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Wi-Fi": {
+          "bytes_sent": 329085448,
+          "bytes_recv": 595137257,
+          "packets_sent": 360889,
+          "packets_recv": 970543,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Bluetooth Network Connection": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Ethernet": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Loopback Pseudo-Interface 1": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        }
+      },
+      "interface_rates": {
+        "Ethernet 3": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Ethernet 4": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Local Area Connection* 9": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Local Area Connection* 10": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Wi-Fi": {
+          "up": 337.864077660738,
+          "down": 2906.796116426005
+        },
+        "Bluetooth Network Connection": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Ethernet": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Loopback Pseudo-Interface 1": {
+          "up": 0.0,
+          "down": 0.0
+        }
+      },
+      "processes": [
+        {
+          "pid": 16828,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 16
+        },
+        {
+          "pid": 4,
+          "name": "System",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 12
+        },
+        {
+          "pid": 5792,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 4
+        },
+        {
+          "pid": 12184,
+          "name": "StartMenuExperienceHost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 13660,
+          "name": "freebuff.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 8
+        },
+        {
+          "pid": 9672,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 1668,
+          "name": "wininit.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 4120,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 6
+        },
+        {
+          "pid": 7516,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 3616,
+          "name": "explorer.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 2520,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 6
+        },
+        {
+          "pid": 1844,
+          "name": "lsass.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 764,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 11740,
+          "name": "opencode.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 1
+        },
+        {
+          "pid": 2548,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 14632,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 1812,
+          "name": "services.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 15292,
+          "name": "OneDrive.Sync.Service.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 1
+        },
+        {
+          "pid": 5824,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 1
+        },
+        {
+          "pid": 3584,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 5328,
+          "name": "spoolsv.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 5932,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 1
+        }
+      ]
+    },
+    {
+      "timestamp": "2026-09-21T02:44:32",
+      "total_upload_bps": 449.61240309793493,
+      "total_download_bps": 104.65116279003658,
+      "connection_count": 80,
+      "interfaces": {
+        "Ethernet 3": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Ethernet 4": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Local Area Connection* 9": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Local Area Connection* 10": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Wi-Fi": {
+          "bytes_sent": 329085680,
+          "bytes_recv": 595137311,
+          "packets_sent": 360890,
+          "packets_recv": 970544,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Bluetooth Network Connection": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Ethernet": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        },
+        "Loopback Pseudo-Interface 1": {
+          "bytes_sent": 0,
+          "bytes_recv": 0,
+          "packets_sent": 0,
+          "packets_recv": 0,
+          "errors_in": 0,
+          "errors_out": 0,
+          "drops_in": 0,
+          "drops_out": 0
+        }
+      },
+      "interface_rates": {
+        "Ethernet 3": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Ethernet 4": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Local Area Connection* 9": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Local Area Connection* 10": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Wi-Fi": {
+          "up": 449.61240309793493,
+          "down": 104.65116279003658
+        },
+        "Bluetooth Network Connection": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Ethernet": {
+          "up": 0.0,
+          "down": 0.0
+        },
+        "Loopback Pseudo-Interface 1": {
+          "up": 0.0,
+          "down": 0.0
+        }
+      },
+      "processes": [
+        {
+          "pid": 16828,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 16
+        },
+        {
+          "pid": 4,
+          "name": "System",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 12
+        },
+        {
+          "pid": 5792,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 4
+        },
+        {
+          "pid": 12184,
+          "name": "StartMenuExperienceHost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 13660,
+          "name": "freebuff.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 8
+        },
+        {
+          "pid": 9672,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 1668,
+          "name": "wininit.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 4120,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 6
+        },
+        {
+          "pid": 7516,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 3616,
+          "name": "explorer.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 2520,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 6
+        },
+        {
+          "pid": 1844,
+          "name": "lsass.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 764,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 11740,
+          "name": "opencode.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 1
+        },
+        {
+          "pid": 2548,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 14632,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 1812,
+          "name": "services.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 15292,
+          "name": "OneDrive.Sync.Service.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 1
+        },
+        {
+          "pid": 5824,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 1
+        },
+        {
+          "pid": 3584,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 5328,
+          "name": "spoolsv.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 2
+        },
+        {
+          "pid": 5932,
+          "name": "svchost.exe",
+          "upload_bps": 0.0,
+          "download_bps": 0.0,
+          "connection_count": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+# Indicators of Compromise
+ioc_type,value,source,confidence,context
+file,C:\\Users\\analyst\\Documents\\*,FindFirstFileW,0.70,
+file,notes.txt,FindNextFileW,0.70,
+file,presentation.pptx,FindNextFileW,0.70,
+file,database.db,FindNextFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\notes.txt,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\notes.txt.encrypted,WriteFile,0.70,
+file,C:\\Users\\analyst\\Documents\\presentation.pptx,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\presentation.pptx.encrypted,WriteFile,0.70,
+file,C:\\Users\\analyst\\Documents\\database.db,CreateFileW,0.70,
+file,C:\\Users\\analyst\\Documents\\database.db.encrypted,WriteFile,0.70,
+file,C:\\Users\\Desktop\\HOW_TO_DECRYPT.txt,CreateFileW,0.70,
